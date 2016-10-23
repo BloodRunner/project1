@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{6F0899D8-84AD-9E63-D465-57E21A262AAE}") = "penguinBlood", "Assembly-CSharp.csproj", "{6C6DDED8-2E1F-AFBA-E43D-936DC4A60E34}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C6DDED8-2E1F-AFBA-E43D-936DC4A60E34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C6DDED8-2E1F-AFBA-E43D-936DC4A60E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C6DDED8-2E1F-AFBA-E43D-936DC4A60E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C6DDED8-2E1F-AFBA-E43D-936DC4A60E34}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
