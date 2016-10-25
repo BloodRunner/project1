@@ -13,40 +13,39 @@ public class OrganController : MonoBehaviour {
 	public Rigidbody rb;
 	public GameObject shot;
 	public OrganStats bodyStats; // configured stats for the critter;
-	private OrganStats stats; // percentage of the body stats - from damage
+	//private OrganStats stats; // percentage of the body stats - from damage
+	private float stats_health=100f;
+	private float stats_defense=100f;
+	private float stats_regenRate=100f;
 
 	void Start() {
 		rb = GetComponent<Rigidbody>();
-		stats = new OrganStats();   // Create base stats
-		stats.health=100f;
-		stats.defense = 100f;
-		stats.regenRate = 100f;
 	}
 
 	// oxygenate means add power to health + defense to organ
 	void oxygenate (float power) {
-		stats.health += power;
-		if (stats.health > 100f)
-			stats.health = 100f;
-		stats.defense += power;
-		if (stats.defense > 100f)
-			stats.defense = 100f;
+		stats_health += power;
+		if (stats_health > 100f) // health goes up by oxygen power
+			stats_health = 100f;
+		stats_defense += power/2; // defense goes up by 1/2 oxygen power
+		if (stats_defense > 100f)
+			stats_defense = 100f;
 	}
 
 	public float health () {
-		return ((stats.health/100.0f) * (float)bodyStats.health);
+		return ((stats_health/100.0f) * (float)bodyStats.health);
 	}
 
 	public float defense () {
-		return ((stats.defense/100.0f) * (float)bodyStats.defense);
+		return ((stats_defense/100.0f) * (float)bodyStats.defense);
 	}
 
 	// Update player stats if collision
 	// cleaner if stats has setters/getters
 	public void updateStats(float health, float defense, float regenRate) {		
-			stats.health += health;
-			stats.defense += defense;
-			stats.regenRate += regenRate;
+			stats_health += health;
+			stats_defense += defense;
+			stats_regenRate += regenRate;
 	}
 
 	// Each combatant lose 1% in defend after each combat
@@ -71,7 +70,7 @@ public class OrganController : MonoBehaviour {
 	// Collider for each object is called.
 	// Only organ collision is dealt with here.
 	void OnTriggerEnter(Collider other) {
-		if (stats.health == 0) { // Organ is dead - destroy???
+		if (stats_health == 0) { // Organ is dead - destroy???
 			return; 
 		}
 		// Infect/Attack/Oxygenate everything that enters the trigger
@@ -83,6 +82,6 @@ public class OrganController : MonoBehaviour {
 			CellController red = other.GetComponent(typeof(CellController)) as CellController;
 			oxygenate (red.power ());
 		}
-		//gameController.addScore (scoreValue);
+		//gameController.updateScore (scoreValue);
 	}
 }

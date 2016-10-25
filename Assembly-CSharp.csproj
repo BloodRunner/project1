@@ -47,10 +47,9 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CellController.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
-     <Compile Include="Assets\Scripts\Mover.cs" />
+     <Compile Include="Assets\Scripts\HeartController.cs" />
      <Compile Include="Assets\Scripts\OrganController.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\RandomRotator.cs" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

@@ -8,8 +8,8 @@ public class GameController : MonoBehaviour {
 	public int infectionCount;
 	public int spawnWait;
 	public int startWait,waveWait;
-	private int score;
-	public GUIText scoretext;
+	private float score=100; // starts at 100%, dies at 0
+	public GUIText healthText;
 	private bool gameOver;
 	private bool restart=false;
 	public GUIText restartText;
@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour {
 				// GameObject=... as GameObject
 				yield return new WaitForSeconds (spawnWait);
 			}
-			Debug.Log ("gameover=" + gameOver);
+			//Debug.Log ("gameover=" + gameOver);
 			if (gameOver) {
 				restartText.text = "Press 'R' for Restart";
 				restart = true;
@@ -40,12 +40,12 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		score = 0;
-		UpDateScore ();
+		UpdateScore ();
 		gameOver = false;
 		restart=false;
 		restartText.text = "";
 		gameoverText.text = "";
-		StartCoroutine( SpawnWaves ());
+		//StartCoroutine( SpawnWaves ());
 	}
 
 	public void GameOver() {
@@ -58,16 +58,13 @@ public class GameController : MonoBehaviour {
 		if (restart) {
 			if (Input.GetKeyDown(KeyCode.R)) {
 				SceneManager.LoadSceneAsync(0);
-				//Application.LoadLevel(Application.loadedLevel);
 			}}
 	}
-
-	public void addScore(int scoreValue){
-		score += scoreValue;
-		UpDateScore ();
+		
+	void setScore(float scorept) {
+		score = scorept;
 	}
-
-	void UpDateScore() {
-		scoretext.text = "Score:" + score;
+	void UpdateScore() {
+		healthText.text = "Score:" + score;
 	}
 }
