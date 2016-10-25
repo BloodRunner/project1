@@ -1,7 +1,5 @@
 # project1
 Test 
-TESTTEST
-
 This is a test project, please make sure that you can 
 1) clone,
 2) branch

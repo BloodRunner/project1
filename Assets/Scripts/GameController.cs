@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour {
 	public GameObject hazards;
 	public Vector3 spawnValues;
+	public int pressure;
 	public int hazardCount;
 	public int spawnWait;
 	public int startWait,waveWait;
