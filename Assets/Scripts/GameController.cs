@@ -3,9 +3,9 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
-	public GameObject hazards;
+	public GameObject infections;
 	public Vector3 spawnValues;
-	public int hazardCount;
+	public int infectionCount;
 	public int spawnWait;
 	public int startWait,waveWait;
 	private int score;
@@ -19,10 +19,11 @@ public class GameController : MonoBehaviour {
 	IEnumerator SpawnWaves() {
 		yield return new WaitForSeconds (startWait);
 		while(true) {
-			for (int i = 0; i < hazardCount; i++) {
+			for (int i = 0; i < infectionCount; i++) {
+				// Instantiate at infection point in organs!
 				Vector3 position = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
 				Quaternion spawnRotation = Quaternion.identity;
-				Instantiate (hazards, position, spawnRotation);
+				Instantiate (infections, position, spawnRotation);
 				// Instantiate returns a Transform so need to add "as GameObject" after call
 				// GameObject=... as GameObject
 				yield return new WaitForSeconds (spawnWait);

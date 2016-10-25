@@ -1,7 +1,11 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
+Project("{6F0899D8-84AD-9E63-D465-57E21A262AAE}") = "penguinBlood", "Assembly-CSharp-firstpass.csproj", "{B582C2A2-9E29-466C-69F8-BB9F7D3797A0}"
+EndProject
 Project("{6F0899D8-84AD-9E63-D465-57E21A262AAE}") = "penguinBlood", "Assembly-CSharp.csproj", "{6C6DDED8-2E1F-AFBA-E43D-936DC4A60E34}"
+EndProject
+Project("{6F0899D8-84AD-9E63-D465-57E21A262AAE}") = "penguinBlood", "Assembly-CSharp-Editor.csproj", "{1C5B1EED-43E1-B3F3-B665-887D245315DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +13,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B582C2A2-9E29-466C-69F8-BB9F7D3797A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B582C2A2-9E29-466C-69F8-BB9F7D3797A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B582C2A2-9E29-466C-69F8-BB9F7D3797A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B582C2A2-9E29-466C-69F8-BB9F7D3797A0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6C6DDED8-2E1F-AFBA-E43D-936DC4A60E34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6C6DDED8-2E1F-AFBA-E43D-936DC4A60E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C6DDED8-2E1F-AFBA-E43D-936DC4A60E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C6DDED8-2E1F-AFBA-E43D-936DC4A60E34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C5B1EED-43E1-B3F3-B665-887D245315DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C5B1EED-43E1-B3F3-B665-887D245315DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C5B1EED-43E1-B3F3-B665-887D245315DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C5B1EED-43E1-B3F3-B665-887D245315DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
