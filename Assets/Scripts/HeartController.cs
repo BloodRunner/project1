@@ -5,8 +5,8 @@ using System.Collections;
 // Name = organ name
 public class HeartController : OrganController {
 	// Heart damage reduces speed
-	public virtual void damageBody(){
-
+	public override void damageBody(){
+		slowDownAllCells(myorganStats.health);
 	}
 		
 }

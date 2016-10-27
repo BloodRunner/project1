@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PlayerController : CellController {
-	private GameController gameController;
+	
 	/*
 	void Start() {
 		
