@@ -15,7 +15,7 @@ public class CellSpawner2 : MonoBehaviour {
 		if (dna != null) {  // Can reproduce
 			if (Time.time > nextReprod) {
 				Vector3 v3 = transform.position + (Random.insideUnitSphere * dna.transform.localScale.x);
-				v3.y = 0f;
+				v3.y = 1f;
 				GameObject clone = Instantiate (dna, v3 , transform.rotation) as GameObject;
 				nextReprod = Time.time + dna.reprodRate ();
 				//Debug.Log("Red Reprod= "+ nextReprod +"{"+ dna.reprodRate() +"} ");

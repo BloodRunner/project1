@@ -155,7 +155,7 @@ public class CellController : BodyController {
 			if (Time.time > nextReprod) {
 				GameObject clone;
 				Vector3 v3 = transform.position + (Random.insideUnitSphere * 0.2f);
-				v3.y = 0f;
+				v3.y = 1f;
 
 				if (shotSpawn != null) {// dna is the prefab
 					clone = Instantiate (dna, shotSpawn.position, shotSpawn.rotation) as GameObject;
