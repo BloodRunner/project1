@@ -3,14 +3,14 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
-	public GameObject hazards;
+	public float pressure;
+	public GameObject infections;
 	public Vector3 spawnValues;
-	public int pressure;
-	public int hazardCount;
+	public int infectionCount;
 	public int spawnWait;
 	public int startWait,waveWait;
-	private int score;
-	public GUIText scoretext;
+	private float score=100; // starts at 100%, dies at 0
+	public GUIText healthText;
 	private bool gameOver;
 	private bool restart=false;
 	public GUIText restartText;
@@ -20,15 +20,16 @@ public class GameController : MonoBehaviour {
 	IEnumerator SpawnWaves() {
 		yield return new WaitForSeconds (startWait);
 		while(true) {
-			for (int i = 0; i < hazardCount; i++) {
+			for (int i = 0; i < infectionCount; i++) {
+				// Instantiate at infection point in organs!
 				Vector3 position = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
 				Quaternion spawnRotation = Quaternion.identity;
-				Instantiate (hazards, position, spawnRotation);
+				Instantiate (infections, position, spawnRotation);
 				// Instantiate returns a Transform so need to add "as GameObject" after call
 				// GameObject=... as GameObject
 				yield return new WaitForSeconds (spawnWait);
 			}
-			Debug.Log ("gameover=" + gameOver);
+			//Debug.Log ("gameover=" + gameOver);
 			if (gameOver) {
 				restartText.text = "Press 'R' for Restart";
 				restart = true;
@@ -39,13 +40,14 @@ public class GameController : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
+		pressure = 1;
 		score = 0;
-		UpDateScore ();
+		UpdateScore ();
 		gameOver = false;
 		restart=false;
 		restartText.text = "";
 		gameoverText.text = "";
-		StartCoroutine( SpawnWaves ());
+		//StartCoroutine( SpawnWaves ());
 	}
 
 	public void GameOver() {
@@ -58,16 +60,13 @@ public class GameController : MonoBehaviour {
 		if (restart) {
 			if (Input.GetKeyDown(KeyCode.R)) {
 				SceneManager.LoadSceneAsync(0);
-				//Application.LoadLevel(Application.loadedLevel);
 			}}
 	}
-
-	public void addScore(int scoreValue){
-		score += scoreValue;
-		UpDateScore ();
+		
+	void setScore(float scorept) {
+		score = scorept;
 	}
-
-	void UpDateScore() {
-		scoretext.text = "Score:" + score;
+	void UpdateScore() {
+		healthText.text = "Score:" + score;
 	}
 }

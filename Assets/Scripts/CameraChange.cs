@@ -39,4 +39,10 @@ public class CameraChange : MonoBehaviour {
 		}
 
 	}
+
+	public void stopCamera (){
+		StopCoroutine (coroutine);
+		followCamera.enabled = false;
+		topCamera.enabled = true;
+	}
 }
