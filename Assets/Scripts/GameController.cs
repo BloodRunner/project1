@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour {
 	private bool restart=false;
 	public GUIText restartText;
 	public GUIText gameoverText;
+	public Camera topCamera;
+	public Camera followCamera;
 
 	// Coroutine
 	IEnumerator SpawnWaves() {
@@ -47,6 +49,10 @@ public class GameController : MonoBehaviour {
 		restart=false;
 		restartText.text = "";
 		gameoverText.text = "";
+		topCamera = GameObject.Find ("topCamera").GetComponent<Camera>();
+		followCamera = GameObject.Find ("followCamera").GetComponent<Camera>();
+		followCamera.enabled = false;
+		topCamera.enabled = true;
 		//StartCoroutine( SpawnWaves ());
 	}
 

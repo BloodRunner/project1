@@ -5,11 +5,15 @@ public class BloodFlow : MonoBehaviour {
 
 	public float pressureMulty;
 	public Vector3 target;
+	public float xSpeed;
+	public float zSpeed;
+	public float maxSpeed;
 
 	void OnTriggerStay(Collider blood){
 		if (blood.CompareTag ("Cell")|blood.CompareTag ("Host")|blood.CompareTag ("Infection")) {
-			blood.transform.position = Vector3.MoveTowards (blood.transform.position, target, GameObject.Find("GameController").GetComponent<GameController>().pressure * pressureMulty);
-
+			if(blood.attachedRigidbody.velocity.magnitude <= maxSpeed){
+				blood.attachedRigidbody.AddForce (xSpeed * pressureMulty, 0f, zSpeed * pressureMulty);
+			}
 		}
 	}
 }
