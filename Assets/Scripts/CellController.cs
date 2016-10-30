@@ -5,16 +5,9 @@ using System.Collections.Generic;
 /* This allows Unity UI to see class and show it
  * */
 
-[System.Serializable]
-public class Boundary
-{
-	public float xMin, xMax, zMin, zMax;
-}
 
-public class CellController : BodyController {
-	const string Phage = "White";
-	const int Distance = 2; // How far it is spawn from parent
-	public string named;
+
+public class CellController :  BodyController{
 	public float playerSpeed;  	// base movement speed
 	public float tilt;
 	public Boundary boundary; // Game boundary - if outside boundary - no control
@@ -24,6 +17,7 @@ public class CellController : BodyController {
 	protected Rigidbody rb;
 	private float nextReprod=0f;
 	private float seconds_in_float = 1200f; // Cell life span in seconds float
+	/*
 	protected float stats_health=100.0f;
 	protected float stats_speed = 100.0f;
 	protected float stats_defense = 100.0f;
@@ -31,8 +25,7 @@ public class CellController : BodyController {
 	protected float stats_power = 100.0f;
 	protected float stats_delay = 0f;
 	protected int stats_level = 1;
-
-
+*/
 
 	void Start() { // Start and Awake don't seem to hold references
 		rb = GetComponent<Rigidbody>();
@@ -46,55 +39,11 @@ public class CellController : BodyController {
 		if (myname != null) name= myname;
 	}
 
-	// Update player stats if collision
-	// cleaner if stats has setters/getters
-	public void updateStats(float health, float speed, float defense, float reprodRate, float power) {		
-		stats_health += health; 
-		if (stats_health > 100)
-			stats_health = 100;
-		if (stats_health <= 0f) {
-			Debug.Log (name + " dies! ");
-			// Temp
-			if (gameObject.name.Equals("Player") && gameController!= null)
-				gameController.GameOver();
-			this.GetComponent<CameraChange> ().stopCamera ();
-			Destroy (gameObject); // No health - dies!
-			return;
-		}
-		stats_speed += speed;
-		if (stats_speed > 100)
-			stats_speed = 100;
-		else if (stats_speed < 0)
-			stats_speed = 0;
-		stats_defense += defense;
-		if (stats_defense > 100)
-			stats_defense = 100;
-		else if (stats_defense < 0)
-			stats_defense = 0;
-		stats_power += power;
-		if (stats_power > 100)
-			stats_power = 100;
-		else if (stats_power < 0)
-			stats_power = 0;
-		stats_reprodRate += reprodRate;
-		if (stats_reprodRate <= 0f) stats_reprodRate=1;
-	}
+
 
 	// This changes the top level
 	void addDelay(float sec) {
 		mybodyStats.delay += sec; // when brain is damaged, all cells are slow to follow command
-	}
-
-	public float health () {
-		return ((stats_health/100.0f) * mybodyStats.health);
-	}
-
-	public float defense () {
-		return ((stats_defense/100.0f) * mybodyStats.defense);
-	}
-
-	public float power () {
-		return ((stats_power / 100.0f) * mybodyStats.power);
 	}
 
 	// Lower number is faster
@@ -117,12 +66,14 @@ public class CellController : BodyController {
 		float combat = other.power () - defense ();
 		bool win;
 		if (combat <= 0) { // successful defense against the others
-			other.updateStats (combat, 0.0f, -1.0f, 0.0f, 0.0f);
-			updateStats (0.0f, 0.0f, -1.0f, 0.0f, 0.0f);
+			other.updateHealthStats (combat);
+			other.updateDefenseStats(-1.0f);
+			updateDefenseStats (-1.0f);
 			win= true;
 		} else { // Lost
-			updateStats (-combat, 0f, -1.0f, 0.0f, 0.0f);
-			other.updateStats (0.0f, 0f, -1f, 0f, 0f);
+			updateHealthStats (-combat);
+			updateDefenseStats (-1.0f);
+			other.updateDefenseStats (-1.0f);
 			if (stats_health < 0)
 				Destroy (rb);
 			else
@@ -210,7 +161,7 @@ public class CellController : BodyController {
 		if (gameObj && inContact.ContainsKey (gameObj.GetInstanceID ())) {
 			Damage damage = (Damage)inContact[gameObj.GetInstanceID()];
 			if (damage.nextAttack (Time.time)) {
-				updateStats (damage.damage(), 0f, 0.0f, 0.0f, 0.0f);
+				updateHealthStats (damage.damage());
 				Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
 			}	
 		}

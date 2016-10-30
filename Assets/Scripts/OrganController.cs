@@ -12,7 +12,6 @@ public class OrganController : BodyController {
 	private float stats_defense=100f;
 	private float stats_regenRate=100f;
 	private float nextReGen=0f;
-	protected Hashtable inContact=new Hashtable();
 
 	void Start() {
 		rb = GetComponent<Rigidbody>();
@@ -64,12 +63,14 @@ public class OrganController : BodyController {
 		float combat = pathogen.power () - defense ();
 		bool successful;
 		if (combat <= 0) { // successful defense against the pathogen
-			pathogen.updateStats (combat/2, 0.0f, -1.0f, 0.0f, 0.0f); // pathogen is damaged
-			updateStats ( 0.0f, -1.0f, 0.0f);// organ loses a bit of defense
+			pathogen.updateHealthStats (-combat/2); // pathogen is damaged
+			pathogen.updateDefenseStats(-1f);
+			updateDefenseStats ( -1.0f);// organ loses a bit of defense
 			successful= true;
 		} else { // Lost
-			updateStats (-combat, -1.0f, 0.0f);
-			pathogen.updateStats (0.0f, 0f, -1f, 0f, 0f);// pathogen loses a bit of defense
+			updateHealthStats (-combat);
+			updateDefenseStats ( -1.0f);
+			pathogen.updateDefenseStats (-1f);// pathogen loses a bit of defense
 			if (stats_health <= 0)
 				Destroy (rb); // Keep game object!?
 			else
@@ -77,7 +78,7 @@ public class OrganController : BodyController {
 			successful= false;
 			// Keeps track of the damage if contact continues; 
 		}
-		Debug.Log(gameObject.name+"."+gameObject.tag+" defends against "+ pathogen.name+"."+pathogen.tag+" health="+ stats_health+ (successful?"success":"failed"));
+		Debug.Log(gameObject.name+"."+gameObject.tag+" defends against "+ pathogen.name+"."+pathogen.tag+" health="+ stats_health+ (successful?" success":"failed"));
 		return successful;
 	}
 
