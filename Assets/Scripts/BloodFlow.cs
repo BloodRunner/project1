@@ -3,8 +3,18 @@ using System.Collections;
 
 public class BloodFlow : MonoBehaviour {
 
-	public float pressureMulty;
-	public Vector3 target;
+	public CapsuleCollider interaction; 
+
+
+	void OnCollisionEnter(Collision collision) {
+
+	}
+
+
+
+
+	/*public float pressureMulty;
+	//public Vector3 target;
 	public float xSpeed;
 	public float zSpeed;
 	public float maxSpeed;
@@ -15,5 +25,5 @@ public class BloodFlow : MonoBehaviour {
 				blood.attachedRigidbody.AddForce (xSpeed * pressureMulty, 0f, zSpeed * pressureMulty);
 			}
 		}
-	}
+	}*/
 }
