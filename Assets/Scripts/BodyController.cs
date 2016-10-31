@@ -3,130 +3,253 @@ using System.Collections;
 
 /* This allows Unity UI to see class and show it
  * */
-
+[System.Serializable]
+public class Boundary
+{
+	public float xMin, xMax, zMin, zMax;
+}
 // Base stats for cells,
 [System.Serializable]
 public class Stats
-{   // base level multiplied by ( 0 - 100% of base level )
+{
+	// base level multiplied by ( 0 - 100% of base level )
 	public float health, speed, defense, reprodRate;
-	public float power; // attack if white cell or infection, oxygenation if red cell
-	public float delay; // Pause before it can follow a command
+	// regen==reprod)
+	public float power;
+	// attack if white cell or infection, oxygenation if red cell
+	public float delay;
+	// Pause before it can follow a command
 	public int level;
 }
 
 // Base stats for Organ,
 [System.Serializable]
 public class OrganStats
-{   // base level multiplied by ( 0 - 100% of base level )
+{
+	// base level multiplied by ( 0 - 100% of base level )
 	public float health, defense, regenRate;
 }
 
-public class BodyController : MonoBehaviour {
+public class BodyController : MonoBehaviour
+{
 	public string myname;
 	public GameController gameController;
-	public Stats bodyStats; // configured max stats for the cell body;
-	public OrganStats organStats; // configured max stats for the organ;
-	protected Stats mybodyStats; // configured stats for the cell body;
-	protected OrganStats myorganStats; // configured stats for the organ;
-	const float EMPTY = -999f;
-	const float MAX = 999999f;
-	protected float mybodyStats_power; // new() in Start/Awake doesn't work consistently
-	protected float mybodyStats_health;
-	protected float mybodyStats_reprodRate;
-	protected float mybodyStats_defense;
-	protected float mybodyStats_speed;
-	protected float mybodyStats_delay;
-	public void Awake() { // Initialize my status from defaults
-		//mybodyStats = new Stats();
-		//myorganStats = new OrganStats();
-		updateCellStats(MAX, MAX, MAX, 0f,MAX);
-		//updateOrganStats(MAX, MAX,0f);
+	public Stats bodyStats;
+	// configured max stats for the cell body;
+	public OrganStats organStats;
+	// configured max stats for the organ;
+	protected Stats mybodyStats = new Stats ();
+	// configured stats for the cell body;
+	protected OrganStats myorganStats = new OrganStats ();
+	// configured stats for the organ;
+	protected Hashtable inContact = new Hashtable ();
+	protected float stats_health = 100.0f;
+	protected float stats_speed = 100.0f;
+	protected float stats_defense = 100.0f;
+	protected float stats_reprodRate = 100.0f;
+	protected float stats_power = 100.0f;
+	protected float stats_delay = 0f;
+	protected int stats_level = 1;
+
+	public void Awake ()
+	{ // Initialize my status from defaults
+		initStats ();
+		//initOrganStats ();
 	}
 
-    // Update cell stats for the whole body
-	public void updateCellStats(float health, float speed, float defense, float reprodRate, float power) {
-        if (health != EMPTY) {
-	        mybodyStats_health = health; 
-			if (mybodyStats_health > bodyStats.health)
-                mybodyStats_health = bodyStats.health;
-            if (mybodyStats_health <= 0f) {
-                // Game Over!
-                return;
-            }
-        }
-        if (speed != EMPTY) {
-            mybodyStats_speed = speed;
-            if (mybodyStats_speed > bodyStats.speed)
-                mybodyStats_speed = bodyStats.speed;
-            else if (mybodyStats_speed < 0)
-                mybodyStats_speed = 0;
-        }
-        if (defense != EMPTY) {
-            mybodyStats_defense = defense;
-            if (mybodyStats_defense > bodyStats.defense)
-                mybodyStats_defense = bodyStats.defense;
-            else if (mybodyStats_defense < 0)
-                mybodyStats_defense = 0;
-        }
-        if (power != EMPTY) {
-            mybodyStats_power = power;
-            if (mybodyStats_power > bodyStats.power)
-                mybodyStats_power = bodyStats.power;
-            else if (mybodyStats_power < 0)
-                mybodyStats_power = 0;
-        }
-        if ( reprodRate != EMPTY) {
-            mybodyStats_reprodRate = reprodRate;
-            if (mybodyStats_reprodRate < bodyStats.reprodRate )  // smaller is better
-                mybodyStats_reprodRate = bodyStats.reprodRate;
-			//Debug.Log (gameObject.name+" reprodRate="+reprodRate +" -> "+ bodyStats.reprodRate +"=>"+mybodyStats_reprodRate);
-        }
-    }
+	// Use for both cell and organ - ignore power and speed in organ for now
+	public void initStats ()
+	{
+		mybodyStats.health = bodyStats.health;
+		mybodyStats.speed = bodyStats.speed;
+		mybodyStats.defense = bodyStats.defense;
+		mybodyStats.power = bodyStats.power;
+		mybodyStats.reprodRate = bodyStats.reprodRate;
+	}
+		
+	// Update cell stats for the whole body
+	public void updateCellHealthStats (float health)
+	{
+		mybodyStats.health = health;
+		if (mybodyStats.health > bodyStats.health)
+			mybodyStats.health = bodyStats.health;
+		if (mybodyStats.health <= 0f) {
+			// Game Over!
+			return;
+		}
+	}
+
+	public void updateCellSpeedStats (float speed)
+	{
+		mybodyStats.speed = speed;
+		if (mybodyStats.speed > bodyStats.speed)
+			mybodyStats.speed = bodyStats.speed;
+		else if (mybodyStats.speed < 0)
+			mybodyStats.speed = 0;
+	}
+
+	public void updateCellDefenseStats (float defense)
+	{
+
+		mybodyStats.defense = defense;
+		if (mybodyStats.defense > bodyStats.defense)
+			mybodyStats.defense = bodyStats.defense;
+		else if (mybodyStats.defense < 0)
+			mybodyStats.defense = 0;
+
+	}
+
+	public void updateCellPowerStats (float power)
+	{
+		mybodyStats.power = power;
+		if (mybodyStats.power > bodyStats.power)
+			mybodyStats.power = bodyStats.power;
+		else if (mybodyStats.power < 0)
+			mybodyStats.power = 0;
+	}
+
+	public void updateCellReprodStats (float reprodRate)
+	{
+		mybodyStats.reprodRate = reprodRate;
+		if (mybodyStats.reprodRate < bodyStats.reprodRate)  // smaller is better
+                mybodyStats.reprodRate = bodyStats.reprodRate;
+		Debug.Log (gameObject.name + " reprodRate=" + reprodRate + " -> " + bodyStats.reprodRate + "=>" + mybodyStats.reprodRate);
+	}
 
 	// Update cell stats for the whole body
-	public void updateOrganStats(float health, float defense, float regenRate) {
-		if (health!=EMPTY) {
-			myorganStats.health = health; 
-			if (myorganStats.health > organStats.health)
-				myorganStats.health = organStats.health;
-			if (myorganStats.health <= 0f) {
-				// Game Over!
-				return;
-			}
+	public void updateOrganHealthStats (float health)
+	{
+		myorganStats.health = health;
+		if (myorganStats.health > organStats.health)
+			myorganStats.health = organStats.health;
+		if (myorganStats.health <= 0f) {
+			// Game Over!
+			return;
 		}
-		if (defense != EMPTY) {
-			myorganStats.defense = defense;
-			if (myorganStats.defense > organStats.defense)
-				myorganStats.defense = organStats.defense;
-			else if (myorganStats.defense < 0)
-				myorganStats.defense = 0;
-		}
-		if ( regenRate != EMPTY) {
-			myorganStats.regenRate = regenRate;
-			if (myorganStats.regenRate < organStats.regenRate )  // smaller is better
+	}
+
+	public void updateOrganDefenseStats (float defense)
+	{
+		myorganStats.defense = defense;
+		if (myorganStats.defense > organStats.defense)
+			myorganStats.defense = organStats.defense;
+		else if (myorganStats.defense < 0)
+			myorganStats.defense = 0;
+	}
+
+	public void updateOrganHRegenStats (float regenRate)
+	{
+		myorganStats.regenRate = regenRate;
+		if (myorganStats.regenRate < organStats.regenRate)  // smaller is better
 				myorganStats.regenRate = organStats.regenRate;
+
+	}
+
+	// If heart is damaged - all cells will slow down to the percentage of damage of the heart
+	public void slowDownAllCells (float percentage)
+	{
+		float speed = bodyStats.speed * percentage;
+		updateCellSpeedStats (speed);
+	}
+
+	public void reduceAllCellDefense (float percent)
+	{
+		float defense = bodyStats.defense * percent;
+		updateCellDefenseStats (defense);
+	}
+
+	// The number of seconds before a cell divides
+	public void reduceReprodRate (float reprod)
+	{
+		if (reprod <= 0f) {
+			reprod = 0.1f;
+		}
+		float reprodRate = bodyStats.reprodRate * 100 / reprod;
+		updateCellReprodStats (reprodRate);
+	}
+
+	// Update player stats if collision
+	// cleaner if stats has setters/getters
+	public void updateHealthStats (float health)
+	{		
+		stats_health += health; 
+		if (stats_health > 100)
+			stats_health = 100;
+		if (stats_health <= 0f) {
+			Debug.Log (name + " dies! ");
+			// Temp
+			if (gameObject.name.Equals ("Player") && gameController != null)
+				gameController.GameOver ();
+			if (name.Equals("White"))
+				gameObject.GetComponent<CameraChange> ().stopCamera ();
+			Destroy (gameObject); // No health - dies!
+			return;
 		}
 	}
 
-    // If heart is damaged - all cells will slow down to the percentage of damage of the heart
-	public void slowDownAllCells(float percentage){ 
-        float speed = bodyStats.speed * percentage;
-        updateCellStats(EMPTY, speed, EMPTY, EMPTY, EMPTY);
+	public void updateSpeedStats (float speed)
+	{
+			
+		stats_speed += speed;
+		if (stats_speed > 100)
+			stats_speed = 100;
+		else if (stats_speed < 0)
+			stats_speed = 0;
 	}
 
-	public void reduceAllCellDefense(float percent){
-        float defense = bodyStats.defense * percent;
-        updateCellStats(EMPTY, EMPTY, defense, EMPTY, EMPTY);
+	public void updateDefenseStats (float defense)
+	{
+		
+		stats_defense += defense;
+		if (stats_defense > 100)
+			stats_defense = 100;
+		else if (stats_defense < 0)
+			stats_defense = 0;
 	}
 
-    // The number of seconds before a cell divides
-    public void reduceReprodRate(float reprod){
-        if (reprod <= 0f) {
-            reprod= 0.1f;
-        }
-        float reprodRate = bodyStats.reprodRate * 100/reprod;
-        updateCellStats(EMPTY, EMPTY, EMPTY, reprodRate, EMPTY);
-    }
+	public void updatePowerStats (float power)
+	{
+		stats_power += power;
+		if (stats_power > 100)
+			stats_power = 100;
+		else if (stats_power < 0)
+			stats_power = 0;
+	}
+
+	public void updateReprodStats (float reprodRate)
+	{
+		stats_reprodRate += reprodRate;
+		if (stats_reprodRate <= 0f)
+			stats_reprodRate = 1;
+	}
+
+	public float health () {
+		return ((stats_health/100.0f) * mybodyStats.health);
+	}
+
+	public float defense () {
+		return ((stats_defense/100.0f) * mybodyStats.defense);
+	}
+
+	public float power () {
+		return ((stats_power / 100.0f) * mybodyStats.power);
+	}
+	// Lower number is faster
+	public float reprodRate () {
+		if (mybodyStats.reprodRate < 10) {
+			Debug.LogError (name +" !!!ReprodRate (<10) is messed up " + mybodyStats.reprodRate);
+			mybodyStats.reprodRate = 10;
+		}
+		return (mybodyStats.reprodRate);
+	}
+
+
+	// Drift speed
+	public float speed () { 
+		return (stats_speed/100f) * mybodyStats.speed;
+	}
+
+		
 
 }
 

@@ -1,19 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
-/*
-[System.Serializable]
-public class OrganStats
-{   // base level multiplied by ( 0 - 100% of base level )
-	public float health, defense, regenRate;
-}
-*/
+
 // Tag = Host
 // Name = organ name
 public class OrganController : BodyController {
 	public Rigidbody rb;
 	public GameObject shot;
 
-	//private OrganStats stats; // percentage of the body stats - from damage
+	//private OrganStats stats=new OrganStats(); // percentage of the body stats - from damage
 	private float stats_health=100f;
 	private float stats_defense=100f;
 	private float stats_regenRate=100f;
@@ -24,6 +18,7 @@ public class OrganController : BodyController {
 	}
 
 	// oxygenate means add power to health + defense to organ
+	// TODO: modify by regenRate
 	void oxygenate (float power) {
 		stats_health += power;
 		if (stats_health > 100f) // health goes up by oxygen power
@@ -63,21 +58,28 @@ public class OrganController : BodyController {
 	}
 
 	// Each combatant lose 1% in defend after each combat
+	// Organ can reflect the attack (1/2 defense - attack on the pathogen
 	public bool defend(CellController pathogen){
-		bool success;
-		if (pathogen.power() > defense ()) { // attack successful
-			updateStats(defense()-pathogen.power(), -1f, 0f);
-			pathogen.updateStats (0f, 0f, -1f,0f,0f); // lose a bit of defense
-			success= false;
+		float combat = pathogen.power () - defense ();
+		bool successful;
+		if (combat <= 0) { // successful defense against the pathogen
+			pathogen.updateHealthStats (-combat/2); // pathogen is damaged
+			pathogen.updateDefenseStats(-1f);
+			updateDefenseStats ( -1.0f);// organ loses a bit of defense
+			successful= true;
+		} else { // Lost
+			updateHealthStats (-combat);
+			updateDefenseStats ( -1.0f);
+			pathogen.updateDefenseStats (-1f);// pathogen loses a bit of defense
+			if (stats_health <= 0)
+				Destroy (rb); // Keep game object!?
+			else
+				inContact [pathogen.GetInstanceID ()] = new Damage (combat, Time.time + 1);
+			successful= false;
+			// Keeps track of the damage if contact continues; 
 		}
-		else { // successful defense
-			pathogen.updateStats(defense()-pathogen.power(), 0f,-1f,0f,0f); // pathogen is damaged
-			updateStats(0f, -1f, 0f);
-			success= true;
-		}
-		if (stats_health <= 0)
-			Destroy (gameObject);
-		return success;
+		Debug.Log(gameObject.name+"."+gameObject.tag+" defends against "+ pathogen.name+"."+pathogen.tag+" health="+ stats_health+ (successful?" success":"failed"));
+		return successful;
 	}
 
 	// regenerate if damaged
@@ -114,4 +116,38 @@ public class OrganController : BodyController {
 		}
 		//gameController.updateScore (scoreValue);
 	}
+	// Collider for each object is called.
+	// Only organ collision is dealt with here.
+	void OnTriggerExit(Collider other) {
+		if (stats_health == 0) { // Organ is dead - destroy???
+			return; 
+		}
+		// Infect/Attack/Oxygenate everything that enters the trigger
+		if (other.tag == "Infection") { // do battle
+			CellController infection = other.GetComponent(typeof(CellController)) as CellController;
+			if (inContact.ContainsKey (infection.GetInstanceID ())) {
+				inContact.Remove (infection.GetInstanceID ());
+			}
+		} else if (other.name == "red") {
+			CellController red = other.GetComponent(typeof(CellController)) as CellController;
+			oxygenate (red.power ());
+		}
+		//gameController.updateScore (scoreValue);
+	}
+
+	void OnTriggerStay(Collider other) {
+		if (gameObject.tag == other.tag ) { // Same Team
+			return;
+		}
+		GameObject gameObj = other.gameObject;
+		// If sustaining damage - apply damage
+		if (gameObj && inContact.ContainsKey (gameObj.GetInstanceID ())) {
+			Damage damage = (Damage)inContact[gameObj.GetInstanceID()];
+			if (damage.nextAttack (Time.time)) {
+				updateStats (damage.damage(),0.0f, 0.0f);
+				Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
+			}	
+		}
+	}
+
 }
