@@ -3,11 +3,13 @@ using System.Collections;
 
 public class BloodFlow : MonoBehaviour {
 
-	public CapsuleCollider interaction; 
+	public Vector3 target;
+	public BoxCollider interaction;
+	void start(){
+	}
 
-
-	void OnCollisionEnter(Collision collision) {
-
+	void OnTriggerEnter(Collider collision) {
+		collision.GetComponent<Collider>().GetComponent<NavMeshAgent> ().SetDestination (target);
 	}
 
 
