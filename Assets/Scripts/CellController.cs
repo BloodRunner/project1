@@ -17,15 +17,6 @@ public class CellController :  BodyController{
 	protected Rigidbody rb;
 	private float nextReprod=0f;
 	private float seconds_in_float = 1200f; // Cell life span in seconds float
-	/*
-	protected float stats_health=100.0f;
-	protected float stats_speed = 100.0f;
-	protected float stats_defense = 100.0f;
-	protected float stats_reprodRate = 100.0f;
-	protected float stats_power = 100.0f;
-	protected float stats_delay = 0f;
-	protected int stats_level = 1;
-*/
 
 	void Start() { // Start and Awake don't seem to hold references
 		rb = GetComponent<Rigidbody>();
@@ -39,28 +30,11 @@ public class CellController :  BodyController{
 		if (myname != null) name= myname;
 	}
 
-
-
 	// This changes the top level
 	void addDelay(float sec) {
 		mybodyStats.delay += sec; // when brain is damaged, all cells are slow to follow command
 	}
-
-	// Lower number is faster
-	public float reprodRate () {
-		if (mybodyStats.reprodRate < 10) {
-			Debug.LogError (name +" !!!ReprodRate (<10) is messed up " + mybodyStats.reprodRate);
-			mybodyStats.reprodRate = 10;
-		}
-		return (mybodyStats.reprodRate);
-	}
-
-
-	// Drift speed
-	public float speed () { 
-		return (stats_speed/100f) * mybodyStats.speed;
-	}
-
+		
 	// This cell defend against another
 	public bool defendAgainst (CellController other) {
 		float combat = other.power () - defense ();
@@ -75,14 +49,15 @@ public class CellController :  BodyController{
 			updateDefenseStats (-1.0f);
 			other.updateDefenseStats (-1.0f);
 			if (stats_health < 0)
-				Destroy (rb);
+				Destroy (gameObject);
 			else
 				inContact [other.GetInstanceID ()] = new Damage (combat, Time.time + 1);
 			win= false;
 			// Keeps track of the damage if contact continues; 
 
 		}
-		Debug.Log(gameObject.name+"."+gameObject.tag+" defends against "+ other.name+"."+other.tag+" health="+ stats_health+ " win? "+ win);
+		Debug.Log(gameObject.name+"."+gameObject.tag+" defends against "+ other.name+"."+other.tag + " "+
+			showStats()+ (win?"succeeded":"failed") );
 		return win;
 	}
 
@@ -103,6 +78,8 @@ public class CellController :  BodyController{
 				} else {// Pop out a new one away from itself
 					clone = Instantiate (dna, v3 , transform.rotation)as GameObject;
 				}
+				NavMeshAgent nvagt= gameObject.GetComponent<NavMeshAgent> ();
+				clone.GetComponent<NavMeshAgent> ().SetDestination (nvagt.destination);
 				clone.name = gameObject.name;
 				nextReprod = Time.time + reprodRate ();
 				//Debug.Log("cell Ctrller nextReprod= "+ nextReprod +"{"+ reprodRate() +"}"+ clone.name);
@@ -119,18 +96,67 @@ public class CellController :  BodyController{
 		if ("Boundary".Equals(other.name) || gameObject.CompareTag(other.tag)) { // Same Team
 			return;
 		}
+		/*
 		CellController othercell = other.GetComponent(typeof(CellController)) as CellController;
 		if ((gameObject.name.Equals("Red") && other.name.Equals("Pathogen")) ||  // Infection attacks Red (me)
 			(gameObject.name.Equals("Pathogen") && (other.name.Equals("White") || other.name.Equals("Player"))) ) // White attacks pathogen (me)
 		{
-			Debug.Log(gameObject.name+"-"+gameObject.tag+" combat "+ other.name+"="+other.tag);
 			defendAgainst(othercell);  // defend against white cell or pathogen
 		}
-		//if (!other.name.Equals("BloodFlow"))
+		*/
 		//Debug.Log(gameObject.name+"-"+gameObject.tag+" collided with "+ other.name+"="+other.tag);
-
 	}	
+		
+	void OnCollisionStay(Collision collision) {
+		foreach (ContactPoint contact in collision.contacts) {
+			Collider other = contact.otherCollider;
+			Debug.DrawRay(contact.point, contact.normal, Color.white);
+			/*
+			if ((other.tag.Equals("Host") || other.tag.Equals("Infection"))
+				&& !tag.Equals(other.tag))
+				Debug.Log (name + "-" + tag + " collision stay " + other.name + "=" + other.tag);
+				*/
+			GameObject gameObj = other.gameObject;
+			// If sustaining damage - apply damage
+			if (gameObj && inContact.ContainsKey (gameObj.GetInstanceID ())) {
+				Damage damage = (Damage)inContact[gameObj.GetInstanceID()];
+				if (damage.nextAttack (Time.time)) {
+					updateHealthStats (damage.damage());
+					Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
+				}	
+			}
+		}
+	}
+	void OnCollisionEnter(Collision collision) {
+		foreach (ContactPoint contact in collision.contacts) {
+			
+			Collider other = contact.otherCollider;
 
+			if (!tag.Equals (other.tag) &&
+			    (other.tag.Equals ("Host") || other.tag.Equals ("Infection"))) {
+				//Debug.Log (name + "-" + tag + " collided with " + other.name + "=" + other.tag);
+			
+				CellController othercell = other.GetComponent (typeof(CellController)) as CellController;
+				if ((gameObject.name.Equals ("Red") && other.name.Equals ("Pathogen")) || // Infection attacks Red (me)
+				   (gameObject.name.Equals ("Pathogen") && (other.name.Equals ("White") || other.name.Equals ("Player")))) { // White attacks pathogen (me)
+					defendAgainst (othercell);  // defend against white cell or pathogen
+				}
+			}
+		}
+		//if (collision.relativeVelocity.magnitude > 2)			audio.Play();
+	}
+	void OnCollisionExit(Collision collisionInfo) {
+		if (!tag.Equals (collisionInfo.transform.tag) &&
+		    (collisionInfo.transform.tag.Equals ("Host") ||
+		    collisionInfo.transform.tag.Equals ("Infection"))) {
+			Debug.Log (name + " leaves " + collisionInfo.transform.name+"("+inContact.Count+")");
+			GameObject otherObj = collisionInfo.transform.gameObject;
+			// If sustaining damage - remove counter
+			if (inContact.ContainsKey (otherObj.GetInstanceID ())) {
+				inContact.Remove (otherObj.GetInstanceID ());
+			}
+		}
+	}
 	void OnTriggerExit(Collider other) {
 		if ("Boundary" == other.name) {
 			//Debug.Log(gameObject.name+" met boundary");
@@ -145,11 +171,13 @@ public class CellController :  BodyController{
 		if (gameObject.CompareTag(other.tag)) { // Same Team
 			return;
 		}
+		/*
 		GameObject otherObj = other.gameObject;
 		// If sustaining damage - remove counter
 		if (inContact.ContainsKey (otherObj.GetInstanceID ())) {
 			inContact.Remove (otherObj.GetInstanceID ());
 		}
+		*/
 	}
 
 	void OnTriggerStay(Collider other) {

@@ -6,10 +6,11 @@ using System.Collections;
 public class OrganController : BodyController {
 	public Rigidbody rb;
 	public GameObject shot;
-
+	/*
 	//private OrganStats stats=new OrganStats(); // percentage of the body stats - from damage
 	private float stats_health=100f;
 	private float stats_defense=100f;
+	*/
 	private float stats_regenRate=100f;
 	private float nextReGen=0f;
 
@@ -26,8 +27,9 @@ public class OrganController : BodyController {
 		stats_defense += power/2; // defense goes up by 1/2 oxygen power
 		if (stats_defense > 100f)
 			stats_defense = 100f;
+		Debug.Log("oxygenate "+ showStats());
 	}
-
+	/*
 	public float health () {
 		return ((stats_health/100.0f) * (float)organStats.health);
 	}
@@ -56,7 +58,7 @@ public class OrganController : BodyController {
 		if (stats_regenRate < myorganStats.regenRate)
 			stats_regenRate = myorganStats.regenRate;
 	}
-
+*/
 	// Each combatant lose 1% in defend after each combat
 	// Organ can reflect the attack (1/2 defense - attack on the pathogen
 	public bool defend(CellController pathogen){
@@ -78,7 +80,9 @@ public class OrganController : BodyController {
 			successful= false;
 			// Keeps track of the damage if contact continues; 
 		}
-		Debug.Log(gameObject.name+"."+gameObject.tag+" defends against "+ pathogen.name+"."+pathogen.tag+" health="+ stats_health+ (successful?" success":"failed"));
+		Debug.Log(gameObject.name+"."+gameObject.tag+" defends against "+ pathogen.name
+			+"."+pathogen.tag+ " "+ showStats()+ (successful?" success":"failed"));
+			
 		return successful;
 	}
 
@@ -106,14 +110,15 @@ public class OrganController : BodyController {
 			return; 
 		}
 		// Infect/Attack/Oxygenate everything that enters the trigger
-		if (other.tag == "Infection") { // do battle
+		if (other.tag.Equals("Infection")) { // do battle
 			CellController infection = other.GetComponent(typeof(CellController)) as CellController;
 			if (!defend(infection)) // if failed to defend, check for specific damage
 				damageBody (); // Organ specific damage to the cell stats
-		} else if (other.name == "red") {
+		} else if (other.name.Equals( "Red")) {
 			CellController red = other.GetComponent(typeof(CellController)) as CellController;
 			oxygenate (red.power ());
 		}
+		Debug.Log(other.name+" entered "+ name);
 		//gameController.updateScore (scoreValue);
 	}
 	// Collider for each object is called.
@@ -144,7 +149,7 @@ public class OrganController : BodyController {
 		if (gameObj && inContact.ContainsKey (gameObj.GetInstanceID ())) {
 			Damage damage = (Damage)inContact[gameObj.GetInstanceID()];
 			if (damage.nextAttack (Time.time)) {
-				updateStats (damage.damage(),0.0f, 0.0f);
+				updateHealthStats (damage.damage());
 				Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
 			}	
 		}

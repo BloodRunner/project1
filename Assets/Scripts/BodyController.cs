@@ -36,7 +36,7 @@ public class BodyController : MonoBehaviour
 	public GameController gameController;
 	public Stats bodyStats;
 	// configured max stats for the cell body;
-	public OrganStats organStats;
+	//public OrganStats organStats;
 	// configured max stats for the organ;
 	protected Stats mybodyStats = new Stats ();
 	// configured stats for the cell body;
@@ -114,36 +114,7 @@ public class BodyController : MonoBehaviour
 		if (mybodyStats.reprodRate < bodyStats.reprodRate)  // smaller is better
                 mybodyStats.reprodRate = bodyStats.reprodRate;
 		Debug.Log (gameObject.name + " reprodRate=" + reprodRate + " -> " + bodyStats.reprodRate + "=>" + mybodyStats.reprodRate);
-	}
-
-	// Update cell stats for the whole body
-	public void updateOrganHealthStats (float health)
-	{
-		myorganStats.health = health;
-		if (myorganStats.health > organStats.health)
-			myorganStats.health = organStats.health;
-		if (myorganStats.health <= 0f) {
-			// Game Over!
-			return;
-		}
-	}
-
-	public void updateOrganDefenseStats (float defense)
-	{
-		myorganStats.defense = defense;
-		if (myorganStats.defense > organStats.defense)
-			myorganStats.defense = organStats.defense;
-		else if (myorganStats.defense < 0)
-			myorganStats.defense = 0;
-	}
-
-	public void updateOrganHRegenStats (float regenRate)
-	{
-		myorganStats.regenRate = regenRate;
-		if (myorganStats.regenRate < organStats.regenRate)  // smaller is better
-				myorganStats.regenRate = organStats.regenRate;
-
-	}
+	}		
 
 	// If heart is damaged - all cells will slow down to the percentage of damage of the heart
 	public void slowDownAllCells (float percentage)
@@ -249,7 +220,9 @@ public class BodyController : MonoBehaviour
 		return (stats_speed/100f) * mybodyStats.speed;
 	}
 
-		
+	public string showStats(){
+		return name+" H:"+ health()+" D:"+ defense();
+	}
 
 }
 
