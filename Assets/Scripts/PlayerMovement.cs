@@ -14,19 +14,23 @@ public class PlayerMovement : MonoBehaviour {
 	void Update() {
 
 		if (Input.GetKeyDown (KeyCode.W)) {
-			
+			if (this.GetComponent<Rigidbody> ().velocity.z <= speed)
+				this.GetComponent<Rigidbody> ().AddForce (0, 0, speed * .1f);
 		}
 			
 		if (Input.GetKeyDown (KeyCode.S)) {
-
+			if (this.GetComponent<Rigidbody> ().velocity.z >= speed * -1)
+				this.GetComponent<Rigidbody> ().AddForce (0, 0, speed * .1f * -1);
 		}
 			
 		if (Input.GetKeyDown (KeyCode.A)) {
-
+			if (this.GetComponent<Rigidbody> ().velocity.x >= speed * -1)
+				this.GetComponent<Rigidbody> ().AddForce (speed*.1f*-1,0,0);
 		}
 			
 		if (Input.GetKeyDown (KeyCode.D)) {
-
+			if (this.GetComponent<Rigidbody> ().velocity.x <= speed)
+				this.GetComponent<Rigidbody> ().AddForce (speed * .1f,0,0);
 		}
 			
 		/*if (Input.GetMouseButtonDown(0)) {

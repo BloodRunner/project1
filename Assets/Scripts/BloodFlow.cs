@@ -9,7 +9,8 @@ public class BloodFlow : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider collision) {
-		collision.GetComponent<Collider>().GetComponent<NavMeshAgent> ().SetDestination (target);
+		if (collision.CompareTag("Host") || collision.CompareTag("Infection"))
+			collision.GetComponent<Collider>().GetComponent<NavMeshAgent> ().SetDestination (target);
 	}
 
 
