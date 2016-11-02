@@ -23,7 +23,7 @@ public class CameraChange : MonoBehaviour {
 			if(zoom <=1){
 				zoom = 1;
 			}
-			zoom += Input.GetAxis ("Mouse ScrollWheel");
+			zoom -= Input.GetAxis ("Mouse ScrollWheel");
 			followCamera.transform.position = new Vector3(this.transform.position.x, zoom, this.transform.position.z);
 			yield return null;
 		}
@@ -47,9 +47,11 @@ public class CameraChange : MonoBehaviour {
 		StopCoroutine (coroutine);
 		followCamera.enabled = false;
 		topCamera.enabled = true;
+		this.GetComponent<PlayerMovement> ().enabled = false;
 	}
 
 	public void startFollow(){
+		this.GetComponent<PlayerMovement> ().enabled = true;
 		topCamera.enabled = false;
 		followCamera.enabled = true;
 		StartCoroutine (coroutine);
