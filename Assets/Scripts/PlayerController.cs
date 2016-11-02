@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController : CellController {
+public class PlayerController : WhiteController {
 	
 
 	// Make banked turns if moved by player - 3D right now

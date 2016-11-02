@@ -3,14 +3,10 @@ using System.Collections;
 
 // Tag = Host
 // Name = organ name
-public class OrganController : BodyController {
+public abstract class OrganController : BodyController {
 	public Rigidbody rb;
 	public GameObject shot;
-	/*
-	//private OrganStats stats=new OrganStats(); // percentage of the body stats - from damage
-	private float stats_health=100f;
-	private float stats_defense=100f;
-	*/
+
 	private float stats_regenRate=100f;
 	private float nextReGen=0f;
 
@@ -21,44 +17,12 @@ public class OrganController : BodyController {
 	// oxygenate means add power to health + defense to organ
 	// TODO: modify by regenRate
 	void oxygenate (float power) {
-		stats_health += power;
-		if (stats_health > 100f) // health goes up by oxygen power
-			stats_health = 100f;
-		stats_defense += power/2; // defense goes up by 1/2 oxygen power
-		if (stats_defense > 100f)
-			stats_defense = 100f;
-		Debug.Log("oxygenate "+ showStats());
-	}
-	/*
-	public float health () {
-		return ((stats_health/100.0f) * (float)organStats.health);
+		Debug.Log(name +" before oxygenate ("+ power+")"+ showStats());
+		updateHealthStats (power); // health goes up by oxygen power
+		updateDefenseStats (power / 2f); // defense goes up by 1/2 oxygen power
+		Debug.Log(name +" after oxygenate "+ showStats());
 	}
 
-	public float defense () {
-		return ((stats_defense/100.0f) * (float)organStats.defense);
-	}
-
-	// Update player stats if collision
-	// cleaner if stats has setters/getters
-	public void updateStats(float health, float defense, float regenRate) {	
-		stats_health += health;
-		if (stats_health < 0) {
-			// Gameover?
-			Destroy (gameObject);
-		} else if (stats_health > 100) {
-			stats_health = 100f;
-		}
-		stats_defense += defense;
-		if (stats_defense < 0) {
-			stats_defense = 0;
-		} else if (stats_defense > 100) {
-			stats_defense = 100;
-		}
-		stats_regenRate += regenRate;
-		if (stats_regenRate < myorganStats.regenRate)
-			stats_regenRate = myorganStats.regenRate;
-	}
-*/
 	// Each combatant lose 1% in defend after each combat
 	// Organ can reflect the attack (1/2 defense - attack on the pathogen
 	public bool defend(CellController pathogen){
@@ -73,6 +37,7 @@ public class OrganController : BodyController {
 			updateHealthStats (-combat);
 			updateDefenseStats ( -1.0f);
 			pathogen.updateDefenseStats (-1f);// pathogen loses a bit of defense
+			damageBody();
 			if (stats_health <= 0)
 				Destroy (rb); // Keep game object!?
 			else
@@ -80,8 +45,8 @@ public class OrganController : BodyController {
 			successful= false;
 			// Keeps track of the damage if contact continues; 
 		}
-		Debug.Log(gameObject.name+"."+gameObject.tag+" defends against "+ pathogen.name
-			+"."+pathogen.tag+ " "+ showStats()+ (successful?" success":"failed"));
+		Debug.Log(gameObject.name+"."+defense()+" defends against "+ pathogen.name
+			+"."+pathogen.power()+ " "+ showStats()+ (successful?" success":"failed"));
 			
 		return successful;
 	}
@@ -115,10 +80,11 @@ public class OrganController : BodyController {
 			if (!defend(infection)) // if failed to defend, check for specific damage
 				damageBody (); // Organ specific damage to the cell stats
 		} else if (other.name.Equals( "Red")) {
-			CellController red = other.GetComponent(typeof(CellController)) as CellController;
+			RedController red = other.GetComponent(typeof(RedController)) as RedController;
+			Debug.Log(other.name+" bodyStats "+ red.bodystate.showStats());
 			oxygenate (red.power ());
 		}
-		Debug.Log(other.name+" entered "+ name);
+
 		//gameController.updateScore (scoreValue);
 	}
 	// Collider for each object is called.
@@ -133,10 +99,7 @@ public class OrganController : BodyController {
 			if (inContact.ContainsKey (infection.GetInstanceID ())) {
 				inContact.Remove (infection.GetInstanceID ());
 			}
-		} else if (other.name == "red") {
-			CellController red = other.GetComponent(typeof(CellController)) as CellController;
-			oxygenate (red.power ());
-		}
+		} 
 		//gameController.updateScore (scoreValue);
 	}
 
@@ -154,5 +117,5 @@ public class OrganController : BodyController {
 			}	
 		}
 	}
-
+		
 }

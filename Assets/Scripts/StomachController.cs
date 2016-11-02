@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-// Tag = Host
-// Name = organ name
-public class HeartController : OrganController {
+public class StomachController : OrganController
+{
 	// Heart damage reduces speed
 	public override void damageBody(){
 		if (!bodystate) {
 			Debug.LogError (name + " BodyState is missing");
 		} else {
-			bodystate.updateRedSpeedStats (stats_health);
-			bodystate.updateWhiteSpeedStats (stats_health);
-			// TODO: pathogen speed
+			bodystate.updateRedHealthStats (stats_health);
+			bodystate.updateWhiteHealthStats (stats_health);
+			bodystate.updateRedDefenseStats (stats_health);
+			bodystate.updateWhiteDefenseStats (stats_health);
 		}
 		Debug.Log (name +" damageBody " + bodystate.showStats ());
 	}
-
 }
+

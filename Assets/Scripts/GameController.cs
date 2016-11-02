@@ -33,7 +33,8 @@ public class GameController : MonoBehaviour {
 			}
 			//Debug.Log ("gameover=" + gameOver);
 			if (gameOver) {
-				restartText.text = "Press 'R' for Restart";
+				if (restartText)
+					restartText.text = "Press 'R' for Restart";
 				restart = true;
 				break;
 			}
@@ -47,7 +48,9 @@ public class GameController : MonoBehaviour {
 		UpdateScore ();
 		gameOver = false;
 		restart=false;
+		if (restartText)
 		restartText.text = "";
+		if (gameoverText)
 		gameoverText.text = "";
 		topCamera = GameObject.Find ("topCamera").GetComponent<Camera>();
 		followCamera = GameObject.Find ("followCamera").GetComponent<Camera>();
@@ -58,7 +61,8 @@ public class GameController : MonoBehaviour {
 
 	public void GameOver() {
 		gameOver = true;
-		gameoverText.text = "Game Over";
+		if (gameoverText)
+			gameoverText.text = "Game Over";
 	}
 	
 	// Update is called once per frame
@@ -73,6 +77,7 @@ public class GameController : MonoBehaviour {
 		score = scorept;
 	}
 	void UpdateScore() {
-		healthText.text = "Score:" + score;
+		if (healthText)
+			healthText.text = "Score:" + score;
 	}
 }
