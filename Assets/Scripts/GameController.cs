@@ -29,6 +29,17 @@ public class GameController : MonoBehaviour {
 		Debug.Log ("Score =" + total);
 		return total;
 	}
+	private void makeWayPoints() {
+		float total = 0;
+		//	GameObject obj = GameObject.Find(name);
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 7; j++) {
+				GameObject organ = GameObject.Find (organPaths[i,j]);
+				waypoints [i,j] = organ.transform.position;
+				i++;
+			}
+		}
+	}
 	// Coroutine
 	IEnumerator SpawnWaves() {
 		yield return new WaitForSeconds (startWait);
@@ -88,6 +99,7 @@ public class GameController : MonoBehaviour {
 		score = scorept;
 	}
 	void UpdateScore() {
+		score = getOrgansScores ();
 		if (healthText)
 			healthText.text = "Score:" + score;
 	}
