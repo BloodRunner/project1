@@ -1,50 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /* This allows Unity UI to see class and show it
  * */
 
-[System.Serializable]
-public class Boundary
-{
-	public float xMin, xMax, zMin, zMax;
-}
-/*
-// Base stats for cells,
-[System.Serializable]
-public class Stats
-{   // base level multiplied by ( 0 - 100% of base level )
-	public float health, speed, defense, reprodRate;
-	public float power; // attack if white cell or infection, oxygenation if red cell
-	public float delay; // Pause before it can follow a command
-	public int level;
-}
-*/
 
-public class CellController : BodyController {
-	const string Phage = "White";
-	const int Distance = 2; // How far it is spawn from parent
-	public string named;
+
+public class CellController :  BodyController{
 	public float playerSpeed;  	// base movement speed
 	public float tilt;
 	public Boundary boundary; // Game boundary - if outside boundary - no control
 	public GameObject dna; // What to spawn
 	public Transform shotSpawn; // the transform for origin of the offspring spawn
-	//public Stats bodyStats; // configured stats for the cell body;
-
+	static Stats mybodyStats=new Stats(); // applies to the whole class
 	protected Rigidbody rb;
 	private float nextReprod=0f;
-	private int defending = 0;
-	private float seconds_in_float = 1200f; // Cell life span in seconds float
-	protected float stats_health=100.0f;
-	protected float stats_speed = 100.0f;
-	protected float stats_defense = 100.0f;
-	protected float stats_reprodRate = 100.0f;
-	protected float stats_power = 100.0f;
-	protected float stats_delay = 0f;
-	protected int stats_level = 1;
-	protected float damage_per_second=0f;
-	protected float nextDamage=0f;
+	public float lifespan_in_seconds ; // Cell life span in seconds float
+	private NavMeshAgent nvagt;
+	private GameObject target; // for attackers
 
 	void Start() { // Start and Awake don't seem to hold references
 		rb = GetComponent<Rigidbody>();
@@ -53,95 +27,45 @@ public class CellController : BodyController {
 		velo.y = 0;
 		//rb.velocity = transform.forward * speed(); // base movement on blue axis
 		rb.velocity = velo;
-		Destroy(gameObject, seconds_in_float); // destroy objects automatically - cell death!
+		nvagt = gameObject.GetComponent<NavMeshAgent> ();
+		if (lifespan_in_seconds == 0)
+			lifespan_in_seconds = 1200f;
+		Destroy(gameObject, lifespan_in_seconds); // destroy objects automatically - cell death!
 		//Debug.Log("START nextReprod= "+ nextReprod +"{"+ reprodRate() +"}");
 		if (myname != null) name= myname;
 	}
 
-	// Update player stats if collision
-	// cleaner if stats has setters/getters
-	public void updateStats(float health, float speed, float defense, float reprodRate, float power) {		
-		stats_health += health; 
-		if (stats_health > 100)
-			stats_health = 100;
-		if (stats_health <= 0f) {
-			Debug.Log (name + " dies! ");
-			// Temp
-			if (gameObject.name.Equals("Player") && gameController!= null)
-				gameController.GameOver();
-			this.GetComponent<CameraChange> ().stopCamera ();
-			Destroy (gameObject); // No health - dies!
-			return;
-		}
-		stats_speed += speed;
-		if (stats_speed > 100)
-			stats_speed = 100;
-		else if (stats_speed < 0)
-			stats_speed = 0;
-		stats_defense += defense;
-		if (stats_defense > 100)
-			stats_defense = 100;
-		else if (stats_defense < 0)
-			stats_defense = 0;
-		stats_power += power;
-		if (stats_power > 100)
-			stats_power = 100;
-		else if (stats_power < 0)
-			stats_power = 0;
-		stats_reprodRate += reprodRate;
-		if (stats_reprodRate <= 0f) stats_reprodRate=1;
-	}
-
 	// This changes the top level
 	void addDelay(float sec) {
-		mybodyStats_delay += sec; // when brain is damaged, all cells are slow to follow command
+		mybodyStats.delay += sec; // when brain is damaged, all cells are slow to follow command
 	}
-
-	public float health () {
-		return ((stats_health/100.0f) * mybodyStats_health);
-	}
-
-	public float defense () {
-		return ((stats_defense/100.0f) * mybodyStats_defense);
-	}
-
-	public float power () {
-		return ((stats_power / 100.0f) * mybodyStats_power);
-	}
-
-	// Lower number is faster
-	public float reprodRate () {
-		if (mybodyStats_reprodRate < 10) {
-			Debug.LogError ("!!!Reprodrate is messed up " + mybodyStats_reprodRate);
-			mybodyStats_reprodRate = 10;
-		}
-		return (mybodyStats_reprodRate);
-	}
-
-
-	// Drift speed
-	public float speed () { 
-		return (stats_speed/100f) * mybodyStats_speed;
-	}
-
+		
 	// This cell defend against another
-	public bool defendAgainst (CellController other) {
+	public bool defendAgainst (CellController other){
+		//Debug.Log (name + " defends against " + other.name);
 		float combat = other.power () - defense ();
 		bool win;
 		if (combat <= 0) { // successful defense against the others
-			other.updateStats (combat, 0.0f, -1.0f, 0.0f, 0.0f);
-			updateStats (0.0f, 0.0f, -1.0f, 0.0f, 0.0f);
+			other.updateHealthStats (combat);
+			other.updateDefenseStats(-1.0f);
+			updateDefenseStats (-1.0f);
 			win= true;
 		} else { // Lost
-			updateStats (-combat, 0f, -1.0f, 0.0f, 0.0f);
-			other.updateStats (0.0f, 0f, -1f, 0f, 0f);
-			if (stats_health < 0)
-				Destroy (rb);
+			updateHealthStats (-combat);
+			updateDefenseStats (-1.0f);
+			other.updateDefenseStats (-1.0f);
+			if (stats_health <= 0) {
+				Destroy (gameObject);
+				Debug.Log (name + " dies ");
+			}
+			else
+				inContact [other.GetInstanceID ()] = new Damage (combat, Time.time + 1);
 			win= false;
-			damage_per_second += combat;
-			defending += 1;
+			// Keeps track of the damage if contact continues; 
+
 		}
-		Debug.Log(gameObject.name+"."+gameObject.tag+" defends ("+ defending+") against "+ other.name+"."+other.tag+" health="+ stats_health+ " win? "+ win);
+		Debug.Log(gameObject.name+"."+gameObject.tag+" defends against "+ other.name+"."+other.tag + " "+
+			showStats()+ (win?"succeeded":"failed") );
 		return win;
 	}
 
@@ -162,14 +86,20 @@ public class CellController : BodyController {
 				} else {// Pop out a new one away from itself
 					clone = Instantiate (dna, v3 , transform.rotation)as GameObject;
 				}
+				nvagt = gameObject.GetComponent<NavMeshAgent> ();
+				CellController cell = clone.GetComponent(typeof(CellController)) as CellController;
+				cell.bodystate = bodystate;
+				cell.gameController = gameController;
+				if (!nvagt)
+				 	nvagt= gameObject.GetComponent<NavMeshAgent> ();
+				if (nvagt) {
+					clone.GetComponent<NavMeshAgent> ().SetDestination (nvagt.destination);
+				} else {
+					Debug.Log(name +" Missing nav agent:");
+				}
 				clone.name = gameObject.name;
 				nextReprod = Time.time + reprodRate ();
-				//Debug.Log("cell Ctrller nextReprod= "+ nextReprod +"{"+ reprodRate() +"}"+ clone.name);
-			}
-			if (defending > 0 && Time.time > nextDamage ) {
-				nextDamage = Time.time + 1;
-				updateStats (-damage_per_second, 0f, 0f, 0f, 0f);
-				Debug.Log (name + " is bleeding to death at " + damage_per_second + " drops/s");
+				Debug.Log(name + " nextReprod= "+ nextReprod +"{"+ reprodRate() +"}"+ clone.name);
 			}
 		}
 		//if (defending>0) {Debug.Log ("Still defending "+defending+" critters");}
@@ -183,54 +113,93 @@ public class CellController : BodyController {
 		if ("Boundary".Equals(other.name) || gameObject.CompareTag(other.tag)) { // Same Team
 			return;
 		}
-		CellController othercell = other.GetComponent(typeof(CellController)) as CellController;
-		if ((gameObject.name.StartsWith("Red") && other.name.Equals("Pathogen")) ||  // Infection attacks Red (me)
-			(gameObject.name.Equals("Pathogen") && (other.name.Equals("White") || other.name.Equals("Player"))) ) // White attacks pathogen (me)
-		{
-			Debug.Log(gameObject.name+"-"+gameObject.tag+" combat "+ other.name+"="+other.tag);
-			defendAgainst(othercell);  // defend against white cell or pathogen
-		} else
-			Debug.Log(gameObject.name+"-"+gameObject.tag+" collided with "+ other.name+"="+other.tag);
-	}	
+		if ((gameObject.name.Equals("Pathogen") && other.name.Equals("Red")) ||
+			(gameObject.name.Equals("White") && other.name.Equals("Pathogen"))){
+			Debug.Log(name+" sneak attacks " + other.name);
+			if (!nvagt)
+				nvagt= gameObject.GetComponent<NavMeshAgent> ();
+			if (nvagt)
+				nvagt.Move(other.transform.position - transform.position);
 
+		}
+		//Debug.Log(gameObject.name+"-"+gameObject.tag+" collided with "+ other.name+"="+other.tag);
+	}	
+		
+	void OnCollisionStay(Collision collision) {
+		foreach (ContactPoint contact in collision.contacts) {
+			Collider other = contact.otherCollider;
+			GameObject gameObj = other.gameObject;
+			// If sustaining damage - apply damage
+			if (gameObj && inContact.ContainsKey (gameObj.GetInstanceID ())) {
+                Debug.DrawRay(contact.point, contact.normal, Color.white);
+				Damage damage = (Damage)inContact[gameObj.GetInstanceID()];
+				if (damage.nextAttack (Time.time)) {
+					updateHealthStats (damage.damage());
+					Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
+				}	
+			}
+		}
+	}
+	void OnCollisionEnter(Collision collision) {
+		foreach (ContactPoint contact in collision.contacts) {
+			
+			Collider other = contact.otherCollider;
+
+			if (!tag.Equals (other.tag) &&
+			    (other.tag.Equals ("Host") || other.tag.Equals ("Infection"))) {
+				//Debug.Log (name + "-" + tag + " collided with " + other.name + "=" + other.tag);
+				if (gameObject.name.Equals ("Red") && other.name.Equals ("Pathogen")){
+					CellController othercell = other.GetComponent (typeof(PathogenController)) as PathogenController;
+					defendAgainst (othercell); 
+				}
+				if (gameObject.name.Equals ("Pathogen") && (other.name.Equals ("White") || other.name.Equals ("Player"))) { // White attacks pathogen (me)
+						CellController othercell = other.GetComponent (typeof(WhiteController)) as WhiteController;
+						defendAgainst (othercell);  // defend against white cell or pathogen
+				}
+			}
+		}
+		//if (collision.relativeVelocity.magnitude > 2)			audio.Play();
+	}
+	void OnCollisionExit(Collision collisionInfo) {
+		if (!tag.Equals (collisionInfo.transform.tag) &&
+		    (collisionInfo.transform.tag.Equals ("Host") ||
+		    collisionInfo.transform.tag.Equals ("Infection"))) {
+			//Debug.Log (name + " leaves " + collisionInfo.transform.name+"("+inContact.Count+")");
+			GameObject otherObj = collisionInfo.transform.gameObject;
+			// If sustaining damage - remove counter
+			if (inContact.ContainsKey (otherObj.GetInstanceID ())) {
+				inContact.Remove (otherObj.GetInstanceID ());
+			}
+		}
+	}
 	void OnTriggerExit(Collider other) {
 		if ("Boundary" == other.name) {
 			//Debug.Log(gameObject.name+" met boundary");
 			rb.velocity *= -1;
 			rb.position = new Vector3 (
-				Mathf.Clamp(rb.position.x, boundary.xMin, boundary.xMax), 
+				Mathf.Clamp (rb.position.x, boundary.xMin, boundary.xMax), 
 				0.0f, 
-				Mathf.Clamp(rb.position.z, boundary.zMin, boundary.zMax));
+				Mathf.Clamp (rb.position.z, boundary.zMin, boundary.zMax));
 			rb.rotation = Quaternion.Euler (0.0f, 0.0f, rb.velocity.x * -tilt);
 			return;
 		}
+		if (gameObject.CompareTag(other.tag)) { // Same Team
+			return;
+		}
+	}
+
+	void OnTriggerStay(Collider other) {
 		if (gameObject.tag == other.tag ) { // Same Team
 			return;
 		}
-		CellController othercell = other.GetComponent(typeof(CellController)) as CellController;
-		//Debug.Log(gameObject.name+" separated from "+ other.name);
-		//CellController othercell = gameObject.GetComponent(typeof(CellController)) as CellController;
-		if (other.CompareTag("Infection")) { // Infection attacks Red (me)
-			if (gameObject.name.Contains( "Red")) {
-				Debug.Log(gameObject.name+" left "+ other.name+" health="+ stats_health);
-				if (defending > 0) {
-					defending--;
-					damage_per_second -= (othercell.power () - defense ());
-				}
-			}
-		}
-		else if (gameObject.CompareTag("Infection")) {// White attacks pathogen(me)
-			if (other.name.Equals( "White") || other.name.Equals("Player")) {
-				Debug.Log(gameObject.name+" left "+ other.name+" health="+ stats_health);
-				if (defending > 0) {
-					defending--;
-					damage_per_second -= (othercell.power () - defense ());
-				}
-
-			}
-		}
-		if (defending == 0) { // reset damage
-			damage_per_second = 0f;
+		GameObject gameObj = other.gameObject;
+		// If sustaining damage - apply damage
+		if (gameObj && inContact.ContainsKey (gameObj.GetInstanceID ())) {
+			Damage damage = (Damage)inContact[gameObj.GetInstanceID()];
+			if (damage.nextAttack (Time.time)) {
+				updateHealthStats (damage.damage());
+				Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by tcontact with "+ other.name+"="+other.tag);
+			}	
 		}
 	}
 }

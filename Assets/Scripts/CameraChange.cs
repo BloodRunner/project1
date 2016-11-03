@@ -7,23 +7,30 @@ public class CameraChange : MonoBehaviour {
 	private IEnumerator coroutine;
 	public Camera topCamera; 
 	public Camera followCamera;
+	public float zoom;
 
 	void OnMouseDown(){
-		topCamera.enabled = false;
-		followCamera.enabled = true;
-		StartCoroutine (coroutine);
+		startFollow ();
 	}
 
 
 
 	public IEnumerator followThis(){
 		while(true){
-			followCamera.transform.position = new Vector3(this.transform.position.x, 3, this.transform.position.z);
+			if(zoom >=7){
+				zoom = 7;
+			}
+			if(zoom <=1){
+				zoom = 1;
+			}
+			zoom -= Input.GetAxis ("Mouse ScrollWheel");
+			followCamera.transform.position = new Vector3(this.transform.position.x, zoom, this.transform.position.z);
 			yield return null;
 		}
 	}
 
 	void Start(){
+		zoom = 3f;
 		coroutine = followThis ();
 		topCamera = GameObject.Find ("topCamera").GetComponent<Camera>();
 		followCamera = GameObject.Find ("followCamera").GetComponent<Camera>();
@@ -31,9 +38,7 @@ public class CameraChange : MonoBehaviour {
 
 	void Update(){
 		if(Input.GetKeyDown(KeyCode.Space)){
-			StopCoroutine (coroutine);
-			followCamera.enabled = false;
-			topCamera.enabled = true;
+			stopCamera ();
 		}
 
 	}
@@ -42,5 +47,13 @@ public class CameraChange : MonoBehaviour {
 		StopCoroutine (coroutine);
 		followCamera.enabled = false;
 		topCamera.enabled = true;
+		this.GetComponent<PlayerMovement> ().enabled = false;
+	}
+
+	public void startFollow(){
+		this.GetComponent<PlayerMovement> ().enabled = true;
+		topCamera.enabled = false;
+		followCamera.enabled = true;
+		StartCoroutine (coroutine);
 	}
 }
