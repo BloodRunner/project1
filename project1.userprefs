@@ -1,18 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BloodFlow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CameraChange.cs">
     <Files>
-      <File FileName="Assets\Scripts\BloodFlow.cs" Line="17" Column="2" />
-      <File FileName="Assets\Scripts\ExitDoor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Mover.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CameraChange.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\RandomMove.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AttackCell.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\OrganController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CellSpawner2.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CellController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CameraChange.cs" Line="26" Column="10" />
+      <File FileName="Assets\Scripts\BloodFlow.cs" Line="27" Column="9" />
+      <File FileName="Assets\Scripts\PlayerMovement.cs" Line="9" Column="55" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
