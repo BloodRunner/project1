@@ -8,27 +8,30 @@ public class AttackCell : MonoBehaviour {
 	public SphereCollider agro;
 	public GameObject target;
 	public bool hasTarget;
-	private NavMeshAgent redCell;
+	private NavMeshAgent me;
+	private Vector3 dest;
 	// Use this for initialization
 	void Start () {
 		hasTarget = false;
 		target = null;
-		redCell = GetComponent<NavMeshAgent> ();
+		me = GetComponent<NavMeshAgent> ();
 		coroutine = CHARRGGGEEEE ();
 	}
 
 
 	private IEnumerator CHARRGGGEEEE(){
 		if (target == null) {
+			me.SetDestination (dest);
 			StopCoroutine (coroutine);
 		}
-		redCell.destination = target.transform.position;
+		me.destination = target.transform.position;
 		yield return null;
 	}
 
 	void OnTriggerEnter(Collider cell){
 		if(target==null){
-			if(cell.CompareTag("cell")){
+			if(cell.name == "Red"){
+				dest = me.destination;
 				target = cell.gameObject;
 				StartCoroutine (coroutine);
 			}

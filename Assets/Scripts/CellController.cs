@@ -19,6 +19,7 @@ public class CellController :  BodyController{
 	public float lifespan_in_seconds ; // Cell life span in seconds float
 	private NavMeshAgent nvagt;
 	private GameObject target; // for attackers
+	private Vector3 dest;
 
 	void Start() { // Start and Awake don't seem to hold references
 		rb = GetComponent<Rigidbody>();
@@ -116,6 +117,7 @@ public class CellController :  BodyController{
 		if ((gameObject.name.Equals("Pathogen") && other.name.Equals("Red")) ||
 			(gameObject.name.Equals("White") && other.name.Equals("Pathogen"))){
 			Debug.Log(name+" sneak attacks " + other.name);
+
 			if (!nvagt)
 				nvagt= gameObject.GetComponent<NavMeshAgent> ();
 			if (nvagt)
