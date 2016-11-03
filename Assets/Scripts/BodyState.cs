@@ -19,50 +19,68 @@ public class BodyState: MonoBehaviour
 	// Update cell stats for the whole body
 	public void updateRedHealthStats (float percent)
 	{
+		if (percent < 0)
+			percent = 0;
 		redStats_health = percent/100f;
 	}
 	public void updateRedDefenseStats (float percent)
 	{
+		if (percent < 0)
+			percent = 0;
 		redStats_defense = percent/100f;
 	}
 	public void updateRedPowerStats (float percent)
 	{
+		if (percent < 0)
+			percent = 0;
 		redStats_power = percent/100f;
 	}
 	public void updateRedSpeedStats (float percent)
 	{
+		if (percent < 0)
+			percent = 0;
 		redStats_speed = percent/100f;
 	}
 	public void updateRedReprodStats (float percent)
 	{
-		if (percent == 0)
+		if (percent <= 0)
 			percent = .1f;
 		redStats_reprodRate = 100f/percent; // lower is better
 	}
 	public void updateWhiteHealthStats (float percent)
 	{
+		if (percent < 0)
+			percent = 0;
 		whiteStats_health = percent/100f;
 	}
 	public void updateWhiteDefenseStats (float percent)
 	{
+		if (percent < 0)
+			percent = 0;
 		whiteStats_defense = percent/100f;
 	}
 	public void updateWhitePowerStats (float percent)
 	{
+		if (percent < 0)
+			percent = 0;
 		whiteStats_power = percent/100f;
 	}
 	public void updateWhiteSpeedStats (float percent)
 	{
+		if (percent < 0)
+			percent = 0;
 		whiteStats_speed = percent/100f;
 	}
 	public void updateWhiteReprodStats (float percent)
 	{
-		if (percent == 0)
+		if (percent <= 0)
 			percent = .1f;
 		whiteStats_reprodRate = 100f/percent;
 	}
 	public void updatepathogenSpeedStats (float percent)
 	{
+		if (percent < 0)
+			percent = 0;
 		pathogenStats_speed = percent/100f;
 	}
 	public float redHealth() {
@@ -94,6 +112,9 @@ public class BodyState: MonoBehaviour
 	}
 	public float whiteReprodRate() {
 		return whiteStats_reprodRate;
+	}
+	public float pathogenSpeed() {
+		return pathogenStats_speed;
 	}
 	public string showStats(){
 		return (name + " white: H:" + whiteHealth () + " D:" + whiteDefense () + " Sp:" + whiteSpeed () +

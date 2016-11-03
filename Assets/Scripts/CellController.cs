@@ -115,13 +115,11 @@ public class CellController :  BodyController{
 		}
 		if ((gameObject.name.Equals("Pathogen") && other.name.Equals("Red")) ||
 			(gameObject.name.Equals("White") && other.name.Equals("Pathogen"))){
-			target = other.gameObject;
-			//Vector3 v3 = (transform.position - target.transform.position).normalized * speed();
 			Debug.Log(name+" sneak attacks " + other.name);
-			//Vector3 dir = transform.LookAt (target.transform.position);
-			//nvagt.SetDestination(target.transform);
-			nvagt.Move(other.transform.position - transform.position);
-				//nvagt.velocity= v3;
+			if (!nvagt)
+				nvagt= gameObject.GetComponent<NavMeshAgent> ();
+			if (nvagt)
+				nvagt.Move(other.transform.position - transform.position);
 
 		}
 		//Debug.Log(gameObject.name+"-"+gameObject.tag+" collided with "+ other.name+"="+other.tag);

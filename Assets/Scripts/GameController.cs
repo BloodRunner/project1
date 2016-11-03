@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour {
 	public float pressure;
 	public GameObject infections;
-	public Vector3 spawnValues;
+	//public Vector3 spawnValues;
+	public GameObject infectedOrgan;
 	public int infectionCount;
 	public int spawnWait;
 	public int startWait,waveWait;
@@ -18,15 +19,25 @@ public class GameController : MonoBehaviour {
 	public Camera topCamera;
 	public Camera followCamera;
 
+	public float getOrgansScores() {
+		float total = 0;
+		//	GameObject obj = GameObject.Find(name);
+		OrganController[] organs = GameObject.FindObjectsOfType (typeof(OrganController)) as OrganController[];
+		foreach (OrganController organ in organs) {
+			total += organ.get_stats_health ();
+		}
+		Debug.Log ("Score =" + total);
+		return total;
+	}
 	// Coroutine
 	IEnumerator SpawnWaves() {
 		yield return new WaitForSeconds (startWait);
 		while(true) {
 			for (int i = 0; i < infectionCount; i++) {
 				// Instantiate at infection point in organs!
-				Vector3 position = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
+				//Vector3 position = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
 				Quaternion spawnRotation = Quaternion.identity;
-				Instantiate (infections, position, spawnRotation);
+				Instantiate (infections, infectedOrgan.transform.position, spawnRotation);
 				// Instantiate returns a Transform so need to add "as GameObject" after call
 				// GameObject=... as GameObject
 				yield return new WaitForSeconds (spawnWait);
@@ -56,7 +67,7 @@ public class GameController : MonoBehaviour {
 		followCamera = GameObject.Find ("followCamera").GetComponent<Camera>();
 		followCamera.enabled = false;
 		topCamera.enabled = true;
-		//StartCoroutine( SpawnWaves ());
+		StartCoroutine( SpawnWaves ());
 	}
 
 	public void GameOver() {

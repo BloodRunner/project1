@@ -39,7 +39,7 @@ public abstract class OrganController : BodyController {
 			pathogen.updateDefenseStats (-1f);// pathogen loses a bit of defense
 			damageBody();
 			if (stats_health <= 0)
-				Destroy (rb); // Keep game object!?
+				Destroy (gameObject); // Die!
 			else
 				inContact [pathogen.GetInstanceID ()] = new Damage (combat, Time.time + 1);
 			successful= false;
