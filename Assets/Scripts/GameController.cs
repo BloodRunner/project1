@@ -37,7 +37,7 @@ public class GameController : MonoBehaviour {
 				// Instantiate at infection point in organs!
 				//Vector3 position = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
 				Quaternion spawnRotation = Quaternion.identity;
-				Instantiate (infections, infectedOrgan.transform.position, spawnRotation);
+				//Instantiate (infections, infectedOrgan.transform.position, spawnRotation);
 				// Instantiate returns a Transform so need to add "as GameObject" after call
 				// GameObject=... as GameObject
 				yield return new WaitForSeconds (spawnWait);
