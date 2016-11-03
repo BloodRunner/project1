@@ -81,7 +81,7 @@ public abstract class OrganController : BodyController {
 				damageBody (); // Organ specific damage to the cell stats
 		} else if (other.name.Equals( "Red")) {
 			RedController red = other.GetComponent(typeof(RedController)) as RedController;
-			Debug.Log(other.name+" bodyStats "+ red.bodystate.showStats());
+			//Debug.Log(other.name+" bodyStats "+ red.bodystate.showStats());
 			oxygenate (red.power ());
 		}
 

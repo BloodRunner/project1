@@ -14,7 +14,7 @@ public class BloodFlow : MonoBehaviour {
 
 
 	//the most not elegant way of dealing with this.
-	void OnTriggerEnter(Collider collision) {
+	void OnTriggerStay(Collider collision) {
 		
 		if (collision.CompareTag ("Host") || collision.CompareTag ("Infection")) {
 			random = Random.Range (0,100);

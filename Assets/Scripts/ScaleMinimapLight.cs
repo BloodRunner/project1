@@ -17,7 +17,9 @@ public class ScaleMinimapLight : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log(state.GetComponent<OrganController> ().showStats());
-		organ.color = Color.Lerp(alive,dead, 100f - state.GetComponent<OrganController>().get_stats_health());
+		if (state != null) {
+			Debug.Log (state.GetComponent<OrganController> ().showStats ());
+			organ.color = Color.Lerp (alive, dead, 100f - state.GetComponent<OrganController> ().get_stats_health ());
+		}
 	}
 }
