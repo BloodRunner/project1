@@ -6,7 +6,6 @@ using System.Collections.Generic;
  * */
 
 
-
 public class CellController :  BodyController{
 	public float playerSpeed;  	// base movement speed
 	public float tilt;
@@ -15,25 +14,40 @@ public class CellController :  BodyController{
 	public Transform shotSpawn; // the transform for origin of the offspring spawn
 	static Stats mybodyStats=new Stats(); // applies to the whole class
 	protected Rigidbody rb;
+	public float size;  // applies to pathogens -
+	// On killerT cells - it is the number of points to get a new one
+	// On pathogens - it is the number of point you get for killing one
+	public int points;	// score points and T cell bonus - applies to pathogen
 	private float nextReprod=0f;
 	public float lifespan_in_seconds ; // Cell life span in seconds float
 	private NavMeshAgent nvagt;
 	private GameObject target; // for attackers
 	private Vector3 dest;
+	ParticleSystem hitParticles; // Death Indication
 
-	void Start() { // Start and Awake don't seem to hold references
+	void Awake() { // Start and Awake don't seem to hold references
 		rb = GetComponent<Rigidbody>();
 		rb.angularVelocity = Random.insideUnitSphere * Random.Range(0,2); // rotate randomly
 		Vector3 velo = Random.insideUnitSphere * speed();
 		velo.y = 0;
 		//rb.velocity = transform.forward * speed(); // base movement on blue axis
 		rb.velocity = velo;
+		if (size == 0) // identity
+			size = 1;
+		rb.transform.localScale *= size; 
 		nvagt = gameObject.GetComponent<NavMeshAgent> ();
 		if (lifespan_in_seconds == 0)
 			lifespan_in_seconds = 1200f;
 		Destroy(gameObject, lifespan_in_seconds); // destroy objects automatically - cell death!
 		//Debug.Log("START nextReprod= "+ nextReprod +"{"+ reprodRate() +"}");
 		if (myname != null) name= myname;
+		if (!bodystate)
+			Debug.LogError ("BodyState is missing in new "+ name);
+		if (!gameController) {
+			Debug.LogError ("gamecontroller is missing in "+ name+" self destruct!");
+			Destroy (gameObject);
+		}
+		hitParticles = GetComponentInChildren <ParticleSystem> ();
 	}
 
 	// This changes the top level
@@ -56,8 +70,14 @@ public class CellController :  BodyController{
 			updateDefenseStats (-1.0f);
 			other.updateDefenseStats (-1.0f);
 			if (stats_health <= 0) {
+				if ( tag.Equals("Infection")) { // TODO: Unsafe - fix this later
+					gameController.UpdateScore(points);
+				}
 				Destroy (gameObject);
-				Debug.Log (name + " dies ");
+				if (gameController)
+					gameController.showMessage ("Poor " + name + " dies ", 10);
+				else
+					Debug.Log (name + " dies - gameController empty");
 			}
 			else
 				inContact [other.GetInstanceID ()] = new Damage (combat, Time.time + 1);
@@ -65,17 +85,27 @@ public class CellController :  BodyController{
 			// Keeps track of the damage if contact continues; 
 
 		}
-		Debug.Log(gameObject.name+"."+gameObject.tag+" defends against "+ other.name+"."+other.tag + " "+
+		Debug.Log(gameObject.name+"."+gameObject.tag+" defended against "+ other.name+"."+other.tag + " "+
 			showStats()+ (win?"succeeded":"failed") );
 		return win;
 	}
+	// Special Power of this cell, whatever it is
+	public virtual void special(){
+	}
 
-
+	public override void deathHandler (){
+		Debug.Log (name + " dies ");
+		if (hitParticles != null) {
+			hitParticles.Play ();
+		}
+		DestroyObject (gameObject);
+	}
 	// Reproduce once every N seconds - (reprod rate)
-	void Update () {
-		if (dna != null) {  // Can reproduce
-			if (nextReprod == 0f) {
-				nextReprod = Time.time + reprodRate ();
+	protected void Update () {
+		special (); // If it has special powers, use it first
+		if (dna != null) {  // Can reproduce - do it
+			if (nextReprod == 0f) { // Add a random so that reproduction is staggered
+				nextReprod = Time.time + reprodRate () + Random.Range(0,0.5f);
 			}
 			if (Time.time > nextReprod) {
 				GameObject clone;
@@ -89,8 +119,8 @@ public class CellController :  BodyController{
 				}
 				nvagt = gameObject.GetComponent<NavMeshAgent> ();
 				CellController cell = clone.GetComponent(typeof(CellController)) as CellController;
-				cell.bodystate = bodystate;
 				cell.gameController = gameController;
+				cell.bodystate = bodystate;
 				if (!nvagt)
 				 	nvagt= gameObject.GetComponent<NavMeshAgent> ();
 				if (nvagt) {
@@ -98,11 +128,16 @@ public class CellController :  BodyController{
 				} else {
 					Debug.Log(name +" Missing nav agent:");
 				}
-				clone.name = gameObject.name;
+				if (myname!=null)
+					clone.name = myname; // name by configuration
+				else {
+					clone.name = name; // name after the parent
+				}
 				nextReprod = Time.time + reprodRate ();
 				Debug.Log(name + " nextReprod= "+ nextReprod +"{"+ reprodRate() +"}"+ clone.name);
 			}
 		}
+
 		//if (defending>0) {Debug.Log ("Still defending "+defending+" critters");}
 	}
 

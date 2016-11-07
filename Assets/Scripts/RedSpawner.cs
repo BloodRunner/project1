@@ -1,39 +1,44 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RedSpawner : MonoBehaviour {
+public class RedSpawner : MonoBehaviour
+{
 	public RedController dna;
 	public GameController gameController;
 	public BodyState bodystate;
 	private float nextReprod = 0f;
 	// Use this for initialization
-	void Awake () {
-		nextReprod = Time.time + dna.reprodRate ();
-		Debug.Log("Red DNA Reprod= "+ nextReprod +"{"+ dna.reprodRate() +"}");
+	void Start ()
+	{
+		if (dna != null)
+			makeone ();
+	}
+
+	void makeone ()
+	{
+		try {
+			Vector3 v3 = transform.position + (Random.insideUnitSphere * dna.transform.localScale.x);
+			v3.y = 1f;
+			RedController cell = Instantiate (dna, v3, transform.rotation) as RedController;
+			cell.setBodyState (bodystate);
+			cell.updateHealthStats (100 - bodystate.redHealth ());
+			cell.gameController = gameController;
+			nextReprod = Time.time + cell.get_bodystats_reprod () * bodystate.redReprodRate ();
+			Debug.Log (cell.name + " Instantiated in RedSpawner");
+		} catch (System.Exception) {
+			Debug.LogError (name + " Instantiate failed in RedSpawnwer");
+			nextReprod = Time.time + 2; // Try again in 2 seconds if it failed
+		}
+
 	}
 
 	// Update is called once per frame
-	void Update () {
-		RedController cell=null;
+	void Update ()
+	{
+		CellController cell = null;
 		if (dna != null) {  // Can reproduce
 			if (Time.time > nextReprod) {
-				
-				Vector3 v3 = transform.position + (Random.insideUnitSphere * dna.transform.localScale.x);
-				v3.y = 1f;
-				nextReprod = Time.time + dna.reprodRate ();
-
-				try {
-					cell = Instantiate (dna, v3, transform.rotation) as RedController;
-					if (!bodystate) {
-						Debug.LogError ("BodyState is missing in RedSpawnwer");
-					}
-					cell.setBodyState (bodystate);
-					cell.gameController = gameController;
-				
-				}catch(System.Exception) {
-					Debug.LogError (name + " Instantiate failed in RedSpawnwer");
-				}
-
+				makeone ();
 				//Debug.Log("Red Reprod= "+ nextReprod +"{"+ dna.reprodRate() +"} ");
 			}
 		}
