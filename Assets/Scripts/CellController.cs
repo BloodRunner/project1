@@ -44,8 +44,8 @@ public class CellController :  BodyController{
 		if (!bodystate)
 			Debug.LogError ("BodyState is missing in new "+ name);
 		if (!gameController) {
-			Debug.LogError ("gamecontroller is missing in "+ name+" self destruct!");
-			Destroy (gameObject);
+			Debug.LogError ("gamecontroller is missing in "+ name+" self destruct?!");
+			//Destroy (gameObject);
 		}
 		hitParticles = GetComponentInChildren <ParticleSystem> ();
 	}

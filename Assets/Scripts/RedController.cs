@@ -24,7 +24,7 @@ public class RedController :  CellController{
     }
     public override float speed () {
 		if (bodystate==null) {
-			Debug.Log ("BodyState is Missing");
+			//Debug.Log ("BodyState is Missing");
 			return ((stats_speed / 100.0f) * bodyStats.speed);
 		}
 		return ((stats_speed/100.0f) * bodyStats.speed * bodystate.redSpeed());

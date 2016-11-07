@@ -23,6 +23,8 @@ public class RedSpawner : MonoBehaviour
 			cell.setBodyState (bodystate);
 			cell.updateHealthStats (100 - bodystate.redHealth ());
 			cell.gameController = gameController;
+			if (gameController == null || bodystate == null)
+				Debug.LogError (name +" bodystate and gamecontroller are null !!!");
 			nextReprod = Time.time + cell.get_bodystats_reprod () * bodystate.redReprodRate ();
 			Debug.Log (cell.name + " Instantiated in RedSpawner");
 		} catch (System.Exception) {
