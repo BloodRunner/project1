@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour {
 		foreach (OrganController organ in organs) {
 			total += organ.get_stats_health ();
 		}
-		Debug.Log ("Score =" + total);
+		//Debug.Log ("Score =" + total);
 		return total;
 	}
 	// Coroutine

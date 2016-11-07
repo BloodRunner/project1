@@ -11,6 +11,6 @@ public class LiverController : OrganController {
 			bodystate.updateWhiteReprodStats (stats_health);
 			// TODO: pathogen speed
 		}
-		Debug.Log (name +" damageBody " + bodystate.showStats ());
+		//Debug.Log (name +" damageBody " + bodystate.showStats ());
 	}
 }

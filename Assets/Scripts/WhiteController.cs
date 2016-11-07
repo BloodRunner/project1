@@ -18,11 +18,11 @@ public class WhiteController : CellController {
 	// Lower number is faster, doesn't get damaged by enemies directly
 	public override float reprodRate () {
 		if (bodyStats.reprodRate < 1) {
-			Debug.LogError (name +" !!!ReprodRate (<1) is messed up " +bodyStats.reprodRate);
+			//Debug.LogError (name +" !!!ReprodRate (<1) is messed up " +bodyStats.reprodRate);
 			bodyStats.reprodRate = 1;
 		}
 		if (!bodystate) {
-			Debug.Log (name +" BodyState is Missing");
+			//Debug.Log (name +" BodyState is Missing");
 			return (bodyStats.reprodRate);
 		}
 		return (bodyStats.reprodRate * bodystate.whiteReprodRate());

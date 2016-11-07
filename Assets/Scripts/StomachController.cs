@@ -13,7 +13,7 @@ public class StomachController : OrganController
 			bodystate.updateRedDefenseStats (stats_health);
 			bodystate.updateWhiteDefenseStats (stats_health);
 		}
-		Debug.Log (name +" damageBody " + bodystate.showStats ());
+		//Debug.Log (name +" damageBody " + bodystate.showStats ());
 	}
 }
 

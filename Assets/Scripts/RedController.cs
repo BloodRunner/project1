@@ -23,7 +23,7 @@ public class RedController :  CellController{
     }
     public override float speed () {
 		if (!bodystate) {
-			Debug.Log ("BodyState is Missing");
+			//Debug.Log ("BodyState is Missing");
 			return ((stats_speed / 100.0f) * bodyStats.speed);
 		}
 		return ((stats_speed/100.0f) * bodyStats.speed * bodystate.redSpeed());
@@ -31,11 +31,11 @@ public class RedController :  CellController{
 	// Lower number is faster
 	public override float reprodRate () {
 		if (bodyStats.reprodRate < 1) {
-			Debug.LogError (name +" !!!ReprodRate (<10) is messed up " + bodyStats.reprodRate);
+			//Debug.LogError (name +" !!!ReprodRate (<10) is messed up " + bodyStats.reprodRate);
 			bodyStats.reprodRate = 1;
 		}
 		if (!bodystate) {
-			Debug.Log (name +" BodyState is Missing");
+			//Debug.Log (name +" BodyState is Missing");
 			return (bodyStats.reprodRate);
 		}
 		return (bodyStats.reprodRate * bodystate.redReprodRate());

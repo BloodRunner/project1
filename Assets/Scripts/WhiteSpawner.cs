@@ -9,7 +9,7 @@ public class WhiteSpawner : MonoBehaviour {
 
 	void Awake () {
 		nextReprod = Time.time + dna.reprodRate ();
-		Debug.Log("DNA Reprod= "+ nextReprod +"{"+ dna.reprodRate() +"}");
+		//Debug.Log("DNA Reprod= "+ nextReprod +"{"+ dna.reprodRate() +"}");
 	}
 
 	// Update is called once per frame
@@ -24,16 +24,16 @@ public class WhiteSpawner : MonoBehaviour {
 
 					//cell.velocity = transform.forward * 10;
 					if (!cell) {
-						Debug.LogError ("Controller is missing in WhiteSpawnwer");
+						//Debug.LogError ("Controller is missing in WhiteSpawnwer");
 					} else
 						cell.setBodyState (bodystate);
 				}
 				catch {
-					Debug.LogError ("Can't spawn in WhiteSpawnwer");
+					//Debug.LogError ("Can't spawn in WhiteSpawnwer");
 				}
 
 				if (!bodystate) {
-					Debug.LogError ("BodyState is missing in WhiteSpawnwer");
+					//Debug.LogError ("BodyState is missing in WhiteSpawnwer");
 				} else {
 				//	cell.setBodyState (bodystate);
 				//	cell.gameController = gameController;

@@ -17,10 +17,10 @@ public abstract class OrganController : BodyController {
 	// oxygenate means add power to health + defense to organ
 	// TODO: modify by regenRate
 	void oxygenate (float power) {
-		Debug.Log(name +" before oxygenate ("+ power+")"+ showStats());
+		//Debug.Log(name +" before oxygenate ("+ power+")"+ showStats());
 		updateHealthStats (power); // health goes up by oxygen power
 		updateDefenseStats (power / 2f); // defense goes up by 1/2 oxygen power
-		Debug.Log(name +" after oxygenate "+ showStats());
+		//Debug.Log(name +" after oxygenate "+ showStats());
 	}
 
 	// Each combatant lose 1% in defend after each combat
@@ -45,8 +45,8 @@ public abstract class OrganController : BodyController {
 			successful= false;
 			// Keeps track of the damage if contact continues; 
 		}
-		Debug.Log(gameObject.name+"."+defense()+" defends against "+ pathogen.name
-			+"."+pathogen.power()+ " "+ showStats()+ (successful?" success":"failed"));
+		//Debug.Log(gameObject.name+"."+defense()+" defends against "+ pathogen.name
+		//	+"."+pathogen.power()+ " "+ showStats()+ (successful?" success":"failed"));
 			
 		return successful;
 	}
@@ -113,7 +113,7 @@ public abstract class OrganController : BodyController {
 			Damage damage = (Damage)inContact[gameObj.GetInstanceID()];
 			if (damage.nextAttack (Time.time)) {
 				updateHealthStats (damage.damage());
-				Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
+				//Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
 			}	
 		}
 	}

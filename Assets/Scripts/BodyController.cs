@@ -56,7 +56,7 @@ public class BodyController : MonoBehaviour
 	// Lower number is faster
 	public virtual float reprodRate () {
 		if (bodyStats.reprodRate < 10) {
-			Debug.LogError (name +" !!!ReprodRate (<10) is messed up " + bodyStats.reprodRate);
+			//Debug.LogError (name +" !!!ReprodRate (<10) is messed up " + bodyStats.reprodRate);
 			bodyStats.reprodRate = 10;
 		}
 		return (bodyStats.reprodRate);

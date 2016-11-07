@@ -57,7 +57,7 @@ public class CellController :  BodyController{
 			other.updateDefenseStats (-1.0f);
 			if (stats_health <= 0) {
 				Destroy (gameObject);
-				Debug.Log (name + " dies ");
+				//Debug.Log (name + " dies ");
 			}
 			else
 				inContact [other.GetInstanceID ()] = new Damage (combat, Time.time + 1);
@@ -65,8 +65,8 @@ public class CellController :  BodyController{
 			// Keeps track of the damage if contact continues; 
 
 		}
-		Debug.Log(gameObject.name+"."+gameObject.tag+" defends against "+ other.name+"."+other.tag + " "+
-			showStats()+ (win?"succeeded":"failed") );
+		//Debug.Log(gameObject.name+"."+gameObject.tag+" defends against "+ other.name+"."+other.tag + " "+
+		//	showStats()+ (win?"succeeded":"failed") );
 		return win;
 	}
 
@@ -96,11 +96,11 @@ public class CellController :  BodyController{
 				if (nvagt) {
 					clone.GetComponent<NavMeshAgent> ().SetDestination (nvagt.destination);
 				} else {
-					Debug.Log(name +" Missing nav agent:");
+					//Debug.Log(name +" Missing nav agent:");
 				}
 				clone.name = gameObject.name;
 				nextReprod = Time.time + reprodRate ();
-				Debug.Log(name + " nextReprod= "+ nextReprod +"{"+ reprodRate() +"}"+ clone.name);
+				//Debug.Log(name + " nextReprod= "+ nextReprod +"{"+ reprodRate() +"}"+ clone.name);
 			}
 		}
 		//if (defending>0) {Debug.Log ("Still defending "+defending+" critters");}
@@ -116,7 +116,7 @@ public class CellController :  BodyController{
 		}
 		if ((gameObject.name.Equals("Pathogen") && other.name.Equals("Red")) ||
 			(gameObject.name.Equals("White") && other.name.Equals("Pathogen"))){
-			Debug.Log(name+" sneak attacks " + other.name);
+			//Debug.Log(name+" sneak attacks " + other.name);
 
 			if (!nvagt)
 				nvagt= gameObject.GetComponent<NavMeshAgent> ();
@@ -137,7 +137,7 @@ public class CellController :  BodyController{
 				Damage damage = (Damage)inContact[gameObj.GetInstanceID()];
 				if (damage.nextAttack (Time.time)) {
 					updateHealthStats (damage.damage());
-					Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
+					//Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
 				}	
 			}
 		}
@@ -200,7 +200,7 @@ public class CellController :  BodyController{
 			Damage damage = (Damage)inContact[gameObj.GetInstanceID()];
 			if (damage.nextAttack (Time.time)) {
 				updateHealthStats (damage.damage());
-				Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by tcontact with "+ other.name+"="+other.tag);
+				//Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by tcontact with "+ other.name+"="+other.tag);
 			}	
 		}
 	}

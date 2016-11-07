@@ -11,7 +11,7 @@ public class ThymusController : OrganController
 			bodystate.updateWhitePowerStats (stats_health);
 			bodystate.updateWhiteReprodStats (stats_health);
 		}
-		Debug.Log (name +" damageBody " + bodystate.showStats ());
+		//Debug.Log (name +" damageBody " + bodystate.showStats ());
 	}
 }
 

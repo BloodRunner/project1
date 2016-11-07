@@ -9,7 +9,7 @@ public class RedSpawner : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		nextReprod = Time.time + dna.reprodRate ();
-		Debug.Log("Red DNA Reprod= "+ nextReprod +"{"+ dna.reprodRate() +"}");
+		//Debug.Log("Red DNA Reprod= "+ nextReprod +"{"+ dna.reprodRate() +"}");
 	}
 
 	// Update is called once per frame
@@ -25,7 +25,7 @@ public class RedSpawner : MonoBehaviour {
 				try {
 					cell = Instantiate (dna, v3, transform.rotation) as RedController;
 					if (!bodystate) {
-						Debug.LogError ("BodyState is missing in RedSpawnwer");
+						//Debug.LogError ("BodyState is missing in RedSpawnwer");
 					}
 					cell.setBodyState (bodystate);
 					cell.gameController = gameController;
