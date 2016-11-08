@@ -17,6 +17,7 @@ public class BloodFlow : MonoBehaviour {
 		points [3] = new Vector3(1.01f,0f,-16f) ;//Vector3(1.01f,0f,-16f);
 		delay = 0;
 		destPoint = 0;
+		whereAmI ();
 		agent = GetComponent<NavMeshAgent> ();
 		agent.autoBraking = false;
 		coroutine = patrol ();
@@ -30,12 +31,12 @@ public class BloodFlow : MonoBehaviour {
 			return;
 		else if (destPoint == points.Length - 1) {
 			agent.destination = points [destPoint];
-			print (agent.destination.ToString());
+			//print (agent.destination.ToString());
 			destPoint = 0;
 
 		} else {
 			agent.destination = points [destPoint];
-			print (agent.destination.ToString());
+			//print (agent.destination.ToString());
 			destPoint = (destPoint + 1);
 		}
 
@@ -91,7 +92,24 @@ public class BloodFlow : MonoBehaviour {
 		points = newpoints;
 	}
 
-
+	public void whereAmI(){
+		Collider[] search = Physics.OverlapSphere(this.GetComponent<Transform>().position,1f);
+		for(int i = 0; i < search.Length;i++){
+			if(search[i].CompareTag("1")){
+				destPoint = 0;
+				//print (1);
+			} else if(search[i].CompareTag("2")){
+				destPoint = 1;
+				//print (2);
+			} else if(search[i].CompareTag("3")){
+				destPoint = 2;
+				//print (3);
+			}else if(search[i].CompareTag("4")){
+				destPoint = 3;
+				//print (4);
+			}
+		}
+	}
 
 
 	/*
