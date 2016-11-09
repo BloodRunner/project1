@@ -24,15 +24,48 @@ public class GameController : MonoBehaviour {
 	public GUIText gameoverText;
 	public Camera topCamera;
 	public Camera followCamera;
+	protected int numInfections=0;
+	OrganController[] all_organs;
+
+	// Use this for initialization
+	void Start () {
+		pressure = 1;
+		score = 0;
+		UpdateScore (0);
+		gameOver = false;
+		restart=false;
+		if (restartText)
+			restartText.text = "";
+		if (gameoverText)
+			gameoverText.text = "";
+		topCamera = GameObject.Find ("topCamera").GetComponent<Camera>();
+		followCamera = GameObject.Find ("followCamera").GetComponent<Camera>();
+		followCamera.enabled = false;
+		topCamera.enabled = true;
+		if (bodystate == null) {
+			Debug.Log ("Game Controller misisng body state");
+		}
+
+		setUpDefence(redCount,whiteCount);
+		StartCoroutine( SpawnWaves ());
+		all_organs = GameObject.FindObjectsOfType (typeof(OrganController)) as OrganController[];
+
+	}
 
 	public float getOrgansScores() {
 		float total = 0;
 		//	GameObject obj = GameObject.Find(name);
-		OrganController[] organs = GameObject.FindObjectsOfType (typeof(OrganController)) as OrganController[];
-		foreach (OrganController organ in organs) {
+		//OrganController[] organs = GameObject.FindObjectsOfType (typeof(OrganController)) as OrganController[];
+		foreach (OrganController organ in all_organs) {
 			total += organ.get_stats_health ();
 		}
 		return total;
+	}
+
+	public int numInfection() {
+		GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("Infection") as GameObject[];
+		Debug.Log(objectsWithTag.Length);
+		return objectsWithTag.Length;
 	}
 	// Coroutine
 	IEnumerator SpawnWaves() {
@@ -47,6 +80,11 @@ public class GameController : MonoBehaviour {
 				// GameObject=... as GameObject
 				yield return new WaitForSeconds (spawnWait);
 			}
+			// Organ is now a spawner
+			foreach (OrganController organ in all_organs) {
+				if (organ.get_stats_health () >= 0)
+					Instantiate (infections, organ.transform.position, Quaternion.identity);
+			}
 			//Debug.Log ("gameover=" + gameOver);
 			if (gameOver) {
 				if (restartText)
@@ -56,28 +94,6 @@ public class GameController : MonoBehaviour {
 			}
 			yield return new WaitForSeconds (waveWait);
 		}
-	}
-	// Use this for initialization
-	void Start () {
-		pressure = 1;
-		score = 0;
-		UpdateScore (0);
-		gameOver = false;
-		restart=false;
-		if (restartText)
-		restartText.text = "";
-		if (gameoverText)
-		gameoverText.text = "";
-		topCamera = GameObject.Find ("topCamera").GetComponent<Camera>();
-		followCamera = GameObject.Find ("followCamera").GetComponent<Camera>();
-		followCamera.enabled = false;
-		topCamera.enabled = true;
-		if (bodystate == null) {
-			Debug.Log ("Game Controller misisng body state");
-		}
-		setUpDefence(redCount,whiteCount);
-		StartCoroutine( SpawnWaves ());
-
 	}
 
 	public void setUpDefence(int redCount, int whiteCount){

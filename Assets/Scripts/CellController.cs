@@ -86,18 +86,18 @@ public class CellController :  BodyController{
 	public override void deathHandler (){
 		//Debug.Log (name + " dies ");
 		if (hitParticles != null) {
-			hitParticles.Play ();
+			hitParticles.Play (); // Play explosion
 		}
-		if ( tag.Equals("Infection")) { // TODO: Unsafe - fix this later
-				gameController.UpdateScore(points);
-		}
-			
-		if (gameController)
+	
+		if (gameController) {
+			if (tag.Equals ("Infection"))
+				gameController.UpdateScore (points);
 			gameController.showMessage ("Poor " + name + " dies ", 3);
-		else
+		} else
 			Debug.Log (name + " dies - gameController empty");
 		DestroyObject (gameObject);
 	}
+
 	// Reproduce once every N seconds - (reprod rate)
 	protected void Update () {
 		special (); // If it has special powers, use it first
@@ -135,7 +135,6 @@ public class CellController :  BodyController{
 				Debug.Log(name + " nextReprod= "+ nextReprod +"{"+ reprodRate() +"}"+ clone.name);
 			}
 		}
-
 		//if (defending>0) {Debug.Log ("Still defending "+defending+" critters");}
 	}
 
@@ -148,7 +147,7 @@ public class CellController :  BodyController{
 			return;
 		}
 		if ((gameObject.tag.Equals("Infection") && other.name.Equals("Red")) ||
-			(gameObject.name.Equals("White") && other.tag.Equals("Infection"))){
+			(gameObject.name.StartsWith("White") && other.tag.Equals("Infection"))){
 			Debug.Log(name+" sneak attacks " + other.name);
 
 			if (!nvagt)
@@ -179,7 +178,6 @@ public class CellController :  BodyController{
 		foreach (ContactPoint contact in collision.contacts) {
 			
 			Collider other = contact.otherCollider;
-
 			if (!tag.Equals (other.tag) &&
 			    (other.tag.Equals ("Host") || other.tag.Equals ("Infection"))) {
 				//Debug.Log (name + "-" + tag + " collided with " + other.name + "=" + other.tag);
@@ -187,7 +185,7 @@ public class CellController :  BodyController{
 					CellController othercell = other.GetComponent (typeof(PathogenController)) as PathogenController;
 					defendAgainst (othercell); 
 				}
-				if (gameObject.tag.Equals ("Infection") && (other.name.Equals ("White") || other.name.Equals ("Player"))) { // White attacks pathogen (me)
+				if (gameObject.tag.Equals ("Infection") && (other.name.StartsWith ("White") || other.name.Equals ("Player"))) { // White attacks pathogen (me)
 						CellController othercell = other.GetComponent (typeof(WhiteController)) as WhiteController;
 						defendAgainst (othercell);  // defend against white cell or pathogen
 				}

@@ -13,6 +13,7 @@ public class Shooter : MonoBehaviour {
 	Ray shootRay;                                   // A ray from the gun end forwards.
 	RaycastHit shootHit;                            // A raycast hit to get information about what was hit.
 	int shootableMask;                              // A layer mask so the raycast only hits things on the shootable layer.
+	int groundMask;  
 	ParticleSystem gunParticles;                    // Reference to the particle system.
 	LineRenderer gunLine;                           // Reference to the line renderer.
 	AudioSource gunAudio;                           // Reference to the audio source.
@@ -23,6 +24,7 @@ public class Shooter : MonoBehaviour {
 	{
 		// Create a layer mask for the Shootable layer.
 		shootableMask = LayerMask.GetMask ("Infection");
+		groundMask = LayerMask.GetMask ("Ground");
 
 		// Set up the references.
 		gunParticles = GetComponent<ParticleSystem> ();
@@ -35,11 +37,6 @@ public class Shooter : MonoBehaviour {
 	{
 		// Add the time since Update was last called to the timer.
 		timer += Time.deltaTime;
-
-
-		//Vector2 screenCenterPoint = new Vector2 (Screen.width / 2, Screen.height / 2);
-
-		//ray = Camera.main.ScreenPointToRay (screenCenterPoint);
 
 		//if (Physics.Raycast (ray, out hit, 5)) {
 			/*
@@ -57,7 +54,18 @@ public class Shooter : MonoBehaviour {
 		// If the Fire1 button is being press and it's time to fire...
 		if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets)
 		{
-			// ... shoot the gun.
+			Camera cx = Camera.current;
+			Camera[] cxs = Camera.allCameras;
+			if (cx == null)
+				cx = cxs [0]; // Why is current null half the time
+			Ray ray= cx.ScreenPointToRay (Input.mousePosition);
+			RaycastHit hit;
+			if (Physics.Raycast (ray,out hit,groundMask)) {
+				//Debug.DrawLine(ray,hit);
+				Debug.Log("Hit the ground at "+ hit);
+				// Create a particle if hit
+				//Instantiate (particle, hit.point, transform.rotation);
+			}
 			Shoot ();
 		}
 
