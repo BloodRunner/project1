@@ -14,7 +14,6 @@ public class CellController :  BodyController{
 	public Transform shotSpawn; // the transform for origin of the offspring spawn
 	static Stats mybodyStats=new Stats(); // applies to the whole class
 	protected Rigidbody rb;
-	public float size;  // applies to pathogens -
 	// On killerT cells - it is the number of points to get a new one
 	// On pathogens - it is the number of point you get for killing one
 	public int points;	// score points and T cell bonus - applies to pathogen
@@ -25,36 +24,37 @@ public class CellController :  BodyController{
 	private Vector3 dest;
 	ParticleSystem hitParticles; // Death Indication
 
-	void Awake() { // Start and Awake don't seem to hold references
+	void Start() { 
 		rb = GetComponent<Rigidbody>();
 		rb.angularVelocity = Random.insideUnitSphere * Random.Range(0,2); // rotate randomly
 		Vector3 velo = Random.insideUnitSphere * speed();
 		velo.y = 0;
-		//rb.velocity = transform.forward * speed(); // base movement on blue axis
 		rb.velocity = velo;
-		if (size == 0) // identity
-			size = 1;
-		rb.transform.localScale *= size; 
 		nvagt = gameObject.GetComponent<NavMeshAgent> ();
 		if (lifespan_in_seconds == 0)
 			lifespan_in_seconds = 1200f;
 		Destroy(gameObject, lifespan_in_seconds); // destroy objects automatically - cell death!
 		//Debug.Log("START nextReprod= "+ nextReprod +"{"+ reprodRate() +"}");
 		if (myname != null) name= myname;
-		if (!bodystate)
-			Debug.LogError ("BodyState is missing in new "+ name);
-		if (!gameController) {
-			Debug.LogError ("gamecontroller is missing in "+ name+" self destruct?!");
-			//Destroy (gameObject);
-		}
 		hitParticles = GetComponentInChildren <ParticleSystem> ();
+		//if (hitParticles!=null)
+		//	hitParticles.Stop ();
+	}
+
+	public void setVelocity(float v) {
+		if (nvagt == null)
+			nvagt = gameObject.GetComponent<NavMeshAgent> ();
+		nvagt.speed = speed();
 	}
 
 	// This changes the top level
 	void addDelay(float sec) {
 		mybodyStats.delay += sec; // when brain is damaged, all cells are slow to follow command
 	}
-		
+	public void TakeDamage(int points, Vector3 hitPt) {
+		updateHealthStats (-points);
+	}
+
 	// This cell defend against another
 	public bool defendAgainst (CellController other){
 		//Debug.Log (name + " defends against " + other.name);
@@ -69,17 +69,7 @@ public class CellController :  BodyController{
 			updateHealthStats (-combat);
 			updateDefenseStats (-1.0f);
 			other.updateDefenseStats (-1.0f);
-			if (stats_health <= 0) {
-				if ( tag.Equals("Infection")) { // TODO: Unsafe - fix this later
-					gameController.UpdateScore(points);
-				}
-				Destroy (gameObject);
-				if (gameController)
-					gameController.showMessage ("Poor " + name + " dies ", 10);
-				else
-					Debug.Log (name + " dies - gameController empty");
-			}
-			else
+			if (stats_health > 0) 
 				inContact [other.GetInstanceID ()] = new Damage (combat, Time.time + 1);
 			win= false;
 			// Keeps track of the damage if contact continues; 
@@ -94,10 +84,18 @@ public class CellController :  BodyController{
 	}
 
 	public override void deathHandler (){
-		Debug.Log (name + " dies ");
+		//Debug.Log (name + " dies ");
 		if (hitParticles != null) {
 			hitParticles.Play ();
 		}
+		if ( tag.Equals("Infection")) { // TODO: Unsafe - fix this later
+				gameController.UpdateScore(points);
+		}
+			
+		if (gameController)
+			gameController.showMessage ("Poor " + name + " dies ", 3);
+		else
+			Debug.Log (name + " dies - gameController empty");
 		DestroyObject (gameObject);
 	}
 	// Reproduce once every N seconds - (reprod rate)
@@ -149,8 +147,8 @@ public class CellController :  BodyController{
 		if ("Boundary".Equals(other.name) || gameObject.CompareTag(other.tag)) { // Same Team
 			return;
 		}
-		if ((gameObject.name.Equals("Pathogen") && other.name.Equals("Red")) ||
-			(gameObject.name.Equals("White") && other.name.Equals("Pathogen"))){
+		if ((gameObject.tag.Equals("Infection") && other.name.Equals("Red")) ||
+			(gameObject.name.Equals("White") && other.tag.Equals("Infection"))){
 			Debug.Log(name+" sneak attacks " + other.name);
 
 			if (!nvagt)
@@ -185,11 +183,11 @@ public class CellController :  BodyController{
 			if (!tag.Equals (other.tag) &&
 			    (other.tag.Equals ("Host") || other.tag.Equals ("Infection"))) {
 				//Debug.Log (name + "-" + tag + " collided with " + other.name + "=" + other.tag);
-				if (gameObject.name.Equals ("Red") && other.name.Equals ("Pathogen")){
+				if (gameObject.name.Equals ("Red") && other.tag.Equals ("Infection")){
 					CellController othercell = other.GetComponent (typeof(PathogenController)) as PathogenController;
 					defendAgainst (othercell); 
 				}
-				if (gameObject.name.Equals ("Pathogen") && (other.name.Equals ("White") || other.name.Equals ("Player"))) { // White attacks pathogen (me)
+				if (gameObject.tag.Equals ("Infection") && (other.name.Equals ("White") || other.name.Equals ("Player"))) { // White attacks pathogen (me)
 						CellController othercell = other.GetComponent (typeof(WhiteController)) as WhiteController;
 						defendAgainst (othercell);  // defend against white cell or pathogen
 				}

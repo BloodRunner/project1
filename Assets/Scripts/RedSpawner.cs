@@ -26,6 +26,7 @@ public class RedSpawner : MonoBehaviour
 			if (gameController == null || bodystate == null)
 				Debug.LogError (name +" bodystate and gamecontroller are null !!!");
 			nextReprod = Time.time + cell.get_bodystats_reprod () * bodystate.redReprodRate ();
+			cell.setVelocity(cell.speed());
 			Debug.Log (cell.name + " Instantiated in RedSpawner");
 		} catch (System.Exception) {
 			Debug.LogError (name + " Instantiate failed in RedSpawnwer");
