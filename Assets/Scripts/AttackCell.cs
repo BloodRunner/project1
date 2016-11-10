@@ -38,7 +38,7 @@ public class AttackCell : MonoBehaviour {
 					}
 				}
 			}
-			yield return new WaitForSeconds (0.2f);
+			yield return new WaitForSeconds (0.3f);
 		}
 	}
 

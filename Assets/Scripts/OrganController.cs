@@ -6,21 +6,24 @@ using System.Collections;
 public abstract class OrganController : BodyController {
 	public Rigidbody rb;
 	public GameObject shot;
-
-	private float stats_regenRate=100f;
-	private float nextReGen=0f;
+	protected bool isSpawner=false;
+	// in organs reprodRate is the number of seconds it uses up 1% of it's oxygen/health
+	//private float stats_regenRate=100f; 
+	// oxygen depletion of N points per 
+	private float nextOxygenDepletion=0f;
 
 	void Start() {
 		rb = GetComponent<Rigidbody>();
+		nextOxygenDepletion = Time.time;
 	}
 
 	// oxygenate means add power to health + defense to organ
 	// TODO: modify by regenRate
 	void oxygenate (float power) {
-		//Debug.Log(name +" before oxygenate ("+ power+")"+ showStats());
+		string preoxy = name +" before oxygenate("+ power+")="+ showStats();
 		updateHealthStats (power); // health goes up by oxygen power
 		updateDefenseStats (power / 2f); // defense goes up by 1/2 oxygen power
-		//Debug.Log(name +" after oxygenate "+ showStats());
+		Debug.Log(preoxy +" after= "+ showStats());
 	}
 
 	// Each combatant lose 1% in defend after each combat
@@ -38,34 +41,44 @@ public abstract class OrganController : BodyController {
 			updateDefenseStats ( -1.0f);
 			pathogen.updateDefenseStats (-1f);// pathogen loses a bit of defense
 			damageBody();
-			if (stats_health <= 0)
-				Destroy (gameObject); // Die!
-			else
+
+			if (stats_health > 0) {
 				inContact [pathogen.GetInstanceID ()] = new Damage (combat, Time.time + 1);
+				if (isSpawner && stats_health > 25) {
+					isSpawner = false;
+					Debug.Log (name + " is revived "); // Add points??
+				}
+			}
 			successful= false;
 			// Keeps track of the damage if contact continues; 
 		}
-		//Debug.Log(gameObject.name+"."+defense()+" defends against "+ pathogen.name
-		//	+"."+pathogen.power()+ " "+ showStats()+ (successful?" success":"failed"));
+		Debug.Log(name+"."+defense()+" defends against "+ pathogen.name
+			+"."+pathogen.power()+ " "+ showStats()+ (successful?" success":"failed"));
 			
 		return successful;
 	}
 
-	// regenerate if damaged
+	// lose health slowly - depends on red cell for oxygenation
+	// Loses 1% per N seconds
 	public void Update() {		
-		if (nextReGen == 0f) {
-			nextReGen = Time.time + stats_regenRate;
-		}
-		if (stats_health < 100) {
-			if (Time.time > nextReGen) {
-				stats_health += 1;	
-			}
+		if (Time.time > nextOxygenDepletion) {
+			Debug.Log (name + " Oxygen depletion ("+reprodRate ()+")" + showStats());
+			updateHealthStats(-0.1f);
+			nextOxygenDepletion = Time.time + reprodRate (); //reprod is used for oxygen use rate -
 		}
 	}
 
-	// Each organ damage does different damage to host stats
+	// Each organ damage has different effects on the host stats
 	public virtual void damageBody(){
 		
+	}
+
+	// New Game behaviour - organ turns into undead enemy spawner
+	public override void deathHandler (){
+		if (!isSpawner) {
+			Debug.Log (name + " is now functionally undead - a spawner!!!");
+			isSpawner = true;
+		} 
 	}
 
 	// Collider for each object is called.
@@ -81,7 +94,7 @@ public abstract class OrganController : BodyController {
 				damageBody (); // Organ specific damage to the cell stats
 		} else if (other.name.Equals( "Red")) {
 			RedController red = other.GetComponent(typeof(RedController)) as RedController;
-			//Debug.Log(other.name+" bodyStats "+ red.bodystate.showStats());
+			Debug.Log(name+"+red" + red.bodystate.showStats());
 			oxygenate (red.power ());
 		}
 
@@ -99,6 +112,8 @@ public abstract class OrganController : BodyController {
 			if (inContact.ContainsKey (infection.GetInstanceID ())) {
 				inContact.Remove (infection.GetInstanceID ());
 			}
+			//if (!isSpawner)
+			//	Debug.Log (other.name+ " exits " + gameObject.name);
 		} 
 		//gameController.updateScore (scoreValue);
 	}
@@ -113,7 +128,7 @@ public abstract class OrganController : BodyController {
 			Damage damage = (Damage)inContact[gameObj.GetInstanceID()];
 			if (damage.nextAttack (Time.time)) {
 				updateHealthStats (damage.damage());
-				//Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
+				Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
 			}	
 		}
 	}

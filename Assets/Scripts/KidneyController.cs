@@ -7,7 +7,7 @@ public class KidneyController : OrganController {
 		
 	// Constricted movement - what does it mean?
 	public override void damageBody(){
-		//Debug.Log (name +" damageBody " + bodystate.showStats ());
+		Debug.Log (name +" damageBody " + bodystate.showStats ());
 		if (otherKidney == null || !ReferenceEquals (otherKidney, null)) {
 			bodystate.updateRedSpeedStats (stats_speed); // Only one kidney
 		} else {

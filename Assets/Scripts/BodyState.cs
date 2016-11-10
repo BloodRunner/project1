@@ -16,6 +16,7 @@ public class BodyState: MonoBehaviour
 	private float whiteStats_power = 1f;
 	private float pathogenStats_speed = 1f;
 
+
 	// Update cell stats for the whole body
 	public void updateRedHealthStats (float percent)
 	{

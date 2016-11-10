@@ -38,8 +38,10 @@ public class BodyController : MonoBehaviour
 	protected float stats_delay = 0f;
 	protected int stats_level = 1;
 
+
 	public void setBodyState(BodyState bs) {
-		bodystate=bs;
+		if (bs)
+			bodystate=bs;
 	}
 
 	public virtual float health () {
@@ -53,11 +55,11 @@ public class BodyController : MonoBehaviour
 	public virtual float power () {
 		return ((stats_power / 100.0f) * bodyStats.power);
 	}
-	// Lower number is faster
+	// Lower number is faster - reproduce every N seconds
 	public virtual float reprodRate () {
-		if (bodyStats.reprodRate < 10) {
-			//Debug.LogError (name +" !!!ReprodRate (<10) is messed up " + bodyStats.reprodRate);
-			bodyStats.reprodRate = 10;
+		if (bodyStats.reprodRate < 3) {
+			Debug.LogError (name +" !!!ReprodRate (<3) is messed up " + bodyStats.reprodRate);
+			bodyStats.reprodRate = 3;
 		}
 		return (bodyStats.reprodRate);
 	}
@@ -77,12 +79,19 @@ public class BodyController : MonoBehaviour
 	}
 	public float get_stats_defense(){ return stats_defense;
 	}
+	public float get_bodystats_reprod(){ return bodyStats.reprodRate;
+	}
+	// Default - will be overridden by subclass
+	public virtual void deathHandler (){
+		//DestroyObject (gameObject);
+	}
 	public void updateHealthStats(float point) {
 		stats_health += point;
 		if (stats_health > 100f) // health goes up by oxygen power
 			stats_health = 100f;
 		if (stats_health <= 0) {
-			DestroyObject (gameObject);
+			stats_health = 0;
+			deathHandler (); // each subclass does something different
 		}
 	}
 	public void updatePowerStats(float point) {

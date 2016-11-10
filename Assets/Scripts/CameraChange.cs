@@ -18,7 +18,7 @@ public class CameraChange : MonoBehaviour {
 	public IEnumerator followThis(){
 		while(true){
 			if(zoom >=10){
-				zoom = 8;
+				zoom = 10;
 			}
 			if(zoom <=1){
 				zoom = 1;

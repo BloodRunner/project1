@@ -10,6 +10,6 @@ public class LungController : OrganController {
 		}
 		else
 			bodystate.updateRedPowerStats(stats_health);
-		//Debug.Log (name +" damageBody " + bodystate.showStats ());
+		Debug.Log (name +" damageBody " + bodystate.showStats ());
 	}
 }

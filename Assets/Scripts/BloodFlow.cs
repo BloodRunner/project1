@@ -111,6 +111,10 @@ public class BloodFlow : MonoBehaviour {
 		}
 	}
 
+	public void path1(){
+
+	}
+
 
 	/*
 	public Vector3 target1;

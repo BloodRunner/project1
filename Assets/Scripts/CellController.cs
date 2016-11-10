@@ -6,7 +6,6 @@ using System.Collections.Generic;
  * */
 
 
-
 public class CellController :  BodyController{
 	public float playerSpeed;  	// base movement speed
 	public float tilt;
@@ -15,18 +14,21 @@ public class CellController :  BodyController{
 	public Transform shotSpawn; // the transform for origin of the offspring spawn
 	static Stats mybodyStats=new Stats(); // applies to the whole class
 	protected Rigidbody rb;
+	// On killerT cells - it is the number of points to get a new one
+	// On pathogens - it is the number of point you get for killing one
+	public int points;	// score points and T cell bonus - applies to pathogen
 	private float nextReprod=0f;
 	public float lifespan_in_seconds ; // Cell life span in seconds float
 	private NavMeshAgent nvagt;
 	private GameObject target; // for attackers
 	private Vector3 dest;
+	ParticleSystem hitParticles; // Death Indication
 
-	void Start() { // Start and Awake don't seem to hold references
+	void Start() { 
 		rb = GetComponent<Rigidbody>();
 		rb.angularVelocity = Random.insideUnitSphere * Random.Range(0,2); // rotate randomly
 		Vector3 velo = Random.insideUnitSphere * speed();
 		velo.y = 0;
-		//rb.velocity = transform.forward * speed(); // base movement on blue axis
 		rb.velocity = velo;
 		nvagt = gameObject.GetComponent<NavMeshAgent> ();
 		if (lifespan_in_seconds == 0)
@@ -34,13 +36,25 @@ public class CellController :  BodyController{
 		Destroy(gameObject, lifespan_in_seconds); // destroy objects automatically - cell death!
 		//Debug.Log("START nextReprod= "+ nextReprod +"{"+ reprodRate() +"}");
 		if (myname != null) name= myname;
+		hitParticles = GetComponentInChildren <ParticleSystem> ();
+		//if (hitParticles!=null)
+		//	hitParticles.Stop ();
+	}
+
+	public void setVelocity(float v) {
+		if (nvagt == null)
+			nvagt = gameObject.GetComponent<NavMeshAgent> ();
+		nvagt.speed = speed();
 	}
 
 	// This changes the top level
 	void addDelay(float sec) {
 		mybodyStats.delay += sec; // when brain is damaged, all cells are slow to follow command
 	}
-		
+	public void TakeDamage(int points, Vector3 hitPt) {
+		updateHealthStats (-points);
+	}
+
 	// This cell defend against another
 	public bool defendAgainst (CellController other){
 		//Debug.Log (name + " defends against " + other.name);
@@ -55,27 +69,41 @@ public class CellController :  BodyController{
 			updateHealthStats (-combat);
 			updateDefenseStats (-1.0f);
 			other.updateDefenseStats (-1.0f);
-			if (stats_health <= 0) {
-				Destroy (gameObject);
-				//Debug.Log (name + " dies ");
-			}
-			else
+			if (stats_health > 0) 
 				inContact [other.GetInstanceID ()] = new Damage (combat, Time.time + 1);
 			win= false;
 			// Keeps track of the damage if contact continues; 
 
 		}
-		//Debug.Log(gameObject.name+"."+gameObject.tag+" defends against "+ other.name+"."+other.tag + " "+
-		//	showStats()+ (win?"succeeded":"failed") );
+		Debug.Log(gameObject.name+"."+gameObject.tag+" defended against "+ other.name+"."+other.tag + " "+
+			showStats()+ (win?"succeeded":"failed") );
 		return win;
 	}
+	// Special Power of this cell, whatever it is
+	public virtual void special(){
+	}
 
+	public override void deathHandler (){
+		//Debug.Log (name + " dies ");
+		if (hitParticles != null) {
+			hitParticles.Play (); // Play explosion
+		}
+	
+		if (gameController) {
+			if (tag.Equals ("Infection"))
+				gameController.UpdateScore (points);
+			gameController.showMessage ("Poor " + name + " dies ", 3);
+		} else
+			Debug.Log (name + " dies - gameController empty");
+		DestroyObject (gameObject);
+	}
 
 	// Reproduce once every N seconds - (reprod rate)
-	void Update () {
-		if (dna != null) {  // Can reproduce
-			if (nextReprod == 0f) {
-				nextReprod = Time.time + reprodRate ();
+	protected void Update () {
+		special (); // If it has special powers, use it first
+		if (dna != null) {  // Can reproduce - do it
+			if (nextReprod == 0f) { // Add a random so that reproduction is staggered
+				nextReprod = Time.time + reprodRate () + Random.Range(0,0.5f);
 			}
 			if (Time.time > nextReprod) {
 				GameObject clone;
@@ -89,18 +117,22 @@ public class CellController :  BodyController{
 				}
 				nvagt = gameObject.GetComponent<NavMeshAgent> ();
 				CellController cell = clone.GetComponent(typeof(CellController)) as CellController;
-				cell.bodystate = bodystate;
 				cell.gameController = gameController;
+				cell.bodystate = bodystate;
 				if (!nvagt)
 				 	nvagt= gameObject.GetComponent<NavMeshAgent> ();
 				if (nvagt) {
 					clone.GetComponent<NavMeshAgent> ().SetDestination (nvagt.destination);
 				} else {
-					//Debug.Log(name +" Missing nav agent:");
+					Debug.Log(name +" Missing nav agent:");
 				}
-				clone.name = gameObject.name;
+				if (myname!=null)
+					clone.name = myname; // name by configuration
+				else {
+					clone.name = name; // name after the parent
+				}
 				nextReprod = Time.time + reprodRate ();
-				//Debug.Log(name + " nextReprod= "+ nextReprod +"{"+ reprodRate() +"}"+ clone.name);
+				Debug.Log(name + " nextReprod= "+ nextReprod +"{"+ reprodRate() +"}"+ clone.name);
 			}
 		}
 		//if (defending>0) {Debug.Log ("Still defending "+defending+" critters");}
@@ -114,9 +146,9 @@ public class CellController :  BodyController{
 		if ("Boundary".Equals(other.name) || gameObject.CompareTag(other.tag)) { // Same Team
 			return;
 		}
-		if ((gameObject.name.Equals("Pathogen") && other.name.Equals("Red")) ||
-			(gameObject.name.Equals("White") && other.name.Equals("Pathogen"))){
-			//Debug.Log(name+" sneak attacks " + other.name);
+		if ((gameObject.tag.Equals("Infection") && other.name.Equals("Red")) ||
+			(gameObject.name.StartsWith("White") && other.tag.Equals("Infection"))){
+			Debug.Log(name+" sneak attacks " + other.name);
 
 			if (!nvagt)
 				nvagt= gameObject.GetComponent<NavMeshAgent> ();
@@ -137,7 +169,7 @@ public class CellController :  BodyController{
 				Damage damage = (Damage)inContact[gameObj.GetInstanceID()];
 				if (damage.nextAttack (Time.time)) {
 					updateHealthStats (damage.damage());
-					//Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
+					Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
 				}	
 			}
 		}
@@ -146,15 +178,14 @@ public class CellController :  BodyController{
 		foreach (ContactPoint contact in collision.contacts) {
 			
 			Collider other = contact.otherCollider;
-
 			if (!tag.Equals (other.tag) &&
 			    (other.tag.Equals ("Host") || other.tag.Equals ("Infection"))) {
 				//Debug.Log (name + "-" + tag + " collided with " + other.name + "=" + other.tag);
-				if (gameObject.name.Equals ("Red") && other.name.Equals ("Pathogen")){
+				if (gameObject.name.Equals ("Red") && other.tag.Equals ("Infection")){
 					CellController othercell = other.GetComponent (typeof(PathogenController)) as PathogenController;
 					defendAgainst (othercell); 
 				}
-				if (gameObject.name.Equals ("Pathogen") && (other.name.Equals ("White") || other.name.Equals ("Player"))) { // White attacks pathogen (me)
+				if (gameObject.tag.Equals ("Infection") && (other.name.StartsWith ("White") || other.name.Equals ("Player"))) { // White attacks pathogen (me)
 						CellController othercell = other.GetComponent (typeof(WhiteController)) as WhiteController;
 						defendAgainst (othercell);  // defend against white cell or pathogen
 				}
@@ -200,7 +231,7 @@ public class CellController :  BodyController{
 			Damage damage = (Damage)inContact[gameObj.GetInstanceID()];
 			if (damage.nextAttack (Time.time)) {
 				updateHealthStats (damage.damage());
-				//Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by tcontact with "+ other.name+"="+other.tag);
+				Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by tcontact with "+ other.name+"="+other.tag);
 			}	
 		}
 	}

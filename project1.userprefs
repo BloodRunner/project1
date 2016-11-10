@@ -1,10 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CameraChange.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\AttackCell.cs">
     <Files>
       <File FileName="Assets\Scripts\BloodFlow.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AttackCell.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CameraChange.cs" Line="20" Column="16" />
+      <File FileName="Assets\Scripts\AttackCell.cs" Line="41" Column="40" />
+      <File FileName="Assets\Scripts\CameraChange.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\OrganController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ScaleMinimapLight.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\HeartController.cs" Line="1" Column="1" />
