@@ -34,7 +34,6 @@ public class AttackCell : MonoBehaviour {
 					if (collisions [i].CompareTag ("Host")) {
 						dist = Vector3.Distance (collisions [i].GetComponent<Transform> ().position, this.GetComponent<Transform> ().position);
 						target = collisions [i].gameObject;
-						print ("target");
 					}
 				}
 			}
