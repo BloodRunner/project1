@@ -70,20 +70,24 @@ public class GameController : MonoBehaviour {
 	// Coroutine
 	IEnumerator SpawnWaves() {
 		yield return new WaitForSeconds (startWait);
+		CellController cell;
 		while(true) {
 			for (int i = 0; i < infectionCount; i++) {
 				// Instantiate at infection point in organs!
 				//Vector3 position = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
 				Quaternion spawnRotation = Quaternion.identity;
-				Instantiate (infections, infectedOrgan.transform.position, spawnRotation);
-				// Instantiate returns a Transform so need to add "as GameObject" after call
-				// GameObject=... as GameObject
+				cell = Instantiate (infections, infectedOrgan.transform.position, spawnRotation) as PathogenController;
+				cell.bodystate = this.bodystate;
+				cell.gameController = this;
 				yield return new WaitForSeconds (spawnWait);
 			}
 			// Organ is now a spawner
 			foreach (OrganController organ in all_organs) {
-				if (organ.get_stats_health () >= 0)
-					Instantiate (infections, organ.transform.position, Quaternion.identity);
+				if (organ.get_stats_health () >= 0) {
+					cell = Instantiate (infections, organ.transform.position, Quaternion.identity) as PathogenController;;
+					cell.bodystate = this.bodystate;
+					cell.gameController = this;
+				}
 			}
 			//Debug.Log ("gameover=" + gameOver);
 			if (gameOver) {

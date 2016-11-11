@@ -31,6 +31,10 @@ public class CellController :  BodyController{
 		velo.y = 0;
 		rb.velocity = velo;
 		nvagt = gameObject.GetComponent<NavMeshAgent> ();
+		if (gameController ==null)
+			gameController = gameObject.GetComponent<GameController> ();
+		if (bodystate ==null)
+			bodystate = gameObject.GetComponent<BodyState> ();
 		if (lifespan_in_seconds == 0)
 			lifespan_in_seconds = 1200f;
 		Destroy(gameObject, lifespan_in_seconds); // destroy objects automatically - cell death!
