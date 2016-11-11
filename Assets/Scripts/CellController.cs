@@ -148,7 +148,6 @@ public class CellController :  BodyController{
 		}
 		if ((gameObject.tag.Equals("Infection") && other.name.Equals("Red")) ||
 			(gameObject.name.StartsWith("White") && other.tag.Equals("Infection"))){
-			Debug.Log(name+" sneak attacks " + other.name);
 
 			if (!nvagt)
 				nvagt= gameObject.GetComponent<NavMeshAgent> ();
