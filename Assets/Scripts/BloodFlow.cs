@@ -128,57 +128,62 @@ public class BloodFlow : MonoBehaviour {
 				path1 (0);
 			}
 			else if(random <= chance2){
-				path1 (0);
+				path2 (0);
 			}
 			else if(random <= chance3){
-				path1 (0);
+				path3 (0);
 			}
 			else if(random <= chance4){
-				path1 (0);
+				path4 (0);
 			}
 			else if(random <= chance5){
-				path1 (0);
+				path5 (0);
 			}
 		//}
 	}
 
 
 	public void path1(int place){
-		points = new Vector3[4];
+		points = new Vector3[5];
 		points [0] = new Vector3(10.01f,0f,-1.57f); 
 		points [1] = new Vector3(-0.76f,0f,-12.57f); 
 		points [2] = new Vector3(-0.88f,0f,0.74f) ;
 		points [3] = new Vector3(-6.04f,0f,-5.03f) ;
+		points [4] = new Vector3(9.48f,0f,-19.4f) ;
 	}
 	public void path2(int place){
-		points = new Vector3[4];
+		points = new Vector3[5];
 		points [0] = new Vector3(10.01f,0f,-1.57f); 
 		points [1] = new Vector3(-0.76f,0f,-12.57f); 
 		points [2] = new Vector3(-0.88f,0f,0.74f) ;
 		points [3] = new Vector3(-9.19f,0f,-7.11f) ;
+		points [4] = new Vector3(9.48f,0f,-19.4f) ;
 	}
 	public void path3(int place){
-		points = new Vector3[4];
+		points = new Vector3[5];
 		points [0] = new Vector3(10.01f,0f,-1.57f); 
 		points [1] = new Vector3(-0.76f,0f,-12.57f); 
 		points [2] = new Vector3(-0.88f,0f,0.74f) ;
 		points [3] = new Vector3(-15.63f,0f,-19.86f) ;
+		points [4] = new Vector3(9.48f,0f,-19.4f) ;
 	}
 	public void path4(int place){
-		points = new Vector3[5];
+		points = new Vector3[6];
 		points [0] = new Vector3(10.01f,0f,-1.57f); 
 		points [1] = new Vector3(-0.76f,0f,-12.57f); 
 		points [2] = new Vector3(-0.88f,0f,0.74f) ;
 		points [3] = new Vector3(-15.43f,0f,9.04f) ;
 		points [4] = new Vector3(-15.63f,0f,-19.86f);
+		points [5] = new Vector3(9.48f,0f,-19.4f) ;
 	}
 	public void path5(int place){
-		points = new Vector3[5];
+		points = new Vector3[6];
 		points [0] = new Vector3(10.01f,0f,-1.57f); 
 		points [1] = new Vector3(-0.76f,0f,-12.57f); 
 		points [2] = new Vector3(-0.88f,0f,0.74f) ;
 		points [3] = new Vector3(20.38f,0f,4.14f) ;
 		points [4] = new Vector3(20.63f,0f,-9.15f);
+		points [4] = new Vector3(9.48f,0f,-19.4f) ;
 	}
 
 
