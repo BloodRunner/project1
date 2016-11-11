@@ -5,19 +5,29 @@ public class BloodFlow : MonoBehaviour {
 
 	public Vector3[] points;
 	private int destPoint;
+	public Vector3 dest;
 	private NavMeshAgent agent;
 	private IEnumerator coroutine;
 	private float delay;
+	private float random;
+	private float chance1;
+	private float chance2;
+	private float chance3;
+	private float chance4;
+	private float chance5;
+	private float chance6;
 
 	void Start () {
-		points = new Vector3[4];
-		points [0] = new Vector3(15.24f,0f,-7.84f); // Vector3(15.24f,0f,-7.84f);
-		points [1] = new Vector3(14.77f,0f,8.24f); //Vector3(14.77f,0f,8.24f);
-		points [2] = new Vector3(0.26f,0f,0.23f) ;//Vector3(0.26f,0f,0.23f);
-		points [3] = new Vector3(1.01f,0f,-16f) ;//Vector3(1.01f,0f,-16f);
+		
 		delay = 0;
+		chance1 = 25;
+		chance2 = 50;
+		chance3 = 66.7f;
+		chance4 = 83.4f;
+		chance5 = 100f;
 		destPoint = 0;
-		whereAmI ();
+		//whereAmI ();
+		setPath();
 		agent = GetComponent<NavMeshAgent> ();
 		agent.autoBraking = false;
 		coroutine = patrol ();
@@ -111,8 +121,69 @@ public class BloodFlow : MonoBehaviour {
 		}
 	}
 
-	public void path1(){
+	public void setPath(){
+		//if(path == null){
+			random = Random.Range (0,100);
+			if(random <= chance1){
+				path1 (0);
+			}
+			else if(random <= chance2){
+				path2 (0);
+			}
+			else if(random <= chance3){
+				path3 (0);
+			}
+			else if(random <= chance4){
+				path4 (0);
+			}
+			else if(random <= chance5){
+				path5 (0);
+			}
+		//}
+	}
 
+
+	public void path1(int place){
+		points = new Vector3[5];
+		points [0] = new Vector3(10.01f,0f,-1.57f); 
+		points [1] = new Vector3(-0.76f,0f,-12.57f); 
+		points [2] = new Vector3(-0.88f,0f,0.74f) ;
+		points [3] = new Vector3(-6.04f,0f,-5.03f) ;
+		points [4] = new Vector3(9.48f,0f,-19.4f) ;
+	}
+	public void path2(int place){
+		points = new Vector3[5];
+		points [0] = new Vector3(10.01f,0f,-1.57f); 
+		points [1] = new Vector3(-0.76f,0f,-12.57f); 
+		points [2] = new Vector3(-0.88f,0f,0.74f) ;
+		points [3] = new Vector3(-9.19f,0f,-7.11f) ;
+		points [4] = new Vector3(9.48f,0f,-19.4f) ;
+	}
+	public void path3(int place){
+		points = new Vector3[5];
+		points [0] = new Vector3(10.01f,0f,-1.57f); 
+		points [1] = new Vector3(-0.76f,0f,-12.57f); 
+		points [2] = new Vector3(-0.88f,0f,0.74f) ;
+		points [3] = new Vector3(-15.63f,0f,-19.86f) ;
+		points [4] = new Vector3(9.48f,0f,-19.4f) ;
+	}
+	public void path4(int place){
+		points = new Vector3[6];
+		points [0] = new Vector3(10.01f,0f,-1.57f); 
+		points [1] = new Vector3(-0.76f,0f,-12.57f); 
+		points [2] = new Vector3(-0.88f,0f,0.74f) ;
+		points [3] = new Vector3(-15.43f,0f,9.04f) ;
+		points [4] = new Vector3(-15.63f,0f,-19.86f);
+		points [5] = new Vector3(9.48f,0f,-19.4f) ;
+	}
+	public void path5(int place){
+		points = new Vector3[6];
+		points [0] = new Vector3(10.01f,0f,-1.57f); 
+		points [1] = new Vector3(-0.76f,0f,-12.57f); 
+		points [2] = new Vector3(-0.88f,0f,0.74f) ;
+		points [3] = new Vector3(20.38f,0f,4.14f) ;
+		points [4] = new Vector3(20.63f,0f,-9.15f);
+		points [4] = new Vector3(9.48f,0f,-19.4f) ;
 	}
 
 
