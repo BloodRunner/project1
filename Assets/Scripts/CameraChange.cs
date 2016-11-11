@@ -47,6 +47,7 @@ public class CameraChange : MonoBehaviour {
 		StopCoroutine (coroutine);
 		followCamera.enabled = false;
 		topCamera.enabled = true;
+		Camera.SetupCurrent (topCamera);
 		this.GetComponent<PlayerMovement> ().enabled = false;
 	}
 
@@ -54,6 +55,7 @@ public class CameraChange : MonoBehaviour {
 		this.GetComponent<PlayerMovement> ().enabled = true;
 		topCamera.enabled = false;
 		followCamera.enabled = true;
+		Camera.SetupCurrent (followCamera);
 		StartCoroutine (coroutine);
 	}
 }
