@@ -5,8 +5,10 @@ using System.Collections;
 // Name = organ name
 public abstract class OrganController : BodyController {
 	public Rigidbody rb;
-	public GameObject shot;
+	public int mask;
+	//public GameObject shot;
 	protected bool isSpawner=false;
+
 	// in organs reprodRate is the number of seconds it uses up 1% of it's oxygen/health
 	//private float stats_regenRate=100f; 
 	// oxygen depletion of N points per 
@@ -15,15 +17,19 @@ public abstract class OrganController : BodyController {
 	void Start() {
 		rb = GetComponent<Rigidbody>();
 		nextOxygenDepletion = Time.time;
+		if (gameController==null)
+			gameController = GameObject.FindObjectOfType (typeof(GameController)) as GameController;
+		if (bodystate == null)
+			bodystate = GameObject.FindObjectOfType (typeof(BodyState)) as BodyState;
 	}
 
 	// oxygenate means add power to health + defense to organ
 	// TODO: modify by regenRate
 	void oxygenate (float power) {
-		string preoxy = name +" before oxygenate("+ power+")="+ showStats();
+		//string preoxy = name +" before oxygenate("+ power+")="+ showStats();
 		updateHealthStats (power); // health goes up by oxygen power
 		updateDefenseStats (power / 2f); // defense goes up by 1/2 oxygen power
-		Debug.Log(preoxy +" after= "+ showStats());
+		// Debug.Log(preoxy +" after= "+ showStats());
 	}
 
 	// Each combatant lose 1% in defend after each combat
@@ -48,13 +54,14 @@ public abstract class OrganController : BodyController {
 					isSpawner = false;
 					Debug.Log (name + " is revived "); // Add points??
 				}
-			}
+			} else
+				gameController.checkGameOver ();
 			successful= false;
 			// Keeps track of the damage if contact continues; 
 		}
-		Debug.Log(name+"."+defense()+" defends against "+ pathogen.name
+	/*	Debug.Log(name+"."+defense()+" defends against "+ pathogen.name
 			+"."+pathogen.power()+ " "+ showStats()+ (successful?" success":"failed"));
-			
+	*/		
 		return successful;
 	}
 
@@ -62,8 +69,8 @@ public abstract class OrganController : BodyController {
 	// Loses 1% per N seconds
 	public void Update() {		
 		if (Time.time > nextOxygenDepletion) {
+			updateHealthStats(-1f);
 			Debug.Log (name + " Oxygen depletion ("+reprodRate ()+")" + showStats());
-			updateHealthStats(-0.1f);
 			nextOxygenDepletion = Time.time + reprodRate (); //reprod is used for oxygen use rate -
 		}
 	}
@@ -76,7 +83,7 @@ public abstract class OrganController : BodyController {
 	// New Game behaviour - organ turns into undead enemy spawner
 	public override void deathHandler (){
 		if (!isSpawner) {
-			Debug.Log (name + " is now functionally undead - a spawner!!!");
+			gameController.showMessage (name + " is now an infection factory! Save it by sending red cells!!", 5);
 			isSpawner = true;
 		} 
 	}
@@ -84,19 +91,21 @@ public abstract class OrganController : BodyController {
 	// Collider for each object is called.
 	// Only organ collision is dealt with here.
 	void OnTriggerEnter(Collider other) {
-		if (stats_health == 0) { // Organ is dead - destroy???
-			return; 
-		}
+		
 		// Infect/Attack/Oxygenate everything that enters the trigger
 		if (other.tag.Equals("Infection")) { // do battle
+			if (stats_health == 0) { // Organ is dead 
+				return; 
+			}
 			CellController infection = other.GetComponent(typeof(CellController)) as CellController;
 			if (!defend(infection)) // if failed to defend, check for specific damage
 				damageBody (); // Organ specific damage to the cell stats
 		} else if (other.name.Equals( "Red")) {
 			RedController red = other.GetComponent(typeof(RedController)) as RedController;
-			Debug.Log(name+"+red" + red.bodystate.showStats());
+			// Debug.Log(name+"+red" + red.bodystate.showStats());
 			oxygenate (red.power ());
 		}
+
 
 		//gameController.updateScore (scoreValue);
 	}

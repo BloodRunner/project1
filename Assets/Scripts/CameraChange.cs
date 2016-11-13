@@ -34,6 +34,7 @@ public class CameraChange : MonoBehaviour {
 		coroutine = followThis ();
 		topCamera = GameObject.Find ("topCamera").GetComponent<Camera>();
 		followCamera = GameObject.Find ("followCamera").GetComponent<Camera>();
+		Camera.SetupCurrent (topCamera);
 	}
 
 	void Update(){

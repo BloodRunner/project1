@@ -10,8 +10,13 @@ public class WhiteSpawner : MonoBehaviour
 
 	void Start ()
 	{
+		if (gameController==null)
+			gameController = GameObject.FindObjectOfType (typeof(GameController)) as GameController;
+		if (bodystate == null)
+			bodystate = GameObject.FindObjectOfType (typeof(BodyState)) as BodyState;
 		if (dna != null)
 			makeone ();
+		
 	}
 
 	void makeone ()
@@ -24,7 +29,7 @@ public class WhiteSpawner : MonoBehaviour
 			cell.updateHealthStats (100 - bodystate.whiteHealth ());
 			cell.gameController = gameController;
 			nextReprod = Time.time + cell.get_bodystats_reprod () * bodystate.whiteReprodRate ();
-			Debug.Log (cell.name + " Instantiated in Whitespawner");
+			//Debug.Log (cell.name + " Instantiated in Whitespawner");
 		} catch {
 			Debug.LogError ("Can't spawn in WhiteSpawnwer");
 			nextReprod = Time.time + 2;
@@ -35,7 +40,7 @@ public class WhiteSpawner : MonoBehaviour
 	void Update ()
 	{
 		if (dna != null) {  // Can reproduce
-			if (Time.time > nextReprod) {
+			if (Time.time > nextReprod && ! gameController.isGameOver()) {
 				makeone ();
 			}
 		}

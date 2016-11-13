@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets;
 
 public class Shooter : MonoBehaviour {
 	ParticleSystem weapon;
@@ -10,27 +11,31 @@ public class Shooter : MonoBehaviour {
 	public float range = 100f;                      // The distance the gun can fire.
 
 	float timer;                                    // A timer to determine when to fire.
-	Ray shootRay;                                   // A ray from the gun end forwards.
-	RaycastHit shootHit;                            // A raycast hit to get information about what was hit.
+	Ray shootRay;                                   // A ray from the gun end 
+	RaycastHit shootHit;                            // A raycast hit to get the closest hit
 	int shootableMask;                              // A layer mask so the raycast only hits things on the shootable layer.
 	int groundMask;  
 	ParticleSystem gunParticles;                    // Reference to the particle system.
 	LineRenderer gunLine;                           // Reference to the line renderer.
 	AudioSource gunAudio;                           // Reference to the audio source.
-	Light gunLight;                                 // Reference to the light component.
 	float effectsDisplayTime = 0.2f;  
 
 	void Awake ()
 	{
 		// Create a layer mask for the Shootable layer.
-		shootableMask = LayerMask.GetMask ("Infection");
-		groundMask = LayerMask.GetMask ("Ground");
+		shootableMask = LayerMask.GetMask ("Infection") | LayerMask.GetMask ("Walls");
+		groundMask = LayerMask.GetMask ("Ground") | LayerMask.GetMask ("Walls");
 
 		// Set up the references.
 		gunParticles = GetComponent<ParticleSystem> ();
-		gunLine = GetComponent <LineRenderer> ();
 		gunAudio = GetComponent<AudioSource> ();
-		gunLight = GetComponent<Light> ();
+
+		gameObject.AddComponent<LineRenderer>();
+		gunLine = GetComponent<LineRenderer>();
+		gunLine.material = new Material(Shader.Find("Particles/Alpha Blended Premultiply"));
+		gunLine.SetWidth(0.1f, 0.1f);
+		gunLine.SetColors(Color.red, Color.yellow);
+		gunLine.enabled = false;
 	}
 
 	void Update ()
@@ -56,17 +61,22 @@ public class Shooter : MonoBehaviour {
 		{
 			Camera cx = Camera.current;
 			Camera[] cxs = Camera.allCameras;
-			if (cx == null)
+			if (cx == null) {
 				cx = cxs [0]; // Why is current null half the time
+				Debug.Log("Camera Current is null!");
+			}
 			Ray ray= cx.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
+			//DrawLine (transform.position, ray.GetPoint(30), Color.red, 0.1f);
 			if (Physics.Raycast (ray,out hit,groundMask)) {
 				//Debug.DrawLine(ray,hit);
-				Debug.Log("Hit the ground at "+ hit);
-				// Create a particle if hit
-				//Instantiate (particle, hit.point, transform.rotation);
+				Vector3 adjusted = ray.GetPoint( hit.distance - 0.1f );
+				Vector3 end = new Vector3 (adjusted.x, 0.1f, adjusted.z);
+				//Debug.Log("Hit the ground at "+ hit.point+ " dir "+ dir);
+				Shoot (end);
+				//DrawLine (transform.position, hit.point, Color.yellow, 0.2f);
 			}
-			Shoot ();
+
 		}
 
 		// If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
@@ -81,54 +91,63 @@ public class Shooter : MonoBehaviour {
 	{
 		// Disable the line renderer and the light.
 		gunLine.enabled = false;
-		gunLight.enabled = false;
+		//gunLight.enabled = false;
 	}
 
-	void Shoot ()
+	void Shoot (Vector3 dir)
 	{
 		// Reset the timer.
 		timer = 0f;
 
 		// Play the gun shot audioclip.
-		gunAudio.Play ();
+		//gunAudio.Play ();
+		//Quaternion targetRotation = Quaternion.LookRotation(dir - transform.position);
+		//transform.rotation = targetRotation;
 
-		// Enable the light.
-		gunLight.enabled = true;
-
-		// Stop the particles from playing if they were, then start the particles.
-		gunParticles.Stop ();
+		//gunParticles.transform.LookAt (dir);
+		transform.rotation = Quaternion.LookRotation (dir- transform.position);
 		gunParticles.Play ();
-			weapon.Play ();
+		//	weapon.Play ();
 		// Enable the line renderer and set it's first position to be the end of the gun.
 		gunLine.enabled = true;
-		gunLine.SetPosition (0, transform.position);
-
 		// Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
 		shootRay.origin = transform.position;
-		shootRay.direction = transform.forward;
-
+		shootRay.direction = dir- transform.position; //transform.forward;
+		gunLine.SetPosition (0, shootRay.origin);
 		// Perform the raycast against gameobjects on the shootable layer and if it hits something...
 		if(Physics.Raycast (shootRay, out shootHit, range, shootableMask))
 		{
-			// Try and find an EnemyHealth script on the gameobject hit.
-			CellController enemyHealth = shootHit.collider.GetComponent <CellController> ();
-
-			// If the EnemyHealth component exist...
-			if(enemyHealth != null)
-			{
-				// ... the enemy should take damage.
-				enemyHealth.TakeDamage (damagePerShot, shootHit.point);
+			if (shootHit.collider.tag.Equals("Infection")) {
+				Debug.Log ("shot enemy " + shootHit.collider.name );
+			// Try and find the cell script on the gameobject hit.
+				CellController enemy = shootHit.collider.GetComponent <CellController> ();
+				if(enemy != null)
+					enemy.TakeDamage (damagePerShot, shootHit.point);
 			}
-
 			// Set the second position of the line renderer to the point the raycast hit.
 			gunLine.SetPosition (1, shootHit.point);
 		}
 		// If the raycast didn't hit anything on the shootable layer...
 		else
 		{
-			// ... set the second position of the line renderer to the fullest extent of the gun's range.
 			gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
 		}
 	}
-		
+
+	void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 0.2f)
+	{
+		//Debug.Log ("start line=" + start + " to " + end);
+		GameObject myLine = new GameObject();
+		myLine.transform.position = start;
+		myLine.AddComponent<LineRenderer>();
+		LineRenderer lr = myLine.GetComponent<LineRenderer>();
+		lr.material = new Material(Shader.Find("Particles/Alpha Blended Premultiply"));
+		lr.SetColors(color, color);
+		lr.SetWidth(0.1f, 0.1f);
+		lr.SetPosition(0, start);
+		lr.SetPosition(1, end);
+		GameObject.Destroy(myLine, duration);
+	}
+
+
 }

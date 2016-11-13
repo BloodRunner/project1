@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class WhiteController : CellController {
-	
+	GameObject explosion;
 	// health is based on state at time of spawn
 	public override float health () {
 		return ((stats_health/100.0f) * bodyStats.health );
@@ -34,5 +34,23 @@ public class WhiteController : CellController {
 			return (bodyStats.reprodRate);
 		}
 		return (bodyStats.reprodRate * bodystate.whiteReprodRate());
+	}
+
+	public override void deathHandler (){
+		//Debug.Log (name + " dies ");
+		if (explosion!=null && name.Equals ("WhiteT")) {
+			Instantiate (explosion, transform.position, Quaternion.identity);
+		}
+		if (gameController != null) {
+			gameController.showMessage ("Poor " + name + " dies ", 3);
+		} else
+			Debug.Log (name + " dies - gameController empty");
+		DestroyObject (gameObject,2);
+	}
+
+	public void addSuperpower() {
+		GameObject shooterObj = Resources.Load<GameObject>("Shooter");
+		GameObject shooter = GameObject.Instantiate(shooterObj) as GameObject;
+		shooter.transform.SetParent(gameObject.transform, false);
 	}
 }

@@ -3,9 +3,6 @@ using System.Collections;
 
 public class PathogenController : CellController {
 	static Stats myStats=new Stats();
-
-		// score up or down
-	public int target;	// 1 for organ , 2 or organ + red cells
 	//public int agression; // Collider size based on transform
 	public void Awake ()
 	{

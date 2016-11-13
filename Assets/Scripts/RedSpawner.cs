@@ -27,7 +27,7 @@ public class RedSpawner : MonoBehaviour
 				Debug.LogError (name +" bodystate and gamecontroller are null !!!");
 			nextReprod = Time.time + cell.get_bodystats_reprod () * bodystate.redReprodRate ();
 			cell.setVelocity(cell.speed());
-			Debug.Log (cell.name + " Instantiated in RedSpawner");
+			//Debug.Log (cell.name + " Instantiated in RedSpawner");
 		} catch (System.Exception) {
 			Debug.LogError (name + " Instantiate failed in RedSpawnwer");
 			nextReprod = Time.time + 2; // Try again in 2 seconds if it failed
@@ -38,9 +38,8 @@ public class RedSpawner : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		CellController cell = null;
 		if (dna != null) {  // Can reproduce
-			if (Time.time > nextReprod) {
+			if (Time.time > nextReprod && ! gameController.isGameOver()) {
 				makeone ();
 				//Debug.Log("Red Reprod= "+ nextReprod +"{"+ dna.reprodRate() +"} ");
 			}

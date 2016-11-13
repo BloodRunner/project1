@@ -38,7 +38,12 @@ public class BodyController : MonoBehaviour
 	protected float stats_delay = 0f;
 	protected int stats_level = 1;
 
-
+	public void start() {
+		if (gameController==null)
+			gameController = GameObject.FindObjectOfType (typeof(GameController)) as GameController;
+		if (bodystate == null)
+			bodystate = GameObject.FindObjectOfType (typeof(BodyState)) as BodyState;
+	}
 	public void setBodyState(BodyState bs) {
 		if (bs)
 			bodystate=bs;

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 public class CellController :  BodyController{
 	public float playerSpeed;  	// base movement speed
 	public float tilt;
-	public Boundary boundary; // Game boundary - if outside boundary - no control
+	//public Boundary boundary; // Game boundary - if outside boundary - no control
 	public GameObject dna; // What to spawn
 	public Transform shotSpawn; // the transform for origin of the offspring spawn
 	static Stats mybodyStats=new Stats(); // applies to the whole class
@@ -43,11 +43,15 @@ public class CellController :  BodyController{
 		hitParticles = GetComponentInChildren <ParticleSystem> ();
 		//if (hitParticles!=null)
 		//	hitParticles.Stop ();
+		// Doesn't seem to filter!
+		//Physics.IgnoreLayerCollision(LayerMask.NameToLayer("HostCell"),LayerMask.NameToLayer("Walls"));
+		//Physics.IgnoreLayerCollision(LayerMask.NameToLayer("HostCell"),LayerMask.NameToLayer("Ground"));
 	}
 
 	public void setVelocity(float v) {
 		if (nvagt == null)
 			nvagt = gameObject.GetComponent<NavMeshAgent> ();
+		nvagt.updateRotation = true;
 		nvagt.speed = speed();
 	}
 
@@ -55,8 +59,10 @@ public class CellController :  BodyController{
 	void addDelay(float sec) {
 		mybodyStats.delay += sec; // when brain is damaged, all cells are slow to follow command
 	}
-	public void TakeDamage(int points, Vector3 hitPt) {
+	public void TakeDamage(float points, Vector3 hitPt) {
+		Debug.Log (name + " Got shot");
 		updateHealthStats (-points);
+		// Should we play particles here?!?
 	}
 
 	// This cell defend against another
@@ -70,6 +76,9 @@ public class CellController :  BodyController{
 			updateDefenseStats (-1.0f);
 			win= true;
 		} else { // Lost
+			if (hitParticles != null) {
+				hitParticles.Play (); // Play explosion
+			}
 			updateHealthStats (-combat);
 			updateDefenseStats (-1.0f);
 			other.updateDefenseStats (-1.0f);
@@ -79,8 +88,10 @@ public class CellController :  BodyController{
 			// Keeps track of the damage if contact continues; 
 
 		}
+		/*
 		Debug.Log(gameObject.name+"."+gameObject.tag+" defended against "+ other.name+"."+other.tag + " "+
 			showStats()+ (win?"succeeded":"failed") );
+			*/
 		return win;
 	}
 	// Special Power of this cell, whatever it is
@@ -89,10 +100,9 @@ public class CellController :  BodyController{
 
 	public override void deathHandler (){
 		//Debug.Log (name + " dies ");
-		if (hitParticles != null) {
-			hitParticles.Play (); // Play explosion
-		}
-	
+
+		if (gameController == null)
+			gameController = GetComponent<GameController> ();
 		if (gameController) {
 			if (tag.Equals ("Infection"))
 				gameController.UpdateScore (points);
@@ -109,7 +119,7 @@ public class CellController :  BodyController{
 			if (nextReprod == 0f) { // Add a random so that reproduction is staggered
 				nextReprod = Time.time + reprodRate () + Random.Range(0,0.5f);
 			}
-			if (Time.time > nextReprod) {
+			if (Time.time > nextReprod && ! gameController.isGameOver()) {
 				GameObject clone;
 				Vector3 v3 = transform.position + (Random.insideUnitSphere * 0.2f);
 				v3.y = 1f;
@@ -136,7 +146,7 @@ public class CellController :  BodyController{
 					clone.name = name; // name after the parent
 				}
 				nextReprod = Time.time + reprodRate ();
-				Debug.Log(name + " nextReprod= "+ nextReprod +"{"+ reprodRate() +"}"+ clone.name);
+				//Debug.Log(name + " nextReprod= "+ nextReprod +"{"+ reprodRate() +"}"+ clone.name);
 			}
 		}
 		//if (defending>0) {Debug.Log ("Still defending "+defending+" critters");}
@@ -146,22 +156,7 @@ public class CellController :  BodyController{
 	// Combat rules:
 	// 1) White cell attacks pathogen
 	// 2) Pathogen attacks red cell
-	void OnTriggerEnter(Collider other) {
-		if ("Boundary".Equals(other.name) || gameObject.CompareTag(other.tag)) { // Same Team
-			return;
-		}
-		if ((gameObject.tag.Equals("Infection") && other.name.Equals("Red")) ||
-			(gameObject.name.StartsWith("White") && other.tag.Equals("Infection"))){
 
-			if (!nvagt)
-				nvagt= gameObject.GetComponent<NavMeshAgent> ();
-			if (nvagt)
-				nvagt.Move(other.transform.position - transform.position);
-
-		}
-		//Debug.Log(gameObject.name+"-"+gameObject.tag+" collided with "+ other.name+"="+other.tag);
-	}	
-		
 	void OnCollisionStay(Collision collision) {
 		foreach (ContactPoint contact in collision.contacts) {
 			Collider other = contact.otherCollider;
@@ -208,17 +203,18 @@ public class CellController :  BodyController{
 			}
 		}
 	}
-	void OnTriggerExit(Collider other) {
-		if ("Boundary" == other.name) {
-			//Debug.Log(gameObject.name+" met boundary");
-			rb.velocity *= -1;
-			rb.position = new Vector3 (
-				Mathf.Clamp (rb.position.x, boundary.xMin, boundary.xMax), 
-				0.0f, 
-				Mathf.Clamp (rb.position.z, boundary.zMin, boundary.zMax));
-			rb.rotation = Quaternion.Euler (0.0f, 0.0f, rb.velocity.x * -tilt);
-			return;
+
+	/*
+	void OnTriggerEnter(Collider other) {
+		if ((gameObject.tag.Equals("Infection") && other.name.Equals("Red")) ||
+			(gameObject.name.StartsWith("White") && other.tag.Equals("Infection"))){
+			Debug.Log(gameObject.name+"-"+gameObject.tag+" triggered by "+ other.name+"="+other.tag);
 		}
+		if (!other.tag.Equals("Untagged"))
+			Debug.Log(gameObject.name+"-"+gameObject.tag+" triggered by "+ other.name+"="+other.tag);
+	}	
+	*/
+	void OnTriggerExit(Collider other) {
 		if (gameObject.CompareTag(other.tag)) { // Same Team
 			return;
 		}
