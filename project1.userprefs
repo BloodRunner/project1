@@ -1,24 +1,21 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\NextWaypoint.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CameraChange.cs">
     <Files>
       <File FileName="Assets\Scripts\BloodFlow.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AttackCell.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CameraChange.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\OrganController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ScaleMinimapLight.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\HeartController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BodyController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BodyState.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PathogenController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CellController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\BloodFlowController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\NextWaypoint.cs" Line="7" Column="25" />
+      <File FileName="Assets\Scripts\NextWaypoint.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ScaleMinimapLight.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CameraChange.cs" Line="47" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\SirValentineCatsBoot\Desktop\UnityProject\WeekTwo\PostSunday3\project1\Assets\Scripts\BloodFlowController.cs" line="28" column="1" />
+      <Breakpoint file="C:\Users\SirValentineCatsBoot\Desktop\UnityProject\WeekTwo\PostSunday3\project1\Assets\Scripts\BloodFlowController.cs" line="21" column="1" />
+      <Breakpoint file="C:\Users\SirValentineCatsBoot\Desktop\UnityProject\WeekTwo\PostSunday3\project1\Assets\Scripts\BloodFlowController.cs" line="24" column="1" />
+      <Breakpoint file="C:\Users\SirValentineCatsBoot\Desktop\UnityProject\WeekTwo\PostSunday3\project1\Assets\Scripts\BloodFlowController.cs" line="25" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
