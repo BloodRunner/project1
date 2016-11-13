@@ -3,11 +3,44 @@ using System.Collections;
 
 public class BloodFlow : MonoBehaviour {
 
-	public Vector3[] points;
+	public string dest;
+	public string store; 
+	public BloodFlowController bfctrl;
+	private NavMeshAgent agent;
+	private IEnumerator coroutine;
+	private float random;
+
+
+	void Start () {
+		bfctrl = GameObject.Find ("GameController").GetComponent<BloodFlowController> ();
+		agent = GetComponent<NavMeshAgent> ();
+		dest = "heart1";
+		agent.destination = GameObject.Find (dest).transform.position;
+		agent.autoBraking = false;
+		coroutine = patrol ();
+		StartCoroutine (coroutine);
+	}
+
+	public IEnumerator patrol(){
+		while (true) {
+			yield return new WaitForSeconds (0.1f);
+			if (agent.remainingDistance < 0.5f) {
+				dest = bfctrl.GetNext(dest);
+				agent.destination = GameObject.Find (dest).transform.position;
+				yield return new WaitForSeconds (0.1f);
+			} else {
+				yield return new WaitForSeconds (0.1f);
+			}
+		}
+	}
+		
+
+	/*public Vector3[] points;
 	private int destPoint;
 	public Vector3 dest;
 	private NavMeshAgent agent;
 	private IEnumerator coroutine;
+	private Hashtable patrolls;
 	private float delay;
 	private float random;
 	private float chance1;
@@ -27,7 +60,7 @@ public class BloodFlow : MonoBehaviour {
 		chance5 = 100f;
 		destPoint = 0;
 		//whereAmI ();
-		setPath();
+		//setPath();
 		agent = GetComponent<NavMeshAgent> ();
 		agent.autoBraking = false;
 		coroutine = patrol ();
@@ -142,52 +175,64 @@ public class BloodFlow : MonoBehaviour {
 		//}
 	}
 
+	public void initTable(){
+		patrolls = new Hashtable ();
+		patrolls.Add ("Heart1", new Vector3 (9.7f,0f,-2f));
+		patrolls.Add ("Lung1", new Vector3 (-0.85f,0f,-13.2f));
+		patrolls.Add ("Lung2", new Vector3 (-1.11f,0f,0.91f));
+		patrolls.Add ("Heart2", new Vector3 (9.49f,0f,-0.67f));
+		patrolls.Add ("Inter1", new Vector3 (5.36f,0f,8.55f));
+		patrolls.Add ("Inter2", new Vector3 (-5.29f,0f,8.33f));
+		patrolls.Add ("Inter3", new Vector3 (-8.98f,0f,8.44f));
+		patrolls.Add ("Brain", new Vector3 (-10.19f,0f,-7.13f));
+		patrolls.Add ("Inter5", new Vector3 (-8.62f,0f,-19.17f));
+		patrolls.Add ("Thymus", new Vector3 (-5.29f,0f,-5.09f));
+		patrolls.Add ("Inter6", new Vector3 (-5.15f,0f,-19.03f));
+	}
+
 
 	public void path1(int place){
 		points = new Vector3[5];
-		points [0] = new Vector3(10.01f,0f,-1.57f); 
-		points [1] = new Vector3(-0.76f,0f,-12.57f); 
-		points [2] = new Vector3(-0.88f,0f,0.74f) ;
-		points [3] = new Vector3(-6.04f,0f,-5.03f) ;
-		points [4] = new Vector3(9.48f,0f,-19.4f) ;
+		points [0] = new Vector3(9.7f,0f,-2f); 
+		points [1] = new Vector3(-0.85f,0f,-13.2f); 
+		points [2] = new Vector3(-1.11f,0f,0.91f) ;
+		points [3] = new Vector3(9.49f,0f,-0.67f) ;
+		points [4] = new Vector3(5.36f,0f,8.55f) ;
+		points [5] = new Vector3(5.36f,0f,8.55f) ;
 	}
 	public void path2(int place){
 		points = new Vector3[5];
-		points [0] = new Vector3(10.01f,0f,-1.57f); 
-		points [1] = new Vector3(-0.76f,0f,-12.57f); 
-		points [2] = new Vector3(-0.88f,0f,0.74f) ;
-		points [3] = new Vector3(-9.19f,0f,-7.11f) ;
-		points [4] = new Vector3(9.48f,0f,-19.4f) ;
+		points [0] = new Vector3(9.7f,0f,-2f); 
+		points [1] = new Vector3(-0.85f,0f,-13.2f); 
+		points [2] = new Vector3(-1.11f,0f,0.91f) ;
+		points [3] = new Vector3(9.49f,0f,-0.67f) ;
+		points [4] = new Vector3(5.36f,0f,8.55f) ;
 	}
 	public void path3(int place){
 		points = new Vector3[5];
-		points [0] = new Vector3(10.01f,0f,-1.57f); 
-		points [1] = new Vector3(-0.76f,0f,-12.57f); 
-		points [2] = new Vector3(-0.88f,0f,0.74f) ;
-		points [3] = new Vector3(-15.63f,0f,-19.86f) ;
-		points [4] = new Vector3(9.48f,0f,-19.4f) ;
+		points [0] = new Vector3(9.7f,0f,-2f); 
+		points [1] = new Vector3(-0.85f,0f,-13.2f); 
+		points [2] = new Vector3(-1.11f,0f,0.91f) ;
+		points [3] = new Vector3(9.49f,0f,-0.67f) ;
+		points [4] = new Vector3(5.36f,0f,8.55f) ;
 	}
 	public void path4(int place){
-		points = new Vector3[6];
-		points [0] = new Vector3(10.01f,0f,-1.57f); 
-		points [1] = new Vector3(-0.76f,0f,-12.57f); 
-		points [2] = new Vector3(-0.88f,0f,0.74f) ;
-		points [3] = new Vector3(-15.43f,0f,9.04f) ;
-		points [4] = new Vector3(-15.63f,0f,-19.86f);
-		points [5] = new Vector3(9.48f,0f,-19.4f) ;
+		points = new Vector3[5];
+		points [0] = new Vector3(9.7f,0f,-2f); 
+		points [1] = new Vector3(-0.85f,0f,-13.2f); 
+		points [2] = new Vector3(-1.11f,0f,0.91f) ;
+		points [3] = new Vector3(9.49f,0f,-0.67f) ;
+		points [4] = new Vector3(5.36f,0f,8.55f) ;
 	}
 	public void path5(int place){
-		points = new Vector3[6];
-		points [0] = new Vector3(10.01f,0f,-1.57f); 
-		points [1] = new Vector3(-0.76f,0f,-12.57f); 
-		points [2] = new Vector3(-0.88f,0f,0.74f) ;
-		points [3] = new Vector3(20.38f,0f,4.14f) ;
-		points [4] = new Vector3(20.63f,0f,-9.15f);
-		points [4] = new Vector3(9.48f,0f,-19.4f) ;
+		points = new Vector3[5];
+		points [0] = new Vector3(9.7f,0f,-2f); 
+		points [1] = new Vector3(-0.85f,0f,-13.2f); 
+		points [2] = new Vector3(-1.11f,0f,0.91f) ;
+		points [3] = new Vector3(9.49f,0f,-0.67f) ;
+		points [4] = new Vector3(5.36f,0f,8.55f) ;
 	}
 
-
-	/*
 	public Vector3 target1;
 	public Vector3 target2;
 	public Vector3 target3;
