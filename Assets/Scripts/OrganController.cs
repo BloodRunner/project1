@@ -70,7 +70,7 @@ public abstract class OrganController : BodyController {
 	public void Update() {		
 		if (Time.time > nextOxygenDepletion) {
 			updateHealthStats(-1f);
-			Debug.Log (name + " Oxygen depletion ("+reprodRate ()+")" + showStats());
+			//Debug.Log (name + " Oxygen depletion ("+reprodRate ()+")" + showStats());
 			nextOxygenDepletion = Time.time + reprodRate (); //reprod is used for oxygen use rate -
 		}
 	}
