@@ -8,6 +8,7 @@ public class BloodFlow : MonoBehaviour {
 	public BloodFlowController bfctrl;
 	private NavMeshAgent agent;
 	private IEnumerator coroutine;
+	private IEnumerator coroutine2;
 	private float random;
 	private float detectionRange;
 	private float lastDist;
@@ -21,6 +22,7 @@ public class BloodFlow : MonoBehaviour {
 		agent.destination = GameObject.Find (dest).transform.position;
 		agent.autoBraking = false;
 		coroutine = patrol ();
+		coroutine2 = playerChoice();
 		StartCoroutine (coroutine);
 	}
 
@@ -35,6 +37,27 @@ public class BloodFlow : MonoBehaviour {
 				yield return new WaitForSeconds (0.1f);
 			}
 		}
+	}
+
+	public IEnumerator playerChoice(){
+		while (true) {
+			Collider[] here = Physics.OverlapSphere(this.GetComponent<Transform>().position,0.2f);
+			for(int i = 0; i < here.Length;i++){
+				if(here[i].CompareTag("direction")){
+					dest = here [i].GetComponent<BloodFlowChoice> ().target;
+					agent.destination = GameObject.Find (dest).transform.position;
+				}
+			}
+			yield return new WaitForSeconds (0.1f);
+		}
+	}
+
+	public void startPlayer(){
+		StartCoroutine (coroutine2);
+	}
+
+	public void stopPlayer(){
+		StopCoroutine (coroutine2);
 	}
 
 	public void whereAmI(){

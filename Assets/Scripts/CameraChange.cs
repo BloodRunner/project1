@@ -51,6 +51,7 @@ public class CameraChange : MonoBehaviour {
 		topCamera.enabled = true;
 		highlightPLayer.enabled = false;
 		Camera.SetupCurrent (topCamera);
+		this.GetComponent<BloodFlow> ().stopPlayer ();
 		this.GetComponent<PlayerMovement> ().enabled = false;
 	}
 
@@ -60,6 +61,7 @@ public class CameraChange : MonoBehaviour {
 		followCamera.enabled = true;
 		highlightPLayer.enabled = true;
 		Camera.SetupCurrent (followCamera);
+		this.GetComponent<BloodFlow> ().startPlayer ();
 		StartCoroutine (coroutine);
 	}
 }
