@@ -60,7 +60,7 @@ public class CellController :  BodyController{
 		mybodyStats.delay += sec; // when brain is damaged, all cells are slow to follow command
 	}
 	public void TakeDamage(float points, Vector3 hitPt) {
-		Debug.Log (name + " Got shot");
+		//Debug.Log (name + " Got shot");
 		updateHealthStats (-points);
 		// Should we play particles here?!?
 	}
@@ -88,10 +88,10 @@ public class CellController :  BodyController{
 			// Keeps track of the damage if contact continues; 
 
 		}
-		/*
-		Debug.Log(gameObject.name+"."+gameObject.tag+" defended against "+ other.name+"."+other.tag + " "+
-			showStats()+ (win?"succeeded":"failed") );
-			*/
+		if (tag.Equals("Infection"))
+			Debug.Log(gameObject.name+"."+gameObject.tag+" defended against "+ other.name+"."+other.tag + " "+
+				showStats()+ other.GetComponent <CellController> ().showStats()+(win?" succeeded":" failed") );
+
 		return win;
 	}
 	// Special Power of this cell, whatever it is

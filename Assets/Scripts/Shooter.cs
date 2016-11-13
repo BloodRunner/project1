@@ -63,7 +63,7 @@ public class Shooter : MonoBehaviour {
 			Camera[] cxs = Camera.allCameras;
 			if (cx == null) {
 				cx = cxs [0]; // Why is current null half the time
-				Debug.Log("Camera Current is null!");
+				//Debug.Log("Camera Current is null!");
 			}
 			Ray ray= cx.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;

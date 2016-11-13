@@ -81,9 +81,11 @@ public class GameController : MonoBehaviour {
 		gameOver = false;
 		restart=false;
 		if (restartText)
-			restartText.text = "Here";
+			restartText.text = "";
 		if (gameoverText)
 			gameoverText.text = "";
+		if (messageText)
+			messageText.text = "";
 		healthText.text = "Score";
 		topCamera = GameObject.Find ("topCamera").GetComponent<Camera>();
 		followCamera = GameObject.Find ("followCamera").GetComponent<Camera>();
