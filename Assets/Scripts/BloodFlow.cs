@@ -3,18 +3,21 @@ using System.Collections;
 
 public class BloodFlow : MonoBehaviour {
 
-	public string dest;
-	public string store; 
+	private string dest;
+	private string store; 
 	public BloodFlowController bfctrl;
 	private NavMeshAgent agent;
 	private IEnumerator coroutine;
 	private float random;
+	private float detectionRange;
+	private float lastDist;
 
 
 	void Start () {
+		detectionRange = 10f;
 		bfctrl = GameObject.Find ("GameController").GetComponent<BloodFlowController> ();
 		agent = GetComponent<NavMeshAgent> ();
-		dest = "heart1";
+		whereAmI ();
 		agent.destination = GameObject.Find (dest).transform.position;
 		agent.autoBraking = false;
 		coroutine = patrol ();
@@ -30,6 +33,20 @@ public class BloodFlow : MonoBehaviour {
 				yield return new WaitForSeconds (0.1f);
 			} else {
 				yield return new WaitForSeconds (0.1f);
+			}
+		}
+	}
+
+	public void whereAmI(){
+		Collider[] search = Physics.OverlapSphere(this.GetComponent<Transform>().position,detectionRange);
+		lastDist = detectionRange;
+		for(int i = 0; i < search.Length;i++){
+			if(search[i].CompareTag("waypoints")){
+				if(Vector3.Distance(this.transform.position, search[i].transform.position)<= lastDist){
+					lastDist = Vector3.Distance (this.transform.position, search [i].transform.position);
+					dest = search [i].name.ToString();
+					dest = bfctrl.GetNext(dest);
+				}
 			}
 		}
 	}

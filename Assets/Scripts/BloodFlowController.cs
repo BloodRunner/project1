@@ -34,11 +34,11 @@ public class BloodFlowController : MonoBehaviour {
 		random = Random.Range (1, 100);
 		if (random <= 50) {
 			targets = (string[])flowPoints [dest]; 
-			print (targets.ToString());
+			//print (targets.ToString());
 			return (targets [0]);
 		} else {
 			targets = (string[])flowPoints [dest];
-			print (targets.ToString());
+			//print (targets.ToString());
 			return (targets [1]);
 		} 
 	}
