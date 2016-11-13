@@ -7,6 +7,7 @@ public class CameraChange : MonoBehaviour {
 	private IEnumerator coroutine;
 	public Camera topCamera; 
 	public Camera followCamera;
+	public Light highlightPLayer;
 	public float zoom;
 
 	void OnMouseDown(){
@@ -34,7 +35,7 @@ public class CameraChange : MonoBehaviour {
 		coroutine = followThis ();
 		topCamera = GameObject.Find ("topCamera").GetComponent<Camera>();
 		followCamera = GameObject.Find ("followCamera").GetComponent<Camera>();
-		Camera.SetupCurrent (topCamera);
+		highlightPLayer = this.GetComponent<Light> ();
 	}
 
 	void Update(){
@@ -48,7 +49,9 @@ public class CameraChange : MonoBehaviour {
 		StopCoroutine (coroutine);
 		followCamera.enabled = false;
 		topCamera.enabled = true;
+		highlightPLayer.enabled = false;
 		Camera.SetupCurrent (topCamera);
+		this.GetComponent<BloodFlow> ().stopPlayer ();
 		this.GetComponent<PlayerMovement> ().enabled = false;
 	}
 
@@ -56,7 +59,9 @@ public class CameraChange : MonoBehaviour {
 		this.GetComponent<PlayerMovement> ().enabled = true;
 		topCamera.enabled = false;
 		followCamera.enabled = true;
+		highlightPLayer.enabled = true;
 		Camera.SetupCurrent (followCamera);
+		this.GetComponent<BloodFlow> ().startPlayer ();
 		StartCoroutine (coroutine);
 	}
 }
