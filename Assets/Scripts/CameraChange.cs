@@ -64,4 +64,21 @@ public class CameraChange : MonoBehaviour {
 		this.GetComponent<BloodFlow> ().startPlayer ();
 		StartCoroutine (coroutine);
 	}
+
+	void OnMouseOver() {
+		if (followCamera.enabled == false) {
+			highlightPLayer.range = 3f;
+			highlightPLayer.enabled = true;
+		}
+
+	}
+
+	void OnMouseExit() {
+		if (followCamera.enabled == false) {
+			highlightPLayer.range = 0.3f;
+			highlightPLayer.enabled = false;
+		} else {
+			highlightPLayer.range = 0.3f;
+		}
+	}
 }
