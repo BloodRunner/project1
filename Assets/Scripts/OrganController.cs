@@ -9,9 +9,9 @@ public abstract class OrganController : BodyController {
 	//public GameObject shot;
 	protected bool isSpawner=false;
 
+
 	// in organs reprodRate is the number of seconds it uses up 1% of it's oxygen/health
-	//private float stats_regenRate=100f; 
-	// oxygen depletion of N points per 
+	// oxygen depletion of N points per N seconds
 	private float nextOxygenDepletion=0f;
 
 	void Start() {
@@ -85,6 +85,7 @@ public abstract class OrganController : BodyController {
 		if (!isSpawner) {
 			gameController.showMessage (name + " is now an infection factory! Save it by sending red cells!!", 5);
 			isSpawner = true;
+			//renderer.material.color = Color.blue;
 		} 
 	}
 
@@ -140,6 +141,11 @@ public abstract class OrganController : BodyController {
 				Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
 			}	
 		}
+	}
+
+	/* Call the closest white cell to come help */
+	public void callForSupport() {
+		Debug.Log (name + " needs backup");
 	}
 		
 }

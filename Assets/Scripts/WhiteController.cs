@@ -39,10 +39,11 @@ public class WhiteController : CellController {
 	public override void deathHandler (){
 		//Debug.Log (name + " dies ");
 		if (explosion!=null && name.Equals ("WhiteT")) {
-			Instantiate (explosion, transform.position, Quaternion.identity);
+			GameObject gobj = Instantiate (explosion, transform.position, Quaternion.identity) as GameObject;;
+			DestroyObject (gobj, 2);
 		}
 		if (gameController != null) {
-			gameController.showMessage ("Poor " + name + " dies ", 3);
+			gameController.showMessage (name + " dies ", 3);
 		} else
 			Debug.Log (name + " dies - gameController empty");
 		DestroyObject (gameObject,2);

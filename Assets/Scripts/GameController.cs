@@ -1,49 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-// Class to keep 10 latest messages
-class MessageBoard : Object {
-	private string[] gameMessages= new string[10];
-	int startmg=0;
-	int endmg=0;
-	public void addMessage(string mg) {
-		if (startmg > endmg) { // Looped
-			if (startmg < 10) { // looped round
-				gameMessages[endmg] = mg;
-				endmg++;
-				startmg = startmg++;
-			} else {
-				startmg=0;
-				gameMessages[endmg] = mg;
-				endmg++;
-			}
-		} else if (endmg<10) { // at start
-			gameMessages[endmg] = mg;
-			endmg++;
-		} else {
-			endmg= 0;
-			gameMessages[endmg] = mg;
-			startmg=startmg++;
-		}
-	}
 
-	public void printMessages() {
-		int i;
-		Debug.Log("gameMessages is at "+ startmg + " to "+ endmg);
-		if ( startmg > endmg) {
-			for (i=startmg;i < startmg || i < 10 ; i++)
-				Debug.Log(gameMessages[i]);
-			for (i=0;i< endmg ; i++)
-				Debug.Log(gameMessages[i]);
-		}
-		if (endmg > startmg) {
-			for (i=startmg;i < endmg || i < 10 ; i++)
-				Debug.Log(gameMessages[i]);
-		}
-		
-	}
-}
 public class GameController : MonoBehaviour {
 	public float pressure;
 	public RedController Red;
@@ -62,6 +22,8 @@ public class GameController : MonoBehaviour {
 	public GUIText healthText;
 	private bool gameOver;
 	private bool restart=false;
+	public Text characterCount;
+	public Button restartButton;
 	public GUIText messageText;
 	public GUIText restartText;
 	public GUIText gameoverText;
@@ -70,6 +32,7 @@ public class GameController : MonoBehaviour {
 	protected int numInfections=0;
 	//MessageBoard msgbd = new MessageBoard ();
 	OrganController[] all_organs;
+	float timer; // timer to limit the UI tally update
 
 
 	// Use this for initialization
@@ -87,6 +50,7 @@ public class GameController : MonoBehaviour {
 		if (messageText)
 			messageText.text = "";
 		healthText.text = "Score";
+		restartButton.enabled = false;
 		topCamera = GameObject.Find ("topCamera").GetComponent<Camera>();
 		followCamera = GameObject.Find ("followCamera").GetComponent<Camera>();
 		followCamera.enabled = false;
@@ -107,6 +71,18 @@ public class GameController : MonoBehaviour {
 			total += organ.get_stats_health ();
 		}
 		return total;
+	}
+
+	public void tallyCharacters() {
+		string total = "Ally Count:";
+		CellController[] cells = GameObject.FindObjectsOfType (typeof(WhiteController)) as WhiteController[];
+		total += "\nWhite Blood Cell:" + cells.Length;
+		cells = GameObject.FindObjectsOfType (typeof(RedController)) as RedController[];
+		total += "\nRed Blood Cell:" + cells.Length;
+		cells = GameObject.FindObjectsOfType (typeof(PathogenController)) as PathogenController[];
+		total += "\nEnemy Count:\nPathogens:" + cells.Length;
+		characterCount.text= total;
+		//Debug.Log (total);
 	}
 
 	public bool bodyIsAlive() {
@@ -145,24 +121,26 @@ public class GameController : MonoBehaviour {
 		int level = 0;
 		while(true) {
 			PathogenController cc = infections [level];
-			Quaternion spawnRotation = Quaternion.identity;
 			Debug.Log ("Spawnwave level="+level+" "+ cc.name +" "+ infectionCount);
+			showMessage ("Level "+ level+": " + infectionCount + cc.name + " are coming out from "+ infectedOrgan.name , 5);
 			for (int i = 0; i < infectionCount; i++) {
 				// Instantiate at infection point in organs!
-				cell = Instantiate (cc, infectedOrgan.transform.position, spawnRotation) as PathogenController;
+				cell = Instantiate (cc, infectedOrgan.transform.position, Quaternion.identity) as PathogenController;
 				cell.bodystate = this.bodystate;
 				cell.gameController = this;
-				Debug.Log ("Sending out " + cell.name);
+				//Debug.Log ("Sending out " + cell.name);
 				yield return new WaitForSeconds (spawnWait);
 			}
 			// Organ is now a spawner
 
 			foreach (OrganController organ in all_organs) {
 				if (organ.get_stats_health () <= 0) {
+					showMessage (infectionCount + cc.name + " are coming out from undead "+ organ.name +". Send some white blood cells to clear the infection", 5);
+
 					cell = Instantiate (cc, organ.transform.position, Quaternion.identity) as PathogenController;;
 					cell.bodystate = this.bodystate;
 					cell.gameController = this;
-					Debug.Log ("Sending out " + cell.name+ " from " + organ.name);
+					//Debug.Log ("Sending out " + cell.name+ " from " + organ.name);
 				}
 			}
 			//Debug.Log ("gameover=" + gameOver);
@@ -194,7 +172,8 @@ public class GameController : MonoBehaviour {
 			cell.bodystate = this.bodystate;
 			cell.gameController = this;
 		}
-		Debug.Log ("Sending out " + redCount + " reds and " + whiteCount + " white cells");
+		string msg="Sending out " + redCount + " reds and " + whiteCount + " white cells";
+		showMessage (msg, 5);
 	}
 
 	public void spawnKillerT(int count) {
@@ -208,6 +187,9 @@ public class GameController : MonoBehaviour {
 		Debug.Log ("Spawning " + count + " Killer T cells");
 	}
 
+	public void RestartGame() {
+		SceneManager.LoadSceneAsync (0);
+	}
 	
 	// Update is called once per frame
 	void Update ()
@@ -217,6 +199,7 @@ public class GameController : MonoBehaviour {
 				SceneManager.LoadSceneAsync (0);
 			}
 		}
+		timer += Time.deltaTime;
 		if (score > 0) {
 			if (killerT != null && killerT.points > 0) {
 				int count = (int) (score / killerT.points);
@@ -225,6 +208,10 @@ public class GameController : MonoBehaviour {
 				killTcount = count;
 				//msgbd.printMessages ();
 			}
+		}
+		if (timer >= 2) {//  - count chars every 2 seconds
+			//characterCount.text = "Ally Count:\nRed Blood Cells:\nWhite Blood Cells:\nEnemy Count:\nBacteria:\nVirus:\nPrion:\nParasite:\nZika";
+			tallyCharacters ();
 		}
 	}
 
@@ -240,6 +227,7 @@ public class GameController : MonoBehaviour {
 		gameOver = true;
 		if (gameoverText)
 			gameoverText.text = "Game Over";
+		//Instantiate(restartButton,Canvas
 	}
 
 	IEnumerator timedMessage(string message, int seconds) {
@@ -253,4 +241,12 @@ public class GameController : MonoBehaviour {
 		if (gameoverText)
 			StartCoroutine( timedMessage (message, seconds));
 	}
+
+	public void pauseGame(){
+	}
+
+	public void showRestartButton(){
+		restartButton.enabled = true;
+	}
+
 }

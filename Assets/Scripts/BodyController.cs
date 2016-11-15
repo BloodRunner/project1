@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 /* This allows Unity UI to see class and show it
@@ -37,6 +38,9 @@ public class BodyController : MonoBehaviour
 	protected float stats_power = 100.0f;
 	protected float stats_delay = 0f;
 	protected int stats_level = 1;
+	public Slider healthSlider;
+	public Slider powerSlider;
+	public Slider defenseSlider;
 
 	public void start() {
 		if (gameController==null)
@@ -90,6 +94,12 @@ public class BodyController : MonoBehaviour
 	public virtual void deathHandler (){
 		//DestroyObject (gameObject);
 	}
+	public virtual void movehealthSlider (){
+		if (healthSlider != null) {
+			//Debug.Log(name+"slider ="+ stats_health);
+			healthSlider.value = stats_health;
+		}
+	}
 	public void updateHealthStats(float point) {
 		stats_health += point;
 		if (stats_health > 100f) // health goes up by oxygen power
@@ -98,6 +108,7 @@ public class BodyController : MonoBehaviour
 			stats_health = 0;
 			deathHandler (); // each subclass does something different
 		}
+		movehealthSlider ();
 	}
 	public void updatePowerStats(float point) {
 		stats_power += point;
@@ -110,6 +121,8 @@ public class BodyController : MonoBehaviour
 		if (stats_defense > 100f) // health goes up by oxygen power
 			stats_defense = 100f;
 		if (stats_defense <= 0) {stats_defense = 0; }
+		if (defenseSlider!=null)
+			defenseSlider.value = stats_defense ;
 	}
 }
 

@@ -71,9 +71,10 @@ public class CellController :  BodyController{
 		float combat = other.power () - defense ();
 		bool win;
 		if (combat <= 0) { // successful defense against the others
-			other.updateHealthStats (combat);
+			other.updateHealthStats (-combat);
 			other.updateDefenseStats(-1.0f);
 			updateDefenseStats (-1.0f);
+			updateHealthStats (-0.5f); // Even winning loses .5% of health
 			win= true;
 		} else { // Lost
 			if (hitParticles != null) {
@@ -82,6 +83,7 @@ public class CellController :  BodyController{
 			updateHealthStats (-combat);
 			updateDefenseStats (-1.0f);
 			other.updateDefenseStats (-1.0f);
+			other.updateHealthStats (-0.5f); // Even winner loses .5% of health
 			if (stats_health > 0) 
 				inContact [other.GetInstanceID ()] = new Damage (combat, Time.time + 1);
 			win= false;
@@ -106,9 +108,7 @@ public class CellController :  BodyController{
 		if (gameController) {
 			if (tag.Equals ("Infection"))
 				gameController.UpdateScore (points);
-			gameController.showMessage ("Poor " + name + " dies ", 3);
-		} else
-			Debug.Log (name + " dies - gameController empty");
+		}
 		DestroyObject (gameObject);
 	}
 
@@ -191,6 +191,7 @@ public class CellController :  BodyController{
 		}
 		//if (collision.relativeVelocity.magnitude > 2)			audio.Play();
 	}
+
 	void OnCollisionExit(Collision collisionInfo) {
 		if (!tag.Equals (collisionInfo.transform.tag) &&
 		    (collisionInfo.transform.tag.Equals ("Host") ||
