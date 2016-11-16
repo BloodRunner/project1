@@ -9,9 +9,12 @@ public class BloodFlow : MonoBehaviour {
 	private NavMeshAgent agent;
 	private IEnumerator coroutine;
 	private IEnumerator coroutine2;
+	//private IEnumerator coroutine3;
 	private float random;
 	private float detectionRange;
 	private float lastDist;
+	private bool onMission;
+	private string missionLocation;
 
 
 	void Start () {
@@ -23,6 +26,7 @@ public class BloodFlow : MonoBehaviour {
 		agent.autoBraking = false;
 		coroutine = patrol ();
 		coroutine2 = playerChoice();
+		//coroutine3 = missionPatrol ();
 		StartCoroutine (coroutine);
 	}
 
@@ -30,14 +34,24 @@ public class BloodFlow : MonoBehaviour {
 		while (true) {
 			yield return new WaitForSeconds (0.1f);
 			if (agent.remainingDistance < 0.5f) {
-				dest = bfctrl.GetNext(dest);
+				dest = bfctrl.GetNext (dest);
 				agent.destination = GameObject.Find (dest).transform.position;
-				yield return new WaitForSeconds (0.1f);
-			} else {
-				yield return new WaitForSeconds (0.1f);
 			}
 		}
 	}
+
+	/*public IEnumerator missionPatrol(){
+		while (true) {
+			if(dest == missionLocation){
+				dest = bfctrl.GetNext (dest);
+				agent.destination = GameObject.Find (dest).transform.position;
+				StartCoroutine (coroutine);
+				StopCoroutine (coroutine3);
+			}
+			dest = bfctrl.OnMission (dest, missionLocation);
+			agent.destination = GameObject.Find (dest).transform.position;
+		}
+	}*/
 
 	public IEnumerator playerChoice(){
 		while (true) {
@@ -73,6 +87,12 @@ public class BloodFlow : MonoBehaviour {
 			}
 		}
 	}
+
+	/*public void startMission(string mission){
+		missionLocation = mission;
+		StopCoroutine (coroutine);
+		StartCoroutine (coroutine3);
+	}*/
 		
 
 	/*public Vector3[] points;

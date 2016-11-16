@@ -32,14 +32,41 @@ public class BloodFlowController : MonoBehaviour {
 
 	public string GetNext(string dest){
 		random = Random.Range (1, 100);
+		targets = (string[])flowPoints [dest]; 
 		if (random <= 50) {
-			targets = (string[])flowPoints [dest]; 
 			//print (targets.ToString());
 			return (targets [0]);
 		} else {
-			targets = (string[])flowPoints [dest];
 			//print (targets.ToString());
 			return (targets [1]);
 		} 
 	}
+
+	/*public string OnMission(string dest, string final){
+		for (int i = 0; i < waypoints.Length; i++) {
+			if (waypoints [i].name == dest) {
+				return waypoints [i].GetComponent<NextWaypoint> ().requestTarget (final);
+			}
+		}
+		print ("mission failed");
+		return GetNext (dest);
+	}*/
+
+	/*public string GetPath(string dest, string final){
+		string moveUp = final;
+		targets = (string[])flowPoints [dest]; 
+		if (targets [0] == final || targets [1] == final) {
+			return final;
+		} else {
+			for(int i = 0; i< waypoints.Length; i++){
+				targets = (string[])flowPoints [waypoints [i].name];
+				if(targets[0] == moveUp){
+					moveUp = waypoints [i].name;
+				}else if(targets[1] == moveUp){
+					moveUp = waypoints [i].name;
+				}
+
+			}
+		}
+	}*/
 }
