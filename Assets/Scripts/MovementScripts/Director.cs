@@ -15,7 +15,7 @@ public class Director : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider collision){
-		if(onAMission){
+		if(onAMission || collision.GetComponent<BloodFlow>()){
 			if(collision.gameObject.name == "White" || collision.gameObject.name == "KillerT"){
 				if(missions == "mission1"){
 					collision.GetComponent<NavMeshAgent>().destination = GameObject.Find (mission1).transform.position;

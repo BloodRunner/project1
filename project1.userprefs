@@ -1,12 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MovementScripts\GuideTo.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MovementScripts\secretMission.cs">
     <Files>
-      <File FileName="Assets\Scripts\MovementScripts\BloodFlowController.cs" Line="21" Column="23" />
-      <File FileName="Assets\Scripts\MovementScripts\BloodFlow.cs" Line="38" Column="67" />
-      <File FileName="Assets\Scripts\MovementScripts\NextWaypoint.cs" Line="43" Column="5" />
-      <File FileName="Assets\Scripts\MovementScripts\GuideTo.cs" Line="24" Column="31" />
-      <File FileName="Assets\Scripts\MovementScripts\Director.cs" Line="9" Column="8" />
+      <File FileName="Assets\Scripts\MovementScripts\BloodFlowController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MovementScripts\BloodFlow.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MovementScripts\NextWaypoint.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MovementScripts\GuideTo.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MovementScripts\secretMission.cs" Line="26" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -5,7 +5,7 @@ public class NextWaypoint : MonoBehaviour {
 
 	public string target;
 	public string target2;
-	/*public string toHeart1;
+	public string toHeart1;
 	public string toHeart2;
 	public string toLLung;
 	public string toRLung;
@@ -40,5 +40,5 @@ public class NextWaypoint : MonoBehaviour {
 		}else{
 			return target;
 		}
-	}*/
+	}
 }
