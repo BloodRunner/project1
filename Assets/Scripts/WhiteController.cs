@@ -1,9 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class WhiteController : CellController {
 	GameObject explosion;
+	GameObject shooter;
+	public Text playerNameText;
+	bool is_player = false;
+
+	void Start() {
+		setNickname (Namer.getName ());
+	}
+
 	// health is based on state at time of spawn
+	public void setNickname(string name) {
+		nickname= name;
+	}
 	public override float health () {
 		return ((stats_health/100.0f) * bodyStats.health );
 	}
@@ -16,7 +28,7 @@ public class WhiteController : CellController {
 	public override float power () {
 		if (bodystate == null)
 			return((stats_power / 100.0f) * bodyStats.power);
-		return ((stats_power/100.0f) * bodyStats.power * bodystate.whitePower());
+		return ((stats_power/100.0f) * bodyStats.power * bodystate.whiteCellPower());
 	}
 	public override float speed () {
 		if (bodystate == null)
@@ -49,9 +61,41 @@ public class WhiteController : CellController {
 		DestroyObject (gameObject,2);
 	}
 
-	public void addSuperpower() {
-		GameObject shooterObj = Resources.Load<GameObject>("Shooter");
-		GameObject shooter = GameObject.Instantiate(shooterObj) as GameObject;
+
+	public override void updateHealthStats(float point){
+		base.updateHealthStats (point);
+		if (is_player && healthSlider!=null)
+			healthSlider.value = stats_health * bodystate.whiteHealth();
+	}
+
+	public override void updateDefenseStats(float point){
+		base.updateDefenseStats (point);
+		if (is_player && defenseSlider!=null)
+			defenseSlider.value = stats_defense * bodystate.whiteDefense();
+	}
+
+	public void addShooter() {
+		Debug.Log ("Adding shooter to " + name + "." + tag);
+		//GameObject shooterObj = Resources.Load<GameObject>("Shooter");
+		Shooter shooter = gameObject.AddComponent( typeof(Shooter) ) as Shooter;
 		shooter.transform.SetParent(gameObject.transform, false);
+	}
+
+	public void removeShooter() {
+		if (shooter != null) {
+			DestroyObject (shooter);
+			shooter = null;
+		}
+	}
+
+	public void addStats(){
+		Debug.Log ("Adding stats to " + nickname + "." + tag);
+		is_player = true;
+		if (playerNameText != null)
+			playerNameText.text = nickname;
+	}
+
+	public void removeStats(){
+		is_player = false;
 	}
 }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 
 public class CellController :  BodyController{
+	protected string nickname="";
 	public float playerSpeed;  	// base movement speed
 	public float tilt;
 	//public Boundary boundary; // Game boundary - if outside boundary - no control
@@ -24,7 +25,7 @@ public class CellController :  BodyController{
 	private Vector3 dest;
 	ParticleSystem hitParticles; // Death Indication
 
-	void Start() { 
+	void Awake() { 
 		rb = GetComponent<Rigidbody>();
 		rb.angularVelocity = Random.insideUnitSphere * Random.Range(0,2); // rotate randomly
 		Vector3 velo = Random.insideUnitSphere * speed();
@@ -91,7 +92,7 @@ public class CellController :  BodyController{
 
 		}
 		if (tag.Equals("Infection"))
-			Debug.Log(gameObject.name+"."+gameObject.tag+" defended against "+ other.name+"."+other.tag + " "+
+			Debug.Log(gameObject.name+"."+gameObject.tag+" defended against "+ other.nickname+"."+other.name + " "+
 				showStats()+ other.GetComponent <CellController> ().showStats()+(win?" succeeded":" failed") );
 
 		return win;

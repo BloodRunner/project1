@@ -60,7 +60,7 @@ public class BodyState: MonoBehaviour
 			percent = 0;
 		whiteStats_defense = percent/100f;
 	}
-	public void updateWhitePowerStats (float percent)
+	public void updateWhiteCellPowerStats (float percent)
 	{
 		if (percent < 0)
 			percent = 0;
@@ -102,7 +102,7 @@ public class BodyState: MonoBehaviour
 	public float whiteHealth() {
 		return whiteStats_health;
 	}
-	public float whitePower() {
+	public float whiteCellPower() {
 		return whiteStats_power;
 	}
 	public float whiteSpeed() {

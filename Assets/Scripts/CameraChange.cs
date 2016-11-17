@@ -53,10 +53,24 @@ public class CameraChange : MonoBehaviour {
 		Camera.SetupCurrent (topCamera);
 		this.GetComponent<BloodFlow> ().stopPlayer ();
 		this.GetComponent<PlayerMovement> ().enabled = false;
+		if (this.GetComponentInChildren<Shooter> () != null) {
+			this.GetComponentInChildren<Shooter>().enabled = false;
+			this.SendMessage ("removeStats");
+		}
 	}
 
 	public void startFollow(){
 		this.GetComponent<PlayerMovement> ().enabled = true;
+		if (this.GetComponent<Shooter> () != null) {
+			Debug.Log ("Activate shooter to " + name + "." + tag);
+			this.GetComponent<Shooter> ().enabled = true;
+
+		}
+		if (this.GetComponentInChildren<Shooter> () != null) {
+			Debug.Log ("Activate shooter in children to " + name + "." + tag);
+			this.GetComponentInChildren<Shooter>().enabled = true;
+		}
+		this.SendMessage ("addStats");
 		topCamera.enabled = false;
 		followCamera.enabled = true;
 		highlightPLayer.enabled = true;

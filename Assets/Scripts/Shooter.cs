@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using UnityStandardAssets;
 
@@ -10,7 +11,7 @@ public class Shooter : MonoBehaviour {
 	public float timeBetweenBullets = 0.15f;        // The time between each shot.
 	public float range = 100f;                      // The distance the gun can fire.
 
-	float timer;                                    // A timer to determine when to fire.
+	float timer=0;                                    // A timer to determine when to fire.
 	Ray shootRay;                                   // A ray from the gun end 
 	RaycastHit shootHit;                            // A raycast hit to get the closest hit
 	int shootableMask;                              // A layer mask so the raycast only hits things on the shootable layer.
@@ -18,7 +19,9 @@ public class Shooter : MonoBehaviour {
 	ParticleSystem gunParticles;                    // Reference to the particle system.
 	LineRenderer gunLine;                           // Reference to the line renderer.
 	AudioSource gunAudio;                           // Reference to the audio source.
-	float effectsDisplayTime = 0.2f;  
+	float effectsDisplayTime = 0.2f;
+	Text playerNameText=null;
+
 
 	void Awake ()
 	{
@@ -30,11 +33,11 @@ public class Shooter : MonoBehaviour {
 		gunParticles = GetComponent<ParticleSystem> ();
 		gunAudio = GetComponent<AudioSource> ();
 
-		gameObject.AddComponent<LineRenderer>();
-		gunLine = GetComponent<LineRenderer>();
-		gunLine.material = new Material(Shader.Find("Particles/Alpha Blended Premultiply"));
-		gunLine.SetWidth(0.1f, 0.1f);
-		gunLine.SetColors(Color.red, Color.yellow);
+		gameObject.AddComponent<LineRenderer> ();
+		gunLine = GetComponent<LineRenderer> ();
+		gunLine.material = new Material (Shader.Find ("Particles/Alpha Blended Premultiply"));
+		gunLine.SetWidth (0.1f, 0.1f);
+		gunLine.SetColors (Color.red, Color.yellow);
 		gunLine.enabled = false;
 	}
 
@@ -91,7 +94,6 @@ public class Shooter : MonoBehaviour {
 	{
 		// Disable the line renderer and the light.
 		gunLine.enabled = false;
-		//gunLight.enabled = false;
 	}
 
 	void Shoot (Vector3 dir)

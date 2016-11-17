@@ -42,12 +42,13 @@ public class BodyController : MonoBehaviour
 	public Slider powerSlider;
 	public Slider defenseSlider;
 
-	public void start() {
+	public void awake() {
 		if (gameController==null)
 			gameController = GameObject.FindObjectOfType (typeof(GameController)) as GameController;
 		if (bodystate == null)
 			bodystate = GameObject.FindObjectOfType (typeof(BodyState)) as BodyState;
 	}
+
 	public void setBodyState(BodyState bs) {
 		if (bs)
 			bodystate=bs;
@@ -66,9 +67,9 @@ public class BodyController : MonoBehaviour
 	}
 	// Lower number is faster - reproduce every N seconds
 	public virtual float reprodRate () {
-		if (bodyStats.reprodRate < 3) {
-			Debug.LogError (name +" !!!ReprodRate (<3) is messed up " + bodyStats.reprodRate);
-			bodyStats.reprodRate = 3;
+		if (bodyStats.reprodRate < 2) {
+			Debug.LogError (name +" !!!ReprodRate (<2) is messed up " + bodyStats.reprodRate);
+			bodyStats.reprodRate = 2;
 		}
 		return (bodyStats.reprodRate);
 	}
@@ -100,7 +101,7 @@ public class BodyController : MonoBehaviour
 			healthSlider.value = stats_health;
 		}
 	}
-	public void updateHealthStats(float point) {
+	public virtual void updateHealthStats(float point) {
 		stats_health += point;
 		if (stats_health > 100f) // health goes up by oxygen power
 			stats_health = 100f;
@@ -110,19 +111,18 @@ public class BodyController : MonoBehaviour
 		}
 		movehealthSlider ();
 	}
-	public void updatePowerStats(float point) {
+	public virtual void updatePowerStats(float point) {
 		stats_power += point;
 		if (stats_power > 100f) // health goes up by oxygen power
 			stats_power = 100f;
 		if (stats_power <= 0) {stats_power = 0;}
+
 	}
-	public void updateDefenseStats(float point) {
+	public virtual void updateDefenseStats(float point) {
 		stats_defense += point;
 		if (stats_defense > 100f) // health goes up by oxygen power
 			stats_defense = 100f;
 		if (stats_defense <= 0) {stats_defense = 0; }
-		if (defenseSlider!=null)
-			defenseSlider.value = stats_defense ;
 	}
 }
 

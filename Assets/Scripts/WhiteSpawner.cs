@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class WhiteSpawner : MonoBehaviour
@@ -7,10 +8,14 @@ public class WhiteSpawner : MonoBehaviour
 	public BodyState bodystate;
 	public GameController gameController;
 	private float nextReprod = 0f;
+	public Slider healthSlider;
+	public Slider powerSlider;
+	public Slider defenseSlider;
+	public Text playerNameText;
 
 	void Start ()
 	{
-		if (gameController==null)
+		if (gameController == null)
 			gameController = GameObject.FindObjectOfType (typeof(GameController)) as GameController;
 		if (bodystate == null)
 			bodystate = GameObject.FindObjectOfType (typeof(BodyState)) as BodyState;
@@ -28,6 +33,11 @@ public class WhiteSpawner : MonoBehaviour
 			cell.setBodyState (bodystate);
 			cell.updateHealthStats (100 - bodystate.whiteHealth ());
 			cell.gameController = gameController;
+			cell.setNickname (Namer.getName ());
+			cell.playerNameText =playerNameText;
+			cell.healthSlider = healthSlider;
+			cell.powerSlider = powerSlider;
+			cell.defenseSlider = defenseSlider;
 			nextReprod = Time.time + cell.get_bodystats_reprod () * bodystate.whiteReprodRate ();
 			//Debug.Log (cell.name + " Instantiated in Whitespawner");
 		} catch {
@@ -40,9 +50,11 @@ public class WhiteSpawner : MonoBehaviour
 	void Update ()
 	{
 		if (dna != null) {  // Can reproduce
-			if (Time.time > nextReprod && ! gameController.isGameOver()) {
+			if (Time.time > nextReprod && !gameController.isGameOver ()) {
 				makeone ();
 			}
 		}
 	}
+
+    
 }

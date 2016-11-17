@@ -52,6 +52,7 @@ public abstract class OrganController : BodyController {
 				inContact [pathogen.GetInstanceID ()] = new Damage (combat, Time.time + 1);
 				if (isSpawner && stats_health > 25) {
 					isSpawner = false;
+					swapAudioTracks();
 					Debug.Log (name + " is revived "); // Add points??
 				}
 			} else
@@ -86,9 +87,21 @@ public abstract class OrganController : BodyController {
 			gameController.showMessage (name + " is now an infection factory! Save it by sending red cells!!", 5);
 			isSpawner = true;
 			//renderer.material.color = Color.blue;
+			swapAudioTracks();
 		} 
 	}
 
+	// Swap audio tracks from unique live to dead sound
+	public void swapAudioTracks(){
+		AudioSource[] tracks = GetComponentsInChildren<AudioSource>() as AudioSource[];
+		foreach (AudioSource track in tracks) { 
+			if (track.isPlaying) {
+				track.Stop ();
+			} else {
+				track.Play ();
+			}
+		}
+	}
 	// Collider for each object is called.
 	// Only organ collision is dealt with here.
 	void OnTriggerEnter(Collider other) {

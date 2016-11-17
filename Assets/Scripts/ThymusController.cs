@@ -8,7 +8,7 @@ public class ThymusController : OrganController
 		if (!bodystate) {
 			Debug.LogError (name + " BodyState is missing");
 		} else {
-			bodystate.updateWhitePowerStats (stats_health);
+			bodystate.updateWhiteCellPowerStats (stats_health);
 			bodystate.updateWhiteReprodStats (stats_health);
 		}
 		Debug.Log (name +" damageBody " + bodystate.showStats ());

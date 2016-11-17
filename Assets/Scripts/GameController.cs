@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-
+	
 public class GameController : MonoBehaviour {
 	public float pressure;
 	public RedController Red;
@@ -60,9 +60,8 @@ public class GameController : MonoBehaviour {
 		}
 		all_organs = GameObject.FindObjectsOfType (typeof(OrganController)) as OrganController[];
 		ThymusController tc = GameObject.FindObjectOfType (typeof(ThymusController)) as ThymusController;
-		setUpDefence(redCount,whiteCount,tc.transform.position);
+		setUpDefence(redCount,whiteCount,tc.transform.position); // defenders spawned from thymus
 		StartCoroutine( SpawnWaves());
-
 	}
 
 	public float getOrgansScores() {
@@ -75,6 +74,7 @@ public class GameController : MonoBehaviour {
 
 	public void tallyCharacters() {
 		string total = "Ally Count:";
+		string lastN = null;
 		CellController[] cells = GameObject.FindObjectsOfType (typeof(WhiteController)) as WhiteController[];
 		total += "\nWhite Blood Cell:" + cells.Length;
 		cells = GameObject.FindObjectsOfType (typeof(RedController)) as RedController[];
@@ -122,7 +122,7 @@ public class GameController : MonoBehaviour {
 		while(true) {
 			PathogenController cc = infections [level];
 			Debug.Log ("Spawnwave level="+level+" "+ cc.name +" "+ infectionCount);
-			showMessage ("Level "+ level+": " + infectionCount + cc.name + " are coming out from "+ infectedOrgan.name , 5);
+			showMessage ("Level "+ (level+1) +": " + infectionCount + cc.name + " are coming out from "+ infectedOrgan.name , 5);
 			for (int i = 0; i < infectionCount; i++) {
 				// Instantiate at infection point in organs!
 				cell = Instantiate (cc, infectedOrgan.transform.position, Quaternion.identity) as PathogenController;
@@ -145,9 +145,15 @@ public class GameController : MonoBehaviour {
 			}
 			//Debug.Log ("gameover=" + gameOver);
 			if (gameOver) {
-				if (restartText)
-					restartText.text = "Press 'R' for Restart";
+				
 				restart = true;
+				try {
+					Button restartButton = GameObject.Find ("RestartButton").GetComponent<Button>() as Button;
+					restartButton.enabled = true;
+				} catch {
+					if (restartText)
+						restartText.text = "Press 'R' for Restart";
+				}
 				break;
 			}
 			if (level < 5) {// increase in difficulty
@@ -215,9 +221,7 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	void setScore(float scorept) {
-		score = scorept;
-	}
+
 	public void UpdateScore(float scorept) {
 		score += scorept;
 		if (healthText)
