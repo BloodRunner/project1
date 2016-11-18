@@ -2,14 +2,15 @@
 using System.Collections;
 
 public class LungController : OrganController {
-
+	public LungController otherLung;
 	// Lung damage reduces oxygenation power
 	public override void damageBody(){
-		if (!bodystate) {
-			Debug.LogError (name+" BodyState is missing");
+		Debug.Log (name +" damageBody " + bodystate.showStats ());
+		if (otherLung == null || !ReferenceEquals (otherLung, null)) {
+			bodystate.updateRedPowerStats (stats_health); // Only one lung
+		} else {
+			bodystate.updateRedPowerStats( otherLung.get_stats_power() + stats_health); // 2 kidneys
 		}
-		else
-			bodystate.updateRedPowerStats(stats_health);
-		//Debug.Log (name +" damageBody " + bodystate.showStats ());
+
 	}
 }

@@ -19,7 +19,7 @@ public class ScaleMinimapLight : MonoBehaviour {
 	void Update () {
 		if (state != null) {
 			//Debug.Log (state.GetComponent<OrganController> ().showStats ());
-			organ.color = Color.Lerp (alive, dead, 100f - state.GetComponent<OrganController> ().get_stats_health ());
+			//organ.color = Color.Lerp (alive, dead, 100f - state.GetComponent<OrganController> ().get_stats_health ());
 		}
 	}
 }
