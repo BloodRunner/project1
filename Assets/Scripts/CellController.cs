@@ -33,9 +33,9 @@ public class CellController :  BodyController{
 		rb.velocity = velo;
 		nvagt = gameObject.GetComponent<NavMeshAgent> ();
 		if (gameController ==null)
-			gameController = gameObject.GetComponent<GameController> ();
+			gameController = GameObject.FindObjectOfType<GameController> ();
 		if (bodystate ==null)
-			bodystate = gameObject.GetComponent<BodyState> ();
+			bodystate = GameObject.FindObjectOfType<BodyState> ();
 		if (lifespan_in_seconds == 0)
 			lifespan_in_seconds = 1200f;
 		Destroy(gameObject, lifespan_in_seconds); // destroy objects automatically - cell death!
@@ -91,9 +91,11 @@ public class CellController :  BodyController{
 			// Keeps track of the damage if contact continues; 
 
 		}
+		/*
 		if (tag.Equals("Infection"))
 			Debug.Log(gameObject.name+"."+gameObject.tag+" defended against "+ other.nickname+"."+other.name + " "+
 				showStats()+ other.GetComponent <CellController> ().showStats()+(win?" succeeded":" failed") );
+		*/
 
 		return win;
 	}
