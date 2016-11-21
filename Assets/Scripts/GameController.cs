@@ -25,6 +25,8 @@ public class GameController : MonoBehaviour {
 	private bool gameOver;
 	private bool restart=false;
 	public Text characterCount;
+	public Text instructionText;
+	public Text scoreText;
 	public Button restartButton;
 	public GUIText messageText;
 	public GUIText restartText;
@@ -51,7 +53,7 @@ public class GameController : MonoBehaviour {
 			gameoverText.text = "";
 		if (messageText)
 			messageText.text = "";
-		healthText.text = "Score";
+		//healthText.text = "";
 		restartButton.enabled = false;
 		topCamera = GameObject.Find ("topCamera").GetComponent<Camera>();
 		followCamera = GameObject.Find ("followCamera").GetComponent<Camera>();
@@ -62,6 +64,7 @@ public class GameController : MonoBehaviour {
 		}
 		all_organs = GameObject.FindObjectsOfType (typeof(OrganController)) as OrganController[];
 		ThymusController tc = GameObject.FindObjectOfType (typeof(ThymusController)) as ThymusController;
+		StartCoroutine (SpawnInstructions ());
 		setUpDefence(redCount,whiteCount,tc.transform.position); // defenders spawned from thymus
 		StartCoroutine( SpawnWaves());
 	}
@@ -76,7 +79,7 @@ public class GameController : MonoBehaviour {
 
 	public void tallyCharacters() {
 		string total = "Ally Count:";
-		string lastN = null;
+
 		CellController[] cells = GameObject.FindObjectsOfType (typeof(WhiteController)) as WhiteController[];
 		total += "\nWhite Blood Cell:" + cells.Length;
 		cells = GameObject.FindObjectsOfType (typeof(RedController)) as RedController[];
@@ -237,8 +240,8 @@ public class GameController : MonoBehaviour {
 
 	public void UpdateScore(float scorept) {
 		score += scorept;
-		if (healthText)
-			healthText.text = "Score:" + score;
+		if (scoreText!=null)
+			scoreText.text = "Score:" + score;
 	}
 	public void GameOver() {
 		gameOver = true;
