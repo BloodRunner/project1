@@ -10,6 +10,8 @@ public class GameController : MonoBehaviour {
 	public WhiteController White;
 	public WhiteController killerT;
 	public PathogenController[] infections=new PathogenController[10];
+	public string[] instructions = new string[10];
+	public int instructionWait = 5;
 	public BodyState bodystate; // Whole Body Status
 	//public Vector3 spawnValues;
 	public GameObject infectedOrgan;
@@ -112,6 +114,17 @@ public class GameController : MonoBehaviour {
 		GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("Infection") as GameObject[];
 		Debug.Log(objectsWithTag.Length);
 		return objectsWithTag.Length;
+	}
+
+	// Coroutine
+	IEnumerator SpawnInstructions() {
+		foreach (string line in instructions) {
+			if (gameOver)
+				break;
+			instructionText.text = line;
+			yield return new WaitForSeconds (instructionWait);
+		}
+		instructionText.text = "";
 	}
 
 	// Coroutine
@@ -247,7 +260,16 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void pauseGame(){
+		if (Time.timeScale == 0)
+			Time.timeScale = 1;
+		else
+			Time.timeScale = 0;
 	}
+
+	public void quitGame(){
+		Application.Quit ();
+	}
+
 
 	public void showRestartButton(){
 		restartButton.enabled = true;
