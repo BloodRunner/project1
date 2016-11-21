@@ -3,7 +3,12 @@ using System.Collections;
 
 public class NextWaypoint : MonoBehaviour {
 
-	public string target;
+	public string[] missions;
+
+
+
+
+	/*public string target;
 	public string target2;
 	public string toHeart1;
 	public string toHeart2;
@@ -40,5 +45,5 @@ public class NextWaypoint : MonoBehaviour {
 		}else{
 			return target;
 		}
-	}
+	}*/
 }

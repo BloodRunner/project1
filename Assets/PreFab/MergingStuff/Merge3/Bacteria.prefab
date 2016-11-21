@@ -37,14 +37,15 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010916733572}
   - 33: {fileID: 33000011721236634}
+  - 65: {fileID: 65000012295024806}
   - 23: {fileID: 23000010063469542}
   - 114: {fileID: 114000010408014658}
   - 54: {fileID: 54000013096244302}
+  - 65: {fileID: 65000013326982394}
+  - 195: {fileID: 195000011703486540}
   - 114: {fileID: 114000011371561104}
   - 114: {fileID: 114000012461652660}
   - 114: {fileID: 114000012131816602}
-  - 136: {fileID: 136000012273477888}
-  - 195: {fileID: 195000012797837178}
   m_Layer: 9
   m_Name: Bacteria
   m_TagString: Infection
@@ -59,8 +60,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011188485604}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -0.882}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000013241038372}
@@ -92,7 +93,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: d1042c794b84fdd42b74e2f1d725d129, type: 2}
+  - {fileID: 2100000, guid: d1e62cd33fd544c4abbdcf1c24aa949d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -114,7 +115,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011188485604}
-  m_Mesh: {fileID: 4300000, guid: 3593e9dc8008748c5a69525f74a9435c, type: 3}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &54000013096244302
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -130,6 +131,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65000012295024806
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011188485604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65000013326982394
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011188485604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1.1, y: 1.1, z: 1.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114000010408014658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -200,10 +225,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011188485604}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ea8c08d9cc5b3745b3607c6533e37ae, type: 3}
+  m_Script: {fileID: 11500000, guid: b40ba28d40531c6479d52bf7cdde1020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 1
+  range: 0.1
   target: {fileID: 0}
   hasTarget: 0
 --- !u!114 &114000012461652660
@@ -214,32 +239,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011188485604}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fb932c97429529478c42cd46084c97c, type: 3}
+  m_Script: {fileID: 11500000, guid: da3865217ca57f244ad0b264ecc39538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bfctrl: {fileID: 0}
---- !u!136 &136000012273477888
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011188485604}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.028982848
-  m_Height: 0.02228076
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.0014812499, z: -0.017820138}
---- !u!195 &195000012797837178
+  points: []
+  dest: {x: 0, y: 0, z: 0}
+--- !u!195 &195000011703486540
 NavMeshAgent:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011188485604}
   m_Enabled: 1
-  m_Radius: 0.03216271
-  m_Speed: 3.5
+  m_Radius: 0.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -247,10 +260,10 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 0.02524326
-  m_BaseOffset: 0.01262163
+  m_Height: 1
+  m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!198 &198000011891972304
 ParticleSystem:
   m_ObjectHideFlags: 1

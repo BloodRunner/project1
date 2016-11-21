@@ -16,7 +16,7 @@ public class secretMission : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	/*void Update () {
 		if(Input.GetMouseButtonDown(1)){
 			findNearestCell();
 		}
@@ -34,6 +34,6 @@ public class secretMission : MonoBehaviour {
 				}
 			}
 		}
-	}
+	}*/
 		
 }

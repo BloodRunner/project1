@@ -61,13 +61,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013072538602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da3865217ca57f244ad0b264ecc39538, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fb932c97429529478c42cd46084c97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target1: {x: 0, y: 0, z: 0}
-  target2: {x: 0, y: 0, z: 0}
-  target3: {x: 0, y: 0, z: 0}
-  chance1: 0
-  chance2: 0
-  chance3: 0
-  interaction: {fileID: 0}
+  bfctrl: {fileID: 0}

@@ -821,21 +821,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012850349604}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: beforethymus
-  target2: inter3
-  toHeart1: beforethymus
-  toHeart2: beforethymus
-  toLLung: beforethymus
-  toRLung: beforethymus
-  toStomach: beforethymus
-  toLiver: beforethymus
-  toBrain: inter3
-  toLKidney: beforethymus
-  toRKidney: beforethymus
-  toThymus: beforethymus
+  missions: []
 --- !u!114 &114000010268344242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -844,21 +833,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011260287610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: liver
-  target2: liver
-  toHeart1: liver
-  toHeart2: liver
-  toLLung: liver
-  toRLung: liver
-  toStomach: liver
-  toLiver: liver
-  toBrain: liver
-  toLKidney: liver
-  toRKidney: liver
-  toThymus: liver
+  missions: []
 --- !u!114 &114000010336930426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -867,21 +845,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012992158034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: heart2
-  target2: heart2
-  toHeart1: heart2
-  toHeart2: heart2
-  toLLung: heart2
-  toRLung: heart2
-  toStomach: heart2
-  toLiver: heart2
-  toBrain: heart2
-  toLKidney: heart2
-  toRKidney: heart2
-  toThymus: heart2
+  missions: []
 --- !u!114 &114000010469762508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -890,21 +857,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011842312172}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: brain
-  target2: brain
-  toHeart1: brain
-  toHeart2: brain
-  toLLung: brain
-  toRLung: brain
-  toStomach: brain
-  toLiver: brain
-  toBrain: brain
-  toLKidney: brain
-  toRKidney: brain
-  toThymus: brain
+  missions: []
 --- !u!114 &114000010700528064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -913,21 +869,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011374231846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: hometrip
-  target2: hometrip
-  toHeart1: hometrip
-  toHeart2: hometrip
-  toLLung: hometrip
-  toRLung: hometrip
-  toStomach: hometrip
-  toLiver: hometrip
-  toBrain: hometrip
-  toLKidney: hometrip
-  toRKidney: hometrip
-  toThymus: hometrip
+  missions: []
 --- !u!114 &114000010815781982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -936,21 +881,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010111656850}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: inter1
-  target2: inter1
-  toHeart1: inter1
-  toHeart2: inter1
-  toLLung: inter1
-  toRLung: inter1
-  toStomach: inter1
-  toLiver: inter1
-  toBrain: inter1
-  toLKidney: inter1
-  toRKidney: inter1
-  toThymus: inter1
+  missions: []
 --- !u!114 &114000010937112758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -959,21 +893,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013388864036}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: kidney2
-  target2: kidney2
-  toHeart1: kidney2
-  toHeart2: kidney2
-  toLLung: kidney2
-  toRLung: kidney2
-  toStomach: kidney2
-  toLiver: kidney2
-  toBrain: kidney2
-  toLKidney: kidney2
-  toRKidney: kidney2
-  toThymus: kidney2
+  missions: []
 --- !u!114 &114000011234328014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -982,21 +905,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011806953348}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: inter4
-  target2: inter4
-  toHeart1: inter4
-  toHeart2: inter4
-  toLLung: inter4
-  toRLung: inter4
-  toStomach: inter4
-  toLiver: inter4
-  toBrain: inter4
-  toLKidney: inter4
-  toRKidney: inter4
-  toThymus: inter4
+  missions: []
 --- !u!114 &114000011401415822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1005,21 +917,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012174965550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: hometrip
-  target2: hometrip
-  toHeart1: hometrip
-  toHeart2: hometrip
-  toLLung: hometrip
-  toRLung: hometrip
-  toStomach: hometrip
-  toLiver: hometrip
-  toBrain: hometrip
-  toLKidney: hometrip
-  toRKidney: hometrip
-  toThymus: hometrip
+  missions: []
 --- !u!114 &114000011514779062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1028,21 +929,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012737883696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: lung1
-  target2: lung1
-  toHeart1: lung1
-  toHeart2: lung1
-  toLLung: lung1
-  toRLung: lung1
-  toStomach: lung1
-  toLiver: lung1
-  toBrain: lung1
-  toLKidney: lung1
-  toRKidney: lung1
-  toThymus: lung1
+  missions: []
 --- !u!114 &114000012061281188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1051,21 +941,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010296049762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: inter2
-  target2: stomach
-  toHeart1: stomach
-  toHeart2: stomach
-  toLLung: stomach
-  toRLung: stomach
-  toStomach: stomach
-  toLiver: stomach
-  toBrain: inter2
-  toLKidney: stomach
-  toRKidney: stomach
-  toThymus: inter2
+  missions: []
 --- !u!114 &114000012451939342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1074,21 +953,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011503785072}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: inter5
-  target2: inter5
-  toHeart1: inter5
-  toHeart2: inter5
-  toLLung: inter5
-  toRLung: inter5
-  toStomach: inter5
-  toLiver: inter5
-  toBrain: inter5
-  toLKidney: inter5
-  toRKidney: inter5
-  toThymus: inter5
+  missions: []
 --- !u!114 &114000012481447054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1097,21 +965,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000014281225640}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: thymus
-  target2: thymus
-  toHeart1: thymus
-  toHeart2: thymus
-  toLLung: thymus
-  toRLung: thymus
-  toStomach: thymus
-  toLiver: thymus
-  toBrain: thymus
-  toLKidney: thymus
-  toRKidney: thymus
-  toThymus: thymus
+  missions: []
 --- !u!114 &114000013539986688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1120,21 +977,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000014005399186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: lung2
-  target2: lung2
-  toHeart1: lung2
-  toHeart2: lung2
-  toLLung: lung2
-  toRLung: lung2
-  toStomach: lung2
-  toLiver: lung2
-  toBrain: lung2
-  toLKidney: lung2
-  toRKidney: lung2
-  toThymus: lung2
+  missions: []
 --- !u!114 &114000013862265482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1143,21 +989,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000014165532748}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: heart1
-  target2: heart1
-  toHeart1: heart1
-  toHeart2: heart1
-  toLLung: heart1
-  toRLung: heart1
-  toStomach: heart1
-  toLiver: heart1
-  toBrain: heart1
-  toLKidney: heart1
-  toRKidney: heart1
-  toThymus: heart1
+  missions: []
 --- !u!114 &114000013982160864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1166,21 +1001,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012647526652}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: liver
-  target2: kidney1
-  toHeart1: liver
-  toHeart2: liver
-  toLLung: liver
-  toRLung: liver
-  toStomach: liver
-  toLiver: liver
-  toBrain: liver
-  toLKidney: kidney1
-  toRKidney: kidney1
-  toThymus: liver
+  missions: []
 --- !u!114 &114000014155225272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1189,21 +1013,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013120925974}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: afterthymus
-  target2: afterthymus
-  toHeart1: afterthymus
-  toHeart2: afterthymus
-  toLLung: afterthymus
-  toRLung: afterthymus
-  toStomach: afterthymus
-  toLiver: afterthymus
-  toBrain: afterthymus
-  toLKidney: afterthymus
-  toRKidney: afterthymus
-  toThymus: afterthymus
+  missions: []
 --- !u!114 &114000014249767152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1212,18 +1025,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012090532052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac306078fc2a4b7449a4a0da4287afd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a34d3024360d16f48a007c253c29f1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: hometrip
-  target2: hometrip
-  toHeart1: hometrip
-  toHeart2: hometrip
-  toLLung: hometrip
-  toRLung: hometrip
-  toStomach: hometrip
-  toLiver: hometrip
-  toBrain: hometrip
-  toLKidney: hometrip
-  toRKidney: hometrip
-  toThymus: hometrip
+  missions: []
