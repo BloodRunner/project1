@@ -3038,6 +3038,10 @@ Prefab:
       propertyPath: bfctrl
       value: 
       objectReference: {fileID: 586731043}
+    - target: {fileID: 1000012915623904, guid: 097d8260137bcfa4b9ac9900d3763db9, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 097d8260137bcfa4b9ac9900d3763db9, type: 2}
   m_IsPrefabParent: 0
