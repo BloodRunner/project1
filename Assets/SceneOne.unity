@@ -997,6 +997,12 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &104914902 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000013960455638, guid: 097d8260137bcfa4b9ac9900d3763db9,
+    type: 2}
+  m_PrefabInternal: {fileID: 329239686}
+  m_Script: {fileID: 11500000, guid: c949f91f46613479f99c9d3ebea9ee76, type: 3}
 --- !u!1 &105310287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,7 +1289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 789973d5a0b974528b4f1543450b8680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dna: {fileID: 114000013960455638, guid: 097d8260137bcfa4b9ac9900d3763db9, type: 2}
+  dna: {fileID: 104914902}
   bodystate: {fileID: 26343561}
   gameController: {fileID: 586731041}
   healthSlider: {fileID: 510881589}
@@ -3037,6 +3043,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010427829444, guid: 097d8260137bcfa4b9ac9900d3763db9,
+        type: 2}
+      propertyPath: bfctrl
+      value: 
+      objectReference: {fileID: 586731043}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 097d8260137bcfa4b9ac9900d3763db9, type: 2}
   m_IsPrefabParent: 0
@@ -4775,7 +4786,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -300}
+  m_AnchoredPosition: {x: 150, y: -200}
   m_SizeDelta: {x: 300, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &544625887
@@ -5059,7 +5070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pressure: 1
   Red: {fileID: 114000012034875094, guid: 00da4319f9d464611a11f54b6b0d2d12, type: 2}
-  White: {fileID: 114000013960455638, guid: 097d8260137bcfa4b9ac9900d3763db9, type: 2}
+  White: {fileID: 104914902}
   killerT: {fileID: 679119503}
   infections:
   - {fileID: 1998004722}
@@ -14712,7 +14723,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012723336726, guid: cabc734944c71424584588040678cddb, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.582
+      value: 8.09
       objectReference: {fileID: 0}
     - target: {fileID: 4000012723336726, guid: cabc734944c71424584588040678cddb, type: 2}
       propertyPath: m_LocalRotation.x

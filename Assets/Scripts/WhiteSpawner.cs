@@ -27,8 +27,11 @@ public class WhiteSpawner : MonoBehaviour
 	void makeone ()
 	{
 		try {
-			Vector3 v3 = transform.position + (Random.insideUnitSphere * dna.transform.localScale.x);
-			v3.y = 1f;
+			//Vector3 v3 = transform.position + (Random.insideUnitSphere * dna.transform.localScale.x);
+			Vector3 v3 = transform.position;
+			v3.y = .1f;
+
+
 			WhiteController cell = Instantiate (dna, v3, transform.rotation) as WhiteController;
 			cell.setBodyState (bodystate);
 			cell.updateHealthStats (100 - bodystate.whiteHealth ());

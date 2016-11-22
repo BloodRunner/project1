@@ -176,13 +176,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012540242192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 739e82eb4fe1c914db84600242df9508, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ea8c08d9cc5b3745b3607c6533e37ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mission1: 696e74657233
-  mission2: 6265666f72657468796d7573
-  mission3: 6265666f72657468796d7573
-  mission4: 6265666f72657468796d7573
+  range: 0
+  target: {fileID: 0}
+  hasTarget: 0
 --- !u!114 &114000011340786428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -191,13 +190,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011721231584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 739e82eb4fe1c914db84600242df9508, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ea8c08d9cc5b3745b3607c6533e37ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mission1: 6c69766572
-  mission2: 6c69766572
-  mission3: 6c69766572
-  mission4: 6b69646e657931
+  range: 0
+  target: {fileID: 0}
+  hasTarget: 0
 --- !u!114 &114000011388256680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,10 +204,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013195486716}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 739e82eb4fe1c914db84600242df9508, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ea8c08d9cc5b3745b3607c6533e37ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mission1: 696e74657232
-  mission2: 696e74657232
-  mission3: 73746f6d616368
-  mission4: 73746f6d616368
+  range: 0
+  target: {fileID: 0}
+  hasTarget: 0

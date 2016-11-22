@@ -26,6 +26,9 @@ public class BloodFlow : MonoBehaviour {
 
 	private void whereAmI(){
 		Collider[] search = Physics.OverlapSphere(this.GetComponent<Transform>().position,detectionRange);
+		//if(search.Length <= 0){
+		//	transform.position = new Vector3(GameObject.Find ("Heart (E/F)").transform.position.x,0.1f,GameObject.Find ("Heart (E/F)").transform.position.z);
+		//}
 		lastDist = detectionRange;
 		for(int i = 0; i < search.Length;i++){
 			if(search[i].CompareTag("waypoints")){
@@ -36,6 +39,8 @@ public class BloodFlow : MonoBehaviour {
 			}
 		}
 		int random = Random.Range (0, waypoint.GetComponent<NextWaypoint> ().missions.Length);
+		//transform.position = new Vector3(GameObject.Find (waypoint.name).transform.position.x,0.1f,GameObject.Find (waypoint.name).transform.position.z); 
+		//print (transform.position.ToString());
 		myMission = waypoint.GetComponent<NextWaypoint> ().missions [random];
 		dest = bfctrl.GetNext (waypoint.name, myMission);
 	}
@@ -53,6 +58,7 @@ public class BloodFlow : MonoBehaviour {
 	public IEnumerator playerChoice(){
 		while (true) {
 			Collider[] here = Physics.OverlapSphere(this.GetComponent<Transform>().position,0.2f);
+
 			for(int i = 0; i < here.Length;i++){
 				if(here[i].CompareTag("direction")){
 					dest = here [i].GetComponent<BloodFlowChoice> ().target;
