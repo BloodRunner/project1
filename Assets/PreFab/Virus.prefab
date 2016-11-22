@@ -99,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011592422990}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.018204505, z: 0}
+  m_LocalPosition: {x: -1.405, y: 0.018204505, z: 8.09}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -199,13 +199,13 @@ MonoBehaviour:
   gameController: {fileID: 0}
   bodystate: {fileID: 0}
   bodyStats:
-    health: 90
-    speed: 2
-    defense: 90
-    reprodRate: 10
+    health: 50
+    speed: 1
+    defense: 25
+    reprodRate: 20
     power: 90
     delay: 0
-    level: 0
+    level: 1
   healthSlider: {fileID: 0}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
@@ -214,7 +214,7 @@ MonoBehaviour:
   dna: {fileID: 1000011592422990}
   shotSpawn: {fileID: 0}
   points: 2
-  lifespan_in_seconds: 20
+  lifespan_in_seconds: 40
 --- !u!136 &136000012713308268
 CapsuleCollider:
   m_ObjectHideFlags: 1

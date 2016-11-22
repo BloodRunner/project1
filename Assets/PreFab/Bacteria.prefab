@@ -176,13 +176,13 @@ MonoBehaviour:
   gameController: {fileID: 0}
   bodystate: {fileID: 0}
   bodyStats:
-    health: 80
-    speed: 10
-    defense: 80
-    reprodRate: 3
-    power: 80
+    health: 75
+    speed: 2
+    defense: 50
+    reprodRate: 20
+    power: 30
     delay: 0
-    level: 0
+    level: 2
   healthSlider: {fileID: 0}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
@@ -191,7 +191,7 @@ MonoBehaviour:
   dna: {fileID: 1000011188485604}
   shotSpawn: {fileID: 0}
   points: 1
-  lifespan_in_seconds: 60
+  lifespan_in_seconds: 40
 --- !u!114 &114000012131816602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -301,7 +301,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 0
-  randomSeed: 2141741586
+  randomSeed: 2042356878
   InitialModule:
     serializedVersion: 2
     enabled: 1

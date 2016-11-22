@@ -20,13 +20,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010095652372}
   - 33: {fileID: 33000010894800466}
-  - 65: {fileID: 65000012557538806}
   - 23: {fileID: 23000013063846506}
   - 54: {fileID: 54000013989896122}
   - 195: {fileID: 195000010298498690}
   - 114: {fileID: 114000011528637040}
   - 114: {fileID: 114000014185475994}
   - 114: {fileID: 114000010152016836}
+  - 65: {fileID: 65000014019159028}
   m_Layer: 9
   m_Name: Parasite
   m_TagString: Infection
@@ -58,8 +58,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010673098614}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -0.94741154, y: 0.01, z: -4.121112}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000010756055334}
@@ -91,7 +91,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: d1e62cd33fd544c4abbdcf1c24aa949d, type: 2}
+  - {fileID: 2100000, guid: de5c94dee69d0b6489e720247a4ce446, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -113,7 +113,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010673098614}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 3593e9dc8008748c5a69525f74a9435c, type: 3}
 --- !u!54 &54000013989896122
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -129,7 +129,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65000012557538806
+--- !u!65 &65000014019159028
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -139,8 +139,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.018659038, y: 0.02228076, z: 0.057965696}
+  m_Center: {x: 0, y: 0.0014812499, z: -0.017820138}
 --- !u!114 &114000010152016836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,12 +171,12 @@ MonoBehaviour:
   bodystate: {fileID: 0}
   bodyStats:
     health: 120
-    speed: 10
-    defense: 120
-    reprodRate: 10
-    power: 100
+    speed: 3
+    defense: 100
+    reprodRate: 30
+    power: 60
     delay: 0
-    level: 0
+    level: 4
   healthSlider: {fileID: 0}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
   dna: {fileID: 1000010673098614}
   shotSpawn: {fileID: 0}
   points: 5
-  lifespan_in_seconds: 60
+  lifespan_in_seconds: 80
 --- !u!114 &114000014185475994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -205,7 +205,7 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010673098614}
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.02
   m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
@@ -214,8 +214,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0.5
+  m_Height: 0.02
+  m_BaseOffset: 0.01
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
 --- !u!198 &198000010618811996

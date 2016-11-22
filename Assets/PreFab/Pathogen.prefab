@@ -182,13 +182,13 @@ MonoBehaviour:
   gameController: {fileID: 0}
   bodystate: {fileID: 0}
   bodyStats:
-    health: 100
-    speed: 2
-    defense: 100
+    health: 50
+    speed: 1
+    defense: 25
     reprodRate: 20
-    power: 100
+    power: 10
     delay: 0
-    level: 0
+    level: 1
   healthSlider: {fileID: 0}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
@@ -197,7 +197,7 @@ MonoBehaviour:
   dna: {fileID: 1000010252926252}
   shotSpawn: {fileID: 0}
   points: 1
-  lifespan_in_seconds: 10
+  lifespan_in_seconds: 40
 --- !u!195 &195000012022042184
 NavMeshAgent:
   m_ObjectHideFlags: 1
