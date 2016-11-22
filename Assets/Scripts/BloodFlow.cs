@@ -10,6 +10,7 @@ public class BloodFlow : MonoBehaviour {
 	private string myMission;
 	private string myTempMission;
 	private string dest;
+	private string bind;
 	private IEnumerator coroutine;
 	private IEnumerator coroutine2;
 	private IEnumerator coroutine3;
@@ -69,6 +70,10 @@ public class BloodFlow : MonoBehaviour {
 			}
 			yield return new WaitForSeconds (0.1f);
 		}
+	}
+
+	public void bindTo(string location){
+
 	}
 
 	public void startPlayer(){
