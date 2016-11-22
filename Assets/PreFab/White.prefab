@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f7433047ea22d47a06bb749f314e28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePerShot: 60
+  damagePerShot: 40
   timeBetweenBullets: 0.15
   range: 100
 --- !u!114 &114000013960455638
@@ -3986,7 +3986,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 0
-  randomSeed: 1774214341
+  randomSeed: 839088737
   InitialModule:
     serializedVersion: 2
     enabled: 1
