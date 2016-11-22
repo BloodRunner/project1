@@ -168,7 +168,7 @@ public abstract class OrganController : BodyController {
 		} else {
 			GameObject[] cells = GameObject.FindGameObjectsWithTag ("Host");
 			for (int i = 0; i < cells.Length; i++) {
-				if(cells[i].name == "White"){
+				if(cells[i].name == "White" || cells[i].name == "KillerT"){
 					if(cells[i].GetComponent<CameraChange>().getIsOn()){
 						cells [i].GetComponent<BloodFlow> ().stopPlayer ();
 						cells[i].GetComponent<BloodFlow>().setMyMission(GameObject.Find ("GameController").GetComponent<BloodFlowController>().names[missions[0]-1][0]);
