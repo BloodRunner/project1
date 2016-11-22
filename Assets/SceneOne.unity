@@ -5288,7 +5288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e70580e5cf494a67bab0582a11b3202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myname: Lung
+  myname: lung1
   gameController: {fileID: 586731041}
   bodystate: {fileID: 26343561}
   bodyStats:
@@ -6229,7 +6229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e70580e5cf494a67bab0582a11b3202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myname: Lung
+  myname: lung2
   gameController: {fileID: 586731041}
   bodystate: {fileID: 26343561}
   bodyStats:
@@ -7633,7 +7633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50372a678e07406998aec4a6be464ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myname: Stomach
+  myname: stomach
   gameController: {fileID: 586731041}
   bodystate: {fileID: 26343561}
   bodyStats:
@@ -8539,7 +8539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4409579e1024923926865c8f75c8a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myname: RightKidney
+  myname: kidney1
   gameController: {fileID: 586731041}
   bodystate: {fileID: 26343561}
   bodyStats:
@@ -8852,7 +8852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 635e91711e6114a62be1c488af65e681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myname: Liver
+  myname: liver
   gameController: {fileID: 586731041}
   bodystate: {fileID: 26343561}
   bodyStats:
@@ -9125,7 +9125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a853cbbc73ef46a8be3ca43287acb0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myname: Heart
+  myname: heart
   gameController: {fileID: 586731041}
   bodystate: {fileID: 26343561}
   bodyStats:
@@ -10261,7 +10261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b2b50e07f50148eb85300d6b22083c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myname: Brain
+  myname: brain
   gameController: {fileID: 0}
   bodystate: {fileID: 0}
   bodyStats:
@@ -14120,7 +14120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156c657164d644e87bbc4d55787a98d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myname: 
+  myname: thymus
   gameController: {fileID: 586731041}
   bodystate: {fileID: 26343561}
   bodyStats:
@@ -14658,7 +14658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4409579e1024923926865c8f75c8a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myname: Left Kidney
+  myname: kidney2
   gameController: {fileID: 586731041}
   bodystate: {fileID: 26343561}
   bodyStats:

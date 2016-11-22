@@ -178,6 +178,8 @@ public abstract class OrganController : BodyController {
 					if(cells[i].GetComponent<CameraChange>().getIsOn()){
 						cells [i].GetComponent<BloodFlow> ().stopPlayer ();
 						cells[i].GetComponent<BloodFlow>().setMyMission(GameObject.Find ("GameController").GetComponent<BloodFlowController>().names[missions[0]-1][0]);
+						cells [i].GetComponent<BloodFlow> ().bindTo (this.myname);
+						print (this.myname);
 						break;
 					}
 				}

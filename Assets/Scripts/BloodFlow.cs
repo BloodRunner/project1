@@ -11,11 +11,13 @@ public class BloodFlow : MonoBehaviour {
 	private string myTempMission;
 	private string dest;
 	private string bind;
+	private bool isBound;
 	private IEnumerator coroutine;
 	private IEnumerator coroutine2;
 	private IEnumerator coroutine3;
 
 	void Start(){
+		isBound = false;
 		detectionRange = 10;
 		bfctrl = GameObject.Find ("GameController").GetComponent<BloodFlowController> ();
 		agent = GetComponent<NavMeshAgent> ();
@@ -50,8 +52,12 @@ public class BloodFlow : MonoBehaviour {
 		while (true) {
 			yield return new WaitForSeconds (0.1f);
 			if (agent.remainingDistance < 0.8f) {
-				dest = bfctrl.GetNext (dest,myMission);
-				agent.destination = GameObject.Find (dest).transform.position;
+				if (isBound && dest == bind) {
+					StopCoroutine (patrol ());
+				} else {
+					dest = bfctrl.GetNext (dest, myMission);
+					agent.destination = GameObject.Find (dest).transform.position;
+				}
 			}
 		}
 	}
@@ -73,7 +79,13 @@ public class BloodFlow : MonoBehaviour {
 	}
 
 	public void bindTo(string location){
-
+		if (isBound == false) {
+			isBound = true;
+			bind = location;
+		} else {
+			isBound = false;
+			StartCoroutine (patrol());
+		}
 	}
 
 	public void startPlayer(){
