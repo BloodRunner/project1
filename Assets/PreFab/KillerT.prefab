@@ -83,7 +83,7 @@ GameObject:
   - 114: {fileID: 114000011485861088}
   - 114: {fileID: 114000010212890566}
   - 108: {fileID: 108000012187368580}
-  - 64: {fileID: 64000010710874366}
+  - 135: {fileID: 135000011083179718}
   m_Layer: 11
   m_Name: KillerT
   m_TagString: Host
@@ -110,10 +110,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014059620062}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0, y: 0.156, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.82, y: 0.8, z: 0.31}
   m_LocalScale: {x: 30, y: 30, z: 30}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000014256127460}
   - {fileID: 4000013493811962}
@@ -195,20 +195,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
---- !u!64 &64000010710874366
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014059620062}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_Mesh: {fileID: 4300000, guid: 181e301db9dec4834b8cd9a2291df36f, type: 3}
 --- !u!108 &108000012187368580
 Light:
   m_ObjectHideFlags: 1
@@ -307,7 +295,6 @@ MonoBehaviour:
   topCamera: {fileID: 0}
   followCamera: {fileID: 0}
   highlightPLayer: {fileID: 0}
-  zoom: 0
 --- !u!114 &114000013775391344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -319,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c949f91f46613479f99c9d3ebea9ee76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myname: WhiteT
+  myname: KillerT
   gameController: {fileID: 0}
   bodystate: {fileID: 0}
   bodyStats:
@@ -352,6 +339,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.14
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135000011083179718
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014059620062}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.006480435
+  m_Center: {x: 0.0006422901, y: -0.004416145, z: -0.0018678447}
 --- !u!135 &135000013900389362
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -362,8 +361,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.03
-  m_Center: {x: 0, y: -0.05, z: 0}
+  m_Radius: 0.04
+  m_Center: {x: 0, y: 0.06, z: 0}
 --- !u!195 &195000012287291226
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -381,7 +380,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.01
-  m_BaseOffset: -0.004
+  m_BaseOffset: 0.009
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!198 &198000010600444810

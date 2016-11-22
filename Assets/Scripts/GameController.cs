@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 	
 public class GameController : MonoBehaviour {
-	public float pressure;
 	public RedController Red;
 	public WhiteController White;
 	public WhiteController killerT;
@@ -42,7 +41,6 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//msgbd = new MessageBoard ();
-		pressure = 1;
 		score = 0;
 		UpdateScore (0);
 		gameOver = false;
@@ -272,8 +270,7 @@ public class GameController : MonoBehaviour {
 	public void quitGame(){
 		Application.Quit ();
 	}
-
-
+		
 	public void showRestartButton(){
 		restartButton.enabled = true;
 	}

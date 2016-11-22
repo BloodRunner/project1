@@ -8,7 +8,8 @@ public class CameraChange : MonoBehaviour {
 	public Camera topCamera; 
 	public Camera followCamera;
 	public Light highlightPLayer;
-	public float zoom;
+	private float zoom;
+	private bool isOn;
 
 	void OnMouseDown(){
 		startFollow ();
@@ -31,6 +32,7 @@ public class CameraChange : MonoBehaviour {
 	}
 
 	void Start(){
+		isOn = false;
 		zoom = 3f;
 		coroutine = followThis ();
 		topCamera = GameObject.Find ("topCamera").GetComponent<Camera>();
@@ -50,6 +52,7 @@ public class CameraChange : MonoBehaviour {
 		followCamera.enabled = false;
 		topCamera.enabled = true;
 		highlightPLayer.enabled = false;
+		isOn = false;
 		Camera.SetupCurrent (topCamera);
 		this.GetComponent<BloodFlow> ().stopPlayer ();
 		this.GetComponent<PlayerMovement> ().enabled = false;
@@ -74,6 +77,7 @@ public class CameraChange : MonoBehaviour {
 		topCamera.enabled = false;
 		followCamera.enabled = true;
 		highlightPLayer.enabled = true;
+		isOn = true;
 		Camera.SetupCurrent (followCamera);
 		this.GetComponent<BloodFlow> ().startPlayer ();
 		StartCoroutine (coroutine);
@@ -93,5 +97,9 @@ public class CameraChange : MonoBehaviour {
 		} else {
 			highlightPLayer.range = 0.3f;
 		}
+	}
+
+	public bool getIsOn(){
+		return isOn;
 	}
 }

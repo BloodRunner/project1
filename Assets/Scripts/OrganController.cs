@@ -4,8 +4,11 @@ using System.Collections;
 // Tag = Host
 // Name = organ name
 public abstract class OrganController : BodyController {
+	public int[] missions;
+	public BloodFlowController bfctrl;
 	public Rigidbody rb;
 	public int mask;
+	private Camera followerCamera;
 	//public GameObject shot;
 	protected bool isSpawner=false;
 
@@ -15,6 +18,8 @@ public abstract class OrganController : BodyController {
 	private float nextOxygenDepletion=0f;
 
 	void Start() {
+		bfctrl = GameObject.Find ("GameController").GetComponent<BloodFlowController> ();
+		followerCamera = GameObject.Find ("followCamera").GetComponent<Camera>();
 		rb = GetComponent<Rigidbody>();
 		nextOxygenDepletion = Time.time;
 		if (gameController==null)
@@ -158,6 +163,21 @@ public abstract class OrganController : BodyController {
 
 	/* Call the closest white cell to come help */
 	public void callForSupport() {
+		if (followerCamera.enabled == false) {
+			bfctrl.makeMission (missions);
+		} else {
+			GameObject[] cells = GameObject.FindGameObjectsWithTag ("Host");
+			for (int i = 0; i < cells.Length; i++) {
+				if(cells[i].name == "White"){
+					if(cells[i].GetComponent<CameraChange>().getIsOn()){
+						cells [i].GetComponent<BloodFlow> ().stopPlayer ();
+						cells[i].GetComponent<BloodFlow>().setMyMission(GameObject.Find ("GameController").GetComponent<BloodFlowController>().names[missions[0]-1][0]);
+						break;
+					}
+				}
+			}
+		}
+
 		Debug.Log (name + " needs backup");
 	}
 		

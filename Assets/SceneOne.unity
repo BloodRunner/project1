@@ -1303,7 +1303,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 145505875}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.24, y: 0, z: -8.11}
+  m_LocalPosition: {x: -5.02, y: 0, z: -5.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -3048,6 +3048,11 @@ Prefab:
       propertyPath: bfctrl
       value: 
       objectReference: {fileID: 586731043}
+    - target: {fileID: 135000010963587496, guid: 097d8260137bcfa4b9ac9900d3763db9,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 097d8260137bcfa4b9ac9900d3763db9, type: 2}
   m_IsPrefabParent: 0
@@ -5068,7 +5073,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f2527ca765e4b96a0ad9aa46972ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pressure: 1
   Red: {fileID: 114000012034875094, guid: 00da4319f9d464611a11f54b6b0d2d12, type: 2}
   White: {fileID: 104914902}
   killerT: {fileID: 679119503}
@@ -5298,6 +5302,8 @@ MonoBehaviour:
   healthSlider: {fileID: 1041671643}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
+  missions: 03000000040000000200000001000000
+  bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 2
   otherLung: {fileID: 750595185}
@@ -5568,7 +5574,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013138343054, guid: af977642cecbecf43a1f5c040cacebca, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.156
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4000013138343054, guid: af977642cecbecf43a1f5c040cacebca, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5584,11 +5590,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013138343054, guid: af977642cecbecf43a1f5c040cacebca, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000013138343054, guid: af977642cecbecf43a1f5c040cacebca, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000013138343054, guid: af977642cecbecf43a1f5c040cacebca, type: 2}
       propertyPath: m_RootOrder
@@ -6237,6 +6243,8 @@ MonoBehaviour:
   healthSlider: {fileID: 913656388}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
+  missions: 03000000040000000200000001000000
+  bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 2
   otherLung: {fileID: 627567539}
@@ -7639,6 +7647,8 @@ MonoBehaviour:
   healthSlider: {fileID: 440213448}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
+  missions: 03000000040000000200000001000000
+  bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 32
 --- !u!1001 &929305967
@@ -8543,6 +8553,8 @@ MonoBehaviour:
   healthSlider: {fileID: 268853082}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
+  missions: 04000000030000000200000001000000
+  bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 64
   otherKidney: {fileID: 1964585331}
@@ -8854,6 +8866,8 @@ MonoBehaviour:
   healthSlider: {fileID: 849975314}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
+  missions: 03000000040000000200000001000000
+  bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 16
 --- !u!1 &1085322715
@@ -9125,6 +9139,8 @@ MonoBehaviour:
   healthSlider: {fileID: 2010161401}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
+  missions: 03000000040000000200000001000000
+  bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 8
 --- !u!65 &1132965346
@@ -10259,6 +10275,8 @@ MonoBehaviour:
   healthSlider: {fileID: 1673508914}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
+  missions: 01000000030000000400000002000000
+  bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 1
 --- !u!1 &1334105533
@@ -14116,6 +14134,8 @@ MonoBehaviour:
   healthSlider: {fileID: 95148687}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
+  missions: 02000000030000000400000001000000
+  bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 4
 --- !u!1 &1916174890
@@ -14613,7 +14633,8 @@ Prefab:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 95000011427564276, guid: fd3cf63a555722f4fbc2ceaa2aaa1630, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: fd3cf63a555722f4fbc2ceaa2aaa1630, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1964585329 stripped
@@ -14651,6 +14672,8 @@ MonoBehaviour:
   healthSlider: {fileID: 1134425801}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
+  missions: 04000000030000000200000001000000
+  bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 64
   otherKidney: {fileID: 1026885882}

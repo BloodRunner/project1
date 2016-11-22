@@ -79,6 +79,7 @@ GameObject:
   - 114: {fileID: 114000010427829444}
   - 108: {fileID: 108000011889966224}
   - 136: {fileID: 136000010505779100}
+  - 114: {fileID: 114000011319614932}
   m_Layer: 11
   m_Name: White
   m_TagString: Host
@@ -301,7 +302,6 @@ MonoBehaviour:
   topCamera: {fileID: 0}
   followCamera: {fileID: 0}
   highlightPLayer: {fileID: 0}
-  zoom: 0
 --- !u!114 &114000010427829444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -314,6 +314,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bfctrl: {fileID: 0}
+--- !u!114 &114000011319614932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011914900912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8b06ce0d3b8ce545bb80e3da9947002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011373072574
 MonoBehaviour:
   m_ObjectHideFlags: 1

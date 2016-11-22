@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class BloodFlowController : MonoBehaviour {
 
 	public Hashtable flowPoints;
-	private GameObject[] waypoints;
+	//private GameObject[] waypoints;
 	public string[][] names = new string[][]{
 		new string[]{"mission1", "heart1","lung1","lung2", "heart2", "inter1","inter2","inter3","brain","inter5","hometrip"},
 		new string[]{"mission2", "heart1","lung1","lung2", "heart2", "inter1","inter2","beforethymus","thymus","afterthymus","inter4","hometrip"},
@@ -19,7 +19,7 @@ public class BloodFlowController : MonoBehaviour {
 	private float random;
 	// Use this for initialization
 	void Awake () {
-		waypoints = GameObject.FindGameObjectsWithTag ("waypoints");
+		//waypoints = GameObject.FindGameObjectsWithTag ("waypoints");
 		flowPoints = new Hashtable();
 		//initializeWaypoints ();
 	}
@@ -43,6 +43,26 @@ public class BloodFlowController : MonoBehaviour {
 			}
 		}
 		return names [0] [1];
+	}
+
+	public void makeMission(int[] order){
+		GameObject[] cells = GameObject.FindGameObjectsWithTag ("Host");
+		for (int i = 1; i < order.Length; i++) {
+			for (int x = names[order[i]-1].Length-1; x > 1; x--) {
+				for (int z = 0; z < cells.Length; z++) {
+					if(cells[z].name == "White"){
+						if (cells [z].GetComponent<BloodFlow> ().getMyMission () == names [order[i]-1][0]) {
+							if(cells[z].GetComponent<BloodFlow> ().getMyDest() == names [order[i]-1][x]){
+								cells [z].GetComponent<BloodFlow> ().setMyMission (names [order[0]-1][0]);
+								cells [z].GetComponent<PingCell> ().PingIt ();
+								print ("Pinged!!!!");
+								return;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	/*private void initializeWaypoints(){

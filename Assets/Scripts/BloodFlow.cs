@@ -79,6 +79,15 @@ public class BloodFlow : MonoBehaviour {
 		StopCoroutine (coroutine2);
 	}
 
+	public string getMyMission(){
+		return myMission;
+	}
+	public string getMyDest(){
+		return dest;
+	}
+	public void setMyMission(string setTo){
+		myMission = setTo;
+	}
 
 
 	/*private string dest;
