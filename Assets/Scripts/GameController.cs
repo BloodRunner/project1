@@ -201,7 +201,7 @@ public class GameController : MonoBehaviour {
 				Debug.Log ("Winnable now " + level);
 				break;
 			}
-			yield return new WaitForSeconds (waveWait);
+			//yield return new WaitForSeconds (waveWait);
 		}
 		winnable = true;
 		Debug.Log ("Winnable now " + level);
