@@ -201,7 +201,7 @@ MonoBehaviour:
   bodyStats:
     health: 50
     speed: 1
-    defense: 25
+    defense: 50
     reprodRate: 20
     power: 90
     delay: 0

@@ -179,7 +179,7 @@ MonoBehaviour:
     health: 75
     speed: 2
     defense: 50
-    reprodRate: 20
+    reprodRate: 10
     power: 30
     delay: 0
     level: 2
@@ -238,7 +238,7 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011188485604}
   m_Enabled: 1
-  m_Radius: 0.03216271
+  m_Radius: 0.025
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
