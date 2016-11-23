@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour {
 	//MessageBoard msgbd = new MessageBoard ();
 	OrganController[] all_organs;
 	float timer; // timer to limit the UI tally update
+	bool winnable= false;
 
 
 	// Use this for initialization
@@ -128,6 +129,15 @@ public class GameController : MonoBehaviour {
 		instructionText.text = "";
 	}
 
+	public bool checkForVictory(){
+		//All pathogens are dead
+		if (winnable) {
+			if (!gameOver &&  numInfection () == 0)
+				return true;
+		}
+		return false;
+	}
+
 	// Coroutine
 	IEnumerator SpawnWaves() {
 		yield return new WaitForSeconds (startWait);
@@ -173,7 +183,9 @@ public class GameController : MonoBehaviour {
 			if (level < 5) {// increase in difficulty
 				level++;
 			} else {
-				infectionCount += 5;
+				winnable = true;
+				break;
+				//infectionCount += 5;
 			}
 			yield return new WaitForSeconds (waveWait);
 		}
@@ -232,6 +244,7 @@ public class GameController : MonoBehaviour {
 		if (timer >= 2) {//  - count chars every 2 seconds
 			//characterCount.text = "Ally Count:\nRed Blood Cells:\nWhite Blood Cells:\nEnemy Count:\nBacteria:\nVirus:\nPrion:\nParasite:\nZika";
 			tallyCharacters ();
+			checkForVictory ();
 		}
 	}
 
