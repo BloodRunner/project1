@@ -281,7 +281,7 @@ public class GameController : MonoBehaviour {
 
 	public void showMessage(string message, int seconds) {	
 		//msgbd.addMessage (message);	
-		if (gameoverText)
+		if (messageText)
 			StartCoroutine( timedMessage (message, seconds));
 	}
 
