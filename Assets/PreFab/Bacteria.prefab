@@ -43,8 +43,8 @@ GameObject:
   - 114: {fileID: 114000011371561104}
   - 114: {fileID: 114000012461652660}
   - 114: {fileID: 114000012131816602}
-  - 136: {fileID: 136000012273477888}
   - 195: {fileID: 195000012797837178}
+  - 65: {fileID: 65000013514793290}
   m_Layer: 9
   m_Name: Bacteria
   m_TagString: Infection
@@ -59,7 +59,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011188485604}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: -0.614, y: 1, z: -3.528}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -130,6 +130,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65000013514793290
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011188485604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.018659038, y: 0.02228076, z: 0.057965696}
+  m_Center: {x: 0, y: 0.0014812499, z: -0.017820138}
 --- !u!114 &114000010408014658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -218,19 +230,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bfctrl: {fileID: 0}
---- !u!136 &136000012273477888
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011188485604}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.028982848
-  m_Height: 0.02228076
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.0014812499, z: -0.017820138}
 --- !u!195 &195000012797837178
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -238,7 +237,7 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011188485604}
   m_Enabled: 1
-  m_Radius: 0.03216271
+  m_Radius: 0.015
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50

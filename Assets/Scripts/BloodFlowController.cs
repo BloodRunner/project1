@@ -10,7 +10,7 @@ public class BloodFlowController : MonoBehaviour {
 		new string[]{"mission1", "heart1","lung1","lung2", "heart2", "inter1","inter2","inter3","brain","inter5","hometrip"},
 		new string[]{"mission2", "heart1","lung1","lung2", "heart2", "inter1","inter2","beforethymus","thymus","afterthymus","inter4","hometrip"},
 		new string[]{"mission3", "heart1","lung1","lung2", "heart2", "inter1","stomach","liver","hometrip"},
-		new string[]{"mission4", "heart1","lung1","lung2", "heart2", "inter1","stomach","kidney1","kidney2","hometrip"}
+		new string[]{"mission4", "heart1","lung1","lung2", "heart2", "inter1","stomach","kidney1","kidney2","liver","hometrip"}
 	};
 	private Vector3[][] targetWaypoints;
 	private string wayp;
