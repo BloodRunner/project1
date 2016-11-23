@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44424954, g: 0.48717016, b: 0.53831226, a: 1}
+  m_IndirectSpecularColor: {r: 0.44424966, g: 0.48717022, b: 0.5383123, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -5237,25 +5237,30 @@ MonoBehaviour:
   - "Your mission is to protect your penguin\u2019s organs from being taken over by
     pathogens. "
   - 'Your army is made of white blood cells and they await your command. '
-  - 'Use your mouse to click on white blood cells to zoom in to follow a white blood
-    cell. '
-  - 'Use W,A,S,D keys to direct them toward pathogens. '
-  - Use mouse scroller to zoom in and out.
-  - Press spacebar to zoom out.
-  - Left click mouse to shoot pathogens.
-  - Check your organ health stats meters at the top right.
-  - Click on any organ name to view that organ and also call white blood cells there
-  - Kill 20 pathogen cells, and you get a Killer T Cell.
-  - Click on the Killer T Cell text in the UI to find and move it toward organs in
-    trouble.
-  - Plant your Killer T Cell inside an organ by pressing E
-  - This will protect an organ from invasion.
-  - Keep killing pathogens to get more Killer T Cells.
-  - 'Keep at least one kind of organ above 0 health to stay alive. '
-  - "Don\u2019t let an organ drop below 0 health, will become an infection spawner
-    and die!"
   - 'Organs regenerate when red blood cells pass through them - protect red blood
     cells! '
+  - 'Use your mouse to click on white blood cells to zoom in to follow a white blood
+    cell. '
+  - 'Use W,A,S,D keys to direct white blood cells toward pathogens. '
+  - 'Use mouse scroller to zoom in and out. '
+  - Press spacebar to see the whole map.
+  - Left click mouse to shoot pathogens.
+  - Check your organ health meters at the top right.
+  - "When zoomed out - click on any organ name to call the nearest white blood cells
+    there (they\u2019ll ping blue). "
+  - 'If following a white blood cell - click on an organ name to automatically direct
+    your white blood cell there. '
+  - When you survive a level, a Killer T Cell awaits your command.
+  - 'Killer T Cells emit antibodies that damage any nearby pathogens. '
+  - 'Click on the Killer T Cell to follow it and then click on an organ name to station
+    it there to protect the organ. '
+  - 'Killer T Cells glow green when selected and are headed toward an organ.  '
+  - "Killer T Cells glow white when they\u2019re not on a mission to protect an organ.
+    \  "
+  - 'Keep the Brain, Thymus, Heart, Stomach, Liver and at least one of the Kidneys
+    and Lungs above 0 health to stay alive. '
+  - "Don\u2019t let an organ drop below 0 health or it will become an infection spawner
+    and die! "
   instructionWait: 5
   bodystate: {fileID: 26343561}
   infectedOrgan: {fileID: 1964585330}
