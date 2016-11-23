@@ -37,15 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
-  m_IndirectSpecularColor: {r: 0.44424954, g: 0.48717016, b: 0.53831226, a: 1}
-=======
-  m_IndirectSpecularColor: {r: 0.44425064, g: 0.48716998, b: 0.53831214, a: 1}
->>>>>>> origin/WhyDoesTHisNotWork
-=======
   m_IndirectSpecularColor: {r: 0.44424966, g: 0.48717022, b: 0.5383123, a: 1}
->>>>>>> parent of 6e5f83c... Bacteria move slightly better
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
