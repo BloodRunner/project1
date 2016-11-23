@@ -149,7 +149,7 @@ public class GameController : MonoBehaviour {
 		yield return new WaitForSeconds (startWait);
 		CellController cell;
 		int level = 0;
-		const int numlevels = 1;
+		const int numlevels = 5;
 		while(true) {
 			if (level >= numlevels)
 				break;
@@ -195,7 +195,6 @@ public class GameController : MonoBehaviour {
 				winnable = true;
 				Debug.Log ("Winnable now " + level);
 				break;
-				//infectionCount += 5;
 			}
 			yield return new WaitForSeconds (waveWait);
 		}
