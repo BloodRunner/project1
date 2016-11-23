@@ -369,7 +369,7 @@ MonoBehaviour:
     health: 80
     speed: 7
     defense: 80
-    reprodRate: 6
+    reprodRate: 12
     power: 60
     delay: 0
     level: 0

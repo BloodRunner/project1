@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44424954, g: 0.48717016, b: 0.53831226, a: 1}
+  m_IndirectSpecularColor: {r: 0.44424966, g: 0.48717022, b: 0.5383123, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -5269,7 +5269,7 @@ MonoBehaviour:
   whiteCount: 3
   spawnWait: 5
   startWait: 5
-  waveWait: 100
+  waveWait: 60
   healthText: {fileID: 1775964931}
   characterCount: {fileID: 2025294910}
   instructionText: {fileID: 2146241160}
