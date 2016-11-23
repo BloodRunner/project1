@@ -51,7 +51,7 @@ public class BloodFlow : MonoBehaviour {
 	public IEnumerator patrol(){
 		while (true) {
 			yield return new WaitForSeconds (0.1f);
-			if (agent.remainingDistance < 0.3f) {
+			if (agent.remainingDistance < 0.8f) {
 				if (isBound && dest == bind) {
 					agent.destination = GameObject.Find (dest).transform.position;
 				} else {

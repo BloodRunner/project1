@@ -17,7 +17,7 @@ public class AttackCell : MonoBehaviour {
 	void Start () {
 		hasTarget = false;
 		target = null;
-		range = 1f;
+		range = 2f;
 		speed = 1f;
 		coroutine = Hunting ();
 		StartCoroutine (coroutine);
