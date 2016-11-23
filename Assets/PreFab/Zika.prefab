@@ -146,11 +146,11 @@ MonoBehaviour:
   bodyStats:
     health: 150
     speed: 10
-    defense: 150
-    reprodRate: 8
-    power: 120
+    defense: 125
+    reprodRate: 30
+    power: 100
     delay: 0
-    level: 0
+    level: 5
   healthSlider: {fileID: 0}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
