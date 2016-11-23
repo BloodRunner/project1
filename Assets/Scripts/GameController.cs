@@ -113,9 +113,11 @@ public class GameController : MonoBehaviour {
 	}
 
 	public int numInfection() {
-		GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("Infection") as GameObject[];
-		Debug.Log(objectsWithTag.Length);
-		return objectsWithTag.Length;
+		//GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("Infection") as GameObject[];
+		//Debug.Log(" Number of infection cells "+ objectsWithTag.Length);
+		CellController[] cells = GameObject.FindObjectsOfType (typeof(PathogenController)) as PathogenController[];
+		Debug.Log(" Number of infection cells "+ cells.Length);
+		return cells.Length;
 	}
 
 	// Coroutine
@@ -132,8 +134,12 @@ public class GameController : MonoBehaviour {
 	public bool checkForVictory(){
 		//All pathogens are dead
 		if (winnable) {
-			if (!gameOver &&  numInfection () == 0)
+			if (!gameOver && numInfection () == 0) {
+				gameOver = true;
+				if (gameoverText)
+					gameoverText.text = "You have won! All pathogens are eliminated!";
 				return true;
+			}
 		}
 		return false;
 	}
@@ -143,7 +149,10 @@ public class GameController : MonoBehaviour {
 		yield return new WaitForSeconds (startWait);
 		CellController cell;
 		int level = 0;
+		const int numlevels = 1;
 		while(true) {
+			if (level >= numlevels)
+				break;
 			PathogenController cc = infections [level];
 			Debug.Log ("Spawnwave level="+level+" "+ cc.name +" "+ infectionCount);
 			showMessage ("Level "+ (level+1) +": " + infectionCount + cc.name + " are coming out from "+ infectedOrgan.name , 5);
@@ -180,15 +189,18 @@ public class GameController : MonoBehaviour {
 				}
 				break;
 			}
-			if (level < 5) {// increase in difficulty
+			if (level < numlevels) {// increase in difficulty
 				level++;
 			} else {
 				winnable = true;
+				Debug.Log ("Winnable now " + level);
 				break;
 				//infectionCount += 5;
 			}
 			yield return new WaitForSeconds (waveWait);
 		}
+		winnable = true;
+		Debug.Log ("Winnable now " + level);
 	}
 
 	public void setUpDefence(int redCount, int whiteCount, Vector3 location){
@@ -254,6 +266,7 @@ public class GameController : MonoBehaviour {
 		if (scoreText!=null)
 			scoreText.text = "Score:" + score;
 	}
+
 	public void GameOver() {
 		gameOver = true;
 		if (gameoverText)
