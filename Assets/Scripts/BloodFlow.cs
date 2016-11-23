@@ -53,7 +53,7 @@ public class BloodFlow : MonoBehaviour {
 			yield return new WaitForSeconds (0.1f);
 			if (agent.remainingDistance < 0.8f) {
 				if (isBound && dest == bind) {
-					StopCoroutine (patrol ());
+					agent.destination = GameObject.Find (dest).transform.position;
 				} else {
 					dest = bfctrl.GetNext (dest, myMission);
 					agent.destination = GameObject.Find (dest).transform.position;
@@ -82,8 +82,10 @@ public class BloodFlow : MonoBehaviour {
 		if (isBound == false) {
 			isBound = true;
 			bind = location;
+			this.gameObject.GetComponent<Light> ().color = Color.green;
 		} else {
 			isBound = false;
+			this.gameObject.GetComponent<Light> ().color = Color.white;
 			StartCoroutine (patrol());
 		}
 	}
