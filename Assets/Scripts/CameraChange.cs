@@ -45,6 +45,7 @@ public class CameraChange : MonoBehaviour {
 	}
 
 	void Start(){
+		this.gameObject.GetComponent<PlayerMovement> ().enabled = false;
 		isOn = false;
 		zoom = 3f;
 		coroutine = followThis ();

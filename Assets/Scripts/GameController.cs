@@ -156,6 +156,11 @@ public class GameController : MonoBehaviour {
 			PathogenController cc = infections [level];
 			Debug.Log ("Spawnwave level="+level+" "+ cc.name +" "+ infectionCount);
 			showMessage ("Level "+ (level+1) +": " + infectionCount + cc.name + " are coming out from "+ infectedOrgan.name , 5);
+			//stopgap killerT cell spawning
+			if(level > 1){
+				spawnKillerT (1);
+			}
+
 			for (int i = 0; i < infectionCount; i++) {
 				// Instantiate at infection point in organs!
 				cell = Instantiate (cc, infectedOrgan.transform.position, Quaternion.identity) as PathogenController;
@@ -222,8 +227,9 @@ public class GameController : MonoBehaviour {
 	public void spawnKillerT(int count) {
 	Quaternion spawnRotation = Quaternion.identity;
 	CellController cell;
+	//Stopgap measure
 	for (int i = 0; i < count; i++) {
-			cell = Instantiate (killerT, infectedOrgan.transform.position, spawnRotation) as WhiteController;
+			cell = Instantiate (killerT, GameObject.Find("thymus").transform.position, spawnRotation) as WhiteController;
 		cell.bodystate = this.bodystate;
 		cell.gameController = this;
 	}

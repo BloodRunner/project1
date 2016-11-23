@@ -19,6 +19,7 @@ public class BloodFlow : MonoBehaviour {
 	void Start(){
 		isBound = false;
 		detectionRange = 10;
+
 		bfctrl = GameObject.Find ("GameController").GetComponent<BloodFlowController> ();
 		agent = GetComponent<NavMeshAgent> ();
 		coroutine2 = playerChoice();
