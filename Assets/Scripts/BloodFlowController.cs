@@ -48,7 +48,7 @@ public class BloodFlowController : MonoBehaviour {
 	public void makeMission(int[] order){
 		GameObject[] cells = GameObject.FindGameObjectsWithTag ("Host");
 		for (int i = 1; i < order.Length; i++) {
-			for (int x = names[order[i]-1].Length-1; x > 1; x--) {
+			for (int x = names[order[i]-1].Length-1; x > 0; x--) {
 				for (int z = 0; z < cells.Length; z++) {
 					if(cells[z].name == "White"){
 						if (cells [z].GetComponent<BloodFlow> ().getMyMission () == names [order[i]-1][0]) {
