@@ -4,13 +4,13 @@
     <Files>
       <File FileName="Assets\Scripts\secretMission.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\OrganController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BloodFlow.cs" Line="54" Column="43" />
+      <File FileName="Assets\Scripts\BloodFlow.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\BloodFlowController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PingCell.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\HoverHighlight.cs" Line="24" Column="36" />
-      <File FileName="Assets\Scripts\CameraChange.cs" Line="114" Column="5" />
+      <File FileName="Assets\Scripts\HoverHighlight.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CameraChange.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GameController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Shooter.cs" Line="16" Column="89" />
+      <File FileName="Assets\Scripts\Shooter.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PlayerBonuses.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CellController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\BodyState.cs" Line="1" Column="1" />
@@ -19,7 +19,7 @@
       <File FileName="Assets\Scripts\BodyController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\LungController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\NextWaypoint.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\HighlightController.cs" Line="78" Column="41" />
+      <File FileName="Assets\Scripts\HighlightController.cs" Line="21" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

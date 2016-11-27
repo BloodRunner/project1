@@ -15,30 +15,58 @@ public class HighlightController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		topCamera = GameObject.Find ("topCamera").GetComponent<Camera>();
-		coroutine = mouseHovering ();
+		//coroutine = mouseHovering ();
 		obj = GameObject.Find ("White");
 		objOld  = GameObject.Find ("White");
-		StartCoroutine (coroutine);
+		//StartCoroutine (coroutine);
 		started = true;
 		}
 	
 	// Update is called once per frame
 	void Update () {
 		if (GameObject.Find ("topCamera").GetComponent<Camera>().enabled == true) {
-			if (started == false) {
-				StartCoroutine (coroutine);
+			mouse = new Vector3 (Input.mousePosition.x,Input.mousePosition.y,20.3f );
+			worldPoint = topCamera.ScreenToWorldPoint (mouse);
+			worldPoint = new Vector3 (worldPoint.x, 0.0f, worldPoint.z);
+			print (worldPoint.ToString ());
+			Collider[] search = Physics.OverlapSphere (worldPoint, 3f);
+			print (search.Length);
+			range = 3;
+			objOld = obj;
+			if (search.Length > 0) {
+				for (int i = 0; i < search.Length; i++) {
+					obj = search [i].gameObject;
+					if (obj.name == "White" || obj.name == "KillerT") {
+						if (Vector3.Distance (worldPoint, search [i].transform.position) < range) {
+							print ("Ping");
+							range = Vector3.Distance (worldPoint, search [i].transform.position);
+						}
+					}
+				}
+			}
+			print ("dob");
+			if (objOld.name == "White" || objOld.name == "KillerT") {
+				if (objOld != obj || Vector3.Distance (worldPoint, objOld.transform.position) > 3f) {
+					objOld.GetComponent<Light> ().range = 0.3f;
+					objOld.GetComponent<Light> ().enabled = false;
+					print ("rob");
+				}
+			}
+			if (obj.name == "White" || obj.name == "KillerT") {
+				if (Vector3.Distance (worldPoint, obj.transform.position) <= 3f) {
+					obj.GetComponent<Light> ().range = 3f;
+					obj.GetComponent<Light> ().enabled = true;
+					print ("sob");
+				}
 			}
 		} else {
-			if (started == true) {
-				StopCoroutine (coroutine);
-				started = false;
-			}
+
 		}
 		//print (started.ToString());
 		//print (GameObject.Find ("topCamera").GetComponent<Camera> ().enabled.ToString ());
 	}
 
-	public IEnumerator mouseHovering(){
+	/*public IEnumerator mouseHovering(){
 		while (true) {
 			started = true;
 			mouse = new Vector3 (Input.mousePosition.x,Input.mousePosition.y,20.3f );
@@ -77,5 +105,5 @@ public class HighlightController : MonoBehaviour {
 			}
 			yield return new WaitForSeconds (0.02f);
 		}
-	}
+	}*/
 }
