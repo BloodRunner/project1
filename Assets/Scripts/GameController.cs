@@ -37,11 +37,13 @@ public class GameController : MonoBehaviour {
 	OrganController[] all_organs;
 	float timer; // timer to limit the UI tally update
 	bool winnable= false;
+	float difficultyLevel=1;
 
 
 	// Use this for initialization
 	void Start () {
 		//msgbd = new MessageBoard ();
+		showRestartButton(0);
 		score = 0;
 		UpdateScore (0);
 		gameOver = false;
@@ -53,7 +55,6 @@ public class GameController : MonoBehaviour {
 		if (messageText)
 			messageText.text = "";
 		//healthText.text = "";
-		restartButton.enabled = false;
 		topCamera = GameObject.Find ("topCamera").GetComponent<Camera>();
 		followCamera = GameObject.Find ("followCamera").GetComponent<Camera>();
 		followCamera.enabled = false;
@@ -155,7 +156,7 @@ public class GameController : MonoBehaviour {
 				break;
 			PathogenController cc = infections [level];
 			Debug.Log ("Spawnwave level="+level+" "+ cc.name +" "+ infectionCount);
-			showMessage ("Level "+ (level+1) +": " + infectionCount + cc.name + " are coming out from "+ infectedOrgan.name , 5);
+			showMessage ("Level "+ (level+1) +": " + infectionCount +" "+  cc.name + " are coming out from "+ infectedOrgan.name , 5);
 			//stopgap killerT cell spawning
 			if(level > 1){
 				spawnKillerT (1);
@@ -173,7 +174,7 @@ public class GameController : MonoBehaviour {
 
 			foreach (OrganController organ in all_organs) {
 				if (organ.get_stats_health () <= 0) {
-					showMessage (infectionCount + cc.name + " are coming out from undead "+ organ.name +". Send some white blood cells to clear the infection", 5);
+					showMessage (infectionCount +" "+  cc.name + " are coming out from undead "+ organ.name +". Send some white blood cells to clear the infection", 5);
 
 					cell = Instantiate (cc, organ.transform.position, Quaternion.identity) as PathogenController;;
 					cell.bodystate = this.bodystate;
@@ -183,25 +184,21 @@ public class GameController : MonoBehaviour {
 			}
 			//Debug.Log ("gameover=" + gameOver);
 			if (gameOver) {
-				
 				restart = true;
 				try {
-					Button restartButton = GameObject.Find ("RestartButton").GetComponent<Button>() as Button;
-					restartButton.enabled = true;
+					showRestartButton(1);
 				} catch {
 					if (restartText)
 						restartText.text = "Press 'R' for Restart";
 				}
 				break;
-			}
-			if (level < numlevels) {// increase in difficulty
+			} else if (level < numlevels) {// increase in difficulty
 				level++;
+				yield return new WaitForSeconds (waveWait);
 			} else {
 				winnable = true;
-				Debug.Log ("Winnable now " + level);
 				break;
 			}
-			//yield return new WaitForSeconds (waveWait);
 		}
 		winnable = true;
 		Debug.Log ("Winnable now " + level);
@@ -237,6 +234,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void RestartGame() {
+		Debug.Log ("Restart Game ");
 		SceneManager.LoadSceneAsync (0);
 	}
 	
@@ -252,10 +250,9 @@ public class GameController : MonoBehaviour {
 		if (score > 0) {
 			if (killerT != null && killerT.points > 0) {
 				int count = (int) (score / killerT.points);
-				count -= killTcount;
-				spawnKillerT (count);
+				spawnKillerT (count - killTcount);
 				killTcount = count;
-				//msgbd.printMessages ();
+
 			}
 		}
 		if (timer >= 2) {//  - count chars every 2 seconds
@@ -276,7 +273,7 @@ public class GameController : MonoBehaviour {
 		gameOver = true;
 		if (gameoverText)
 			gameoverText.text = "Game Over";
-		//Instantiate(restartButton,Canvas
+		showRestartButton (1);
 	}
 
 	IEnumerator timedMessage(string message, int seconds) {
@@ -291,19 +288,58 @@ public class GameController : MonoBehaviour {
 			StartCoroutine( timedMessage (message, seconds));
 	}
 
+	public void showSettings(){
+		Debug.Log ("show settings");
+		//pauseGame ();
+	//	Button settingsButton = GameObject.Find ("settingsButton").GetComponent<Button> () as Button;
+		//settingsButton.GetComponent<Text>.text = "Save Settings";
+		GameObject panel = GameObject.Find ("settingsPanel");
+		CanvasGroup cg = panel.GetComponent<CanvasGroup> ();
+		bool on_off = cg.interactable; 
+		if (!on_off) { // Toggle interactable
+			cg.interactable = true;
+			cg.alpha = 1;
+		} else {
+			cg.interactable = false;
+			cg.alpha = 0;
+		}
+
+		//settingsButton.GetComponent<Text>.text = "Save Settings";
+	}
+
 	public void pauseGame(){
-		if (Time.timeScale == 0)
+		if (Time.timeScale == 0) {
 			Time.timeScale = 1;
-		else
+			AudioListener.pause = false;
+		} else {
 			Time.timeScale = 0;
+			AudioListener.pause = true;
+		}
+	}
+
+	public void ChangeAudioVolume(float volume){
+		AudioListener.volume = volume;
+	}
+
+	public void ChangeDifficultyLevel(float level){
+		difficultyLevel=level;
 	}
 
 	public void quitGame(){
 		Application.Quit ();
 	}
 		
-	public void showRestartButton(){
-		restartButton.enabled = true;
+	public void showRestartButton(int on_off){
+		Debug.Log ("show restart Button");
+		Button restartButton = GameObject.Find ("RestartButton").GetComponent<Button> () as Button;
+		CanvasGroup cg = restartButton.GetComponent<CanvasGroup> ();
+		if (on_off == 1) {
+			cg.interactable = true;
+			cg.alpha = 1;
+		} else {
+			cg.interactable = false;
+			cg.alpha = 0;
+		}
 	}
 
 }

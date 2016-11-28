@@ -182,11 +182,11 @@ MonoBehaviour:
   gameController: {fileID: 0}
   bodystate: {fileID: 0}
   bodyStats:
-    health: 50
+    health: 100
     speed: 1
-    defense: 25
-    reprodRate: 20
-    power: 10
+    defense: 100
+    reprodRate: 10
+    power: 100
     delay: 0
     level: 1
   healthSlider: {fileID: 0}

@@ -102,7 +102,7 @@ public class Shooter : MonoBehaviour {
 		timer = 0f;
 
 		// Play the gun shot audioclip.
-		//gunAudio.Play ();
+		gunAudio.Play ();
 		//Quaternion targetRotation = Quaternion.LookRotation(dir - transform.position);
 		//transform.rotation = targetRotation;
 
