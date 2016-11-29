@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityStandardAssets;
+//using UnityStandardAssets;
 
 public class Shooter : MonoBehaviour {
 	ParticleSystem weapon;
@@ -33,8 +33,11 @@ public class Shooter : MonoBehaviour {
 		gunParticles = GetComponent<ParticleSystem> ();
 		gunAudio = GetComponent<AudioSource> ();
 
-		gameObject.AddComponent<LineRenderer> ();
 		gunLine = GetComponent<LineRenderer> ();
+		if (gunLine == null) {
+			gameObject.AddComponent<LineRenderer> ();
+			gunLine = GetComponent<LineRenderer> ();
+		}
 		gunLine.material = new Material (Shader.Find ("Particles/Alpha Blended Premultiply"));
 		gunLine.SetWidth (0.1f, 0.1f);
 		gunLine.SetColors (Color.red, Color.yellow);
@@ -120,7 +123,7 @@ public class Shooter : MonoBehaviour {
 		if(Physics.Raycast (shootRay, out shootHit, range, shootableMask))
 		{
 			if (shootHit.collider.tag.Equals("Infection")) {
-				Debug.Log ("shot enemy " + shootHit.collider.name );
+			   //Debug.Log ("shot enemy " + shootHit.collider.name );
 			// Try and find the cell script on the gameobject hit.
 				CellController enemy = shootHit.collider.GetComponent <CellController> ();
 				if(enemy != null)

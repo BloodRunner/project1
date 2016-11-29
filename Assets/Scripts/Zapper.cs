@@ -12,7 +12,7 @@ public class Zapper : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		//Debug.Log(name+"-"+tag+" zapped "+ other.name+"="+other.tag);
 		if (other.tag.Equals("Infection")){
-			Debug.Log(name+"-"+tag+" zapped "+ other.name+"="+other.tag);
+			//Debug.Log(name+"-"+tag+" zapped "+ other.name+"="+other.tag);
 			CellController enemy = other.GetComponent <CellController> ();
 			if(enemy != null)
 				enemy.TakeDamage (damagePerZap, transform.position);

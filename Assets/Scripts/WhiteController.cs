@@ -64,14 +64,16 @@ public class WhiteController : CellController {
 
 	public override void updateHealthStats(float point){
 		base.updateHealthStats (point);
+		/*
 		if (is_player && healthSlider!=null)
 			healthSlider.value = stats_health * bodystate.whiteHealth();
+			*/
 	}
 
 	public override void updateDefenseStats(float point){
 		base.updateDefenseStats (point);
-		if (is_player && defenseSlider!=null)
-			defenseSlider.value = stats_defense * bodystate.whiteDefense();
+	//	if (is_player && defenseSlider!=null)
+	//		defenseSlider.value = stats_defense * bodystate.whiteDefense();
 	}
 
 	public void addShooter() {
@@ -90,12 +92,20 @@ public class WhiteController : CellController {
 
 	public void addStats(){
 		Debug.Log ("Adding stats to " + nickname + "." + tag);
+		gameController.showPlayerStats (this);
+		/*
 		is_player = true;
 		if (playerNameText != null)
 			playerNameText.text = nickname;
+			*/
 	}
 
 	public void removeStats(){
+		gameController.removePlayerStats ();
 		is_player = false;
+	}
+
+	public string getNickname(){
+		return nickname;
 	}
 }

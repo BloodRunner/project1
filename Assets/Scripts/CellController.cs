@@ -24,6 +24,7 @@ public class CellController :  BodyController{
 	private GameObject target; // for attackers
 	private Vector3 dest;
 	ParticleSystem hitParticles; // Death Indication
+	float birthtime;
 
 	void Awake() { 
 		rb = GetComponent<Rigidbody>();
@@ -38,6 +39,7 @@ public class CellController :  BodyController{
 			bodystate = GameObject.FindObjectOfType<BodyState> ();
 		if (lifespan_in_seconds == 0)
 			lifespan_in_seconds = 1200f;
+		birthtime = Time.time;
 		Destroy(gameObject, lifespan_in_seconds); // destroy objects automatically - cell death!
 		//Debug.Log("START nextReprod= "+ nextReprod +"{"+ reprodRate() +"}");
 		if (myname != null) name= myname;
@@ -47,6 +49,10 @@ public class CellController :  BodyController{
 		// Doesn't seem to filter!
 		//Physics.IgnoreLayerCollision(LayerMask.NameToLayer("HostCell"),LayerMask.NameToLayer("Walls"));
 		//Physics.IgnoreLayerCollision(LayerMask.NameToLayer("HostCell"),LayerMask.NameToLayer("Ground"));
+	}
+
+	public float time_left_to_live() {
+		return	lifespan_in_seconds - (Time.time - birthtime);
 	}
 
 	public void setVelocity(float v) {
