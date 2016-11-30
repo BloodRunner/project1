@@ -10,6 +10,8 @@ public class GameController : MonoBehaviour {
 	public WhiteController killerT;
 	public PathogenController[] infections=new PathogenController[10];
 	public string[] instructions = new string[10];
+	public string[] levelEditor;
+	private string[] listOfOrgans = new string[] {"Heart (E/F)","Left Lung (C)","Stomach (G)","Liver (H)","Right Lung (D)","Brain (A)","Left Kidney (I)","Thymus (B)","Right Kidney (J)"};
 	public int instructionWait = 5;
 	public BodyState bodystate; // Whole Body Status
 	//public Vector3 spawnValues;
@@ -144,36 +146,96 @@ public class GameController : MonoBehaviour {
 		return false;
 	}
 
+	/*public void parseLevel(int level){
+		bool foundOrgan = false;
+		char[] delim = {','};
+		string[] words = levelEditor [level].Split (delim);
+		for (int i = 0; i < words.Length; i++) {
+			for (int x = 0; x < listOfOrgans.Length; x++) {
+				if (words [i] == listOfOrgans [x]) {
+					foundOrgan = true;
+					infectedOrgan = GameObject.Find (listOfOrgans[x]);
+					break;
+				}
+			}
+			if (foundOrgan == true) {
+				foundOrgan == false;
+				continue;
+			} else if (words [i] == "Random") {
+				int rand = Random.Range (0, listOfOrgans.Length);
+				infectedOrgan = GameObject.Find (listOfOrgans [rand]);
+				foundOrgan == false;
+				continue;
+			} else {
+				foundOrgan == false;
+				
+			}
+		}
+	
+	}*/
+
+
+
 	// Coroutine
 	IEnumerator SpawnWaves() {
 		yield return new WaitForSeconds (startWait);
 		CellController cell;
 		int level = 0;
-		const int numlevels = 5;
+		/*const*/ int numlevels = levelEditor.Length;
+		bool foundOrgan = false;
+		char[] delim = {','};
+		string[] words= new string[1];
+		PathogenController cc = infections[0];
 		while(true) {
 			if (level >= numlevels)
 				break;
-			PathogenController cc = infections [level];
-			Debug.Log ("Spawnwave level="+level+" "+ cc.name +" "+ infectionCount);
-			showMessage ("Level "+ (level+1) +": " + infectionCount + cc.name + " are coming out from "+ infectedOrgan.name , 5);
+			words = levelEditor [level].Split (delim);
+			//Debug.Log ("Spawnwave level="+level+" "+ cc.name +" "+ infectionCount);
+			//showMessage ("Level "+ (level+1) +": " + infectionCount + cc.name + " are coming out from "+ infectedOrgan.name , 5);
 			//stopgap killerT cell spawning
 			if(level > 1){
 				spawnKillerT (1);
 			}
-
-			for (int i = 0; i < infectionCount; i++) {
-				// Instantiate at infection point in organs!
-				cell = Instantiate (cc, infectedOrgan.transform.position, Quaternion.identity) as PathogenController;
-				cell.bodystate = this.bodystate;
-				cell.gameController = this;
-				//Debug.Log ("Sending out " + cell.name);
-				yield return new WaitForSeconds (spawnWait);
+			for (int i = 0; i < words.Length; i++) {
+				for (int x = 0; x < listOfOrgans.Length; x++) {
+					if (words [i] == listOfOrgans [x]) {
+						foundOrgan = true;
+						infectedOrgan = GameObject.Find (listOfOrgans[x]);
+						break;
+					}
+				}
+				if (foundOrgan == true) {
+					foundOrgan = false;
+					continue;
+				} else if (words [i] == "Random") {
+					int rand = Random.Range (0, listOfOrgans.Length);
+					infectedOrgan = GameObject.Find (listOfOrgans [rand]);
+					foundOrgan = false;
+					continue;
+				} else {
+					foundOrgan = false;
+					char[] inf = words [i].ToCharArray (0, 1);
+					int infT = (int)inf [0];
+					print (infT.ToString());
+					cc = infections [infT - 65];
+					int infNum = int.Parse(words [i].Substring (1));
+					infectionCount = infNum;
+					for (int z = 0; z < infectionCount; z++) {
+						// Instantiate at infection point in organs!
+						cell = Instantiate (cc, infectedOrgan.transform.position, Quaternion.identity) as PathogenController;
+						cell.bodystate = this.bodystate;
+						cell.gameController = this;
+						//Debug.Log ("Sending out " + cell.name);
+						yield return new WaitForSeconds (spawnWait);
+					}
+				}
 			}
+
 			// Organ is now a spawner
 
 			foreach (OrganController organ in all_organs) {
 				if (organ.get_stats_health () <= 0) {
-					showMessage (infectionCount + cc.name + " are coming out from undead "+ organ.name +". Send some white blood cells to clear the infection", 5);
+					//showMessage (infectionCount + cc.name + " are coming out from undead "+ organ.name +". Send some white blood cells to clear the infection", 5);
 
 					cell = Instantiate (cc, organ.transform.position, Quaternion.identity) as PathogenController;;
 					cell.bodystate = this.bodystate;
@@ -201,7 +263,7 @@ public class GameController : MonoBehaviour {
 				Debug.Log ("Winnable now " + level);
 				break;
 			}
-			//yield return new WaitForSeconds (waveWait);
+			yield return new WaitForSeconds (waveWait);
 		}
 		winnable = true;
 		Debug.Log ("Winnable now " + level);

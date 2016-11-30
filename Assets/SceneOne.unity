@@ -3092,6 +3092,11 @@ Prefab:
       propertyPath: bfctrl
       value: 
       objectReference: {fileID: 586731043}
+    - target: {fileID: 135000010963587496, guid: 097d8260137bcfa4b9ac9900d3763db9,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 097d8260137bcfa4b9ac9900d3763db9, type: 2}
   m_IsPrefabParent: 0
@@ -5262,6 +5267,8 @@ MonoBehaviour:
     and Lungs above 0 health to stay alive. '
   - "Don\u2019t let an organ drop below 0 health or it will become an infection spawner
     and die! "
+  levelEditor:
+  - Heart (E/F),A10,C10
   instructionWait: 5
   bodystate: {fileID: 26343561}
   infectedOrgan: {fileID: 1964585330}
