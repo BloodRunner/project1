@@ -55,7 +55,7 @@ public class WhiteController : CellController {
 			DestroyObject (gobj, 2);
 		}
 		if (gameController != null) {
-			gameController.showMessage (name + " dies ", 3);
+			gameController.showMessage (nickname + " killed in combat ", 3);
 		} else
 			Debug.Log (name + " dies - gameController empty");
 		DestroyObject (gameObject,2);

@@ -10,7 +10,7 @@ using System;
 
 		public Damage ( float dms, float nextTime)
 		{
-			damagePerSecond = dms;
+			damagePerSecond = dms; // negative number
 			nextDamage = nextTime;
 		}
 		public bool nextAttack (float now){
