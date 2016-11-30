@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
 	public WhiteController White;
 	public WhiteController killerT;
 	public PathogenController[] infections = new PathogenController[10];
+	string[] pathogens;
 	public string[] instructions = new string[10];
 	public int instructionWait = 5;
 	public BodyState bodystate;
@@ -32,7 +33,7 @@ public class GameController : MonoBehaviour
 	public Text scoreText;
 	public Button restartButton;
 	public GUIText messageText;
-	public GUIText restartText;
+	//public GUIText restartText;
 	public GUIText gameoverText;
 	public Camera topCamera;
 	public Camera followCamera;
@@ -55,8 +56,8 @@ public class GameController : MonoBehaviour
 		UpdateScore (0);
 		gameOver = false;
 		restart = false;
-		if (restartText)
-			restartText.text = "";
+		//if (restartText)
+		//	restartText.text = "";
 		if (gameoverText)
 			gameoverText.text = "";
 		if (messageText)
@@ -68,6 +69,10 @@ public class GameController : MonoBehaviour
 		topCamera.enabled = true;
 		if (bodystate == null) {
 			Debug.Log ("Game Controller missing body state");
+		}
+		pathogens = new string[infections.Length];
+		for (int i = 0; i < infections.Length; i++) {
+			pathogens [i] = infections [i].name;
 		}
 		all_organs = GameObject.FindObjectsOfType (typeof(OrganController)) as OrganController[];
 		ThymusController tc = GameObject.FindObjectOfType (typeof(ThymusController)) as ThymusController;
@@ -87,6 +92,8 @@ public class GameController : MonoBehaviour
 
 	public void tallyCharacters ()
 	{
+		//string[] pathogens = { "Virus", "Bacteria", "Parasite", "Prion", "Zika" }; 
+		int[] count = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };// Bad coding practice!
 		string total = "Ally Count:";
 
 		CellController[] cells = GameObject.FindObjectsOfType (typeof(WhiteController)) as WhiteController[];
@@ -94,7 +101,19 @@ public class GameController : MonoBehaviour
 		cells = GameObject.FindObjectsOfType (typeof(RedController)) as RedController[];
 		total += "\nRed Blood Cell:" + cells.Length;
 		cells = GameObject.FindObjectsOfType (typeof(PathogenController)) as PathogenController[];
-		total += "\nEnemy Count:\nPathogens:" + cells.Length;
+		total += "\nEnemy Count:";
+		for (int i = 0; i < cells.Length; i++) {
+			for (int j = 0; j < pathogens.Length; j++) {
+				if (cells [i].name.Equals (pathogens [j])) {
+					count [j]++;
+					break;
+				}
+			}
+		}
+		for (int j = 0; j < pathogens.Length; j++) {
+			if (count [j] > 0)
+				total += "\n" + pathogens [j] + ": " + count [j];
+		}
 		characterCount.text = total;
 		//Debug.Log (total);
 	}
@@ -125,10 +144,9 @@ public class GameController : MonoBehaviour
 		return gameOver;
 	}
 
+
 	public int numInfection ()
 	{
-		//GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("Infection") as GameObject[];
-		//Debug.Log(" Number of infection cells "+ objectsWithTag.Length);
 		CellController[] cells = GameObject.FindObjectsOfType (typeof(PathogenController)) as PathogenController[];
 		Debug.Log (" Number of infection cells " + cells.Length);
 		return cells.Length;
@@ -193,7 +211,7 @@ public class GameController : MonoBehaviour
 					showMessage (infectionCount + " " + cc.name + " are coming out from undead " + organ.name + ". Send some white blood cells to clear the infection", 5);
 
 					cell = Instantiate (cc, organ.transform.position, Quaternion.identity) as PathogenController;
-					;
+
 					cell.bodystate = this.bodystate;
 					cell.gameController = this;
 					//Debug.Log ("Sending out " + cell.name+ " from " + organ.name);
@@ -205,8 +223,10 @@ public class GameController : MonoBehaviour
 				try {
 					showRestartButton (1);
 				} catch {
+					/*
 					if (restartText)
 						restartText.text = "Press 'R' for Restart";
+				*/
 				}
 				break;
 			} else if (level < numlevels) {// increase in difficulty

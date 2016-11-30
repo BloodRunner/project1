@@ -18,7 +18,7 @@ public class updatePlayerStats : MonoBehaviour
 		healthSlider = GameObject.Find ("PlayerHealthSlider").GetComponent<Slider> ();
 		attackSlider = GameObject.Find ("PlayerAttackSlider").GetComponent<Slider> ();
 		defenseSlider = GameObject.Find ("PlayerDefenseSlider").GetComponent<Slider> ();
-		//lifespanSlider = GameObject.Find ("PlayerLifespanSlider").GetComponent<Slider> ();
+		lifespanSlider = GameObject.Find ("PlayerLifespanSlider").GetComponent<Slider> ();
 		playerNameText = GameObject.Find ("PlayerNameText").GetComponent<Text> ();
 	}
 
@@ -43,6 +43,7 @@ public class updatePlayerStats : MonoBehaviour
 				attackSlider.value = whitecell.power () * 100f;
 			if (lifespanSlider != null)
 				lifespanSlider.value = whitecell.time_left_to_live () / whitecell.lifespan_in_seconds;
+			//Debug.Log ("Time left to live " + whitecell.time_left_to_live ());
 			if (whitecell.time_left_to_live () < 2) {
 				Debug.Log (whitecell.getNickname () + " dies of old age");
 				whitecell = null;

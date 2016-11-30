@@ -91,18 +91,14 @@ public class CellController :  BodyController{
 			updateDefenseStats (-1.0f);
 			other.updateDefenseStats (-1.0f);
 			other.updateHealthStats (-0.5f); // Even winner loses .5% of health
-			if (stats_health > 0) 
-				inContact [other.GetInstanceID ()] = new Damage (combat, Time.time + 1);
 			win= false;
 			// Keeps track of the damage if contact continues; 
-
 		}
 		/*
 		if (tag.Equals("Infection"))
 			Debug.Log(gameObject.name+"."+gameObject.tag+" defended against "+ other.nickname+"."+other.name + " "+
 				showStats()+ other.GetComponent <CellController> ().showStats()+(win?" succeeded":" failed") );
 		*/
-
 		return win;
 	}
 	// Special Power of this cell, whatever it is
@@ -171,30 +167,55 @@ public class CellController :  BodyController{
 			Collider other = contact.otherCollider;
 			GameObject gameObj = other.gameObject;
 			// If sustaining damage - apply damage
+
 			if (gameObj && inContact.ContainsKey (gameObj.GetInstanceID ())) {
-                Debug.DrawRay(contact.point, contact.normal, Color.white);
-				Damage damage = (Damage)inContact[gameObj.GetInstanceID()];
+				Debug.DrawRay (contact.point, contact.normal, Color.white);
+				Damage damage = (Damage)inContact [gameObj.GetInstanceID ()];
 				if (damage.nextAttack (Time.time)) {
-					updateHealthStats (damage.damage());
-					Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
+					updateHealthStats (damage.damage ());
+					Debug.Log (gameObject.name + "-" + gameObject.tag + " damaged by contact with " + other.name + "=" + other.tag);
 				}	
-			}
+				//Debug.Log (gameObject.name + " defends against " + gameObj.name + " " + gameObj.GetInstanceID () + " Found in contact" + inContact.ContainsKey (gameObj.GetInstanceID ()));
+
+			} /* else {
+				if (!tag.Equals (other.tag)
+				    && (other.tag.Equals ("Infection") && (name.Equals ("Red") ))
+					|| (tag.Equals ("Infection") && (other.name.StartsWith ("White")))) {
+					//Debug.Log (gameObject.name + "-" + gameObject.tag + " collision stay with " + other.name + "=" + other.tag + " id=" + gameObj.GetInstanceID ());
+				
+					Debug.Log (gameObject.name + " defends against " + gameObj.name + " " + gameObj.GetInstanceID () + " not found in contact" + inContact.ContainsKey (gameObj.GetInstanceID ()));
+				}
+			}*/
 		}
 	}
+
 	void OnCollisionEnter(Collision collision) {
 		foreach (ContactPoint contact in collision.contacts) {
-			
 			Collider other = contact.otherCollider;
+			/*
+			if (!tag.Equals (other.tag)
+				&& ( other.tag.Equals("Infection")  &&  name.Equals("Red"))
+				|| ( tag.Equals("Infection")  && other.name.Equals("White") ) 
+			) {
+				Debug.Log (gameObject.name + "-" + gameObject.tag + " collisionEnter with " + other.name + "=" + other.tag +" id="+ other.gameObject.GetInstanceID ());
+			}*/
+			bool battle = true;
 			if (!tag.Equals (other.tag) &&
 			    (other.tag.Equals ("Host") || other.tag.Equals ("Infection"))) {
 				//Debug.Log (name + "-" + tag + " collided with " + other.name + "=" + other.tag);
 				if (gameObject.name.Equals ("Red") && other.tag.Equals ("Infection")){
 					CellController othercell = other.GetComponent (typeof(PathogenController)) as PathogenController;
-					defendAgainst (othercell); 
+					battle = defendAgainst (othercell); 
 				}
-				if (gameObject.tag.Equals ("Infection") && (other.name.StartsWith ("White") || other.name.Equals ("Player"))) { // White attacks pathogen (me)
+				if (gameObject.tag.Equals ("Infection") && other.name.StartsWith ("White")) { // White attacks pathogen 
 						CellController othercell = other.GetComponent (typeof(WhiteController)) as WhiteController;
-						defendAgainst (othercell);  // defend against white cell or pathogen
+						battle = defendAgainst (othercell);  // defend against white cell or pathogen
+				}
+				if (stats_health > 0 && battle == false) {
+					if (!inContact.ContainsKey(other.gameObject.GetInstanceID ())) {
+						inContact [other.gameObject.GetInstanceID ()] = new Damage (-2, Time.time + 1);
+						//Debug.Log ("InContact damage start from "+ other.name+ "  "+ other.gameObject.GetInstanceID () );
+					}
 				}
 			}
 		}
@@ -210,6 +231,7 @@ public class CellController :  BodyController{
 			// If sustaining damage - remove counter
 			if (inContact.ContainsKey (otherObj.GetInstanceID ())) {
 				inContact.Remove (otherObj.GetInstanceID ());
+				//Debug.Log ("Collision Exit "+ otherObj.GetInstanceID ());
 			}
 		}
 	}
