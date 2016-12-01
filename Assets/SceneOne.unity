@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44425064, g: 0.48716998, b: 0.53831214, a: 1}
+  m_IndirectSpecularColor: {r: 0.44424954, g: 0.48717016, b: 0.53831226, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2114,7 +2114,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010252926252, guid: c10a05494ea2740569579fa55a07891b, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c10a05494ea2740569579fa55a07891b, type: 2}
@@ -4914,7 +4914,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000012110849298, guid: 152065a468fbd4dfb924a1bcebcf12dd, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 152065a468fbd4dfb924a1bcebcf12dd, type: 2}
@@ -4952,7 +4952,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -39.801975}
+  m_AnchoredPosition: {x: 50, y: 20.19802}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &544625887
@@ -5327,6 +5327,9 @@ MonoBehaviour:
   - {fileID: 114000013747261300, guid: 152065a468fbd4dfb924a1bcebcf12dd, type: 2}
   - {fileID: 114000011528637040, guid: b0083c9ac5c0843c497c5f732be15d8b, type: 2}
   - {fileID: 114000013197163680, guid: 23584970999024eb991500ddfa490824, type: 2}
+  levelEditor:
+  - Random,A3,B1
+  - Random,C2,B3,Random,A1
   instructions:
   - "Your mission is to protect your penguin\u2019s organs from being taken over by
     pathogens. "
@@ -5361,9 +5364,9 @@ MonoBehaviour:
   infectionCount: 20
   redCount: 10
   whiteCount: 1
-  spawnWait: 2
+  spawnWait: 5
   startWait: 5
-  waveWait: 120
+  waveWait: 300
   healthText: {fileID: 1775964931}
   characterCount: {fileID: 2025294910}
   instructionText: {fileID: 2146241160}
@@ -11124,7 +11127,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010252926252, guid: c10a05494ea2740569579fa55a07891b, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c10a05494ea2740569579fa55a07891b, type: 2}
@@ -11179,7 +11182,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000012101291210, guid: 23584970999024eb991500ddfa490824, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 23584970999024eb991500ddfa490824, type: 2}
@@ -11198,7 +11201,7 @@ GameObject:
   - 114: {fileID: 1245588963}
   - 225: {fileID: 1245588962}
   m_Layer: 5
-  m_Name: RestartButton1
+  m_Name: RestartButton
   m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11501,7 +11504,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011188485604, guid: 3e85bb0e83c5cf0489dd4d4bc048b066, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e85bb0e83c5cf0489dd4d4bc048b066, type: 2}
@@ -13811,7 +13814,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011592422990, guid: cabc734944c71424584588040678cddb, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000014247930418, guid: cabc734944c71424584588040678cddb,
         type: 2}
