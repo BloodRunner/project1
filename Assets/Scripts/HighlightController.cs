@@ -10,6 +10,7 @@ public class HighlightController : MonoBehaviour {
 	//private Camera topCamera;
 	private GameObject obj;
 	private GameObject objOld;
+	private GameObject objCurrent;
 	private bool started;
 	private RaycastHit hit;
 	//int groundMask;  
@@ -18,8 +19,9 @@ public class HighlightController : MonoBehaviour {
 	void Start () {
 		//topCamera = GameObject.Find ("topCamera").GetComponent<Camera>();
 		//coroutine = mouseHovering ();
-		obj = GameObject.Find ("White");
-		objOld  = GameObject.Find ("White");
+		obj = GameObject.Find ("GameController");
+		objOld  = GameObject.Find ("GameController");
+		objCurrent = GameObject.Find ("GameController");
 		//StartCoroutine (coroutine);
 		//started = true;
 		}
@@ -41,9 +43,11 @@ public class HighlightController : MonoBehaviour {
 				//Debug.DrawLine(ray,hit);
 				Vector3 adjusted = ray.GetPoint (hit.distance - 0.1f);
 				Vector3 end = new Vector3 (adjusted.x, 0.1f, adjusted.z);
+				GameObject.Find ("TheGrandFollower").transform.position = end;
+
 				Collider[] search = Physics.OverlapSphere (end, 3f);
 				range = 3;
-				objOld = obj;
+				objOld = objCurrent;
 				if (search.Length > 0) {
 					for (int i = 0; i < search.Length; i++) {
 						obj = search [i].gameObject;
@@ -51,22 +55,39 @@ public class HighlightController : MonoBehaviour {
 							if (Vector3.Distance (end, search [i].transform.position) < range) {
 								//print ("Ping");
 								range = Vector3.Distance (end, search [i].transform.position);
+								objCurrent = obj;
 							}
 						}
 					}
 				}
 				if (objOld.name == "White" || objOld.name == "KillerT") {
-					if (objOld != obj || Vector3.Distance (end, objOld.transform.position) > 3f) {
+					if (objOld != objCurrent || Vector3.Distance (end, objOld.transform.position) > 3f) {
 						objOld.GetComponent<Light> ().range = 0.3f;
 						objOld.GetComponent<Light> ().enabled = false;
 						//print ("rob");
 					}
 				}
-				if (obj.name == "White" || obj.name == "KillerT") {
+				if (objCurrent.name == "White" || objCurrent.name == "KillerT") {
 					if (Vector3.Distance (end, obj.transform.position) <= 3f) {
-						obj.GetComponent<Light> ().range = 3f;
-						obj.GetComponent<Light> ().enabled = true;
+						objCurrent.GetComponent<Light> ().range = 3f;
+						objCurrent.GetComponent<Light> ().enabled = true;
 						//print ("sob");
+					}
+				}
+			}
+
+			if(Input.GetMouseButtonDown(0)){
+				if (objCurrent.name == "White" || objCurrent.name == "KillerT") {
+					if (cx == null) {
+						cx = cxs [0];
+					}
+					if (Physics.Raycast (ray, out hit)) {
+						Vector3 adjusted = ray.GetPoint (hit.distance - 0.1f);
+						Vector3 end = new Vector3 (adjusted.x, 0.1f, adjusted.z);
+						GameObject.Find ("TheGrandFollower").transform.position = end;
+						if (Vector3.Distance (end, objCurrent.transform.position) < 3) {
+							objCurrent.GetComponent<CameraChange> ().startFollow ();
+						}
 					}
 				}
 			}
@@ -74,7 +95,7 @@ public class HighlightController : MonoBehaviour {
 	}
 
 
-	void OnMouseDown(){
+	/*void OnMouseDown(){
 		if(Input.GetMouseButtonDown(0)){
 			Camera cx = Camera.current;
 			Camera[] cxs = Camera.allCameras;
@@ -86,12 +107,13 @@ public class HighlightController : MonoBehaviour {
 			if (Physics.Raycast (ray, out hit)) {
 				Vector3 adjusted = ray.GetPoint (hit.distance - 0.1f);
 				Vector3 end = new Vector3 (adjusted.x, 0.1f, adjusted.z);
-				if(Vector3.Distance (end, obj.transform.position) < range){
+				GameObject.Find ("TheGrandFollower").transform.position = end;
+				if(Vector3.Distance (end, obj.transform.position) < 3){
 					obj.GetComponent<CameraChange> ().startFollow();
 				}
 			}
 		}
-	}
+	}*/
 
 	// Update is called once per frame
 	/*void Update () {

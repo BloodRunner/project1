@@ -10,16 +10,13 @@
       <File FileName="Assets\Scripts\HoverHighlight.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CameraChange.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GameController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Shooter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Shooter.cs" Line="139" Column="15" />
       <File FileName="Assets\Scripts\PlayerBonuses.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CellController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\BodyState.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Damage.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PathogenController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BodyController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LungController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\NextWaypoint.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\HighlightController.cs" Line="21" Column="5" />
+      <File FileName="Assets\Scripts\HighlightController.cs" Line="89" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
