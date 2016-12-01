@@ -5,8 +5,6 @@ using System.Collections;
 public class WhiteController : CellController {
 	GameObject explosion;
 	GameObject shooter;
-	public Text playerNameText;
-	bool is_player = false;
 
 	void Start() {
 		setNickname (Namer.getName ());
@@ -64,18 +62,13 @@ public class WhiteController : CellController {
 
 	public override void updateHealthStats(float point){
 		base.updateHealthStats (point);
-		/*
-		if (is_player && healthSlider!=null)
-			healthSlider.value = stats_health * bodystate.whiteHealth();
-			*/
+
 	}
 
 	public override void updateDefenseStats(float point){
 		base.updateDefenseStats (point);
-	//	if (is_player && defenseSlider!=null)
-	//		defenseSlider.value = stats_defense * bodystate.whiteDefense();
 	}
-
+	/*
 	public void addShooter() {
 		Debug.Log ("Adding shooter to " + name + "." + tag);
 		//GameObject shooterObj = Resources.Load<GameObject>("Shooter");
@@ -89,20 +82,14 @@ public class WhiteController : CellController {
 			shooter = null;
 		}
 	}
-
+*/
 	public void addStats(){
 		Debug.Log ("Adding stats to " + nickname + "." + tag);
 		gameController.showPlayerStats (this);
-		/*
-		is_player = true;
-		if (playerNameText != null)
-			playerNameText.text = nickname;
-			*/
 	}
 
 	public void removeStats(){
 		gameController.removePlayerStats ();
-		is_player = false;
 	}
 
 	public string getNickname(){

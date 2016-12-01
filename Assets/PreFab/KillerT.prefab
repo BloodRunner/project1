@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c949f91f46613479f99c9d3ebea9ee76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myname: KillerT
+  myname: WhiteT
   gameController: {fileID: 0}
   bodystate: {fileID: 0}
   bodyStats:
@@ -401,7 +401,6 @@ MonoBehaviour:
   shotSpawn: {fileID: 0}
   points: 20
   lifespan_in_seconds: 180
-  playerNameText: {fileID: 0}
 --- !u!135 &135000010867745418
 SphereCollider:
   m_ObjectHideFlags: 1

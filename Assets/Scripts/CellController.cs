@@ -68,6 +68,9 @@ public class CellController :  BodyController{
 	}
 	public void TakeDamage(float points, Vector3 hitPt) {
 		//Debug.Log (name + " Got shot");
+		if (hitParticles != null) {
+			hitParticles.Play (); // Play explosion
+		}
 		updateHealthStats (-points);
 		// Should we play particles here?!?
 	}
@@ -245,7 +248,7 @@ public class CellController :  BodyController{
 		if (!other.tag.Equals("Untagged"))
 			Debug.Log(gameObject.name+"-"+gameObject.tag+" triggered by "+ other.name+"="+other.tag);
 	}	
-	*/
+
 	void OnTriggerExit(Collider other) {
 		if (gameObject.CompareTag(other.tag)) { // Same Team
 			return;
@@ -262,8 +265,9 @@ public class CellController :  BodyController{
 			Damage damage = (Damage)inContact[gameObj.GetInstanceID()];
 			if (damage.nextAttack (Time.time)) {
 				updateHealthStats (damage.damage());
-				Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by tcontact with "+ other.name+"="+other.tag);
+				Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
 			}	
 		}
 	}
+*/
 }

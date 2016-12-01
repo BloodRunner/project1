@@ -1522,9 +1522,6 @@ MonoBehaviour:
   dna: {fileID: 0}
   bodystate: {fileID: 26343561}
   gameController: {fileID: 586731041}
-  healthSlider: {fileID: 510881589}
-  powerSlider: {fileID: 142342695}
-  defenseSlider: {fileID: 1202620519}
   playerNameText: {fileID: 41163231}
 --- !u!4 &145505877
 Transform:
@@ -4888,7 +4885,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -39.801975}
+  m_AnchoredPosition: {x: 50, y: -39.80198}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &544625887
@@ -5000,6 +4997,26 @@ Prefab:
         type: 2}
       propertyPath: m_Lightmapping
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000013170571048, guid: 097d8260137bcfa4b9ac9900d3763db9,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000013170571048, guid: 097d8260137bcfa4b9ac9900d3763db9,
+        type: 2}
+      propertyPath: BypassListenerEffects
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000013170571048, guid: 097d8260137bcfa4b9ac9900d3763db9,
+        type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000013170571048, guid: 097d8260137bcfa4b9ac9900d3763db9,
+        type: 2}
+      propertyPath: Loop
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 097d8260137bcfa4b9ac9900d3763db9, type: 2}
@@ -5277,9 +5294,9 @@ MonoBehaviour:
   infectionCount: 20
   redCount: 10
   whiteCount: 1
-  spawnWait: 1
+  spawnWait: 2
   startWait: 5
-  waveWait: 10
+  waveWait: 120
   healthText: {fileID: 1775964931}
   characterCount: {fileID: 2025294910}
   instructionText: {fileID: 2146241160}
@@ -13382,7 +13399,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011592422990, guid: cabc734944c71424584588040678cddb, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000014247930418, guid: cabc734944c71424584588040678cddb,
         type: 2}

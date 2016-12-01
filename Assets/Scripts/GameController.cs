@@ -92,7 +92,6 @@ public class GameController : MonoBehaviour
 
 	public void tallyCharacters ()
 	{
-		//string[] pathogens = { "Virus", "Bacteria", "Parasite", "Prion", "Zika" }; 
 		int[] count = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };// Bad coding practice!
 		string total = "Ally Count:";
 

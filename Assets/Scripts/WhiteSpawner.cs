@@ -8,9 +8,9 @@ public class WhiteSpawner : MonoBehaviour
 	public BodyState bodystate;
 	public GameController gameController;
 	private float nextReprod = 0f;
-	public Slider healthSlider;
-	public Slider powerSlider;
-	public Slider defenseSlider;
+	//public Slider healthSlider;
+	//public Slider powerSlider;
+	//public Slider defenseSlider;
 	public Text playerNameText;
 
 	void Start ()
@@ -31,16 +31,15 @@ public class WhiteSpawner : MonoBehaviour
 			Vector3 v3 = transform.position;
 			v3.y = .1f;
 
-
 			WhiteController cell = Instantiate (dna, v3, transform.rotation) as WhiteController;
 			cell.setBodyState (bodystate);
 			cell.updateHealthStats (100 - bodystate.whiteHealth ());
 			cell.gameController = gameController;
 			cell.setNickname (Namer.getName ());
-			cell.playerNameText =playerNameText;
-			cell.healthSlider = healthSlider;
-			cell.powerSlider = powerSlider;
-			cell.defenseSlider = defenseSlider;
+			//cell.playerNameText =playerNameText;
+			//cell.healthSlider = healthSlider;
+			//cell.powerSlider = powerSlider;
+			//cell.defenseSlider = defenseSlider;
 			nextReprod = Time.time + cell.get_bodystats_reprod () * bodystate.whiteReprodRate ();
 			//Debug.Log (cell.name + " Instantiated in Whitespawner");
 		} catch {
