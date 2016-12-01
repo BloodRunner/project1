@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
 	// Whole Body Status
 	//public Vector3 spawnValues;
 	public GameObject infectedOrgan;
-	public int infectionCount;
+	private int infectionCount;
 	public int redCount, whiteCount;
 	public int spawnWait;
 	public int startWait, waveWait;
@@ -216,7 +216,7 @@ public class GameController : MonoBehaviour
 				print (infT.ToString());
 				cc = infections [infT - 65];
 				int infNum = int.Parse(words [i].Substring (1));
-				infectionCount = infNum;
+				infectionCount = infNum * (int)(4 * difficultyLevel +1);
 				for (int z = 0; z < infectionCount; z++) {
 					// Instantiate at infection point in organs!
 					cell = Instantiate (cc, infectedOrgan.transform.position, Quaternion.identity) as PathogenController;
@@ -241,22 +241,7 @@ public class GameController : MonoBehaviour
 			if (level >= numlevels)
 				break;
 			StartCoroutine (spawnLevel (level));
-			//cc = infections [level];
-			/*Debug.Log ("Spawnwave level=" + level + " " + cc.name + " " + infectionCount);
-			showMessage ("Level " + (level + 1) + ": " + infectionCount + " " + cc.name + " are coming out from " + infectedOrgan.name, 5);
-			//stopgap killerT cell spawning
-			if (level > 1) {
-				spawnKillerT (1);
-			}
 
-			for (int i = 0; i < infectionCount; i++) {
-				// Instantiate at infection point in organs!
-				cell = Instantiate (cc, infectedOrgan.transform.position, Quaternion.identity) as PathogenController;
-				cell.bodystate = this.bodystate;
-				cell.gameController = this;
-				//Debug.Log ("Sending out " + cell.name);
-				yield return new WaitForSeconds (spawnWait);
-			}*/
 			// Organ is now a spawner
 
 			foreach (OrganController organ in all_organs) {
