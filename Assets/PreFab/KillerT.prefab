@@ -156,10 +156,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011470766264}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.00859, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0016, z: 0.00914}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013138343054}
   m_RootOrder: 1
@@ -464,8 +464,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.04
-  m_Center: {x: 0, y: 0.06, z: 0}
+  m_Radius: 0.07659856
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &195000012287291226
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -536,7 +536,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -1152523339
+  randomSeed: -657117760
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -4034,7 +4034,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 0
-  randomSeed: 865292502
+  randomSeed: 1543408131
   InitialModule:
     serializedVersion: 2
     enabled: 1
