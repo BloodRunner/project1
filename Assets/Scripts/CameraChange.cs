@@ -78,13 +78,13 @@ public class CameraChange : MonoBehaviour {
 	}
 
 	public void startFollow(){
-		/*
+		
 		this.GetComponent<PlayerMovement> ().enabled = true;
 		if (this.GetComponent<Shooter> () != null) {
 			Debug.Log ("Activate shooter to " + name + "." + tag);
 			this.GetComponent<Shooter> ().enabled = true;
 
-		}*/
+		}
 		if (this.GetComponentInChildren<Shooter> () != null) {
 			Debug.Log ("Activate shooter in children to " + name + "." + tag);
 			this.GetComponentInChildren<Shooter>().enabled = true;

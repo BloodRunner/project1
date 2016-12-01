@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
 	public WhiteController killerT;
 	public PathogenController[] infections = new PathogenController[10];
 	public string[] levelEditor;
-	private string[] listOfOrgans = new string[] {"Heart (E/F)","Left Lung (C)","Stomach (G)","Liver (H)","Right Lung (D)","Brain (A)","Left Kidney (I)","Thymus (B)","Right Kidney (J)"};
+	//private string[] listOfOrgans = new string[] {"Heart (E/F)","Left Lung (C)","Stomach (G)","Liver (H)","Right Lung (D)","Brain (A)","Left Kidney (I)","Thymus (B)","Right Kidney (J)"};
 	string[] pathogens;
 	public string[] instructions = new string[10];
 	public int instructionWait = 5;
@@ -193,10 +193,10 @@ public class GameController : MonoBehaviour
 		//	spawnKillerT (1);
 		//}
 		for (int i = 0; i < words.Length; i++) {
-			for (int x = 0; x < listOfOrgans.Length; x++) {
-				if (words [i] == listOfOrgans [x]) {
+			for (int x = 0; x < all_organs.Length; x++) {
+				if (words [i] == all_organs [x].name) {
 					foundOrgan = true;
-					infectedOrgan = GameObject.Find (listOfOrgans[x]);
+					infectedOrgan = GameObject.Find (all_organs[x].name);
 					Debug.Log (infectedOrgan.name);
 					break;
 				}
@@ -205,8 +205,8 @@ public class GameController : MonoBehaviour
 				foundOrgan = false;
 				continue;
 			} else if (words [i] == "Random") {
-				int rand = Random.Range (0, listOfOrgans.Length);
-				infectedOrgan = GameObject.Find (listOfOrgans [rand]);
+				int rand = Random.Range (0, all_organs.Length);
+				infectedOrgan = GameObject.Find (all_organs [rand].name);
 				foundOrgan = false;
 				continue;
 			} else {
