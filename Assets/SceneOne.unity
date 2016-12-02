@@ -4697,7 +4697,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: 20.198025}
+  m_AnchoredPosition: {x: 50, y: 20.198006}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &544625887
@@ -4963,6 +4963,7 @@ GameObject:
   - 4: {fileID: 586731042}
   - 114: {fileID: 586731041}
   - 114: {fileID: 586731043}
+  - 114: {fileID: 586731044}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -5063,6 +5064,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ced34c1f3aebe874a8d604e8b894059a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &586731044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 586731040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b30be0a71a55a840ac0fa664c91ebc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &594495625
@@ -5449,7 +5461,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1025627322}
   m_HandleRect: {fileID: 1025627321}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8927,6 +8939,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 135000011770204090, guid: 81ce31f1200908140a2170cbd329e811,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 81ce31f1200908140a2170cbd329e811, type: 2}
   m_IsPrefabParent: 0
@@ -10456,6 +10473,11 @@ Prefab:
     - target: {fileID: 4000011950862714, guid: 8ba8fb36a41f12f45aa780b8fff90b37, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 135000013503541914, guid: 8ba8fb36a41f12f45aa780b8fff90b37,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ba8fb36a41f12f45aa780b8fff90b37, type: 2}
