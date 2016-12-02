@@ -4697,7 +4697,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -39.801983}
+  m_AnchoredPosition: {x: 50, y: 20.198025}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &544625887
@@ -8905,7 +8905,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010698844946, guid: 81ce31f1200908140a2170cbd329e811, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -4.373
+      value: -12.61
       objectReference: {fileID: 0}
     - target: {fileID: 4000010698844946, guid: 81ce31f1200908140a2170cbd329e811, type: 2}
       propertyPath: m_LocalRotation.x

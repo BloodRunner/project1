@@ -29,8 +29,6 @@ public class CameraChange : MonoBehaviour {
 
 	}
 
-
-
 	public IEnumerator followThis(){
 		while(true){
 			if(zoom >=10){
@@ -57,12 +55,15 @@ public class CameraChange : MonoBehaviour {
 
 	void Update(){
 		if(Input.GetKeyDown(KeyCode.Space)){
-			stopCamera ();
+			if(isOn == false){
+				stopCamera ();
+			}
 		}
-
 	}
 
 	public void stopCamera (){
+		//bool wasIBound = this.GetComponent<BloodFlow> ().amIBound ();
+		//Vector3 dest = this.GetComponent<BloodFlow> ().getMyDestV ();
 		StopCoroutine (coroutine);
 		followCamera.enabled = false;
 		topCamera.enabled = true;
@@ -75,6 +76,11 @@ public class CameraChange : MonoBehaviour {
 			this.GetComponentInChildren<Shooter>().enabled = false;
 			this.SendMessage ("removeStats");
 		}
+		/*if (wasIBound) {
+			this.GetComponent<BloodFlow> ().destOveride (dest);
+			this.GetComponent<BloodFlow> ().setMyBound (true);
+
+		}*/
 	}
 
 	public void startFollow(){

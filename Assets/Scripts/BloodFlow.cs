@@ -84,7 +84,7 @@ public class BloodFlow : MonoBehaviour {
 			isBound = true;
 			bind = location;
 			this.gameObject.GetComponent<Light> ().color = Color.green;
-		} else {
+		}else {
 			isBound = false;
 			this.gameObject.GetComponent<Light> ().color = Color.white;
 			StartCoroutine (patrol());
@@ -96,17 +96,49 @@ public class BloodFlow : MonoBehaviour {
 	}
 
 	public void stopPlayer(){
+		print (isBound.ToString ());
+		bool wasIBound = isBound;
+		string dest3 = this.GetComponent<BloodFlow> ().getMyDest ();
+		Vector3 dest2 = this.GetComponent<BloodFlow> ().getMyDestV ();
+		if(this.name == "KillerT"){
+			wasIBound = this.GetComponent<BloodFlow> ().amIBound ();
+		}
 		StopCoroutine (coroutine2);
+		isBound = false;
+		if(wasIBound){
+			bindTo (dest);
+			this.agent.destination = dest2;
+			dest = dest3;
+		}
+		print (isBound.ToString ());
 	}
 
 	public string getMyMission(){
 		return myMission;
 	}
+
+	public bool amIBound(){
+		return isBound;
+	}
+
+	public void setMyBound(bool setToThis){
+		isBound = setToThis;
+	}
+
 	public string getMyDest(){
 		return dest;
 	}
+
+	public Vector3 getMyDestV(){
+		return agent.destination;
+	}
+
 	public void setMyMission(string setTo){
 		myMission = setTo;
+	}
+
+	public void destOveride(Vector3 destOverides){
+		agent.destination = destOverides;
 	}
 
 

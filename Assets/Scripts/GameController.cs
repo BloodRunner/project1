@@ -213,7 +213,7 @@ public class GameController : MonoBehaviour
 				foundOrgan = false;
 				char[] inf = words [i].ToCharArray (0, 1);
 				int infT = (int)inf [0];
-				print (infT.ToString());
+				//print (infT.ToString());
 				cc = infections [infT - 65];
 				int infNum = int.Parse(words [i].Substring (1));
 				infectionCount = infNum * (int)(4 * difficultyLevel +1);

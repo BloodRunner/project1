@@ -64,7 +64,7 @@ GameObject:
   - 4: {fileID: 4000011903674118}
   - 33: {fileID: 33000014281921900}
   - 23: {fileID: 23000012988298592}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: better centered bird killer t cell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010516641762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.82, y: 0.8, z: -4.373}
+  m_LocalPosition: {x: -0.82, y: 0.8, z: -12.61}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -157,7 +157,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014055417770}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0016, z: 0.00719}
+  m_LocalPosition: {x: 0, y: -0.0028, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -536,7 +536,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 0
-  randomSeed: -78908473
+  randomSeed: 1966876635
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -2290,7 +2290,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1010555652
+  randomSeed: -2039700116
   InitialModule:
     serializedVersion: 2
     enabled: 1
