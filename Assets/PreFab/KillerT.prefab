@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c949f91f46613479f99c9d3ebea9ee76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myname: WhiteT
+  myname: KillerT
   gameController: {fileID: 0}
   bodystate: {fileID: 0}
   bodyStats:
