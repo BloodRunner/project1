@@ -20,7 +20,6 @@ public class Shooter : MonoBehaviour {
 	LineRenderer gunLine;                           // Reference to the line renderer.
 	AudioSource gunAudio;                           // Reference to the audio source.
 	float effectsDisplayTime = 0.2f;
-	Text playerNameText=null;
 
 
 	void Awake ()
@@ -60,7 +59,6 @@ public class Shooter : MonoBehaviour {
 */
 			//Quaternion bulletHoleRotation = Quaternion.FromToRotation (-Vector3.forward, hit.normal);
 			//GameObject hole = (GameObject)GameObject.Instantiate (bulletHolePrefab, bulletHolePosition, bulletHoleRotation);
-
 		//}
 		// If the Fire1 button is being press and it's time to fire...
 		if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets)
@@ -76,13 +74,12 @@ public class Shooter : MonoBehaviour {
 			//DrawLine (transform.position, ray.GetPoint(30), Color.red, 0.1f);
 			if (Physics.Raycast (ray,out hit,groundMask)) {
 				//Debug.DrawLine(ray,hit);
-				Vector3 adjusted = ray.GetPoint( hit.distance - 0.1f );
+				Vector3 adjusted = ray.GetPoint( hit.distance - 0.1f ); // ground is at 0.1f
 				Vector3 end = new Vector3 (adjusted.x, 0.1f, adjusted.z);
 				//Debug.Log("Hit the ground at "+ hit.point+ " dir "+ dir);
 				Shoot (end);
 				//DrawLine (transform.position, hit.point, Color.yellow, 0.2f);
 			}
-
 		}
 
 		// If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
@@ -117,13 +114,15 @@ public class Shooter : MonoBehaviour {
 		gunLine.enabled = true;
 		// Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
 		shootRay.origin = transform.position;
-		shootRay.direction = dir- transform.position; //transform.forward;
+		shootRay.direction = dir - transform.position; //transform.forward;
 		gunLine.SetPosition (0, shootRay.origin);
 		// Perform the raycast against gameobjects on the shootable layer and if it hits something...
+		shootRay.direction = new Vector3 (shootRay.direction.x, 0f, shootRay.direction.z);
+		//Debug.Log ("shoot direction " + shootRay );
 		if(Physics.Raycast (shootRay, out shootHit, range, shootableMask))
 		{
 			if (shootHit.collider.tag.Equals("Infection")) {
-			   //Debug.Log ("shot enemy " + shootHit.collider.name );
+			 //  Debug.Log ("shot enemy " + shootHit.collider.name );
 			// Try and find the cell script on the gameobject hit.
 				CellController enemy = shootHit.collider.GetComponent <CellController> ();
 				if(enemy != null)
@@ -136,6 +135,7 @@ public class Shooter : MonoBehaviour {
 		else
 		{
 			gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
+			//Debug.Log ("shot nothinng to " + shootRay.origin + shootRay.direction * range );
 		}
 	}
 
