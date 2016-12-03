@@ -74,9 +74,9 @@ public class HighlightController : MonoBehaviour {
 						//print ("sob");
 					}
 				}
-			}
 
-			if(Input.GetMouseButtonDown(0)){
+			}
+			if (Input.GetMouseButtonDown (0)) {
 				if (objCurrent.name == "White" || objCurrent.name == "KillerT") {
 					if (cx == null) {
 						cx = cxs [0];
@@ -84,14 +84,22 @@ public class HighlightController : MonoBehaviour {
 					if (Physics.Raycast (ray, out hit)) {
 						Vector3 adjusted = ray.GetPoint (hit.distance - 0.1f);
 						Vector3 end = new Vector3 (adjusted.x, 0.1f, adjusted.z);
-						GameObject.Find ("TheGrandFollower").transform.position = end;
+						//GameObject.Find ("TheGrandFollower").transform.position = end;
 						if (Vector3.Distance (end, objCurrent.transform.position) < 3) {
+							print (objCurrent.name);
 							objCurrent.GetComponent<CameraChange> ().startFollow ();
 						}
 					}
 				}
 			}
+
+
+		} else {
+			if (Input.GetMouseButtonDown (1)) {
+				objCurrent.GetComponent<CameraChange> ().stopCamera ();
+			}
 		}
+			
 	}
 
 }

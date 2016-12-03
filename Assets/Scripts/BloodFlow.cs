@@ -96,7 +96,7 @@ public class BloodFlow : MonoBehaviour {
 	}
 
 	public void stopPlayer(){
-		print (isBound.ToString ());
+		//print (isBound.ToString ());
 		bool wasIBound = isBound;
 		string dest3 = this.GetComponent<BloodFlow> ().getMyDest ();
 		Vector3 dest2 = this.GetComponent<BloodFlow> ().getMyDestV ();
@@ -110,7 +110,7 @@ public class BloodFlow : MonoBehaviour {
 			this.agent.destination = dest2;
 			dest = dest3;
 		}
-		print (isBound.ToString ());
+		//print (isBound.ToString ());
 	}
 
 	public string getMyMission(){

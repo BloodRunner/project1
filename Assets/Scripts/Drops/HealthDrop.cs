@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerBonuses : MonoBehaviour {
+public class HealthDrop : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
