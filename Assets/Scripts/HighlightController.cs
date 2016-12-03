@@ -95,7 +95,7 @@ public class HighlightController : MonoBehaviour {
 
 
 		} else {
-			if (Input.GetMouseButtonDown (1)) {
+			if (Input.GetMouseButtonDown (1) || Input.GetKeyDown(KeyCode.Space)) {
 				objCurrent.GetComponent<CameraChange> ().stopCamera ();
 			}
 		}

@@ -149,7 +149,7 @@ public class GameController : MonoBehaviour
 	public int numInfection ()
 	{
 		CellController[] cells = GameObject.FindObjectsOfType (typeof(PathogenController)) as PathogenController[];
-		Debug.Log (" Number of infection cells " + cells.Length);
+		//Debug.Log (" Number of infection cells " + cells.Length);
 		return cells.Length;
 	}
 
@@ -214,6 +214,8 @@ public class GameController : MonoBehaviour
 				char[] inf = words [i].ToCharArray (0, 1);
 				int infT = (int)inf [0];
 				//print (infT.ToString());
+				print(words[i]);
+				print(infT.ToString());
 				cc = infections [infT - 65];
 				int infNum = int.Parse(words [i].Substring (1));
 				infectionCount = infNum * (int)(4 * difficultyLevel +1);
