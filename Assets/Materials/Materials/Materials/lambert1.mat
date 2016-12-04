@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: lambert1
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -44,13 +44,13 @@ Material:
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Offset: {x: 0.5, y: 0}
     - first:
         name: _MainTex
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Offset: {x: 0.5, y: 0}
     - first:
         name: _MetallicGlossMap
       second:
@@ -65,6 +65,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     - first:
         name: _ParallaxMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _SpecGlossMap
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -87,7 +93,7 @@ Material:
       second: 1
     - first:
         name: _Glossiness
-      second: 1
+      second: 0.68
     - first:
         name: _GlossyReflections
       second: 1
@@ -99,10 +105,10 @@ Material:
       second: 0
     - first:
         name: _OcclusionStrength
-      second: 1
+      second: 0.07
     - first:
         name: _Parallax
-      second: 0.02
+      second: 0.01
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -124,4 +130,7 @@ Material:
       second: {r: 0.41399997, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
-      second: {r: 0, g: 0, b: 0, a: 1}
+      second: {r: 0.19632354, g: 0.3, b: 0.28712982, a: 1}
+    - first:
+        name: _SpecColor
+      second: {r: 1, g: 1, b: 1, a: 1}

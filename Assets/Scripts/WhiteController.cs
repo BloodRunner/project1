@@ -48,7 +48,7 @@ public class WhiteController : CellController {
 
 	public override void deathHandler (){
 		//Debug.Log (name + " dies ");
-		if (explosion!=null && name.Equals ("WhiteT")) {
+		if (explosion!=null && name.Equals ("KillerT")) {
 			GameObject gobj = Instantiate (explosion, transform.position, Quaternion.identity) as GameObject;;
 			DestroyObject (gobj, 2);
 		}
@@ -59,7 +59,7 @@ public class WhiteController : CellController {
 		DestroyObject (gameObject,2);
 	}
 
-
+	/*
 	public override void updateHealthStats(float point){
 		base.updateHealthStats (point);
 
@@ -67,22 +67,8 @@ public class WhiteController : CellController {
 
 	public override void updateDefenseStats(float point){
 		base.updateDefenseStats (point);
-	}
-	/*
-	public void addShooter() {
-		Debug.Log ("Adding shooter to " + name + "." + tag);
-		//GameObject shooterObj = Resources.Load<GameObject>("Shooter");
-		Shooter shooter = gameObject.AddComponent( typeof(Shooter) ) as Shooter;
-		shooter.transform.SetParent(gameObject.transform, false);
-	}
+	}*/
 
-	public void removeShooter() {
-		if (shooter != null) {
-			DestroyObject (shooter);
-			shooter = null;
-		}
-	}
-*/
 	public void addStats(){
 		Debug.Log ("Adding stats to " + nickname + "." + tag);
 		gameController.showPlayerStats (this);
@@ -93,6 +79,21 @@ public class WhiteController : CellController {
 	}
 
 	public string getNickname(){
+
 		return nickname;
 	}
+
+	/*
+	void OnDestroy() {
+		print(nickname + " is dead");
+		// This crashes unity completely at exit
+			CameraChange cc = GetComponent<CameraChange> ();
+			if (cc.getIsOn ()) {
+				cc.stopCamera ();
+			}
+		
+	}
+	*/
+
+
 }

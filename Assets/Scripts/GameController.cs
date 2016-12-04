@@ -258,20 +258,23 @@ public class GameController : MonoBehaviour
 				}
 			}
 			//Debug.Log ("gameover=" + gameOver);
-			if (gameOver) {
+		/*	if (gameOver) {
 				restart = true;
-				try {
-					showRestartButton (1);
-				} catch {
-					/*
-					if (restartText)
-						restartText.text = "Press 'R' for Restart";
-				*/
-				}
+				showRestartButton (1);
 				break;
-			} else if (level < numlevels) {// increase in difficulty
+			} else 
+			*/
+			if (level < numlevels) {// increase in difficulty
+				//yield return new WaitForSeconds (waveWait);
+				while (numInfection() > 0) {					
+					if (gameOver) {
+						restart = true;
+						showRestartButton (1);
+						break;
+					}
+					yield return new WaitForSeconds (2);
+				}
 				level++;
-				yield return new WaitForSeconds (waveWait);
 			} else {
 				winnable = true;
 				break;

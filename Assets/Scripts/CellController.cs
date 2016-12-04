@@ -67,12 +67,10 @@ public class CellController :  BodyController{
 		mybodyStats.delay += sec; // when brain is damaged, all cells are slow to follow command
 	}
 	public void TakeDamage(float points, Vector3 hitPt) {
-		//Debug.Log (name + " Got shot");
 		if (hitParticles != null) {
 			hitParticles.Play (); // Play explosion
 		}
 		updateHealthStats (-points);
-		// Should we play particles here?!?
 	}
 
 	// This cell defend against another
@@ -84,7 +82,7 @@ public class CellController :  BodyController{
 			other.updateHealthStats (-combat);
 			other.updateDefenseStats(-1.0f);
 			updateDefenseStats (-1.0f);
-			updateHealthStats (-0.5f); // Even winning loses .5% of health
+			updateHealthStats (-0.75f); // Even winning loses some health
 			win= true;
 		} else { // Lost
 			if (hitParticles != null) {
@@ -93,7 +91,7 @@ public class CellController :  BodyController{
 			updateHealthStats (-combat);
 			updateDefenseStats (-1.0f);
 			other.updateDefenseStats (-1.0f);
-			other.updateHealthStats (-0.5f); // Even winner loses .5% of health
+			other.updateHealthStats (-0.75f); // Even winner loses some health
 			win= false;
 			// Keeps track of the damage if contact continues; 
 		}
@@ -134,7 +132,7 @@ public class CellController :  BodyController{
 
 				if (shotSpawn != null) {// dna is the prefab
 					clone = Instantiate (dna, shotSpawn.position, shotSpawn.rotation) as GameObject;
-				} else {// Pop out a new one away from itself
+				} else {  // Pop out a new one away from itself
 					clone = Instantiate (dna, v3 , transform.rotation)as GameObject;
 				}
 				nvagt = gameObject.GetComponent<NavMeshAgent> ();
@@ -178,8 +176,6 @@ public class CellController :  BodyController{
 					updateHealthStats (damage.damage ());
 					Debug.Log (gameObject.name + "-" + gameObject.tag + " damaged by contact with " + other.name + "=" + other.tag);
 				}	
-				//Debug.Log (gameObject.name + " defends against " + gameObj.name + " " + gameObj.GetInstanceID () + " Found in contact" + inContact.ContainsKey (gameObj.GetInstanceID ()));
-
 			} /* else {
 				if (!tag.Equals (other.tag)
 				    && (other.tag.Equals ("Infection") && (name.Equals ("Red") ))
@@ -210,7 +206,7 @@ public class CellController :  BodyController{
 					CellController othercell = other.GetComponent (typeof(PathogenController)) as PathogenController;
 					battle = defendAgainst (othercell); 
 				}
-				if (gameObject.tag.Equals ("Infection") && other.name.StartsWith ("White")) { // White attacks pathogen 
+				if (gameObject.tag.Equals ("Infection") && (other.name.Equals ("White")||other.name.Equals ("KillerT"))) { // White attacks pathogen 
 						CellController othercell = other.GetComponent (typeof(WhiteController)) as WhiteController;
 						battle = defendAgainst (othercell);  // defend against white cell or pathogen
 				}
@@ -270,4 +266,5 @@ public class CellController :  BodyController{
 		}
 	}
 */
+
 }
