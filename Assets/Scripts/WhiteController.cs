@@ -65,6 +65,21 @@ public class WhiteController : CellController {
 
 	}
 
+	public override void updatePowerStats(float point){
+		base.updatePowerStats (point);
+
+	}
+
+	public override void updateRangedAttackSpeedStats(float point){
+		base.updateRangedAttackSpeedStats (point);
+
+	}
+
+	public override void updateRangedAttackStats(float point){
+		base.updateRangedAttackStats (point);
+
+	}
+
 	public override void updateDefenseStats(float point){
 		base.updateDefenseStats (point);
 	}

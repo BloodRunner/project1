@@ -4,6 +4,12 @@ using System.Collections;
 
 public class updatePlayerStats : MonoBehaviour
 {
+	private float bonusMeleeAttackPower;
+	private float bonusRangedAttackPower;
+	private float bonusLifeSpan;
+	private float bonusRangedAttackSpeed;
+	private float bonusHealth;
+	private float bonusDefence;
 	float timer = 0;
 	WhiteController whitecell;
 	Slider healthSlider=null;
@@ -28,6 +34,10 @@ public class updatePlayerStats : MonoBehaviour
 		if (playerNameText != null)
 			playerNameText.text = whitecell.getNickname ();
 		this.whitecell = whitecell;
+		this.whitecell.updatePowerStats (bonusMeleeAttackPower);
+		this.whitecell.updateRangedAttackStats (bonusRangedAttackPower);
+		this.whitecell.GetComponentInChildren<Shooter> ().damagePerShot += (int)bonusRangedAttackPower;
+		this.whitecell.GetComponentInChildren<Shooter> ().timeBetweenBullets += (int)bonusRangedAttackSpeed;
 	}
 
 	public void updateStats ()

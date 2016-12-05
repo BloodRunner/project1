@@ -125,7 +125,7 @@ public class Shooter : MonoBehaviour {
 			 //  Debug.Log ("shot enemy " + shootHit.collider.name );
 			// Try and find the cell script on the gameobject hit.
 				CellController enemy = shootHit.collider.GetComponent <CellController> ();
-				if(enemy != null)
+				if (enemy != null)
 					enemy.TakeDamage (damagePerShot, shootHit.point);
 			}
 			// Set the second position of the line renderer to the point the raycast hit.

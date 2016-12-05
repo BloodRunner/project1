@@ -37,6 +37,8 @@ public class BodyController : MonoBehaviour
 	protected float stats_reprodRate = 100.0f;
 	protected float stats_power = 100.0f;
 	protected float stats_delay = 0f;
+	protected float stats_ranged_power = 20f;
+	protected float stats_ranged_speed = 0.20f;
 	protected int stats_level = 1;
 	public Slider healthSlider;
 	public Slider powerSlider;
@@ -85,6 +87,8 @@ public class BodyController : MonoBehaviour
 
 	public float get_stats_power(){ return stats_power;
 	}
+	public float get_ranged_power(){ return stats_ranged_power;
+	}
 	public float get_stats_health(){ return stats_health;
 	}
 	public float get_stats_defense(){ return stats_defense;
@@ -123,6 +127,16 @@ public class BodyController : MonoBehaviour
 		if (stats_defense > 100f) // health goes up by oxygen power
 			stats_defense = 100f;
 		if (stats_defense <= 0) {stats_defense = 0; }
+	}
+
+	public virtual void updateRangedAttackSpeedStats(float point){
+		stats_ranged_speed += point;
+		if (stats_ranged_speed <= 0) {stats_ranged_speed = 0;}
+	}
+
+	public virtual void updateRangedAttackStats(float point){
+		stats_ranged_power += point;
+		if (stats_ranged_power <0){stats_ranged_power = 0;}
 	}
 }
 
