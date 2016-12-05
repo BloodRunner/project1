@@ -12,7 +12,7 @@ public class updatePlayerStats : MonoBehaviour
 	private float bonusDefence;
 	float timer = 0;
 	WhiteController whitecell;
-	Slider healthSlider=null;
+	public Slider healthSlider=null;
 	Slider defenseSlider=null;
 	Slider attackSlider=null;
 	Slider lifespanSlider=null;
@@ -46,14 +46,14 @@ public class updatePlayerStats : MonoBehaviour
 			return;
 		//try { // The cell can die meanwhile
 			if (healthSlider != null)
-				healthSlider.value = whitecell.health () * 100f;
+				healthSlider.value = whitecell.health () ;
 			if (defenseSlider != null)
-				defenseSlider.value = whitecell.defense () * 100f;
-			if (attackSlider != null)
-				attackSlider.value = whitecell.power () * 100f;
+				defenseSlider.value = whitecell.defense () ;
+		if (attackSlider != null)
+			attackSlider.value = whitecell.power ();
 			if (lifespanSlider != null)
 				lifespanSlider.value = whitecell.time_left_to_live () / whitecell.lifespan_in_seconds;
-			//Debug.Log ("Time left to live " + whitecell.time_left_to_live ());
+			Debug.Log ("health " + whitecell.health ());
 			if (whitecell.time_left_to_live () < 2) {
 				Debug.Log (whitecell.getNickname () + " dies of old age");
 				whitecell = null;

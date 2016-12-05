@@ -8,9 +8,6 @@ public class WhiteSpawner : MonoBehaviour
 	public BodyState bodystate;
 	public GameController gameController;
 	private float nextReprod = 0f;
-	//public Slider healthSlider;
-	//public Slider powerSlider;
-	//public Slider defenseSlider;
 	public Text playerNameText;
 
 	void Start ()
@@ -20,8 +17,7 @@ public class WhiteSpawner : MonoBehaviour
 		if (bodystate == null)
 			bodystate = GameObject.FindObjectOfType (typeof(BodyState)) as BodyState;
 		if (dna != null)
-			makeone ();
-		
+			makeone ();	
 	}
 
 	void makeone ()
@@ -36,10 +32,6 @@ public class WhiteSpawner : MonoBehaviour
 			cell.updateHealthStats (100 - bodystate.whiteHealth ());
 			cell.gameController = gameController;
 			cell.setNickname (Namer.getName ());
-			//cell.playerNameText =playerNameText;
-			//cell.healthSlider = healthSlider;
-			//cell.powerSlider = powerSlider;
-			//cell.defenseSlider = defenseSlider;
 			nextReprod = Time.time + cell.get_bodystats_reprod () * bodystate.whiteReprodRate ();
 			//Debug.Log (cell.name + " Instantiated in Whitespawner");
 		} catch {

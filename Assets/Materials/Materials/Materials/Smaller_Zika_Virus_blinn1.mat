@@ -44,13 +44,13 @@ Material:
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Offset: {x: 0.5, y: 0}
     - first:
         name: _MainTex
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Offset: {x: 0.5, y: 0}
     - first:
         name: _MetallicGlossMap
       second:
@@ -65,6 +65,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     - first:
         name: _ParallaxMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _SpecGlossMap
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -87,13 +93,13 @@ Material:
       second: 1
     - first:
         name: _Glossiness
-      second: 0.5
+      second: 0.73
     - first:
         name: _GlossyReflections
       second: 1
     - first:
         name: _Metallic
-      second: 0
+      second: 0.48
     - first:
         name: _Mode
       second: 0
@@ -121,7 +127,10 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 1, g: 0.18740499, b: 0.018999994, a: 1}
+      second: {r: 0.8602941, g: 0.05060553, b: 0.6369316, a: 1}
     - first:
         name: _EmissionColor
-      second: {r: 0, g: 0, b: 0, a: 1}
+      second: {r: 0.23543133, g: 0.080125436, b: 0.2794118, a: 1}
+    - first:
+        name: _SpecColor
+      second: {r: 0.9852941, g: 0.18836506, b: 0.4414304, a: 1}
