@@ -145,6 +145,7 @@ public class BodyController : MonoBehaviour
 		if (stats_defense <= 0) {stats_defense = 0; }
 	}
 
+	// lerp doesn't seem to look better
 	// From 0 to 1 : 1 is healthy, 0 is dead
 	// Healthy = shiny , metallic and saturated colors, Sick = dull 
 	public  void muteColors(float intensity, float freq) {
@@ -204,7 +205,7 @@ public class BodyController : MonoBehaviour
 		shininess= intensity * 0.3f;
 	
 		Color faded = myMaterial.color * intensity;
-		Debug.Log (name + " changes from "+ myMaterial.color + " to "+ faded);
+		//Debug.Log (name + " changes from "+ myMaterial.color + " to "+ faded);
 		myMaterial.SetFloat("_Shininess", shininess);
 		myMaterial.SetFloat("_Glossiness", shininess);
 		myMaterial.SetFloat("_Smoothness", shininess);

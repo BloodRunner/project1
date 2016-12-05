@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-	
+
 public class GameController : MonoBehaviour
 {
 	public RedController Red;
@@ -25,18 +25,15 @@ public class GameController : MonoBehaviour
 	public int startWait, waveWait;
 	private int killTcount = 0;
 	// A new one every N point in Score
-	private float score = 100;
-	// starts at 100%, dies at 0
-	public GUIText healthText;
+	private float score = 0;
 	private bool gameOver;
 	private bool restart = false;
 	public Text characterCount;
 	public Text instructionText;
 	public Text scoreText;
-	public Button restartButton;
-	public GUIText messageText;
-	//public GUIText restartText;
-	public GUIText gameoverText;
+	public Text messageText;
+	Button restartButton;
+	public Text gameoverText;
 	public Camera topCamera;
 	public Camera followCamera;
 	protected int numInfections = 0;
@@ -47,6 +44,7 @@ public class GameController : MonoBehaviour
 	bool winnable = false;
 	float difficultyLevel = 1;
 	updatePlayerStats playerStats;
+	bool WaitForNextLevel;
 
 
 	// Use this for initialization
@@ -78,7 +76,7 @@ public class GameController : MonoBehaviour
 		}
 		all_organs = GameObject.FindObjectsOfType (typeof(OrganController)) as OrganController[];
 		ThymusController tc = GameObject.FindObjectOfType (typeof(ThymusController)) as ThymusController;
-		StartCoroutine (SpawnInstructions ());
+		//StartCoroutine (SpawnInstructions ());
 		setUpDefence (redCount, whiteCount, tc.transform.position); // defenders spawned from thymus
 		StartCoroutine (SpawnWaves ());
 	}
@@ -92,7 +90,7 @@ public class GameController : MonoBehaviour
 		return total;
 	}
 
-	public void tallyCharacters ()
+	public int tallyCharacters ()
 	{
 		int[] count = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };// Bad coding practice!
 		string total = "Ally Count:";
@@ -103,6 +101,7 @@ public class GameController : MonoBehaviour
 		total += "\nRed Blood Cell:" + cells.Length;
 		cells = GameObject.FindObjectsOfType (typeof(PathogenController)) as PathogenController[];
 		total += "\nEnemy Count:";
+		numInfections = cells.Length; 
 		for (int i = 0; i < cells.Length; i++) {
 			for (int j = 0; j < pathogens.Length; j++) {
 				if (cells [i].name.Equals (pathogens [j])) {
@@ -116,7 +115,7 @@ public class GameController : MonoBehaviour
 				total += "\n" + pathogens [j] + ": " + count [j];
 		}
 		characterCount.text = total;
-		//Debug.Log (total);
+		return numInfections;
 	}
 
 	public bool bodyIsAlive ()
@@ -124,7 +123,6 @@ public class GameController : MonoBehaviour
 		int alive = 0;
 		foreach (OrganController organ in all_organs) {
 			if (organ.get_stats_health () > 0) {
-				//Debug.Log (organ.name + " " + organ.get_stats_health ());
 				alive = alive | organ.mask;
 			}
 		}
@@ -165,38 +163,37 @@ public class GameController : MonoBehaviour
 		instructionText.text = "";
 	}
 
-	public bool checkForVictory ()
-	{
-		//All pathogens are dead
-		if (winnable) {
-			if (!gameOver && numInfection () == 0) {
-				gameOver = true;
-				if (gameoverText)
-					gameoverText.text = "You have won! All pathogens are eliminated!";
-				return true;
-			}
-		}
-		return false;
-	}
 
-	IEnumerator spawnLevel(int level){
+	IEnumerator spawnLevel (int level)
+	{
 		CellController cell;
-		char[] delim = {','};
+		char[] delim = { ',' };
 		bool foundOrgan = false;
 		string[] words;
-		PathogenController cc = infections[0];
+		string organs = "";
+		PathogenController cc = infections [0];
 		words = levelEditor [level].Split (delim);
-		//Debug.Log ("Spawnwave level="+level+" "+ cc.name +" "+ infectionCount);
-		//showMessage ("Level "+ (level+1) +": " + infectionCount + cc.name + " are coming out from "+ infectedOrgan.name , 5);
-		//stopgap killerT cell spawning
-		//if(level > 1){
-		//	spawnKillerT (1);
-		//}
+
+		bool randomed = false;
+		for (int i = 0; i < words.Length; i++) {
+			for (int x = 0; x < all_organs.Length; x++) {
+				if (words [i] == all_organs [x].name) {
+					organs += " " + all_organs [x].name;
+					organs += ",";
+				} else if (!randomed && words [i].Equals ("Random")) {
+					organs += " random organs,";
+					randomed = true;
+				}
+			}
+		}
+		organs.TrimEnd (',');
+		showMessage ("Level " + (level+1) + ":" + "Pathogens are coming out of" + organs, 25);
+		Debug.Log ("!!!Level " + (level + 1) + ":" + "Pathogens are coming out of" + organs);
 		for (int i = 0; i < words.Length; i++) {
 			for (int x = 0; x < all_organs.Length; x++) {
 				if (words [i] == all_organs [x].name) {
 					foundOrgan = true;
-					infectedOrgan = GameObject.Find (all_organs[x].name);
+					infectedOrgan = GameObject.Find (all_organs [x].name);
 					Debug.Log (infectedOrgan.name);
 					break;
 				}
@@ -214,11 +211,11 @@ public class GameController : MonoBehaviour
 				char[] inf = words [i].ToCharArray (0, 1);
 				int infT = (int)inf [0];
 				//print (infT.ToString());
-				print(words[i]);
-				print(infT.ToString());
+				print (words [i]);
+				print (infT.ToString ());
 				cc = infections [infT - 65];
-				int infNum = int.Parse(words [i].Substring (1));
-				infectionCount = infNum * (int)(4 * difficultyLevel +1);
+				int infNum = int.Parse (words [i].Substring (1));
+				infectionCount = infNum * (int)(4 * difficultyLevel + 1);
 				for (int z = 0; z < infectionCount; z++) {
 					// Instantiate at infection point in organs!
 					cell = Instantiate (cc, infectedOrgan.transform.position, Quaternion.identity) as PathogenController;
@@ -237,52 +234,53 @@ public class GameController : MonoBehaviour
 		yield return new WaitForSeconds (startWait);
 		CellController cell;
 		int level = 0;
-		/*const*/ int numlevels = levelEditor.Length;
-		PathogenController cc = infections[0];
-		while (true) {
-			if (level >= numlevels)
-				break;
+		/*const*/
+		int numlevels = levelEditor.Length;
+		PathogenController cc = infections [0];
+		while (!gameOver && level < numlevels) {
 			StartCoroutine (spawnLevel (level));
-
+			cc = infections [level % infections.Length];
 			// Organ is now a spawner
-
 			foreach (OrganController organ in all_organs) {
 				if (organ.get_stats_health () <= 0) {
+					
 					showMessage (infectionCount + " " + cc.name + " are coming out from undead " + organ.name + ". Send some white blood cells to clear the infection", 5);
-
 					cell = Instantiate (cc, organ.transform.position, Quaternion.identity) as PathogenController;
-
 					cell.bodystate = this.bodystate;
 					cell.gameController = this;
 					//Debug.Log ("Sending out " + cell.name+ " from " + organ.name);
 				}
 			}
-			//Debug.Log ("gameover=" + gameOver);
-		/*	if (gameOver) {
-				restart = true;
-				showRestartButton (1);
-				break;
-			} else 
-			*/
+			// Wait for player to kill all pathogens or die
 			if (level < numlevels) {// increase in difficulty
 				//yield return new WaitForSeconds (waveWait);
-				while (numInfection() > 0) {					
+				while (numInfection () > 0) {					
 					if (gameOver) {
 						restart = true;
 						showRestartButton (1);
 						break;
 					}
-					yield return new WaitForSeconds (2);
+					yield return new WaitForSeconds (3);
 				}
 				level++;
-			} else {
-				winnable = true;
-				break;
+				if (!gameOver) {
+					if (level < numlevels) {
+						showMessage ("You have lived through level " + level + ". More pathogens are coming", 1);			
+						showNextLevelButton (1);
+						yield return new WaitWhile (() => WaitForNextLevel);								
+					} else {
+						Victory (); // All pathogens killed and no more levels
+					}
+				}
 			}
 		}
-		winnable = true;
-		Debug.Log ("Winnable now " + level);
+		if (gameOver) {
+			restart = true;
+			showRestartButton (1);
+		} 
 	}
+
+
 
 	public void setUpDefence (int redCount, int whiteCount, Vector3 location)
 	{
@@ -342,9 +340,7 @@ public class GameController : MonoBehaviour
 
 				}
 			}
-			//characterCount.text = "Ally Count:\nRed Blood Cells:\nWhite Blood Cells:\nEnemy Count:\nBacteria:\nVirus:\nPrion:\nParasite:\nZika";
 			tallyCharacters ();
-			checkForVictory ();
 		}
 	}
 
@@ -364,6 +360,14 @@ public class GameController : MonoBehaviour
 		showRestartButton (1);
 	}
 
+	public void Victory ()
+	{
+		gameOver = true;
+		if (gameoverText)
+			gameoverText.text = "You have won! All pathogens are eliminated!";
+		showRestartButton (1);
+	}
+
 	IEnumerator timedMessage (string message, int seconds)
 	{
 		messageText.text = message;
@@ -380,10 +384,6 @@ public class GameController : MonoBehaviour
 
 	public void showSettings ()
 	{
-		Debug.Log ("show settings");
-		//pauseGame ();
-		//	Button settingsButton = GameObject.Find ("settingsButton").GetComponent<Button> () as Button;
-		//settingsButton.GetComponent<Text>.text = "Save Settings";
 		GameObject panel = GameObject.Find ("settingsPanel");
 		CanvasGroup cg = panel.GetComponent<CanvasGroup> ();
 		bool on_off = cg.interactable; 
@@ -397,9 +397,26 @@ public class GameController : MonoBehaviour
 		//settingsButton.GetComponent<Text>.text = "Save Settings";
 	}
 
+	public void showInstructions ()
+	{
+		GameObject panel = GameObject.Find ("InstructionsScrollView");
+		CanvasGroup cg = panel.GetComponent<CanvasGroup> ();
+		bool on_off = cg.interactable; 
+		if (!on_off) { // Toggle interactable
+			cg.interactable = true;
+			cg.alpha = 1;
+			Time.timeScale = 0;
+		} else {
+			cg.interactable = false;
+			cg.alpha = 0;
+			Time.timeScale = 1;
+		}
+	}
+
+
 	public void showPlayerStats (WhiteController whitecell)
 	{
-		Debug.Log ("show player stats");
+		//Debug.Log ("show player stats");
 		GameObject panel = GameObject.Find ("PlayerPanel");
 		CanvasGroup cg = panel.GetComponent<CanvasGroup> (); 
 		cg.alpha = 1;
@@ -416,9 +433,6 @@ public class GameController : MonoBehaviour
 		GameObject panel = GameObject.Find ("PlayerPanel");
 		CanvasGroup cg = panel.GetComponent<CanvasGroup> ();
 		cg.alpha = 0;
-		/*if (playerStats) {
-			playerStats.enabled = false;
-		} */
 	}
 
 	public void pauseGame ()
@@ -459,6 +473,34 @@ public class GameController : MonoBehaviour
 			cg.interactable = false;
 			cg.alpha = 0;
 		}
+	}
+
+	public void nextLevel ()
+	{
+		WaitForNextLevel = false;
+		showNextLevelButton (0);
+	}
+
+	public void showNextLevelButton (int on_off)
+	{
+		Debug.Log ("show next level button");
+		Button nlButton = GameObject.Find ("NextLevelButton").GetComponent<Button> () as Button;
+		Button pauseButton = GameObject.Find ("pauseButton").GetComponent<Button> () as Button;
+
+		CanvasGroup cg = nlButton.GetComponent<CanvasGroup> ();
+		if (on_off == 1) {
+			WaitForNextLevel = true;
+			cg.interactable = true;
+			cg.alpha = 1;
+			pauseButton.enabled = false;
+			pauseGame ();
+		} else {
+			cg.interactable = false;
+			cg.alpha = 0;
+			pauseGame ();
+			pauseButton.enabled = true;
+		}
+
 	}
 
 }

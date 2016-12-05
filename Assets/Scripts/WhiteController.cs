@@ -59,16 +59,6 @@ public class WhiteController : CellController {
 		DestroyObject (gameObject,2);
 	}
 
-	/*
-	public override void updateHealthStats(float point){
-		base.updateHealthStats (point);
-
-	}
-
-	public override void updateDefenseStats(float point){
-		base.updateDefenseStats (point);
-	}*/
-
 	public void addStats(){
 		Debug.Log ("Adding stats to " + nickname + "." + tag);
 		gameController.showPlayerStats (this);
