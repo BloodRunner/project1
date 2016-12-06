@@ -87,8 +87,6 @@ public class BodyController : MonoBehaviour
 
 	public float get_stats_power(){ return stats_power;
 	}
-	public float get_ranged_power(){ return stats_ranged_power;
-	}
 	public float get_stats_health(){ return stats_health;
 	}
 	public float get_stats_defense(){ return stats_defense;
@@ -129,7 +127,7 @@ public class BodyController : MonoBehaviour
 		if (stats_defense <= 0) {stats_defense = 0; }
 	}
 
-	public virtual void updateRangedAttackSpeedStats(float point){
+	/*public virtual void updateRangedAttackSpeedStats(float point){
 		stats_ranged_speed += point;
 		if (stats_ranged_speed <= 0) {stats_ranged_speed = 0;}
 	}
@@ -137,6 +135,6 @@ public class BodyController : MonoBehaviour
 	public virtual void updateRangedAttackStats(float point){
 		stats_ranged_power += point;
 		if (stats_ranged_power <0){stats_ranged_power = 0;}
-	}
+	}*/
 }
 

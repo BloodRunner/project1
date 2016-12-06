@@ -70,7 +70,11 @@ public class WhiteController : CellController {
 
 	}
 
-	public override void updateRangedAttackSpeedStats(float point){
+	public override void updateDefenseStats(float point){
+		base.updateDefenseStats (point);
+	}
+
+	/*public override void updateRangedAttackSpeedStats(float point){
 		base.updateRangedAttackSpeedStats (point);
 
 	}
@@ -78,11 +82,8 @@ public class WhiteController : CellController {
 	public override void updateRangedAttackStats(float point){
 		base.updateRangedAttackStats (point);
 
-	}
+	}*/
 
-	public override void updateDefenseStats(float point){
-		base.updateDefenseStats (point);
-	}
 	/*
 	public void addShooter() {
 		Debug.Log ("Adding shooter to " + name + "." + tag);

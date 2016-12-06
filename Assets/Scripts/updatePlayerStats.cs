@@ -34,10 +34,13 @@ public class updatePlayerStats : MonoBehaviour
 		if (playerNameText != null)
 			playerNameText.text = whitecell.getNickname ();
 		this.whitecell = whitecell;
-		this.whitecell.updatePowerStats (bonusMeleeAttackPower);
-		this.whitecell.updateRangedAttackStats (bonusRangedAttackPower);
+		//this.whitecell.updatePowerStats (bonusMeleeAttackPower);
 		this.whitecell.GetComponentInChildren<Shooter> ().damagePerShot += (int)bonusRangedAttackPower;
 		this.whitecell.GetComponentInChildren<Shooter> ().timeBetweenBullets += (int)bonusRangedAttackSpeed;
+		//this.whitecell.updateHealthStats (bonusHealth);
+		this.whitecell.bodyStats.defense += bonusDefence;
+		this.whitecell.bodyStats.health += bonusHealth;
+		this.whitecell.bodyStats.power += bonusMeleeAttackPower;
 	}
 
 	public void updateStats ()
