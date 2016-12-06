@@ -41,6 +41,8 @@ public class updatePlayerStats : MonoBehaviour
 		this.whitecell.bodyStats.defense += bonusDefence;
 		this.whitecell.bodyStats.health += bonusHealth;
 		this.whitecell.bodyStats.power += bonusMeleeAttackPower;
+		this.whitecell.lifespan_in_seconds += bonusLifeSpan;
+		Debug.Log (this.whitecell.bodyStats.power.ToString());
 	}
 
 	public void updateStats ()

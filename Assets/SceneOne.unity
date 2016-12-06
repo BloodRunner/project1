@@ -4732,7 +4732,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: 20.198013}
+  m_AnchoredPosition: {x: 50, y: 20.197994}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &544625887
@@ -5068,13 +5068,11 @@ MonoBehaviour:
   spawnWait: 5
   startWait: 5
   waveWait: 30
-  healthText: {fileID: 1775964931}
   characterCount: {fileID: 2025294910}
   instructionText: {fileID: 2146241160}
   scoreText: {fileID: 508036431}
-  restartButton: {fileID: 0}
-  messageText: {fileID: 1254556204}
-  gameoverText: {fileID: 1979003517}
+  messageText: {fileID: 0}
+  gameoverText: {fileID: 0}
   topCamera: {fileID: 1085322719}
   followCamera: {fileID: 1947893315}
 --- !u!4 &586731042
