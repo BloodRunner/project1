@@ -43,7 +43,7 @@ public class updatePlayerStats : MonoBehaviour
 			attackSlider.value = whitecell.power ();
 			if (lifespanSlider != null)
 				lifespanSlider.value = whitecell.time_left_to_live () / whitecell.lifespan_in_seconds;
-			Debug.Log ("health " + whitecell.health ());
+			//Debug.Log ("health " + whitecell.health ());
 			if (whitecell.time_left_to_live () < 2) {
 				Debug.Log (whitecell.getNickname () + " dies of old age");
 				whitecell = null;

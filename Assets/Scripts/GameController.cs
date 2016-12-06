@@ -41,10 +41,10 @@ public class GameController : MonoBehaviour
 	OrganController[] all_organs;
 	float timer;
 	// timer to limit the UI tally update
-	bool winnable = false;
 	float difficultyLevel = 1;
 	updatePlayerStats playerStats;
 	bool WaitForNextLevel;
+	int level=0;
 
 
 	// Use this for initialization
@@ -238,6 +238,7 @@ public class GameController : MonoBehaviour
 		int numlevels = levelEditor.Length;
 		PathogenController cc = infections [0];
 		while (!gameOver && level < numlevels) {
+			//showNextLevelButton (1);
 			StartCoroutine (spawnLevel (level));
 			cc = infections [level % infections.Length];
 			// Organ is now a spawner
@@ -463,7 +464,6 @@ public class GameController : MonoBehaviour
 
 	public void showRestartButton (int on_off)
 	{
-		Debug.Log ("show restart Button");
 		Button restartButton = GameObject.Find ("RestartButton").GetComponent<Button> () as Button;
 		CanvasGroup cg = restartButton.GetComponent<CanvasGroup> ();
 		if (on_off == 1) {
@@ -479,6 +479,7 @@ public class GameController : MonoBehaviour
 	{
 		WaitForNextLevel = false;
 		showNextLevelButton (0);
+		//StartCoroutine (spawnLevel (level));
 	}
 
 	public void showNextLevelButton (int on_off)
@@ -492,13 +493,14 @@ public class GameController : MonoBehaviour
 			WaitForNextLevel = true;
 			cg.interactable = true;
 			cg.alpha = 1;
+			nlButton.enabled = true;
 			pauseButton.enabled = false;
-			pauseGame ();
+			Time.timeScale = 0;
 		} else {
 			cg.interactable = false;
 			cg.alpha = 0;
-			pauseGame ();
 			pauseButton.enabled = true;
+			Time.timeScale = 1;
 		}
 
 	}

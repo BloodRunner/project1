@@ -25,6 +25,8 @@ public class CellController :  BodyController{
 	private Vector3 dest;
 	ParticleSystem hitParticles; // Death Indication
 	float birthtime;
+	AudioSource deathSound=null;
+	bool dead=false;
 
 	void Awake() { 
 		rb = GetComponent<Rigidbody>();
@@ -39,16 +41,19 @@ public class CellController :  BodyController{
 			bodystate = GameObject.FindObjectOfType<BodyState> ();
 		if (lifespan_in_seconds == 0)
 			lifespan_in_seconds = 1200f;
+		AudioSource [] audiosources = gameObject.GetComponentsInChildren<AudioSource> ();
+		for (int i =0; i < audiosources.Length; i++) {
+			if (audiosources[i].name.Equals("deathSound"))
+				deathSound = audiosources[i];
+			Debug.Log (" deathSound found for " + name);
+		}
 		birthtime = Time.time;
 		Destroy(gameObject, lifespan_in_seconds); // destroy objects automatically - cell death!
 		//Debug.Log("START nextReprod= "+ nextReprod +"{"+ reprodRate() +"}");
 		if (myname != null) name= myname;
 		hitParticles = GetComponentInChildren <ParticleSystem> ();
-		//if (hitParticles!=null)
-		//	hitParticles.Stop ();
-		// Doesn't seem to filter!
-		//Physics.IgnoreLayerCollision(LayerMask.NameToLayer("HostCell"),LayerMask.NameToLayer("Walls"));
-		//Physics.IgnoreLayerCollision(LayerMask.NameToLayer("HostCell"),LayerMask.NameToLayer("Ground"));
+		Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Hostcell"),LayerMask.NameToLayer("Walls"));
+		Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Hostcell"),LayerMask.NameToLayer("Ground"));
 	}
 
 	public float time_left_to_live() {
@@ -108,14 +113,17 @@ public class CellController :  BodyController{
 
 	public override void deathHandler (){
 		//Debug.Log (name + " dies ");
-
+		if (dead) return;
+		dead = true;
+		if (deathSound) deathSound.Play();
+		//GetComponent<MeshRenderer>().enabled = false;
 		if (gameController == null)
 			gameController = GetComponent<GameController> ();
 		if (gameController) {
 			if (tag.Equals ("Infection"))
 				gameController.UpdateScore (points);
 		}
-		DestroyObject (gameObject);
+		DestroyObject (gameObject, 2f);
 	}
 
 	// Reproduce once every N seconds - (reprod rate)
