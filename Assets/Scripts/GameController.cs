@@ -45,6 +45,7 @@ public class GameController : MonoBehaviour
 	updatePlayerStats playerStats;
 	bool WaitForNextLevel;
 	int level=0;
+	AudioSource readyToGoSound, gameOverSound, victorySound;
 
 
 	// Use this for initialization
@@ -67,6 +68,15 @@ public class GameController : MonoBehaviour
 		followCamera = GameObject.Find ("followCamera").GetComponent<Camera> ();
 		followCamera.enabled = false;
 		topCamera.enabled = true;
+		AudioSource [] audiosources = gameObject.GetComponentsInChildren<AudioSource> ();
+		for (int i =0; i < audiosources.Length; i++) {
+			if (audiosources[i].name.Equals("GameOverSound"))
+				gameOverSound = audiosources[i];
+			else if (audiosources[i].name.Equals("readyToGoSound"))
+				readyToGoSound = audiosources[i];
+			else if (audiosources[i].name.Equals("VictorySound"))
+				victorySound = audiosources[i];		
+		}
 		if (bodystate == null) {
 			Debug.Log ("Game Controller missing body state");
 		}
@@ -257,8 +267,8 @@ public class GameController : MonoBehaviour
 				//yield return new WaitForSeconds (waveWait);
 				while (numInfection () > 0) {					
 					if (gameOver) {
-						restart = true;
-						showRestartButton (1);
+						//restart = true;
+						//showRestartButton (1);
 						break;
 					}
 					yield return new WaitForSeconds (3);
@@ -275,10 +285,11 @@ public class GameController : MonoBehaviour
 				}
 			}
 		}
+		/*
 		if (gameOver) {
 			restart = true;
 			showRestartButton (1);
-		} 
+		} */
 	}
 
 
@@ -316,7 +327,6 @@ public class GameController : MonoBehaviour
 
 	public void RestartGame ()
 	{
-		Debug.Log ("Restart Game ");
 		SceneManager.LoadSceneAsync (0);
 	}
 	
@@ -356,6 +366,8 @@ public class GameController : MonoBehaviour
 	public void GameOver ()
 	{
 		gameOver = true;
+		if (gameOverSound)
+			gameOverSound.Play ();
 		if (gameoverText)
 			gameoverText.text = "Game Over";
 		showRestartButton (1);
@@ -364,6 +376,8 @@ public class GameController : MonoBehaviour
 	public void Victory ()
 	{
 		gameOver = true;
+		if (victorySound)
+			victorySound.Play ();
 		if (gameoverText)
 			gameoverText.text = "You have won! All pathogens are eliminated!";
 		showRestartButton (1);
@@ -466,7 +480,9 @@ public class GameController : MonoBehaviour
 	{
 		Button restartButton = GameObject.Find ("RestartButton").GetComponent<Button> () as Button;
 		CanvasGroup cg = restartButton.GetComponent<CanvasGroup> ();
+
 		if (on_off == 1) {
+			restartButton.enabled = true;
 			cg.interactable = true;
 			cg.alpha = 1;
 		} else {
@@ -477,6 +493,8 @@ public class GameController : MonoBehaviour
 
 	public void nextLevel ()
 	{
+		if (readyToGoSound)
+			readyToGoSound.Play ();
 		WaitForNextLevel = false;
 		showNextLevelButton (0);
 		//StartCoroutine (spawnLevel (level));
@@ -502,6 +520,7 @@ public class GameController : MonoBehaviour
 			pauseButton.enabled = true;
 			Time.timeScale = 1;
 		}
+
 
 	}
 

@@ -28,6 +28,7 @@ public class CellController :  BodyController{
 	AudioSource deathSound=null;
 	bool dead=false;
 
+
 	void Awake() { 
 		rb = GetComponent<Rigidbody>();
 		rb.angularVelocity = Random.insideUnitSphere * Random.Range(0,2); // rotate randomly
@@ -45,7 +46,7 @@ public class CellController :  BodyController{
 		for (int i =0; i < audiosources.Length; i++) {
 			if (audiosources[i].name.Equals("deathSound"))
 				deathSound = audiosources[i];
-			Debug.Log (" deathSound found for " + name);
+			//Debug.Log (" deathSound found for " + name);
 		}
 		birthtime = Time.time;
 		Destroy(gameObject, lifespan_in_seconds); // destroy objects automatically - cell death!
@@ -182,7 +183,7 @@ public class CellController :  BodyController{
 				Damage damage = (Damage)inContact [gameObj.GetInstanceID ()];
 				if (damage.nextAttack (Time.time)) {
 					updateHealthStats (damage.damage ());
-					Debug.Log (gameObject.name + "-" + gameObject.tag + " damaged by contact with " + other.name + "=" + other.tag);
+					//Debug.Log (gameObject.name + "-" + gameObject.tag + " damaged by contact with " + other.name + "=" + other.tag);
 				}	
 			} /* else {
 				if (!tag.Equals (other.tag)
@@ -242,37 +243,6 @@ public class CellController :  BodyController{
 			}
 		}
 	}
-
-	/*
-	void OnTriggerEnter(Collider other) {
-		if ((gameObject.tag.Equals("Infection") && other.name.Equals("Red")) ||
-			(gameObject.name.StartsWith("White") && other.tag.Equals("Infection"))){
-			Debug.Log(gameObject.name+"-"+gameObject.tag+" triggered by "+ other.name+"="+other.tag);
-		}
-		if (!other.tag.Equals("Untagged"))
-			Debug.Log(gameObject.name+"-"+gameObject.tag+" triggered by "+ other.name+"="+other.tag);
-	}	
-
-	void OnTriggerExit(Collider other) {
-		if (gameObject.CompareTag(other.tag)) { // Same Team
-			return;
-		}
-	}
-
-	void OnTriggerStay(Collider other) {
-		if (gameObject.tag == other.tag ) { // Same Team
-			return;
-		}
-		GameObject gameObj = other.gameObject;
-		// If sustaining damage - apply damage
-		if (gameObj && inContact.ContainsKey (gameObj.GetInstanceID ())) {
-			Damage damage = (Damage)inContact[gameObj.GetInstanceID()];
-			if (damage.nextAttack (Time.time)) {
-				updateHealthStats (damage.damage());
-				Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
-			}	
-		}
-	}
-*/
+		
 
 }
