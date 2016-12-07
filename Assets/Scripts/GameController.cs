@@ -428,8 +428,9 @@ public class GameController : MonoBehaviour
 		playerStats.SetUpPlayer (whitecell);
 	}
 
-	public void removePlayerStats ()
+	public void removePlayerStats (WhiteController whitecell)
 	{
+		playerStats.removePlayer(whitecell);
 		GameObject panel = GameObject.Find ("PlayerPanel");
 		CanvasGroup cg = panel.GetComponent<CanvasGroup> ();
 		cg.alpha = 0;

@@ -105,10 +105,29 @@ public class WhiteController : CellController {
 	}
 
 	public void removeStats(){
-		gameController.removePlayerStats ();
+		gameController.removePlayerStats (this);
 	}
 
 	public string getNickname(){
 		return nickname;
+	}
+
+	public void buffMeleeAttack(float val){
+		this.bodyStats.power += val;
+	}
+	public void buffRangedAttack(float val){
+		this.GetComponentInChildren<Shooter> ().damagePerShot += (int)val;
+	}
+	public void buffRangedAttackSpeed(float val){
+		this.GetComponentInChildren<Shooter> ().timeBetweenBullets -= val;
+	}
+	public void buffHealth(float val){
+		this.bodyStats.health += val;
+	}
+	public void buffDefence(float val){
+		this.bodyStats.defense += val;
+	}
+	public void buffLifeSpan(float val){
+		this.lifespan_in_seconds += val;
 	}
 }

@@ -22,7 +22,8 @@ GameObject:
   - 65: {fileID: 65000013675613460}
   - 108: {fileID: 108000011244745990}
   - 54: {fileID: 54000011053575120}
-  m_Layer: 0
+  - 114: {fileID: 114000013860785066}
+  m_Layer: 11
   m_Name: MeleeAttackDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,8 +36,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013244149096}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.8357797, y: -3.4960246, z: 0.544202}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -79,7 +80,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.27205884, g: 0.014003026, b: 0.014003026, a: 1}
-  m_Intensity: 1
+  m_Intensity: 8
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -103,3 +104,14 @@ Light:
   m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114000013860785066
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013244149096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc79ae80d9a63f34fa75164ad3a9ead2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

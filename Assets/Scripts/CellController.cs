@@ -109,10 +109,13 @@ public class CellController :  BodyController{
 	public override void deathHandler (){
 		//Debug.Log (name + " dies ");
 
+
 		if (gameController == null)
 			gameController = GetComponent<GameController> ();
 		if (gameController) {
 			if (tag.Equals ("Infection"))
+				//this should drop a thingy on death
+				GameObject.Find ("GameController").GetComponent<DropScript> ().drop (this.gameObject, this.bodyStats.level);
 				gameController.UpdateScore (points);
 		}
 		DestroyObject (gameObject);
