@@ -9,7 +9,7 @@ public class HealthBonusDrop : MonoBehaviour {
 		if(other.gameObject.name == "White" || other.gameObject.name == "KillerT"){
 			if (other.gameObject.GetComponent<PlayerMovement> ().enabled == true) {
 				other.GetComponent<WhiteController> ().updateHealthStats (buff);
-				Destroy (this.gameObject, 0f);
+				Destroy (this.gameObject, 0.5f);
 			}
 			Debug.Log ("Healed " + buff.ToString());
 			//other.GetComponent<updatePlayerStats> ().enabled = true;

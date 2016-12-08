@@ -45,8 +45,8 @@ public class DropScript : MonoBehaviour {
 		bonusRangedAttackPower += val;
 	}
 	public void buffRangedAttackSpeed(float val){
-		if((bonusRangedAttackSpeed - val)>0){
-			bonusRangedAttackSpeed -= val;
+		if((bonusRangedAttackSpeed + val)< 0.08){
+			bonusRangedAttackSpeed += val;
 		}
 	}
 	public void buffHealth(float val){

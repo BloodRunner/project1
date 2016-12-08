@@ -11,7 +11,7 @@ public class DefenceDrop : MonoBehaviour {
 			if(other.gameObject.GetComponent<PlayerMovement>().enabled == true)
 				other.GetComponent<WhiteController>().bodyStats.defense += buff;
 			Debug.Log ("Defense" + buff.ToString());
-			Destroy (this.gameObject, 0f);
+			Destroy (this.gameObject, 0.5f);
 			//other.GetComponent<updatePlayerStats> ().enabled = true;
 		}
 	}

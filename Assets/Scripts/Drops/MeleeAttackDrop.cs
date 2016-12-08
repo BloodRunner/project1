@@ -11,7 +11,7 @@ public class MeleeAttackDrop : MonoBehaviour {
 			if(other.gameObject.GetComponent<PlayerMovement>().enabled == true)
 				other.GetComponent<WhiteController>().bodyStats.power += buff;;
 			Debug.Log ("Attack " + buff.ToString());
-			Destroy (this.gameObject, 0f);
+			Destroy (this.gameObject, 0.5f);
 		}
 	}
 }

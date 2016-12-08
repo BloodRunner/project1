@@ -11,7 +11,7 @@ public class RangedAttackDrop : MonoBehaviour {
 			if(other.gameObject.GetComponent<PlayerMovement>().enabled == true)
 				other.GetComponentInChildren<Shooter>().damagePerShot += (int)GameObject.Find ("GameController").GetComponent<DropScript> ().getRangeAttack ();
 			Debug.Log ("Ranged Attack " + buff.ToString());
-			Destroy (this.gameObject, 0f);
+			Destroy (this.gameObject, 0.5f);
 		}
 	}
 }

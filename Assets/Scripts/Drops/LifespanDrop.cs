@@ -11,7 +11,7 @@ public class LifespanDrop : MonoBehaviour {
 			if(other.gameObject.GetComponent<PlayerMovement>().enabled == true)
 				other.GetComponent<WhiteController>().lifespan_in_seconds += buff;;
 			Debug.Log ("Lifespan " + buff.ToString());
-			Destroy (this.gameObject, 0f);
+			Destroy (this.gameObject, 0.5f);
 		}
 	}
 }

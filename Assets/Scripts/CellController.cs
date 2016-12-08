@@ -126,7 +126,7 @@ public class CellController :  BodyController{
 				gameController.UpdateScore (points);
 			}
 		}
-		DestroyObject (gameObject, 2f);
+		DestroyObject (gameObject, 0.2f);
 	}
 
 	// Reproduce once every N seconds - (reprod rate)

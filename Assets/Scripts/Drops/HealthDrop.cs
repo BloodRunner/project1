@@ -11,7 +11,7 @@ public class HealthDrop : MonoBehaviour {
 			if(other.gameObject.GetComponent<PlayerMovement>().enabled == true)
 				other.GetComponent<WhiteController>().bodyStats.health += buff;;
 			Debug.Log ("Health " + buff.ToString());
-			Destroy (this.gameObject, 0f);
+			Destroy (this.gameObject, 0.5f);
 		}
 	}
 }

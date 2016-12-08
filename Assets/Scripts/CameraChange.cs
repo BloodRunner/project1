@@ -69,6 +69,7 @@ public class CameraChange : MonoBehaviour {
 		topCamera.enabled = true;
 		highlightPLayer.enabled = false;
 		isOn = false;
+		debuffPlayer ();
 		Camera.SetupCurrent (topCamera);
 		this.GetComponent<BloodFlow> ().stopPlayer ();
 		this.GetComponent<PlayerMovement> ().enabled = false;
@@ -103,6 +104,7 @@ public class CameraChange : MonoBehaviour {
 		Camera.SetupCurrent (followCamera);
 		this.GetComponent<BloodFlow> ().startPlayer ();
 		StartCoroutine (coroutine);
+		buffPlayer ();
 	}
 	/*void OnMouseOver() {
 		if (followCamera.enabled == false) {
@@ -126,10 +128,18 @@ public class CameraChange : MonoBehaviour {
 	}
 
 	public void buffPlayer(){
-		this.GetComponent<WhiteController> ().bodyStats.defense += GameObject.Find ("GameController").GetComponent<DropScript> ().getDefence ();
-		this.GetComponent<WhiteController> ().bodyStats.power += GameObject.Find ("GameController").GetComponent<DropScript> ().getMeleeAttack ();
-		this.GetComponent<WhiteController> ().bodyStats.health += GameObject.Find ("GameController").GetComponent<DropScript> ().getBonusHealth ();
-		this.GetComponentInChildren<Shooter>().damagePerShot += (int)GameObject.Find ("GameController").GetComponent<DropScript> ().getRangeAttack ();
-		this.GetComponentInChildren<Shooter>().timeBetweenBullets -= GameObject.Find ("GameController").GetComponent<DropScript> ().getRangedAttackSpeed ();
+		this.gameObject.GetComponent<WhiteController> ().bodyStats.defense += GameObject.Find ("GameController").GetComponent<DropScript> ().getDefence ();
+		this.gameObject.GetComponent<WhiteController> ().bodyStats.power += GameObject.Find ("GameController").GetComponent<DropScript> ().getMeleeAttack ();
+		this.gameObject.GetComponent<WhiteController> ().bodyStats.health += GameObject.Find ("GameController").GetComponent<DropScript> ().getBonusHealth ();
+		this.gameObject.GetComponentInChildren<Shooter>().damagePerShot += (int)GameObject.Find ("GameController").GetComponent<DropScript> ().getRangeAttack ();
+		this.gameObject.GetComponentInChildren<Shooter>().timeBetweenBullets -= GameObject.Find ("GameController").GetComponent<DropScript> ().getRangedAttackSpeed ();
+	}
+
+	public void debuffPlayer(){
+		this.gameObject.GetComponent<WhiteController> ().bodyStats.defense -= GameObject.Find ("GameController").GetComponent<DropScript> ().getDefence ();
+		this.gameObject.GetComponent<WhiteController> ().bodyStats.power -= GameObject.Find ("GameController").GetComponent<DropScript> ().getMeleeAttack ();
+		this.gameObject.GetComponent<WhiteController> ().bodyStats.health -= GameObject.Find ("GameController").GetComponent<DropScript> ().getBonusHealth ();
+		this.gameObject.GetComponentInChildren<Shooter>().damagePerShot -= (int)GameObject.Find ("GameController").GetComponent<DropScript> ().getRangeAttack ();
+		this.gameObject.GetComponentInChildren<Shooter>().timeBetweenBullets += GameObject.Find ("GameController").GetComponent<DropScript> ().getRangedAttackSpeed ();
 	}
 }
