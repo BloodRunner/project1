@@ -236,7 +236,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b50e01157b8ad4bf383b5098eaa151c4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 829d483383854458dab7dba2ad985e20, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.45
   m_Pitch: 1
@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04083eacfa0f49b8b0d506a38ced734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePerZap: 1
+  damagePerZap: 20
 --- !u!135 &135000011117658440
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -4439,7 +4439,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 20
+      scalar: 10
       maxCurve:
         serializedVersion: 2
         m_Curve:
