@@ -45,6 +45,8 @@ public class GameController : MonoBehaviour
 	updatePlayerStats playerStats;
 	bool WaitForNextLevel;
 	int level=0;
+	GameObject playerpanel;
+	CanvasGroup playerpanel_cg;
 	AudioSource readyToGoSound, gameOverSound, victorySound;
 
 
@@ -68,6 +70,9 @@ public class GameController : MonoBehaviour
 		followCamera = GameObject.Find ("followCamera").GetComponent<Camera> ();
 		followCamera.enabled = false;
 		topCamera.enabled = true;
+		playerpanel = GameObject.Find ("PlayerPanel");
+		playerpanel_cg = playerpanel.GetComponent<CanvasGroup> ();
+
 		AudioSource [] audiosources = gameObject.GetComponentsInChildren<AudioSource> ();
 		for (int i =0; i < audiosources.Length; i++) {
 			if (audiosources[i].name.Equals("GameOverSound"))
@@ -432,11 +437,13 @@ public class GameController : MonoBehaviour
 	public void showPlayerStats (WhiteController whitecell)
 	{
 		//Debug.Log ("show player stats");
-		GameObject panel = GameObject.Find ("PlayerPanel");
-		CanvasGroup cg = panel.GetComponent<CanvasGroup> (); 
-		cg.alpha = 1;
-
-		playerStats = gameObject.GetComponent (typeof(updatePlayerStats)) as updatePlayerStats;
+		if (playerpanel_cg == null) {
+			playerpanel = GameObject.Find ("PlayerPanel");
+			playerpanel_cg = playerpanel.GetComponent<CanvasGroup> (); 
+		}
+		playerpanel_cg.alpha = 1;
+		if (!playerStats)
+			playerStats = gameObject.GetComponent (typeof(updatePlayerStats)) as updatePlayerStats;
 		if (!playerStats)
 			playerStats = gameObject.AddComponent (typeof(updatePlayerStats)) as updatePlayerStats;
 		playerStats.enabled = true;
@@ -445,9 +452,11 @@ public class GameController : MonoBehaviour
 
 	public void removePlayerStats ()
 	{
-		GameObject panel = GameObject.Find ("PlayerPanel");
-		CanvasGroup cg = panel.GetComponent<CanvasGroup> ();
-		cg.alpha = 0;
+		if (playerpanel_cg == null) {
+			playerpanel = GameObject.Find ("PlayerPanel");
+			playerpanel_cg = playerpanel.GetComponent<CanvasGroup> (); 
+		}
+		playerpanel_cg.alpha = 0;
 	}
 
 	public void pauseGame ()
@@ -480,7 +489,7 @@ public class GameController : MonoBehaviour
 	{
 		Button restartButton = GameObject.Find ("RestartButton").GetComponent<Button> () as Button;
 		CanvasGroup cg = restartButton.GetComponent<CanvasGroup> ();
-
+		Debug.Log ("Restart button pressed");
 		if (on_off == 1) {
 			restartButton.enabled = true;
 			cg.interactable = true;
@@ -493,6 +502,7 @@ public class GameController : MonoBehaviour
 
 	public void nextLevel ()
 	{
+		Debug.Log ("Next level button pressed");
 		if (readyToGoSound)
 			readyToGoSound.Play ();
 		WaitForNextLevel = false;
@@ -512,12 +522,12 @@ public class GameController : MonoBehaviour
 			cg.interactable = true;
 			cg.alpha = 1;
 			nlButton.enabled = true;
-			pauseButton.enabled = false;
+			//pauseButton.enabled = false;
 			Time.timeScale = 0;
 		} else {
 			cg.interactable = false;
 			cg.alpha = 0;
-			pauseButton.enabled = true;
+			//pauseButton.enabled = true;
 			Time.timeScale = 1;
 		}
 
