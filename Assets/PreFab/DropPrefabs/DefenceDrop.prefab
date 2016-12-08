@@ -22,7 +22,6 @@ GameObject:
   - 65: {fileID: 65000010376226678}
   - 108: {fileID: 108000010355620110}
   - 54: {fileID: 54000011440131922}
-  - 114: {fileID: 114000010449616168}
   - 114: {fileID: 114000012868666018}
   m_Layer: 11
   m_Name: DefenceDrop
@@ -105,17 +104,6 @@ Light:
   m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114000010449616168
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010045385036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc79ae80d9a63f34fa75164ad3a9ead2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000012868666018
 MonoBehaviour:
   m_ObjectHideFlags: 1

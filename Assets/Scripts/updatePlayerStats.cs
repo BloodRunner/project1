@@ -36,6 +36,7 @@ public class updatePlayerStats : MonoBehaviour
 		this.whitecell.bodyStats.health += GameObject.Find("GameController").GetComponent<DropScript>().getBonusHealth();
 		this.whitecell.bodyStats.power += GameObject.Find("GameController").GetComponent<DropScript>().getMeleeAttack();
 		this.whitecell.lifespan_in_seconds += GameObject.Find("GameController").GetComponent<DropScript>().getLifeSpan();
+		Debug.Log ("started follow");
 	}
 
 	public void removePlayer(WhiteController whitecell){
@@ -48,7 +49,7 @@ public class updatePlayerStats : MonoBehaviour
 		this.whitecell.bodyStats.health -= GameObject.Find("GameController").GetComponent<DropScript>().getBonusHealth();
 		this.whitecell.bodyStats.power -= GameObject.Find("GameController").GetComponent<DropScript>().getMeleeAttack();
 		this.whitecell.lifespan_in_seconds -= GameObject.Find("GameController").GetComponent<DropScript>().getLifeSpan();
-		Debug.Log (this.whitecell.bodyStats.power.ToString());
+		Debug.Log ("stopped follow");
 	}
 
 	public void updateStats ()

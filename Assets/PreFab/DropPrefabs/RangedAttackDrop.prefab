@@ -22,7 +22,6 @@ GameObject:
   - 65: {fileID: 65000010704986510}
   - 108: {fileID: 108000013590768246}
   - 54: {fileID: 54000013706087548}
-  - 114: {fileID: 114000012290623494}
   - 114: {fileID: 114000012235713638}
   m_Layer: 11
   m_Name: RangedAttackDrop
@@ -114,16 +113,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c3a447298a986a43babcb8f35567300, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114000012290623494
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012135367446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc79ae80d9a63f34fa75164ad3a9ead2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

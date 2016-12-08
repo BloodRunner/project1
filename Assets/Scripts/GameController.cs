@@ -122,6 +122,7 @@ public class GameController : MonoBehaviour
 	{
 		int alive = 0;
 		foreach (OrganController organ in all_organs) {
+			Debug.Log (organ.get_stats_health().ToString());
 			if (organ.get_stats_health () > 0) {
 				alive = alive | organ.mask;
 			}

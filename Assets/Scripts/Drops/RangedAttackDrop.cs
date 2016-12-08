@@ -7,14 +7,10 @@ public class RangedAttackDrop : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.name == "White" || other.gameObject.name == "KillerT"){
-
 				GameObject.Find ("GameController").GetComponent<DropScript> ().buffRangedAttack (buff);
 				other.GetComponent<WhiteController> ().buffRangedAttack (buff);
 				Debug.Log ("Ranged Attack " + buff.ToString());
 				Destroy (this.gameObject, 0f);
-				//other.GetComponent<updatePlayerStats> ().enabled = true;
-
-
 		}
 	}
 }
