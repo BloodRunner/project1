@@ -130,6 +130,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010673098614, guid: b0083c9ac5c0843c497c5f732be15d8b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0083c9ac5c0843c497c5f732be15d8b, type: 2}
   m_IsPrefabParent: 0
@@ -585,7 +589,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 45ac977c67c06441fb97ca42df57d05a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: -0.39
   Loop: 1
   Mute: 0
@@ -694,7 +698,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 45ac977c67c06441fb97ca42df57d05a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 1
   m_Pitch: -0.39
   Loop: 1
   Mute: 0
@@ -2461,7 +2465,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 45ac977c67c06441fb97ca42df57d05a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: -0.39
   Loop: 1
   Mute: 0
@@ -4047,7 +4051,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 45ac977c67c06441fb97ca42df57d05a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: -0.39
   Loop: 1
   Mute: 0
@@ -4531,7 +4535,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 45ac977c67c06441fb97ca42df57d05a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: -0.39
   Loop: 1
   Mute: 0
@@ -5648,9 +5652,9 @@ MonoBehaviour:
   bodystate: {fileID: 26343561}
   bodyStats:
     health: 100
-    speed: 100
+    speed: 0
     defense: 100
-    reprodRate: 10
+    reprodRate: 8
     power: 100
     delay: 0
     level: 0
@@ -5755,7 +5759,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5866f8457af194e8ba6cc4fbba7fe97c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.6
+  m_Volume: 0.59
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -7135,7 +7139,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 45ac977c67c06441fb97ca42df57d05a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: -0.39
   Loop: 1
   Mute: 0
@@ -7467,7 +7471,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 45ac977c67c06441fb97ca42df57d05a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: -0.39
   Loop: 1
   Mute: 0
@@ -7646,6 +7650,7 @@ Transform:
   - {fileID: 637905478}
   - {fileID: 1696470769}
   - {fileID: 1916174891}
+  - {fileID: 2006297469}
   m_Father: {fileID: 0}
   m_RootOrder: 21
 --- !u!1 &1434401920
@@ -8031,25 +8036,6 @@ Prefab:
     - target: {fileID: 4000012723336726, guid: cabc734944c71424584588040678cddb, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 82000014003102434, guid: cabc734944c71424584588040678cddb,
-        type: 2}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 2bd9c1b38c41b440e8f80cd9b5878e91, type: 3}
-    - target: {fileID: 82000014003102434, guid: cabc734944c71424584588040678cddb,
-        type: 2}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 82000014003102434, guid: cabc734944c71424584588040678cddb,
-        type: 2}
-      propertyPath: m_Volume
-      value: 0.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000011592422990, guid: cabc734944c71424584588040678cddb, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cabc734944c71424584588040678cddb, type: 2}
@@ -8962,7 +8948,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 45ac977c67c06441fb97ca42df57d05a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: -0.39
   Loop: 1
   Mute: 0
@@ -9939,6 +9925,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
+--- !u!1 &2006297468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2006297469}
+  - 33: {fileID: 2006297471}
+  - 23: {fileID: 2006297470}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2006297469
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2006297468}
+  m_LocalRotation: {x: -0, y: 0.9789815, z: -0, w: 0.20394929}
+  m_LocalPosition: {x: 6.49, y: 0, z: 5.55}
+  m_LocalScale: {x: 0.4759387, y: 0.01, z: 1.6164287}
+  m_LocalEulerAnglesHint: {x: 0, y: 156.464, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1430222358}
+  m_RootOrder: 7
+--- !u!23 &2006297470
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2006297468}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 6c86956c68c3aeb40902ecf7244e91f3, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &2006297471
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2006297468}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &2010161401 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114000013007850934, guid: 248b3e6092851b24481ab1d74484a739,
@@ -10167,7 +10219,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 45ac977c67c06441fb97ca42df57d05a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.106
+  m_Volume: 1
   m_Pitch: -0.39
   Loop: 1
   Mute: 0
@@ -10687,7 +10739,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 459e46740d4484606a18250bb747d575, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.314
+  m_Volume: 1
   m_Pitch: 0.69
   Loop: 1
   Mute: 0
