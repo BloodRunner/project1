@@ -70,6 +70,7 @@ public class CameraChange : MonoBehaviour {
 		highlightPLayer.enabled = false;
 		isOn = false;
 		Camera.SetupCurrent (topCamera);
+		this.GetComponent<Light> ().range = 0.3f;
 		this.GetComponent<BloodFlow> ().stopPlayer ();
 		this.GetComponent<PlayerMovement> ().enabled = false;
 		if (this.GetComponentInChildren<Shooter> () != null) {
