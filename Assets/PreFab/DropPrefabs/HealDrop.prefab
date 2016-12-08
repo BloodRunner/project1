@@ -23,7 +23,7 @@ GameObject:
   - 108: {fileID: 108000010797780476}
   - 114: {fileID: 114000013751487992}
   - 54: {fileID: 54000011463413666}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: HealDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,8 +36,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013172586242}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.11, y: 0.287, z: 4.3}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.11899996, y: 0.127, z: 0.069999695}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -79,7 +79,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0, g: 0.41176468, b: 0.01411529, a: 1}
+  m_Color: {r: 0.034602053, g: 0.9411765, b: 0.06567948, a: 1}
   m_Intensity: 2.55
   m_Range: 1
   m_SpotAngle: 30
@@ -112,6 +112,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013172586242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65427b4865bf35a45a3a497e688d18dc, type: 3}
+  m_Script: {fileID: 11500000, guid: fb29af0aca729f64bae9103226cb4259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

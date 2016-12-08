@@ -88,6 +88,7 @@ public class HighlightController : MonoBehaviour {
 						if (Vector3.Distance (end, objCurrent.transform.position) < 3) {
 							print (objCurrent.name);
 							objCurrent.GetComponent<CameraChange> ().startFollow ();
+							objCurrent.GetComponent<Light> ().range = 0.3f;
 						}
 					}
 				}

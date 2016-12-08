@@ -9,33 +9,33 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000013244149096}
+  m_RootGameObject: {fileID: 1000011578362612}
   m_IsPrefabParent: 1
---- !u!1 &1000013244149096
+--- !u!1 &1000011578362612
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000010831853912}
-  - 65: {fileID: 65000013675613460}
-  - 108: {fileID: 108000011244745990}
-  - 54: {fileID: 54000011053575120}
-  - 114: {fileID: 114000013860785066}
+  - 4: {fileID: 4000012466152114}
+  - 65: {fileID: 65000012560756150}
+  - 108: {fileID: 108000013873516766}
+  - 54: {fileID: 54000011303118150}
+  - 114: {fileID: 114000013794422248}
   m_Layer: 11
-  m_Name: MeleeAttackDrop
+  m_Name: LifeSpanDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000010831853912
+--- !u!4 &4000012466152114
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013244149096}
+  m_GameObject: {fileID: 1000011578362612}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -43,12 +43,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!54 &54000011053575120
+--- !u!54 &54000011303118150
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013244149096}
+  m_GameObject: {fileID: 1000011578362612}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -58,28 +58,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 14
   m_CollisionDetection: 0
---- !u!65 &65000013675613460
+--- !u!65 &65000012560756150
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013244149096}
+  m_GameObject: {fileID: 1000011578362612}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!108 &108000011244745990
+--- !u!108 &108000013873516766
 Light:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013244149096}
+  m_GameObject: {fileID: 1000011578362612}
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.27205884, g: 0.014003026, b: 0.014003026, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 8
   m_Range: 1
   m_SpotAngle: 30
@@ -104,14 +104,14 @@ Light:
   m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114000013860785066
+--- !u!114 &114000013794422248
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013244149096}
+  m_GameObject: {fileID: 1000011578362612}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44f2d3acc876f3f4689299f37e266e38, type: 3}
+  m_Script: {fileID: 11500000, guid: a8a6983bae5f8ab4eb2a41c6d7ca51af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

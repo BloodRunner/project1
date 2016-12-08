@@ -124,4 +124,12 @@ public class CameraChange : MonoBehaviour {
 	public bool getIsOn(){
 		return isOn;
 	}
+
+	public void buffPlayer(){
+		this.GetComponent<WhiteController> ().bodyStats.defense += GameObject.Find ("GameController").GetComponent<DropScript> ().getDefence ();
+		this.GetComponent<WhiteController> ().bodyStats.power += GameObject.Find ("GameController").GetComponent<DropScript> ().getMeleeAttack ();
+		this.GetComponent<WhiteController> ().bodyStats.health += GameObject.Find ("GameController").GetComponent<DropScript> ().getBonusHealth ();
+		this.GetComponentInChildren<Shooter>().damagePerShot += (int)GameObject.Find ("GameController").GetComponent<DropScript> ().getRangeAttack ();
+		this.GetComponentInChildren<Shooter>().timeBetweenBullets -= GameObject.Find ("GameController").GetComponent<DropScript> ().getRangedAttackSpeed ();
+	}
 }

@@ -121,8 +121,10 @@ public class CellController :  BodyController{
 		if (gameController == null)
 			gameController = GetComponent<GameController> ();
 		if (gameController) {
-			if (tag.Equals ("Infection"))
+			if (tag.Equals ("Infection")) {
+				GameObject.Find ("GameController").GetComponent<DropScript> ().drop (this.gameObject, 5);
 				gameController.UpdateScore (points);
+			}
 		}
 		DestroyObject (gameObject, 2f);
 	}
