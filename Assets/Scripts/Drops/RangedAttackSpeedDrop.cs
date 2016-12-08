@@ -8,8 +8,11 @@ public class RangedAttackSpeedDrop : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.name == "White" || other.gameObject.name == "KillerT"){
 			GameObject.Find ("GameController").GetComponent<DropScript> ().buffRangedAttackSpeed (buff);
-			if(other.gameObject.GetComponent<PlayerMovement>().enabled == true)
-				this.GetComponentInChildren<Shooter>().timeBetweenBullets -= GameObject.Find ("GameController").GetComponent<DropScript> ().getRangedAttackSpeed();
+			//if(other.gameObject.GetComponent<PlayerMovement>().enabled == true){
+				//if(0>=(other.gameObject.GetComponentInChildren<Shooter>().timeBetweenBullets - GameObject.Find ("GameController").GetComponent<DropScript> ().getRangedAttackSpeed() - GameObject.Find ("GameController").GetComponent<DropScript> ().getRangedAttackSpeed())){
+					other.gameObject.GetComponentInChildren<Shooter>().timeBetweenBullets -= GameObject.Find ("GameController").GetComponent<DropScript> ().getRangedAttackSpeed();
+				//}
+			//}
 			Debug.Log ("Ranged attack speed " + buff.ToString());
 			Destroy (this.gameObject, 0f);
 		}
