@@ -7,11 +7,12 @@ public class DefenceDrop : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.name == "White" || other.gameObject.name == "KillerT"){
-				GameObject.Find ("GameController").GetComponent<DropScript> ().buffDefence (buff);
+			GameObject.Find ("GameController").GetComponent<DropScript> ().buffDefence (buff);
+			if(other.gameObject.GetComponent<PlayerMovement>().enabled == true)
 				other.GetComponent<WhiteController>().buffDefence (buff);
-				Debug.Log ("Defense" + buff.ToString());
-				Destroy (this.gameObject, 0f);
-				//other.GetComponent<updatePlayerStats> ().enabled = true;
+			Debug.Log ("Defense" + buff.ToString());
+			Destroy (this.gameObject, 0f);
+			//other.GetComponent<updatePlayerStats> ().enabled = true;
 		}
 	}
 }

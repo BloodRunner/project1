@@ -8,7 +8,8 @@ public class RangedAttackSpeedDrop : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.name == "White" || other.gameObject.name == "KillerT"){
 			GameObject.Find ("GameController").GetComponent<DropScript> ().buffRangedAttackSpeed (buff);
-			other.GetComponent<WhiteController> ().buffRangedAttackSpeed (buff);
+			if(other.gameObject.GetComponent<PlayerMovement>().enabled == true)
+				other.GetComponent<WhiteController> ().buffRangedAttackSpeed (buff);
 			Debug.Log ("Ranged attack speed " + buff.ToString());
 			Destroy (this.gameObject, 0f);
 		}

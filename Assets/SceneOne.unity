@@ -4784,7 +4784,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: 20.198025}
+  m_AnchoredPosition: {x: 50, y: -39.801987}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &544625887
@@ -5080,7 +5080,7 @@ MonoBehaviour:
   - {fileID: 114000011528637040, guid: b0083c9ac5c0843c497c5f732be15d8b, type: 2}
   - {fileID: 114000013197163680, guid: 23584970999024eb991500ddfa490824, type: 2}
   levelEditor:
-  - Stomach (G),A2
+  - Stomach (G),E20
   - Left Lung (C),A1,B2
   - Random,B1,C3
   - Random,C1,D3
@@ -5601,7 +5601,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1025627322}
   m_HandleRect: {fileID: 1025627321}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

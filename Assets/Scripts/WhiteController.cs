@@ -56,6 +56,10 @@ public class WhiteController : CellController {
 			gameController.showMessage (nickname + " killed in combat ", 3);
 		} else
 			Debug.Log (name + " dies - gameController empty");
+
+		if (tag.Equals ("Hostcell") && this.gameObject.GetComponent<PlayerMovement> ().enabled == true) {
+			this.gameObject.GetComponent<CameraChange> ().stopCamera ();
+		}
 		DestroyObject (gameObject,2);
 	}
 
@@ -119,7 +123,9 @@ public class WhiteController : CellController {
 		this.GetComponentInChildren<Shooter> ().damagePerShot += (int)val;
 	}
 	public void buffRangedAttackSpeed(float val){
-		this.GetComponentInChildren<Shooter> ().timeBetweenBullets -= val;
+		if((this.GetComponentInChildren<Shooter> ().timeBetweenBullets - val)> 0 ){
+			this.GetComponentInChildren<Shooter> ().timeBetweenBullets -= val;
+		}
 	}
 	public void buffHealth(float val){
 		this.bodyStats.health += val;

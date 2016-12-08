@@ -29,26 +29,26 @@ public class updatePlayerStats : MonoBehaviour
 			playerNameText.text = whitecell.getNickname ();
 		this.whitecell = whitecell;
 		//Debug.Log (this.whitecell.bodyStats.power.ToString());
-		this.whitecell.GetComponentInChildren<Shooter> ().damagePerShot += (int)GameObject.Find("GameController").GetComponent<DropScript>().getRangeAttack();
-		this.whitecell.GetComponentInChildren<Shooter> ().timeBetweenBullets -= GameObject.Find("GameController").GetComponent<DropScript>().getRangedAttackSpeed();
+		whitecell.GetComponentInChildren<Shooter> ().damagePerShot += (int)GameObject.Find("GameController").GetComponent<DropScript>().getRangeAttack();
+		whitecell.GetComponentInChildren<Shooter> ().timeBetweenBullets -= GameObject.Find("GameController").GetComponent<DropScript>().getRangedAttackSpeed();
 		//this.whitecell.updateHealthStats (bonusHealth);
-		this.whitecell.bodyStats.defense += GameObject.Find("GameController").GetComponent<DropScript>().getDefence();
-		this.whitecell.bodyStats.health += GameObject.Find("GameController").GetComponent<DropScript>().getBonusHealth();
-		this.whitecell.bodyStats.power += GameObject.Find("GameController").GetComponent<DropScript>().getMeleeAttack();
-		this.whitecell.lifespan_in_seconds += GameObject.Find("GameController").GetComponent<DropScript>().getLifeSpan();
+		whitecell.bodyStats.defense += GameObject.Find("GameController").GetComponent<DropScript>().getDefence();
+		whitecell.bodyStats.health += GameObject.Find("GameController").GetComponent<DropScript>().getBonusHealth();
+		whitecell.bodyStats.power += GameObject.Find("GameController").GetComponent<DropScript>().getMeleeAttack();
+		whitecell.lifespan_in_seconds += GameObject.Find("GameController").GetComponent<DropScript>().getLifeSpan();
 		Debug.Log ("started follow");
 	}
 
 	public void removePlayer(WhiteController whitecell){
 		this.whitecell = whitecell;
 		//this.whitecell.updatePowerStats (bonusMeleeAttackPower);
-		this.whitecell.GetComponentInChildren<Shooter> ().damagePerShot -= (int)GameObject.Find("GameController").GetComponent<DropScript>().getRangeAttack();
-		this.whitecell.GetComponentInChildren<Shooter> ().timeBetweenBullets += GameObject.Find("GameController").GetComponent<DropScript>().getRangedAttackSpeed();
+		whitecell.GetComponentInChildren<Shooter> ().damagePerShot -= (int)GameObject.Find("GameController").GetComponent<DropScript>().getRangeAttack();
+		whitecell.GetComponentInChildren<Shooter> ().timeBetweenBullets += GameObject.Find("GameController").GetComponent<DropScript>().getRangedAttackSpeed();
 		//this.whitecell.updateHealthStats (bonusHealth);
-		this.whitecell.bodyStats.defense -= GameObject.Find("GameController").GetComponent<DropScript>().getDefence();
-		this.whitecell.bodyStats.health -= GameObject.Find("GameController").GetComponent<DropScript>().getBonusHealth();
-		this.whitecell.bodyStats.power -= GameObject.Find("GameController").GetComponent<DropScript>().getMeleeAttack();
-		this.whitecell.lifespan_in_seconds -= GameObject.Find("GameController").GetComponent<DropScript>().getLifeSpan();
+		whitecell.bodyStats.defense -= GameObject.Find("GameController").GetComponent<DropScript>().getDefence();
+		whitecell.bodyStats.health -= GameObject.Find("GameController").GetComponent<DropScript>().getBonusHealth();
+		whitecell.bodyStats.power -= GameObject.Find("GameController").GetComponent<DropScript>().getMeleeAttack();
+		whitecell.lifespan_in_seconds -= GameObject.Find("GameController").GetComponent<DropScript>().getLifeSpan();
 		Debug.Log ("stopped follow");
 	}
 

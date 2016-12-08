@@ -113,13 +113,14 @@ public class CellController :  BodyController{
 		if (gameController == null)
 			gameController = GetComponent<GameController> ();
 		if (gameController) {
-			if(tag.Equals("Hostcell") && this.gameObject.GetComponent<PlayerMovement>().enabled == true){
+			/*if(tag.Equals("Hostcell") && this.gameObject.GetComponent<PlayerMovement>().enabled == true){
 				this.gameObject.GetComponent<CameraChange> ().stopCamera ();
-			}
-			if (tag.Equals ("Infection"))
+			}*/
+			if (tag.Equals ("Infection")) {
 				//this should drop a thingy on death
-				GameObject.Find ("GameController").GetComponent<DropScript> ().drop (this.gameObject, this.bodyStats.level);
+				GameObject.Find ("GameController").GetComponent<DropScript> ().drop (this.gameObject, 10f);
 				gameController.UpdateScore (points);
+			}
 		}
 		DestroyObject (gameObject);
 	}
