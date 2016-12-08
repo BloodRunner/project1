@@ -283,6 +283,7 @@ public class GameController : MonoBehaviour
 					if (level < numlevels) {
 						showMessage ("You have lived through level " + level + ". More pathogens are coming", 1);			
 						showNextLevelButton (1);
+
 						yield return new WaitWhile (() => WaitForNextLevel);								
 					} else {
 						Victory (); // All pathogens killed and no more levels
