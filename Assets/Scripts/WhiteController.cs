@@ -56,7 +56,7 @@ public class WhiteController : CellController {
 			gameController.showMessage (nickname + " killed in combat ", 3);
 		} else
 			Debug.Log (name + " dies - gameController empty");
-		if(this.gameObject.GetComponent<PlayerMovement>().enabled == true){
+		if(this.gameObject.GetComponent<CameraChange>().getIsOn()){
 			this.gameObject.GetComponent<CameraChange> ().stopCamera ();
 		}
 		DestroyObject (gameObject,2);

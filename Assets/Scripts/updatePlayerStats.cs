@@ -46,6 +46,7 @@ public class updatePlayerStats : MonoBehaviour
 			//Debug.Log ("health " + whitecell.health ());
 			if (whitecell.time_left_to_live () < 2) {
 				Debug.Log (whitecell.getNickname () + " dies of old age");
+				whitecell.gameObject.GetComponent<CameraChange> ().stopCamera ();
 				whitecell = null;
 			}
 		//} catch {}

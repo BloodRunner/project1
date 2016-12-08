@@ -11899,6 +11899,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011841248726, guid: 8ba8fb36a41f12f45aa780b8fff90b37,
+        type: 2}
+      propertyPath: lifespan_in_seconds
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011841248726, guid: 8ba8fb36a41f12f45aa780b8fff90b37,
+        type: 2}
+      propertyPath: bodyStats.health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011841248726, guid: 8ba8fb36a41f12f45aa780b8fff90b37,
+        type: 2}
+      propertyPath: bodyStats.defense
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ba8fb36a41f12f45aa780b8fff90b37, type: 2}
   m_IsPrefabParent: 0

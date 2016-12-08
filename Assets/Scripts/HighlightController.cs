@@ -60,14 +60,14 @@ public class HighlightController : MonoBehaviour {
 						}
 					}
 				}
-				if (objOld.name == "White" || objOld.name == "KillerT") {
+				if (objOld != null && (objOld.name == "White" || objOld.name == "KillerT")) {
 					if (objOld != objCurrent || Vector3.Distance (end, objOld.transform.position) > 3f) {
 						objOld.GetComponent<Light> ().range = 0.3f;
 						objOld.GetComponent<Light> ().enabled = false;
 						//print ("rob");
 					}
 				}
-				if (objCurrent.name == "White" || objCurrent.name == "KillerT") {
+				if (objCurrent != null && (objCurrent.name == "White" || objCurrent.name == "KillerT")) {
 					if (Vector3.Distance (end, obj.transform.position) <= 3f) {
 						objCurrent.GetComponent<Light> ().range = 3f;
 						objCurrent.GetComponent<Light> ().enabled = true;
@@ -77,7 +77,7 @@ public class HighlightController : MonoBehaviour {
 
 			}
 			if (Input.GetMouseButtonDown (0)) {
-				if (objCurrent.name == "White" || objCurrent.name == "KillerT") {
+				if (objCurrent != null && (objCurrent.name == "White" || objCurrent.name == "KillerT")) {
 					if (cx == null) {
 						cx = cxs [0];
 					}
