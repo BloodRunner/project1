@@ -851,9 +851,9 @@ MonoBehaviour:
   gameController: {fileID: 1209761009}
   bodystate: {fileID: 654842372}
   bodyStats:
-    health: 0
+    health: 100
     speed: 0
-    defense: 0
+    defense: 100
     reprodRate: 0
     power: 0
     delay: 0
@@ -1221,9 +1221,9 @@ MonoBehaviour:
   gameController: {fileID: 1209761009}
   bodystate: {fileID: 654842372}
   bodyStats:
-    health: 0
+    health: 1000
     speed: 0
-    defense: 0
+    defense: 10000
     reprodRate: 0
     power: 0
     delay: 0
@@ -3135,9 +3135,9 @@ MonoBehaviour:
   gameController: {fileID: 1209761009}
   bodystate: {fileID: 654842372}
   bodyStats:
-    health: 0
+    health: 100
     speed: 0
-    defense: 0
+    defense: 100
     reprodRate: 0
     power: 0
     delay: 0
@@ -3343,9 +3343,9 @@ MonoBehaviour:
   gameController: {fileID: 1209761009}
   bodystate: {fileID: 654842372}
   bodyStats:
-    health: 0
+    health: 1000
     speed: 0
-    defense: 0
+    defense: 100
     reprodRate: 0
     power: 0
     delay: 0
@@ -3400,7 +3400,7 @@ Transform:
   - {fileID: 768158895}
   - {fileID: 56423318}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
 --- !u!1001 &718115482
 Prefab:
   m_ObjectHideFlags: 0
@@ -3900,333 +3900,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 768158894}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &778255247
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 114000011514779062, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010815781982, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013539986688, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010336930426, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012061281188, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013862265482, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010021920464, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010469762508, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012451939342, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014155225272, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010700528064, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014249767152, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013982160864, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011401415822, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010937112758, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010268344242, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012481447054, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011234328014, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012858505814, guid: 2182fb03d99ecf6498351465c9ac7f77, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012858505814, guid: 2182fb03d99ecf6498351465c9ac7f77, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012858505814, guid: 2182fb03d99ecf6498351465c9ac7f77, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012858505814, guid: 2182fb03d99ecf6498351465c9ac7f77, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012858505814, guid: 2182fb03d99ecf6498351465c9ac7f77, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012858505814, guid: 2182fb03d99ecf6498351465c9ac7f77, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012858505814, guid: 2182fb03d99ecf6498351465c9ac7f77, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012858505814, guid: 2182fb03d99ecf6498351465c9ac7f77, type: 2}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011514779062, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011514779062, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[1]
-      value: mission2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011514779062, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[2]
-      value: mission3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011514779062, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[3]
-      value: mission4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010815781982, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010815781982, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[1]
-      value: mission2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010815781982, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[2]
-      value: mission3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010815781982, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[3]
-      value: mission4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013539986688, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013539986688, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[1]
-      value: mission2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013539986688, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[2]
-      value: mission3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013539986688, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[3]
-      value: mission4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010336930426, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010336930426, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[1]
-      value: mission2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010336930426, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[2]
-      value: mission3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010336930426, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[3]
-      value: mission4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012061281188, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012061281188, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[1]
-      value: mission2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012061281188, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[2]
-      value: mission3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012061281188, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[3]
-      value: mission4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013862265482, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013862265482, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[1]
-      value: mission2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013862265482, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[2]
-      value: mission3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013862265482, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[3]
-      value: mission4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010021920464, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010021920464, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[1]
-      value: mission2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010469762508, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012451939342, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014155225272, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010700528064, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014249767152, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013982160864, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013982160864, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[1]
-      value: mission4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011401415822, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011401415822, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[1]
-      value: mission4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010937112758, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010268344242, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012481447054, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011234328014, guid: 2182fb03d99ecf6498351465c9ac7f77,
-        type: 2}
-      propertyPath: missions.Array.data[0]
-      value: mission2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 2182fb03d99ecf6498351465c9ac7f77, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &865063114
 GameObject:
   m_ObjectHideFlags: 0
@@ -5675,9 +5348,9 @@ MonoBehaviour:
   gameController: {fileID: 1209761009}
   bodystate: {fileID: 654842372}
   bodyStats:
-    health: 0
+    health: 100
     speed: 0
-    defense: 0
+    defense: 100
     reprodRate: 0
     power: 0
     delay: 0
@@ -5931,7 +5604,7 @@ Transform:
   - {fileID: 1819703403}
   - {fileID: 751330708}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
 --- !u!1 &1209761008
 GameObject:
   m_ObjectHideFlags: 0
@@ -5941,6 +5614,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 1209761010}
   - 114: {fileID: 1209761009}
+  - 114: {fileID: 1209761012}
+  - 114: {fileID: 1209761011}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -6008,6 +5683,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &1209761011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1209761008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aee8cf1bfac3494a87e189e78556c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &1209761012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1209761008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced34c1f3aebe874a8d604e8b894059a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1210403308
 Prefab:
   m_ObjectHideFlags: 0
@@ -6554,9 +6259,9 @@ MonoBehaviour:
   gameController: {fileID: 1209761009}
   bodystate: {fileID: 654842372}
   bodyStats:
-    health: 0
+    health: 1000
     speed: 0
-    defense: 0
+    defense: 10000
     reprodRate: 0
     power: 0
     delay: 0
@@ -7166,7 +6871,7 @@ Transform:
   - {fileID: 165809433}
   - {fileID: 1047193114}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
 --- !u!1 &1486804132
 GameObject:
   m_ObjectHideFlags: 0
@@ -7297,9 +7002,9 @@ MonoBehaviour:
   gameController: {fileID: 1209761009}
   bodystate: {fileID: 654842372}
   bodyStats:
-    health: 0
+    health: 100
     speed: 0
-    defense: 0
+    defense: 100
     reprodRate: 0
     power: 0
     delay: 0
@@ -8351,9 +8056,9 @@ MonoBehaviour:
   gameController: {fileID: 1209761009}
   bodystate: {fileID: 654842372}
   bodyStats:
-    health: 0
+    health: 1000
     speed: 0
-    defense: 0
+    defense: 1000
     reprodRate: 0
     power: 0
     delay: 0
@@ -9420,10 +9125,10 @@ MonoBehaviour:
   gameController: {fileID: 1209761009}
   bodystate: {fileID: 654842372}
   bodyStats:
-    health: 100
+    health: 1000
     speed: 0
-    defense: 100
-    reprodRate: 5
+    defense: 1000
+    reprodRate: 0
     power: 0
     delay: 0
     level: 0
@@ -9562,7 +9267,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
 --- !u!1 &2110648986
 GameObject:
   m_ObjectHideFlags: 0
@@ -9641,7 +9346,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
 --- !u!1001 &2110828686
 Prefab:
   m_ObjectHideFlags: 0
