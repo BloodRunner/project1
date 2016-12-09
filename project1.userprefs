@@ -4,19 +4,9 @@
     <Files>
       <File FileName="Assets\Scripts\secretMission.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\OrganController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BloodFlowController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BloodFlow.cs" Line="109" Column="8" />
-      <File FileName="Assets\Scripts\PingCell.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\HoverHighlight.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CameraChange.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Shooter.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\HighlightController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CellController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\WhiteController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\DropScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Drops\RangedAttackSpeedDrop.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\KidneyController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\BloodFlowController.cs" Line="73" Column="19" />
+      <File FileName="Assets\Scripts\BloodFlow.cs" Line="108" Column="15" />
+      <File FileName="Assets\Scripts\BloodFlowChoice.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

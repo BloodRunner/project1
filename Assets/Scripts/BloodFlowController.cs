@@ -65,6 +65,27 @@ public class BloodFlowController : MonoBehaviour {
 		}
 	}
 
+	public string boundToNext(string dest, string mission, string bind){
+		for(int i = 0; i < names.Length; i++){
+			if (mission == names [i] [0]) {
+				for(int x = 1; x < names[i].Length; x++){
+					if (dest == bind) {
+						return bind;
+					}
+					if(dest == names[i][x]){
+						if (x == names [i].Length - 1) {
+							return names [i] [1];
+						} else {
+							return names [i] [x+1];
+						}
+					}
+				}
+				break;
+			}
+		}
+		return names [0] [1];
+	}
+
 	/*private void initializeWaypoints(){
 		targetWaypoints = new Vector3[names.Length][];
 		for (int z = 0; z < names.Length; z++) {
