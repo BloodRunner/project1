@@ -18,6 +18,8 @@ public class BloodFlow : MonoBehaviour {
 
 
 	void Start(){
+		bfctrl = GameObject.Find ("GameController").GetComponent<BloodFlowController> ();
+		agent = GetComponent<NavMeshAgent> ();
 		coroutine1 = standardPatrol ();
 		coroutine2 = boundPatrol ();
 		coroutine3 = missionPatrol ();
@@ -74,7 +76,6 @@ public class BloodFlow : MonoBehaviour {
 		myTempMission = mission;
 		StopAllCoroutines();
 		StartCoroutine (coroutine3);
-
 	}
 
 	public string getMyMission(){
