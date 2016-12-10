@@ -53,7 +53,7 @@ public class BloodFlowController : MonoBehaviour {
 					if(cells[z].name == "White"){
 						if (cells [z].GetComponent<BloodFlow> ().getMyMission () == names [order[i]-1][0]) {
 							if(cells[z].GetComponent<BloodFlow> ().getMyDest() == names [order[i]-1][x]){
-								cells [z].GetComponent<BloodFlow> ().setMyMission (names [order[0]-1][0]);
+								cells [z].GetComponent<BloodFlow> ().startMission (names [order[0]-1][0]);
 								cells [z].GetComponent<PingCell> ().PingIt ();
 								print ("Pinged!!!!");
 								return;

@@ -12,11 +12,80 @@ public class BloodFlow : MonoBehaviour {
 	private string dest;
 	private string bind;
 	private bool isBound;
-	private IEnumerator coroutine;
+	private IEnumerator coroutine1;
 	private IEnumerator coroutine2;
 	private IEnumerator coroutine3;
 
+
 	void Start(){
+		coroutine1 = standardPatrol ();
+		coroutine2 = boundPatrol ();
+		coroutine3 = missionPatrol ();
+	}
+
+	public IEnumerator standardPatrol(){
+		while (true) {
+			yield return new WaitForSeconds (0.1f);
+			if (agent.remainingDistance < 0.8f) {
+				dest = bfctrl.GetNext (dest, myMission);
+				agent.destination = GameObject.Find (dest).transform.position;
+			}
+		}
+	}
+
+	public IEnumerator boundPatrol(){
+		while (true) {
+			yield return new WaitForSeconds (0.1f);
+			if (agent.remainingDistance < 0.8f) {
+				if(dest == bind){
+					agent.destination = GameObject.Find (dest).transform.position;
+					yield return new WaitForSeconds (0.3f);
+				} else{
+					dest = bfctrl.GetNext (dest, myMission);
+					agent.destination = GameObject.Find (dest).transform.position;
+				}
+
+			}
+		}
+	}
+
+	public IEnumerator missionPatrol(){
+		while (true) {
+			yield return new WaitForSeconds (0.1f);
+			if (agent.remainingDistance < 0.8f) {
+				for(int i = 0; i < GameObject.Find(dest).GetComponent<NextWaypoint>().missions.Length; i++){
+					if(GameObject.Find(dest).GetComponent<NextWaypoint>().missions[i] == myTempMission){
+						myMission = myTempMission;
+						dest = bfctrl.GetNext (dest, myMission);
+						agent.destination = GameObject.Find (dest).transform.position;
+						StartCoroutine (coroutine1);
+						StopCoroutine (coroutine3);
+					}
+				}
+				dest = bfctrl.GetNext (dest, myMission);
+				agent.destination = GameObject.Find (dest).transform.position;
+
+
+			}
+		}
+	}
+
+	public void startMission(string mission){
+		myTempMission = mission;
+		StopAllCoroutines();
+		StartCoroutine (coroutine3);
+
+	}
+
+	public string getMyMission(){
+		return myMission;
+	}
+
+	public string getMyDest(){
+		return dest;
+	}
+
+	/*void Start(){
 		isBound = false;
 		detectionRange = 10;
 
@@ -61,9 +130,9 @@ public class BloodFlow : MonoBehaviour {
 				}
 			}
 		}
-	}
+	}*/
 
-	public IEnumerator playerChoice(){
+	/*public IEnumerator playerChoice(){
 		while (true) {
 			Collider[] here = Physics.OverlapSphere(this.GetComponent<Transform>().position,0.2f);
 
@@ -139,7 +208,7 @@ public class BloodFlow : MonoBehaviour {
 
 	public void destOveride(Vector3 destOverides){
 		agent.destination = destOverides;
-	}
+	}*/
 
 
 	/*private string dest;
