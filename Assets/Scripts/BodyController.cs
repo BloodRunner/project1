@@ -177,7 +177,6 @@ public class BodyController : MonoBehaviour
 
 			material.SetFloat("_Smoothness", smoothness);
 			material.SetFloat("_Shininess", shininess);
-		// material.SetColor("_EmissionColor", color);
 			material.SetFloat("_Glossiness", shininess);
 
 			DynamicGI.SetEmissive (myRenderer, Color.Lerp(color, faded, progress));
@@ -201,7 +200,6 @@ public class BodyController : MonoBehaviour
 			myMaterial.shader = Shader.Find ("Specular");
 		}
 		float shininess;
-		//	shininess= material.GetFloat("_Smoothness") * .5f;	
 		shininess= intensity * 0.3f;
 	
 		Color faded = myMaterial.color * intensity;

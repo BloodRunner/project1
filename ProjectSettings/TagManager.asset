@@ -19,6 +19,8 @@ TagManager:
   - direction
   - PlayerStats
   - mission
+  - Sword
+  - Shield
   layers:
   - Default
   - TransparentFX
@@ -32,8 +34,8 @@ TagManager:
   - Infection
   - Walls
   - Hostcell
-  - 
-  - 
+  - SwordShield
+  - Organ
   - 
   - 
   - 

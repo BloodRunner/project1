@@ -166,7 +166,8 @@ public abstract class OrganController : BodyController {
 		if (followerCamera.enabled == false) {
 			bfctrl.makeMission (missions);
 		} else {
-			GameObject[] cells = GameObject.FindGameObjectsWithTag ("Host");
+			CellController[] cells = GameObject.FindObjectsOfType (typeof(WhiteController)) as WhiteController[];
+			//GameObject[] cells = GameObject.FindGameObjectsWithTag ("Host");
 			for (int i = 0; i < cells.Length; i++) {
 				if(cells[i].name == "White"){
 					if(cells[i].GetComponent<CameraChange>().getIsOn()){
@@ -189,4 +190,25 @@ public abstract class OrganController : BodyController {
 		Debug.Log (name + " needs backup");
 	}
 		
+	/* Call the closest white cell to come help */
+	public void callForGuard() {
+		if (followerCamera.enabled == false) {
+			bfctrl.makeMission (missions);
+		} else {
+			CellController[] cells = GameObject.FindObjectsOfType (typeof(WhiteController)) as WhiteController[];
+			for (int i = 0; i < cells.Length; i++) {
+			    if (cells[i].name == "KillerT"){
+					if(cells[i].GetComponent<CameraChange>().getIsOn()){
+						cells [i].GetComponent<BloodFlow> ().stopPlayer ();
+						cells[i].GetComponent<BloodFlow>().setMyMission(GameObject.Find ("GameController").GetComponent<BloodFlowController>().names[missions[0]-1][0]);
+						cells [i].GetComponent<BloodFlow> ().bindTo (this.myname);
+						print (this.myname);
+						break;
+					}
+				}
+			}
+		}
+
+		Debug.Log (name + " needs guards");
+	}
 }

@@ -11,7 +11,7 @@ public class HealthBonusDrop : MonoBehaviour {
 				other.GetComponent<WhiteController> ().updateHealthStats (buff);
 				Destroy (this.gameObject, 0.5f);
 			}
-			Debug.Log ("Healed " + buff.ToString());
+			//Debug.Log ("Healed " + buff.ToString());
 			//other.GetComponent<updatePlayerStats> ().enabled = true;
 
 		}

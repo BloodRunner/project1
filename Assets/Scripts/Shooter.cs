@@ -25,9 +25,10 @@ public class Shooter : MonoBehaviour {
 	void Awake ()
 	{
 		// Create a layer mask for the Shootable layer.
-		shootableMask = LayerMask.GetMask ("Infection") | LayerMask.GetMask ("Walls");
-		groundMask = LayerMask.GetMask ("Ground") | LayerMask.GetMask ("Walls");
-
+		//shootableMask = LayerMask.GetMask ("Infection") | LayerMask.GetMask ("Walls")	| LayerMask.GetMask("Organ");
+		shootableMask = LayerMask.GetMask("Infection", "Walls", "Organ");
+		//groundMask = LayerMask.GetMask ("Ground") | LayerMask.GetMask ("Walls") | LayerMask.GetMask("Organ");
+		groundMask = LayerMask.GetMask("Ground");
 		// Set up the references.
 		gunParticles = GetComponent<ParticleSystem> ();
 		gunAudio = GetComponent<AudioSource> ();

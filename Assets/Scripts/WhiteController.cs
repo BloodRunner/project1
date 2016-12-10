@@ -63,7 +63,7 @@ public class WhiteController : CellController {
 	}
 
 	public void addStats(){
-		Debug.Log ("Adding stats to " + nickname + "." + tag);
+		//Debug.Log ("Adding stats to " + nickname + "." + tag);
 		gameController.showPlayerStats (this);
 	}
 
