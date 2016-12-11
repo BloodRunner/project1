@@ -47,6 +47,9 @@ public class BloodFlowController : MonoBehaviour {
 
 	public void makeMission(int[] order,string mission){
 		BloodFlow thisCell = findNearest ("White", order,true).GetComponent<BloodFlow>();
+		if (thisCell == null) {
+			return;
+		}
 		thisCell.startMission (mission);
 	}
 
@@ -57,7 +60,7 @@ public class BloodFlowController : MonoBehaviour {
 				for (int z = 0; z < cells.Length; z++) {
 					if(cells[z].name == obj){
 						if (single == true) {
-							if (cells [z].onAMission () == false) {
+							if (cells [z].GetComponent<BloodFlow>().onAMission () == false) {
 								return cells [z];
 							}
 						} else {
@@ -70,8 +73,12 @@ public class BloodFlowController : MonoBehaviour {
 		return null;
 	}
 
-	public void defendMission(string organ, string mission, int[] order){
-
+	public void defendMission(string organWaypoint, string mission, int[] order){
+		BloodFlow thisCell = findNearest ("KillerT", order,true).GetComponent<BloodFlow>();
+		if (thisCell == null) {
+			return;
+		}
+		thisCell.startDefend (mission, organWaypoint);
 	}
 
 	/*public string boundToNext(string dest, string mission, string bind){

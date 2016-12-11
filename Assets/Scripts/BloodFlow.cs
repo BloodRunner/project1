@@ -20,6 +20,7 @@ public class BloodFlow : MonoBehaviour {
 	void Start(){
 		bfctrl = GameObject.Find ("GameController").GetComponent<BloodFlowController> ();
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
+		onMission = false;
 		coroutine1 = standardPatrol ();
 		coroutine2 = boundPatrol ();
 		coroutine3 = missionPatrol ();
@@ -53,9 +54,11 @@ public class BloodFlow : MonoBehaviour {
 	}
 
 	public IEnumerator missionPatrol(){
+		onMission = true;
 		while (true) {
 			yield return new WaitForSeconds (0.1f);
 			if (agent.remainingDistance < 0.8f) {
+				NextWaypoint missionList = GameObject.Find (dest).GetComponent<NextWaypoint> ();
 				for(int i = 0; i < GameObject.Find(dest).GetComponent<NextWaypoint>().missions.Length; i++){
 					if(GameObject.Find(dest).GetComponent<NextWaypoint>().missions[i] == myTempMission){
 						myMission = myTempMission;
@@ -97,7 +100,9 @@ public class BloodFlow : MonoBehaviour {
 		return dest;
 	}
 
-	public bool 
+	public bool onAMission(){
+		return onMission;
+	}
 
 	/*void Start(){
 		isBound = false;

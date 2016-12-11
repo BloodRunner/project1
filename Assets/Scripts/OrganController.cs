@@ -4,7 +4,8 @@ using System.Collections;
 // Tag = Host
 // Name = organ name
 public abstract class OrganController : BodyController {
-	public int[] missions;
+	public string mission;
+	public int[] order;
 	public BloodFlowController bfctrl;
 	public Rigidbody rb;
 	public int mask;
@@ -164,7 +165,7 @@ public abstract class OrganController : BodyController {
 	/* Call the closest white cell to come help */
 	public void callForSupport() {
 		if (followerCamera.enabled == false) {
-			bfctrl.makeMission (missions);
+			bfctrl.makeMission (order, mission);
 		} else {
 			GameObject[] cells = GameObject.FindGameObjectsWithTag ("Host");
 			for (int i = 0; i < cells.Length; i++) {
