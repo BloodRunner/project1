@@ -4,7 +4,7 @@ using System.Collections;
 public class BloodFlow : MonoBehaviour {
 	private float lastDist;
 	public BloodFlowController bfctrl;
-	private NavMeshAgent agent;
+	private UnityEngine.AI.NavMeshAgent agent;
 	private float detectionRange;
 	private GameObject waypoint;
 	private string myMission;
@@ -21,7 +21,7 @@ public class BloodFlow : MonoBehaviour {
 		detectionRange = 10;
 
 		bfctrl = GameObject.Find ("GameController").GetComponent<BloodFlowController> ();
-		agent = GetComponent<NavMeshAgent> ();
+		agent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		coroutine2 = playerChoice();
 		whereAmI ();
 		coroutine = patrol ();
