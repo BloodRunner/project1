@@ -78,6 +78,18 @@ public class BloodFlow : MonoBehaviour {
 		StartCoroutine (coroutine3);
 	}
 
+	public void startDefend(string mission, string binding){
+		myTempMission = mission;
+		bind = binding;
+		StopAllCoroutines();
+		StartCoroutine (coroutine2);
+	}
+
+	public void startPatrol(){
+		StopAllCoroutines();
+		StartCoroutine (coroutine1);
+	}
+
 	public string getMyMission(){
 		return myMission;
 	}

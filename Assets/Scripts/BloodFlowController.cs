@@ -65,7 +65,25 @@ public class BloodFlowController : MonoBehaviour {
 		}
 	}
 
-	public string boundToNext(string dest, string mission, string bind){
+	public GameObject findNearest(string obj, int[] order){
+		GameObject[] cells = GameObject.FindGameObjectsWithTag ("Host");
+		for(int i = 1; i < order.Length; i++){
+			for (int x = names[order[i]-1].Length-1; x > 0; x--) {
+				for (int z = 0; z < cells.Length; z++) {
+					if(cells[z].name == obj){
+						
+					}
+				}
+			}
+		}
+
+	}
+
+	public void defendMission(string organ, string mission, int[] order){
+
+	}
+
+	/*public string boundToNext(string dest, string mission, string bind){
 		for(int i = 0; i < names.Length; i++){
 			if (mission == names [i] [0]) {
 				for(int x = 1; x < names[i].Length; x++){
@@ -84,7 +102,7 @@ public class BloodFlowController : MonoBehaviour {
 			}
 		}
 		return names [0] [1];
-	}
+	}*/
 
 	/*private void initializeWaypoints(){
 		targetWaypoints = new Vector3[names.Length][];
