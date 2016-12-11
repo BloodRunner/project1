@@ -97,6 +97,8 @@ public class BloodFlow : MonoBehaviour {
 		return dest;
 	}
 
+	public bool 
+
 	/*void Start(){
 		isBound = false;
 		detectionRange = 10;
