@@ -20,7 +20,7 @@ public class CellController :  BodyController{
 	public int points;	// score points and T cell bonus - applies to pathogen
 	private float nextReprod=0f;
 	public float lifespan_in_seconds ; // Cell life span in seconds float
-	private NavMeshAgent nvagt;
+	private UnityEngine.AI.NavMeshAgent nvagt;
 	private GameObject target; // for attackers
 	private Vector3 dest;
 	ParticleSystem hitParticles; // Death Indication
@@ -35,7 +35,7 @@ public class CellController :  BodyController{
 		Vector3 velo = Random.insideUnitSphere * speed();
 		velo.y = 0;
 		rb.velocity = velo;
-		nvagt = gameObject.GetComponent<NavMeshAgent> ();
+		nvagt = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		if (gameController ==null)
 			gameController = GameObject.FindObjectOfType<GameController> ();
 		if (bodystate ==null)
@@ -63,7 +63,7 @@ public class CellController :  BodyController{
 
 	public void setVelocity(float v) {
 		if (nvagt == null)
-			nvagt = gameObject.GetComponent<NavMeshAgent> ();
+			nvagt = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		nvagt.updateRotation = true;
 		nvagt.speed = speed();
 	}
@@ -146,14 +146,14 @@ public class CellController :  BodyController{
 				} else {  // Pop out a new one away from itself
 					clone = Instantiate (dna, v3 , transform.rotation)as GameObject;
 				}
-				nvagt = gameObject.GetComponent<NavMeshAgent> ();
+				nvagt = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent> ();
 				CellController cell = clone.GetComponent(typeof(CellController)) as CellController;
 				cell.gameController = gameController;
 				cell.bodystate = bodystate;
 				if (!nvagt)
-				 	nvagt= gameObject.GetComponent<NavMeshAgent> ();
+				 	nvagt= gameObject.GetComponent<UnityEngine.AI.NavMeshAgent> ();
 				if (nvagt) {
-					clone.GetComponent<NavMeshAgent> ().SetDestination (nvagt.destination);
+					clone.GetComponent<UnityEngine.AI.NavMeshAgent> ().SetDestination (nvagt.destination);
 				} else {
 					Debug.Log(name +" Missing nav agent:");
 				}

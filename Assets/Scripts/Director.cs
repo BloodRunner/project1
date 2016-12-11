@@ -18,13 +18,13 @@ public class Director : MonoBehaviour {
 		if(onAMission || collision.GetComponent<BloodFlow>()){
 			if(collision.gameObject.name == "White" || collision.gameObject.name == "KillerT"){
 				if(missions == "mission1"){
-					collision.GetComponent<NavMeshAgent>().destination = GameObject.Find (mission1).transform.position;
+					collision.GetComponent<UnityEngine.AI.NavMeshAgent>().destination = GameObject.Find (mission1).transform.position;
 				} else if(missions == "mission2"){
-					collision.GetComponent<NavMeshAgent>().destination = GameObject.Find (mission2).transform.position;
+					collision.GetComponent<UnityEngine.AI.NavMeshAgent>().destination = GameObject.Find (mission2).transform.position;
 				} else if(missions == "mission3"){
-					collision.GetComponent<NavMeshAgent>().destination = GameObject.Find (mission3).transform.position;
+					collision.GetComponent<UnityEngine.AI.NavMeshAgent>().destination = GameObject.Find (mission3).transform.position;
 				}else if(missions == "mission4"){
-					collision.GetComponent<NavMeshAgent>().destination = GameObject.Find (mission4).transform.position;
+					collision.GetComponent<UnityEngine.AI.NavMeshAgent>().destination = GameObject.Find (mission4).transform.position;
 				}
 			}
 		}
