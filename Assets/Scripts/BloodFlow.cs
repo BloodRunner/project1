@@ -11,7 +11,7 @@ public class BloodFlow : MonoBehaviour {
 	private string myTempMission;
 	private string dest;
 	private string bind;
-	private bool isBound;
+	private bool onMission;
 	private IEnumerator coroutine1;
 	private IEnumerator coroutine2;
 	private IEnumerator coroutine3;
@@ -23,6 +23,7 @@ public class BloodFlow : MonoBehaviour {
 		coroutine1 = standardPatrol ();
 		coroutine2 = boundPatrol ();
 		coroutine3 = missionPatrol ();
+		startPatrol ();
 	}
 
 	public IEnumerator standardPatrol(){
@@ -66,8 +67,6 @@ public class BloodFlow : MonoBehaviour {
 				}
 				dest = bfctrl.GetNext (dest, myMission);
 				agent.destination = GameObject.Find (dest).transform.position;
-
-
 			}
 		}
 	}
