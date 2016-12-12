@@ -12,9 +12,20 @@ public class BloodFlow : MonoBehaviour {
 	private string dest;
 	private string bind;
 	private bool onMission;
+	private bool isPlayer;
 	private IEnumerator coroutine1;
 	private IEnumerator coroutine2;
 	private IEnumerator coroutine3;
+
+	public float speed = 2.0f;
+	private GameObject[] directionals;
+	private string[] waypoints;
+	public float moveSpeed;
+
+
+	void Awake (){
+		directionals = GameObject.FindGameObjectsWithTag("directionals");
+	}
 
 
 	void Start(){
@@ -53,6 +64,35 @@ public class BloodFlow : MonoBehaviour {
 		}
 	}
 
+	void Update(){
+		if(isPlayer){
+			agent.speed += Input.GetAxis ("Vertical");
+			if (Input.GetAxis ("Horizontal") != 0) {
+				playerDirectionals (Input.GetAxis ("Horizontal"));
+			}
+		}
+	}
+
+	public void playerDirectionals(float dir){
+		if (dir > 0) {
+			for(int i = 0; i < directionals.Length; i ++){
+				if (directionals [i].name == "right") {
+					directionals [i].SetActive (true);
+				} else {
+					directionals [i].SetActive (false);
+				}
+			}
+		}else {
+			for(int i = 0; i < directionals.Length; i ++){
+				if (directionals [i].name == "left") {
+					directionals [i].SetActive (true);
+				} else {
+					directionals [i].SetActive (false);
+				}
+			}
+		}
+	}
+
 	public IEnumerator missionPatrol(){
 		onMission = true;
 		while (true) {
@@ -74,6 +114,7 @@ public class BloodFlow : MonoBehaviour {
 		}
 	}
 
+
 	public void startMission(string mission){
 		myTempMission = mission;
 		StopAllCoroutines();
@@ -85,6 +126,14 @@ public class BloodFlow : MonoBehaviour {
 		bind = binding;
 		StopAllCoroutines();
 		StartCoroutine (coroutine2);
+	}
+
+	public void startPlayer(){
+
+	}
+
+	public void stopPlayer(){
+
 	}
 
 	public void startPatrol(){

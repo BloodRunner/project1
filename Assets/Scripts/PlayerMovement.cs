@@ -5,10 +5,13 @@ public class PlayerMovement : MonoBehaviour {
 	public float speed = 2.0f;
 	private GameObject[] directionals;
 	private string[] waypoints;
+	public float moveSpeed;
 
 	void Awake (){
 		directionals = GameObject.FindGameObjectsWithTag("directionals");
 	}
+
+
 
 
 
