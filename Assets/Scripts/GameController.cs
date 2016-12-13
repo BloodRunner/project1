@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour
 	protected int numInfections = 0;
 	//MessageBoard msgbd = new MessageBoard ();
 	OrganController[] all_organs;
+	OrganController thymus;
 	float timer;
 	// timer to limit the UI tally update
 	float difficultyLevel = 1;
@@ -55,12 +56,11 @@ public class GameController : MonoBehaviour
 	{
 		//msgbd = new MessageBoard ();
 		showRestartButton (0);
+		deadpenguin (false);
 		score = 0;
 		UpdateScore (0);
 		gameOver = false;
 		restart = false;
-		//if (restartText)
-		//	restartText.text = "";
 		if (gameoverText)
 			gameoverText.text = "";
 		if (messageText)
@@ -109,9 +109,17 @@ public class GameController : MonoBehaviour
 	{
 		int[] count = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };// Bad coding practice!
 		string total = "Ally Count:";
-
+		int white = 0, t = 0;
 		CellController[] cells = GameObject.FindObjectsOfType (typeof(WhiteController)) as WhiteController[];
-		total += "\nWhite Blood Cell:" + cells.Length;
+		for (int i = 0; i < cells.Length; i++) {
+			if (cells [i].name.Equals ("White")) {
+				white++;
+			} else {
+				t++;
+			}
+		}
+		total += "\nKiller T Cell:" + t;
+		total += "\nWhite Blood Cell:" + white;
 		cells = GameObject.FindObjectsOfType (typeof(RedController)) as RedController[];
 		total += "\nRed Blood Cell:" + cells.Length;
 		cells = GameObject.FindObjectsOfType (typeof(PathogenController)) as PathogenController[];
@@ -149,8 +157,10 @@ public class GameController : MonoBehaviour
 
 	public void checkGameOver ()
 	{
-		if (!bodyIsAlive ())
+		if (!bodyIsAlive ()) {
+			deadpenguin (true);
 			GameOver ();
+		}
 	}
 
 	public bool isGameOver ()
@@ -203,7 +213,7 @@ public class GameController : MonoBehaviour
 		}
 		organs.TrimEnd (',');
 		showMessage ("Level " + (level+1) + ":" + "Pathogens are coming out of" + organs, 25);
-		Debug.Log ("!!!Level " + (level + 1) + ":" + "Pathogens are coming out of" + organs);
+		//Debug.Log ("!!!Level " + (level + 1) + ":" + "Pathogens are coming out of" + organs);
 		for (int i = 0; i < words.Length; i++) {
 			for (int x = 0; x < all_organs.Length; x++) {
 				if (words [i] == all_organs [x].name) {
@@ -346,7 +356,7 @@ public class GameController : MonoBehaviour
 		}
 		timer += Time.deltaTime;
 
-		if (timer >= 2) {//  - do this every 2 seconds
+		if (timer >= 5) {//  - do this every 5 seconds
 			if (score > 0) {
 				if (killerT != null && killerT.points > 0) {
 					int count = (int)(score / killerT.points);
@@ -490,7 +500,7 @@ public class GameController : MonoBehaviour
 	{
 		Button restartButton = GameObject.Find ("RestartButton").GetComponent<Button> () as Button;
 		CanvasGroup cg = restartButton.GetComponent<CanvasGroup> ();
-		Debug.Log ("Restart button pressed");
+		//Debug.Log ("Restart button pressed");
 		if (on_off == 1) {
 			restartButton.enabled = true;
 			cg.interactable = true;
@@ -503,7 +513,7 @@ public class GameController : MonoBehaviour
 
 	public void nextLevel ()
 	{
-		Debug.Log ("Next level button pressed");
+		//Debug.Log ("Next level button pressed");
 		if (readyToGoSound)
 			readyToGoSound.Play ();
 		WaitForNextLevel = false;
@@ -513,7 +523,7 @@ public class GameController : MonoBehaviour
 
 	public void showNextLevelButton (int on_off)
 	{
-		Debug.Log ("show next level button");
+		//Debug.Log ("show next level button");
 		Button nlButton = GameObject.Find ("NextLevelButton").GetComponent<Button> () as Button;
 		Button pauseButton = GameObject.Find ("pauseButton").GetComponent<Button> () as Button;
 
@@ -523,16 +533,22 @@ public class GameController : MonoBehaviour
 			cg.interactable = true;
 			cg.alpha = 1;
 			nlButton.enabled = true;
-			//pauseButton.enabled = false;
+			pauseButton.enabled = false;
 			Time.timeScale = 0;
 		} else {
 			cg.interactable = false;
 			cg.alpha = 0;
-			//pauseButton.enabled = true;
+			pauseButton.enabled = true;
 			Time.timeScale = 1;
 		}
 
 
 	}
 
+	void deadpenguin(bool on_off) {
+		SpriteRenderer xeye = GameObject.Find("xeye").GetComponent<SpriteRenderer>();
+		SpriteRenderer no_cross = GameObject.Find("no_cross").GetComponent<SpriteRenderer>();
+		xeye.enabled = on_off;
+		no_cross.enabled   = on_off;
+	}
 }

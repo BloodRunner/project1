@@ -4,7 +4,6 @@ using System.Collections;
 //using UnityStandardAssets;
 
 public class Shooter : MonoBehaviour {
-	ParticleSystem weapon;
 	private RaycastHit hit;
 	private Ray ray;
 	public int damagePerShot = 20;                  // The damage inflicted by each bullet.
@@ -25,9 +24,7 @@ public class Shooter : MonoBehaviour {
 	void Awake ()
 	{
 		// Create a layer mask for the Shootable layer.
-		//shootableMask = LayerMask.GetMask ("Infection") | LayerMask.GetMask ("Walls")	| LayerMask.GetMask("Organ");
 		shootableMask = LayerMask.GetMask("Infection", "Walls", "Organ");
-		//groundMask = LayerMask.GetMask ("Ground") | LayerMask.GetMask ("Walls") | LayerMask.GetMask("Organ");
 		groundMask = LayerMask.GetMask("Ground");
 		// Set up the references.
 		gunParticles = GetComponent<ParticleSystem> ();
@@ -48,19 +45,6 @@ public class Shooter : MonoBehaviour {
 	{
 		// Add the time since Update was last called to the timer.
 		timer += Time.deltaTime;
-
-		//if (Physics.Raycast (ray, out hit, 5)) {
-			/*
-				Vector3 targetPoint = ray.GetPoint(hit);
-			//	Vector3 distance = Vector3.Distance(hit.transform.position, transform.position); // Within shooting range?
-				Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
-				transform.rotation = targetRotation;
-				Debug.Log ("Weapon hits " + hit.collider.tag);
-				Vector3 bulletHolePosition = hit.point + hit.normal * 0.01f;
-*/
-			//Quaternion bulletHoleRotation = Quaternion.FromToRotation (-Vector3.forward, hit.normal);
-			//GameObject hole = (GameObject)GameObject.Instantiate (bulletHolePrefab, bulletHolePosition, bulletHoleRotation);
-		//}
 		// If the Fire1 button is being press and it's time to fire...
 		if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets)
 		{
@@ -109,8 +93,8 @@ public class Shooter : MonoBehaviour {
 
 		//gunParticles.transform.LookAt (dir);
 		transform.rotation = Quaternion.LookRotation (dir- transform.position);
-		gunParticles.Play ();
-		//	weapon.Play ();
+		if (gunParticles)
+			gunParticles.Play ();
 		// Enable the line renderer and set it's first position to be the end of the gun.
 		gunLine.enabled = true;
 		// Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
@@ -140,6 +124,7 @@ public class Shooter : MonoBehaviour {
 		}
 	}
 
+	// Old!
 	void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 0.2f)
 	{
 		//Debug.Log ("start line=" + start + " to " + end);

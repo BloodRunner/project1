@@ -55,6 +55,7 @@ public class CellController :  BodyController{
 		hitParticles = GetComponentInChildren <ParticleSystem> ();
 		Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Hostcell"),LayerMask.NameToLayer("Walls"));
 		Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Hostcell"),LayerMask.NameToLayer("Ground"));
+		Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Hostcell"),LayerMask.NameToLayer("Organ"));
 	}
 
 	public float time_left_to_live() {

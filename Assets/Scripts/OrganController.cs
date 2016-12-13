@@ -11,7 +11,7 @@ public abstract class OrganController : BodyController {
 	private Camera followerCamera;
 	//public GameObject shot;
 	protected bool isSpawner=false;
-
+	protected Blink exclamation = null;
 
 	// in organs reprodRate is the number of seconds it uses up 1% of it's oxygen/health
 	// oxygen depletion of N points per N seconds
@@ -21,11 +21,14 @@ public abstract class OrganController : BodyController {
 		bfctrl = GameObject.Find ("GameController").GetComponent<BloodFlowController> ();
 		followerCamera = GameObject.Find ("followCamera").GetComponent<Camera>();
 		rb = GetComponent<Rigidbody>();
+		exclamation = GetComponentInChildren<Blink> ();
+		if (exclamation) exclamation.gameObject.SetActive (false);
 		nextOxygenDepletion = Time.time;
 		if (gameController==null)
 			gameController = GameObject.FindObjectOfType (typeof(GameController)) as GameController;
 		if (bodystate == null)
 			bodystate = GameObject.FindObjectOfType (typeof(BodyState)) as BodyState;
+		Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Hostcell"),LayerMask.NameToLayer("Organ"));
 	}
 
 	// oxygenate means add power to health + defense to organ
@@ -56,9 +59,15 @@ public abstract class OrganController : BodyController {
 			if (stats_health > 0) {
 				inContact [pathogen.GetInstanceID ()] = new Damage (combat, Time.time + 1);
 				if (isSpawner && stats_health > 25) {
+					if (exclamation) exclamation.gameObject.SetActive (false);
 					isSpawner = false;
-					swapAudioTracks();
+					swapAudioTracks ();
 					Debug.Log (name + " is revived "); // Add points??
+				} else {
+					if (stats_health < 25 && !isSpawner) {
+						Debug.Log (name + " health=" + stats_health + " " + health ());
+						if (exclamation) exclamation.gameObject.SetActive (true);
+					}
 				}
 			} else
 				gameController.checkGameOver ();
@@ -156,7 +165,7 @@ public abstract class OrganController : BodyController {
 			Damage damage = (Damage)inContact[gameObj.GetInstanceID()];
 			if (damage.nextAttack (Time.time)) {
 				updateHealthStats (damage.damage());
-				Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
+				//Debug.Log(gameObject.name+"-"+gameObject.tag+" damaged by contact with "+ other.name+"="+other.tag);
 			}	
 		}
 	}
@@ -166,13 +175,14 @@ public abstract class OrganController : BodyController {
 		if (followerCamera.enabled == false) {
 			bfctrl.makeMission (missions);
 		} else {
-			CellController[] cells = GameObject.FindObjectsOfType (typeof(WhiteController)) as WhiteController[];
+			WhiteController[] cells = GameObject.FindObjectsOfType (typeof(WhiteController)) as WhiteController[];
 			//GameObject[] cells = GameObject.FindGameObjectsWithTag ("Host");
 			for (int i = 0; i < cells.Length; i++) {
 				if(cells[i].name == "White"){
 					if(cells[i].GetComponent<CameraChange>().getIsOn()){
 						cells [i].GetComponent<BloodFlow> ().stopPlayer ();
 						cells[i].GetComponent<BloodFlow>().setMyMission(GameObject.Find ("GameController").GetComponent<BloodFlowController>().names[missions[0]-1][0]);
+						print ("sending " + cells[i].getNickname()+ " to help "+ this.myname+ " at "+ transform.position);
 						break;
 					}
 				} else if(cells[i].name == "KillerT"){
@@ -180,14 +190,14 @@ public abstract class OrganController : BodyController {
 						cells [i].GetComponent<BloodFlow> ().stopPlayer ();
 						cells[i].GetComponent<BloodFlow>().setMyMission(GameObject.Find ("GameController").GetComponent<BloodFlowController>().names[missions[0]-1][0]);
 						cells [i].GetComponent<BloodFlow> ().bindTo (this.myname);
-						print (this.myname);
+						print ("sending killerT " + cells[i].getNickname() + " to help "+ this.myname);
+						//print (this.myname);
 						break;
 					}
 				}
 			}
 		}
-
-		Debug.Log (name + " needs backup");
+		//Debug.Log (name + " needs backup");
 	}
 		
 	/* Call the closest white cell to come help */
@@ -195,14 +205,14 @@ public abstract class OrganController : BodyController {
 		if (followerCamera.enabled == false) {
 			bfctrl.makeMission (missions);
 		} else {
-			CellController[] cells = GameObject.FindObjectsOfType (typeof(WhiteController)) as WhiteController[];
+			WhiteController[] cells = GameObject.FindObjectsOfType (typeof(WhiteController)) as WhiteController[];
 			for (int i = 0; i < cells.Length; i++) {
 			    if (cells[i].name == "KillerT"){
 					if(cells[i].GetComponent<CameraChange>().getIsOn()){
 						cells [i].GetComponent<BloodFlow> ().stopPlayer ();
 						cells[i].GetComponent<BloodFlow>().setMyMission(GameObject.Find ("GameController").GetComponent<BloodFlowController>().names[missions[0]-1][0]);
 						cells [i].GetComponent<BloodFlow> ().bindTo (this.myname);
-						print (this.myname);
+						print ("sending killerT " + cells[i].getNickname()+ " to help "+ this.myname);
 						break;
 					}
 				}
