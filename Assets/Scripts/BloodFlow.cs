@@ -16,15 +16,29 @@ public class BloodFlow : MonoBehaviour {
 	private IEnumerator coroutine1;
 	private IEnumerator coroutine2;
 	private IEnumerator coroutine3;
+	private IEnumerator coroutine4;
 
+	private WhiteController me;
+	private bool turn;
 	public float speed = 2.0f;
 	private GameObject[] directionals;
+	private Directional[] dirMission;
+	private string[] dirWayp;
+
 	private string[] waypoints;
 	public float moveSpeed;
 
 
 	void Awake (){
+		isPlayer = false;
 		directionals = GameObject.FindGameObjectsWithTag("directionals");
+		dirWayp = new string[directionals.Length];
+		dirMission = new Directional[directionals.Length];
+		for (int i = 0; i < directionals.Length; i++) {
+			dirMission [i] = directionals [i].GetComponent<Directional> ();
+			dirWayp [i] = directionals [i].name;
+		}
+		me = this.GetComponent<WhiteController> ();
 	}
 
 
@@ -35,12 +49,13 @@ public class BloodFlow : MonoBehaviour {
 		coroutine1 = standardPatrol ();
 		coroutine2 = boundPatrol ();
 		coroutine3 = missionPatrol ();
+		coroutine4 = playerPatrol ();
 		startPatrol ();
 	}
 
 	public IEnumerator standardPatrol(){
 		while (true) {
-			yield return new WaitForSeconds (0.1f);
+			yield return new WaitForSeconds (0.5f);
 			if (agent.remainingDistance < 0.8f) {
 				dest = bfctrl.GetNext (dest, myMission);
 				agent.destination = GameObject.Find (dest).transform.position;
@@ -50,7 +65,7 @@ public class BloodFlow : MonoBehaviour {
 
 	public IEnumerator boundPatrol(){
 		while (true) {
-			yield return new WaitForSeconds (0.1f);
+			yield return new WaitForSeconds (0.5f);
 			if (agent.remainingDistance < 0.8f) {
 				if(dest == bind){
 					agent.destination = GameObject.Find (dest).transform.position;
@@ -59,6 +74,25 @@ public class BloodFlow : MonoBehaviour {
 					dest = bfctrl.GetNext (dest, myMission);
 					agent.destination = GameObject.Find (dest).transform.position;
 				}
+			}
+		}
+	}
+
+	public IEnumerator playerPatrol(){
+		while (true) {
+			yield return new WaitForSeconds (0.5f);
+			if (agent.remainingDistance < 0.8f) {
+				for(int i = 0; i < dirWayp.Length; i++){
+					if(dirWayp[i] == dest){
+						if (turn) {
+							myMission = dirMission [i].getMission (0);
+						} else {
+							myMission = dirMission [i].getMission (1);
+						}
+					}
+				}
+				dest = bfctrl.GetNext (dest, myMission);
+				agent.destination = GameObject.Find (dest).transform.position;
 
 			}
 		}
@@ -66,7 +100,7 @@ public class BloodFlow : MonoBehaviour {
 
 	void Update(){
 		if(isPlayer){
-			agent.speed += Input.GetAxis ("Vertical");
+			agent.speed = me.bodyStats.speed + Input.GetAxis ("Vertical");
 			if (Input.GetAxis ("Horizontal") != 0) {
 				playerDirectionals (Input.GetAxis ("Horizontal"));
 			}
@@ -74,7 +108,9 @@ public class BloodFlow : MonoBehaviour {
 	}
 
 	public void playerDirectionals(float dir){
+
 		if (dir > 0) {
+			turn = true;
 			for(int i = 0; i < directionals.Length; i ++){
 				if (directionals [i].name == "right") {
 					directionals [i].SetActive (true);
@@ -83,6 +119,7 @@ public class BloodFlow : MonoBehaviour {
 				}
 			}
 		}else {
+			turn = false;
 			for(int i = 0; i < directionals.Length; i ++){
 				if (directionals [i].name == "left") {
 					directionals [i].SetActive (true);
@@ -96,7 +133,7 @@ public class BloodFlow : MonoBehaviour {
 	public IEnumerator missionPatrol(){
 		onMission = true;
 		while (true) {
-			yield return new WaitForSeconds (0.1f);
+			yield return new WaitForSeconds (0.5f);
 			if (agent.remainingDistance < 0.8f) {
 				NextWaypoint missionList = GameObject.Find (dest).GetComponent<NextWaypoint> ();
 				for(int i = 0; i < GameObject.Find(dest).GetComponent<NextWaypoint>().missions.Length; i++){
@@ -129,14 +166,14 @@ public class BloodFlow : MonoBehaviour {
 	}
 
 	public void startPlayer(){
-
+		isPlayer = true;
+		StopAllCoroutines();
+		StartCoroutine (coroutine4);
 	}
 
-	public void stopPlayer(){
-
-	}
-
+	//use this to stop player
 	public void startPatrol(){
+		isPlayer = false;
 		StopAllCoroutines();
 		StartCoroutine (coroutine1);
 	}
