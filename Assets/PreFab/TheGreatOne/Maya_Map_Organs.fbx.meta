@@ -1,0 +1,123 @@
+fileFormatVersion: 2
+guid: 19380c89d5c73f5478c6f0b539413bb0
+timeCreated: 1481668022
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Organ_Brain
+    100004: Organ_Heart
+    100006: Organ_Kidney_Left
+    100008: Organ_Kidney_Right
+    100010: Organ_Liver
+    100012: Organ_Lung_Left
+    100014: Organ_Lung_Right
+    100016: Organ_Stomach
+    100018: Organ_Thymus
+    400000: //RootNode
+    400002: Organ_Brain
+    400004: Organ_Heart
+    400006: Organ_Kidney_Left
+    400008: Organ_Kidney_Right
+    400010: Organ_Liver
+    400012: Organ_Lung_Left
+    400014: Organ_Lung_Right
+    400016: Organ_Stomach
+    400018: Organ_Thymus
+    2300000: Organ_Brain
+    2300002: Organ_Heart
+    2300004: Organ_Kidney_Left
+    2300006: Organ_Kidney_Right
+    2300008: Organ_Liver
+    2300010: Organ_Lung_Left
+    2300012: Organ_Lung_Right
+    2300014: Organ_Stomach
+    2300016: Organ_Thymus
+    3300000: Organ_Brain
+    3300002: Organ_Heart
+    3300004: Organ_Kidney_Left
+    3300006: Organ_Kidney_Right
+    3300008: Organ_Liver
+    3300010: Organ_Lung_Left
+    3300012: Organ_Lung_Right
+    3300014: Organ_Stomach
+    3300016: Organ_Thymus
+    4300000: Organ_Brain
+    4300002: Organ_Thymus
+    4300004: Organ_Heart
+    4300006: Organ_Liver
+    4300008: Organ_Stomach
+    4300010: Organ_Kidney_Right
+    4300012: Organ_Kidney_Left
+    4300014: Organ_Lung_Right
+    4300016: Organ_Lung_Left
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
