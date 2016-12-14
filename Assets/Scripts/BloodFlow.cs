@@ -31,7 +31,7 @@ public class BloodFlow : MonoBehaviour {
 
 	void Awake (){
 		isPlayer = false;
-		directionals = GameObject.FindGameObjectsWithTag("directionals");
+		directionals = GameObject.FindGameObjectsWithTag("directional");
 		dirWayp = new string[directionals.Length];
 		dirMission = new Directional[directionals.Length];
 		for (int i = 0; i < directionals.Length; i++) {

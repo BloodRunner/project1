@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float moveSpeed;
 
 	void Awake (){
-		directionals = GameObject.FindGameObjectsWithTag("directionals");
+		directionals = GameObject.FindGameObjectsWithTag("directional");
 	}
 
 
