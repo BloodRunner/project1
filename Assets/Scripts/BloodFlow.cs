@@ -109,7 +109,7 @@ public class BloodFlow : MonoBehaviour {
 			yield return new WaitForSeconds (0.2f);
 			if (agent.remainingDistance < 1f) {
 				for(int i = 0; i < dirWayp.Length; i++){
-					if(dirWayp[i] == dest){
+					if(dirMission[i].nameOfWayp == dest){
 						if (turn) {
 							myMission = dirMission [i].getMission (0);
 						} else {
