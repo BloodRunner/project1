@@ -7,12 +7,16 @@ public class HeartBeat : MonoBehaviour {
 	private float delay;
 	private float hold;
 	private IEnumerator coroutine;
+	private BoxCollider bc;
+	private MeshRenderer mr;
 	// Use this for initialization
 	void Start () {
 		delay = 2f;
 		hold = 1f;
 		coroutine = pump ();
 		StartCoroutine (coroutine);
+		bc = this.GetComponent<BoxCollider> ();
+		mr = this.GetComponent<MeshRenderer> ();
 	}
 
 
