@@ -145,7 +145,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012110849298}
-  m_Mesh: {fileID: 4300000, guid: 069b84585091f4ac59b5534ff4f8f276, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 962606c6f5b87384b8622585c6bd99f0, type: 3}
 --- !u!54 &54000011955620472
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -265,6 +265,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bfctrl: {fileID: 0}
+  speed: 2
+  moveSpeed: 0
 --- !u!114 &114000013676841870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -338,7 +340,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000011967211186}
   serializedVersion: 5
   lengthInSec: 0.5
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1

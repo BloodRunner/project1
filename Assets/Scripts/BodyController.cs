@@ -193,7 +193,7 @@ public class BodyController : MonoBehaviour
 			return;
 		if (!myRenderer) {
 			myRenderer = this.GetComponentInChildren< MeshRenderer > ();
-			//Debug.LogError (name + " has no renderer ");
+			Debug.LogError (name + " has no renderer ");
 		}
 		if (!myMaterial) {
 			myMaterial = myRenderer.material;
@@ -203,7 +203,7 @@ public class BodyController : MonoBehaviour
 		shininess= intensity * 0.3f;
 	
 		Color faded = myMaterial.color * intensity;
-		//Debug.Log (name + " changes from "+ myMaterial.color + " to "+ faded);
+		Debug.Log (name + " changes from "+ myMaterial.color + " to "+ faded);
 		myMaterial.SetFloat("_Shininess", shininess);
 		myMaterial.SetFloat("_Glossiness", shininess);
 		myMaterial.SetFloat("_Smoothness", shininess);

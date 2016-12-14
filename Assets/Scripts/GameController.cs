@@ -346,7 +346,7 @@ public class GameController : MonoBehaviour
 
 	public void RestartGame ()
 	{
-		SceneManager.LoadSceneAsync (0);
+		SceneManager.LoadSceneAsync (1);
 	}
 	
 	// Update is called once per frame
@@ -354,7 +354,7 @@ public class GameController : MonoBehaviour
 	{
 		if (restart) {
 			if (Input.GetKeyDown (KeyCode.R)) {
-				SceneManager.LoadSceneAsync (0);
+				SceneManager.LoadSceneAsync (1);
 			}
 		}
 		timer += Time.deltaTime;
