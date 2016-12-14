@@ -2607,7 +2607,7 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1209761009}
     - target: {fileID: 114000010701069730, guid: 248b3e6092851b24481ab1d74484a739,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2642,12 +2642,12 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1209761009}
     - target: {fileID: 114000012465433186, guid: 248b3e6092851b24481ab1d74484a739,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1209761009}
     - target: {fileID: 114000012889297576, guid: 248b3e6092851b24481ab1d74484a739,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2682,7 +2682,7 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1209761009}
     - target: {fileID: 224000010496369628, guid: 248b3e6092851b24481ab1d74484a739,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -3092,6 +3092,31 @@ Prefab:
         type: 2}
       propertyPath: m_AnchoredPosition.x
       value: -241.39186
+      objectReference: {fileID: 0}
+    - target: {fileID: 225000011141649454, guid: 248b3e6092851b24481ab1d74484a739,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013218572548, guid: 248b3e6092851b24481ab1d74484a739,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: quitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012648918020, guid: 248b3e6092851b24481ab1d74484a739,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: pauseGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012247587442, guid: 248b3e6092851b24481ab1d74484a739,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: showSettings
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012465433186, guid: 248b3e6092851b24481ab1d74484a739,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: showInstructions
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 248b3e6092851b24481ab1d74484a739, type: 2}

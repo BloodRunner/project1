@@ -45,7 +45,7 @@ public class GameController : MonoBehaviour
 	float difficultyLevel = 1;
 	updatePlayerStats playerStats;
 	bool WaitForNextLevel;
-	int level=0;
+	//int level=0;
 	GameObject playerpanel;
 	CanvasGroup playerpanel_cg;
 	AudioSource readyToGoSound, gameOverSound, victorySound;
@@ -236,8 +236,11 @@ public class GameController : MonoBehaviour
 				char[] inf = words [i].ToCharArray (0, 1);
 				int infT = (int)inf [0];
 				//print (infT.ToString());
-				print (words [i]);
-				print (infT.ToString ());
+				if (infT > 71) {
+					Debug.Log ("Spawn Level out of range " + words [i]+ " " + (infT - 'A'));
+					print (infT.ToString ());
+				}
+
 				cc = infections [infT - 65];
 				int infNum = int.Parse (words [i].Substring (1));
 				infectionCount = infNum * (int)(4 * difficultyLevel + 1);
@@ -334,7 +337,7 @@ public class GameController : MonoBehaviour
 		CellController cell;
 		//Stopgap measure
 		for (int i = 0; i < count; i++) {
-			cell = Instantiate (killerT, GameObject.Find ("thymus").transform.position, spawnRotation) as WhiteController;
+			cell = Instantiate (killerT, GameObject.Find ("Organ_Thymus").transform.position, spawnRotation) as WhiteController;
 			cell.bodystate = this.bodystate;
 			cell.gameController = this;
 		}
