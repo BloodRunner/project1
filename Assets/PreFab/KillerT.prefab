@@ -114,8 +114,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010516641762}
-  m_LocalRotation: {x: -0, y: -0.603553, z: -0, w: 0.79732287}
-  m_LocalPosition: {x: 8.894107, y: 0.26069498, z: -2.3341417}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.82, y: 0.8, z: -12.141}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 4000011773872332}
@@ -157,7 +157,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014055417770}
-  m_LocalRotation: {x: 0.018615417, y: -0.25051835, z: 0.004818064, w: 0.96792084}
+  m_LocalRotation: {x: 0.018615419, y: -0.25051838, z: 0.0048180646, w: 0.9679209}
   m_LocalPosition: {x: 0, y: -0.0028, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
@@ -356,6 +356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  moveSpeed: 0
 --- !u!114 &114000010960499180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -368,6 +369,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bfctrl: {fileID: 0}
+  speed: 2
+  moveSpeed: 0
 --- !u!114 &114000011801888626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -426,6 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topCamera: {fileID: 0}
   followCamera: {fileID: 0}
+  bf: {fileID: 0}
   highlightPLayer: {fileID: 108000013145005740}
 --- !u!114 &114000013411898608
 MonoBehaviour:
@@ -593,7 +597,7 @@ NavMeshAgent:
   m_AngularSpeed: 360
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 0.01
   m_BaseOffset: 0.009

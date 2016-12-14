@@ -81,8 +81,8 @@ public class BloodFlow : MonoBehaviour {
 
 	public IEnumerator standardPatrol(){
 		while (true) {
-			yield return new WaitForSeconds (0.5f);
-			if (agent.remainingDistance < 0.8f) {
+			yield return new WaitForSeconds (0.2f);
+			if (agent.remainingDistance < 1f) {
 				dest = bfctrl.GetNext (dest, myMission);
 				agent.destination = GameObject.Find (dest).transform.position;
 			}
@@ -91,8 +91,8 @@ public class BloodFlow : MonoBehaviour {
 
 	public IEnumerator boundPatrol(){
 		while (true) {
-			yield return new WaitForSeconds (0.5f);
-			if (agent.remainingDistance < 0.8f) {
+			yield return new WaitForSeconds (0.2f);
+			if (agent.remainingDistance < 1f) {
 				if(dest == bind){
 					agent.destination = GameObject.Find (dest).transform.position;
 					yield return new WaitForSeconds (0.3f);
@@ -106,8 +106,8 @@ public class BloodFlow : MonoBehaviour {
 
 	public IEnumerator playerPatrol(){
 		while (true) {
-			yield return new WaitForSeconds (0.5f);
-			if (agent.remainingDistance < 0.8f) {
+			yield return new WaitForSeconds (0.2f);
+			if (agent.remainingDistance < 1f) {
 				for(int i = 0; i < dirWayp.Length; i++){
 					if(dirWayp[i] == dest){
 						if (turn) {
@@ -159,8 +159,8 @@ public class BloodFlow : MonoBehaviour {
 	public IEnumerator missionPatrol(){
 		onMission = true;
 		while (true) {
-			yield return new WaitForSeconds (0.5f);
-			if (agent.remainingDistance < 0.8f) {
+			yield return new WaitForSeconds (0.2f);
+			if (agent.remainingDistance < 1f) {
 				NextWaypoint missionList = GameObject.Find (dest).GetComponent<NextWaypoint> ();
 				for(int i = 0; i < GameObject.Find(dest).GetComponent<NextWaypoint>().missions.Length; i++){
 					if(GameObject.Find(dest).GetComponent<NextWaypoint>().missions[i] == myTempMission){
