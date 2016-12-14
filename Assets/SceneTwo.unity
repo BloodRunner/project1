@@ -3096,6 +3096,60 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 248b3e6092851b24481ab1d74484a739, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &611367044 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000012379821650, guid: 248b3e6092851b24481ab1d74484a739,
+    type: 2}
+  m_PrefabInternal: {fileID: 611367043}
+  m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &611367045 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000011441267480, guid: 248b3e6092851b24481ab1d74484a739,
+    type: 2}
+  m_PrefabInternal: {fileID: 611367043}
+  m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &611367046 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000010658003604, guid: 248b3e6092851b24481ab1d74484a739,
+    type: 2}
+  m_PrefabInternal: {fileID: 611367043}
+  m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &611367047 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000013007850934, guid: 248b3e6092851b24481ab1d74484a739,
+    type: 2}
+  m_PrefabInternal: {fileID: 611367043}
+  m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &611367048 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000013404257520, guid: 248b3e6092851b24481ab1d74484a739,
+    type: 2}
+  m_PrefabInternal: {fileID: 611367043}
+  m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &611367049 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000012187442802, guid: 248b3e6092851b24481ab1d74484a739,
+    type: 2}
+  m_PrefabInternal: {fileID: 611367043}
+  m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &611367050 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000011466545856, guid: 248b3e6092851b24481ab1d74484a739,
+    type: 2}
+  m_PrefabInternal: {fileID: 611367043}
+  m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &611367051 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000012002394660, guid: 248b3e6092851b24481ab1d74484a739,
+    type: 2}
+  m_PrefabInternal: {fileID: 611367043}
+  m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &611367052 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000011459076718, guid: 248b3e6092851b24481ab1d74484a739,
+    type: 2}
+  m_PrefabInternal: {fileID: 611367043}
+  m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &654842371
 GameObject:
   m_ObjectHideFlags: 0
@@ -4053,7 +4107,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1025293157}
-  m_LocalRotation: {x: -0, y: 0.9985647, z: -0, w: -0.053557742}
+  m_LocalRotation: {x: -0, y: 0.9985648, z: -0, w: -0.053557746}
   m_LocalPosition: {x: 0.038337313, y: -0.0031586539, z: -0.0583125}
   m_LocalScale: {x: 0.9507798, y: 0.7896636, z: 0.9507798}
   m_Children: []
@@ -4610,11 +4664,11 @@ MonoBehaviour:
   - {fileID: 114000011528637040, guid: b0083c9ac5c0843c497c5f732be15d8b, type: 2}
   - {fileID: 114000013197163680, guid: 23584970999024eb991500ddfa490824, type: 2}
   levelEditor:
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Organ_Stomach,A2,B3
+  - Organ_Kidney_Left,A3,B2.C1
+  - Random,A3,B2,C1,D1
+  - Random,B3,C2,D2,E1
+  - Random,A5,B3,C2,D2,E4
   instructions:
   - 
   - 
@@ -4628,7 +4682,7 @@ MonoBehaviour:
   - 
   instructionWait: 5
   bodystate: {fileID: 654842372}
-  infectedOrgan: {fileID: 0}
+  infectedOrgan: {fileID: 1394781891}
   redCount: 10
   whiteCount: 3
   spawnWait: 0
@@ -4671,13 +4725,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drops:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1000013172586242, guid: 75b14acb7d9638342bf71a300d044afd, type: 2}
+  - {fileID: 1000013244149096, guid: e7f83606153195849b3851665b9fbb10, type: 2}
+  - {fileID: 1000012135367446, guid: e2239e5bbe2228d4999b7f0a9387a8a0, type: 2}
+  - {fileID: 1000013884028760, guid: e4f459240fdb0064091aa4b773a722f4, type: 2}
+  - {fileID: 1000010045385036, guid: 8a6baf40d96f78d47bc5bd4202b86b8f, type: 2}
+  - {fileID: 1000012390473672, guid: 9050b600f6362634ca05710cefc83889, type: 2}
+  - {fileID: 1000011578362612, guid: 89b7595c7dd391c4ba110564872c6c0c, type: 2}
 --- !u!114 &1209761012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5619,22 +5673,296 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.015941495, y: 0.0028545375, z: 0.012404601}
   m_Center: {x: 0.00022471305, y: 0.0014272687, z: -0.000474165}
+--- !u!114 &1394781908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1394781891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b50372a678e07406998aec4a6be464ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myname: Stomach
+  gameController: {fileID: 1209761009}
+  bodystate: {fileID: 654842372}
+  bodyStats:
+    health: 1000
+    speed: 0
+    defense: 1000
+    reprodRate: 70
+    power: 0
+    delay: 0
+    level: 0
+  healthSlider: {fileID: 611367046}
+  powerSlider: {fileID: 0}
+  defenseSlider: {fileID: 0}
+  mission: 
+  order: 
+  bfctrl: {fileID: 1209761012}
+  rb: {fileID: 0}
+  mask: 32
+--- !u!114 &1394781909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1394781890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156c657164d644e87bbc4d55787a98d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myname: Thymus
+  gameController: {fileID: 1209761009}
+  bodystate: {fileID: 0}
+  bodyStats:
+    health: 1000
+    speed: 0
+    defense: 1000
+    reprodRate: 50
+    power: 0
+    delay: 0
+    level: 0
+  healthSlider: {fileID: 611367050}
+  powerSlider: {fileID: 0}
+  defenseSlider: {fileID: 0}
+  mission: 
+  order: 
+  bfctrl: {fileID: 1209761012}
+  rb: {fileID: 0}
+  mask: 64
 --- !u!4 &1394781910 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400016, guid: 19380c89d5c73f5478c6f0b539413bb0, type: 3}
   m_PrefabInternal: {fileID: 1394781887}
+--- !u!114 &1394781911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1394781892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e70580e5cf494a67bab0582a11b3202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myname: RightLung
+  gameController: {fileID: 1209761009}
+  bodystate: {fileID: 654842372}
+  bodyStats:
+    health: 200
+    speed: 0
+    defense: 2000
+    reprodRate: 100
+    power: 0
+    delay: 0
+    level: 0
+  healthSlider: {fileID: 611367048}
+  powerSlider: {fileID: 0}
+  defenseSlider: {fileID: 0}
+  mission: 
+  order: 
+  bfctrl: {fileID: 1209761012}
+  rb: {fileID: 0}
+  mask: 16
+  otherLung: {fileID: 1394781912}
+--- !u!114 &1394781912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1394781893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e70580e5cf494a67bab0582a11b3202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myname: LeftLung
+  gameController: {fileID: 1209761009}
+  bodystate: {fileID: 654842372}
+  bodyStats:
+    health: 200
+    speed: 0
+    defense: 2000
+    reprodRate: 100
+    power: 0
+    delay: 0
+    level: 0
+  healthSlider: {fileID: 611367049}
+  powerSlider: {fileID: 0}
+  defenseSlider: {fileID: 0}
+  mission: 
+  order: 
+  bfctrl: {fileID: 1209761012}
+  rb: {fileID: 0}
+  mask: 16
+  otherLung: {fileID: 1394781911}
 --- !u!4 &1394781913 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400014, guid: 19380c89d5c73f5478c6f0b539413bb0, type: 3}
   m_PrefabInternal: {fileID: 1394781887}
+--- !u!114 &1394781914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1394781894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 635e91711e6114a62be1c488af65e681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myname: Liver
+  gameController: {fileID: 1209761009}
+  bodystate: {fileID: 654842372}
+  bodyStats:
+    health: 500
+    speed: 0
+    defense: 5000
+    reprodRate: 60
+    power: 0
+    delay: 0
+    level: 0
+  healthSlider: {fileID: 611367045}
+  powerSlider: {fileID: 0}
+  defenseSlider: {fileID: 0}
+  mission: 
+  order: 
+  bfctrl: {fileID: 1209761012}
+  rb: {fileID: 0}
+  mask: 8
+--- !u!114 &1394781915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1394781895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d4409579e1024923926865c8f75c8a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myname: RightKidney
+  gameController: {fileID: 1209761009}
+  bodystate: {fileID: 654842372}
+  bodyStats:
+    health: 400
+    speed: 0
+    defense: 1000
+    reprodRate: 50
+    power: 0
+    delay: 0
+    level: 0
+  healthSlider: {fileID: 611367052}
+  powerSlider: {fileID: 0}
+  defenseSlider: {fileID: 0}
+  mission: 
+  order: 
+  bfctrl: {fileID: 1209761012}
+  rb: {fileID: 0}
+  mask: 4
+  otherKidney: {fileID: 1394781917}
 --- !u!4 &1394781916 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400012, guid: 19380c89d5c73f5478c6f0b539413bb0, type: 3}
   m_PrefabInternal: {fileID: 1394781887}
+--- !u!114 &1394781917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1394781896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d4409579e1024923926865c8f75c8a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myname: LeftKidney
+  gameController: {fileID: 0}
+  bodystate: {fileID: 0}
+  bodyStats:
+    health: 400
+    speed: 0
+    defense: 1000
+    reprodRate: 50
+    power: 0
+    delay: 0
+    level: 0
+  healthSlider: {fileID: 611367044}
+  powerSlider: {fileID: 0}
+  defenseSlider: {fileID: 0}
+  mission: 
+  order: 
+  bfctrl: {fileID: 0}
+  rb: {fileID: 0}
+  mask: 4
+  otherKidney: {fileID: 0}
+--- !u!114 &1394781918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1394781897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a853cbbc73ef46a8be3ca43287acb0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myname: Heart
+  gameController: {fileID: 1209761009}
+  bodystate: {fileID: 654842372}
+  bodyStats:
+    health: 1000
+    speed: 0
+    defense: 2000
+    reprodRate: 30
+    power: 0
+    delay: 0
+    level: 0
+  healthSlider: {fileID: 611367047}
+  powerSlider: {fileID: 0}
+  defenseSlider: {fileID: 0}
+  mission: 
+  order: 
+  bfctrl: {fileID: 1209761012}
+  rb: {fileID: 0}
+  mask: 2
 --- !u!4 &1394781919 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400010, guid: 19380c89d5c73f5478c6f0b539413bb0, type: 3}
   m_PrefabInternal: {fileID: 1394781887}
+--- !u!114 &1394781920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1394781898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2b50e07f50148eb85300d6b22083c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myname: Brain
+  gameController: {fileID: 1209761009}
+  bodystate: {fileID: 654842372}
+  bodyStats:
+    health: 1000
+    speed: 0
+    defense: 1000
+    reprodRate: 30
+    power: 0
+    delay: 0
+    level: 0
+  healthSlider: {fileID: 611367051}
+  powerSlider: {fileID: 0}
+  defenseSlider: {fileID: 0}
+  mission: 
+  order: 
+  bfctrl: {fileID: 1209761012}
+  rb: {fileID: 0}
+  mask: 1
 --- !u!4 &1394781922 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400008, guid: 19380c89d5c73f5478c6f0b539413bb0, type: 3}
@@ -5715,6 +6043,181 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1411981401}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1414190229
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013276219828, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010233264144, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -112
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011563814946, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011563814946, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 225000012880937946, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_BlocksRaycasts
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 225000012880937946, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_IgnoreParentGroups
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010049257632, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010233264144, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010049257632, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -64
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010049257632, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225000012721407002, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010233264144, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225000012721407002, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011098425842, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011098425842, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011098425842, guid: 563718bc6527c934ba4d87c7eeb15b0b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: nextLevel
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 563718bc6527c934ba4d87c7eeb15b0b, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1450186595
 GameObject:
   m_ObjectHideFlags: 0
