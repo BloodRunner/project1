@@ -193,7 +193,7 @@ public abstract class OrganController : BodyController {
 				}
 			}
 		}
-		//Debug.Log (name + " needs backup");
+		Debug.Log (name + " needs backup");
 	}
 		
 }

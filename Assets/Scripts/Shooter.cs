@@ -9,9 +9,9 @@ public class Shooter : MonoBehaviour {
 	public int damagePerShot = 20;                  // The damage inflicted by each bullet.
 	public float timeBetweenBullets = 0.15f;        // The time between each shot.
 	public float range = 100f;                      // The distance the gun can fire.
-
-	float timer=0;                                    // A timer to determine when to fire.
 	Ray shootRay;                                   // A ray from the gun end 
+	float timer=0;                                    // A timer to determine when to fire.
+
 	RaycastHit shootHit;                            // A raycast hit to get the closest hit
 	int shootableMask;                              // A layer mask so the raycast only hits things on the shootable layer.
 	int groundMask;  
@@ -36,8 +36,10 @@ public class Shooter : MonoBehaviour {
 			gunLine = GetComponent<LineRenderer> ();
 		}
 		gunLine.material = new Material (Shader.Find ("Particles/Alpha Blended Premultiply"));
-		gunLine.SetWidth (0.1f, 0.1f);
-		gunLine.SetColors (Color.red, Color.yellow);
+		gunLine.startWidth = 0.1F;
+		gunLine.endWidth = 0.08f;
+		gunLine.startColor = Color.red;
+		gunLine.endColor = Color.yellow;
 		gunLine.enabled = false;
 	}
 
