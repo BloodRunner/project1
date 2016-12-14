@@ -33,17 +33,14 @@ public class BloodFlowController : MonoBehaviour {
 				for(int x = 1; x < names[i].Length; x++){
 					if(dest == names[i][x]){
 						if (x == names [i].Length - 1) {
-							print (dest + mission + "start");
 							return names [i] [1];
 						} else {
-							print (dest + mission + "normal");
 							return names [i] [x+1];
 						}
 					}
 				}
 			}
 		}
-		print (dest + mission + "end");
 		return names [0] [1];
 	}
 
