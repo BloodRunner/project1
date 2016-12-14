@@ -22,14 +22,12 @@ public class HeartBeat : MonoBehaviour {
 
 	public IEnumerator pump(){
 		while (true) {
-			this.GetComponent<BoxCollider> ().enabled = false;
-			this.GetComponent<MeshRenderer> ().enabled = false;
 			yield return new WaitForSeconds (delay);
-			this.GetComponent<BoxCollider> ().enabled = true;
-			this.GetComponent<MeshRenderer> ().enabled = true;
+			bc.enabled = true;
+			mr.enabled = true;
 			yield return new WaitForSeconds (hold);
-			this.GetComponent<BoxCollider> ().enabled = false;
-			this.GetComponent<MeshRenderer> ().enabled = false;
+			bc.enabled = false;
+			mr.enabled = false;
 		}
 	}
 
