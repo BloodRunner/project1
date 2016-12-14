@@ -30,6 +30,9 @@ public class BloodFlow : MonoBehaviour {
 
 
 	void Awake (){
+		bfctrl = GameObject.Find ("GameController").GetComponent<BloodFlowController> ();
+		agent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
+		detectionRange = 10f;
 		isPlayer = false;
 		directionals = GameObject.FindGameObjectsWithTag("directional");
 		dirWayp = new string[directionals.Length];
@@ -39,12 +42,11 @@ public class BloodFlow : MonoBehaviour {
 			dirWayp [i] = directionals [i].name;
 		}
 		me = this.GetComponent<WhiteController> ();
+		whereAmI ();
 	}
 
 
 	void Start(){
-		bfctrl = GameObject.Find ("GameController").GetComponent<BloodFlowController> ();
-		agent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		onMission = false;
 		coroutine1 = standardPatrol ();
 		coroutine2 = boundPatrol ();
@@ -54,16 +56,19 @@ public class BloodFlow : MonoBehaviour {
 	}
 
 	private void whereAmI(){
-		Collider[] search = Physics.OverlapSphere(this.GetComponent<Transform>().position,detectionRange);
+		GameObject[] gm = GameObject.FindGameObjectsWithTag ("waypoints");
+		//Collider[] search = Physics.OverlapSphere(this.gameObject.GetComponent<Transform>().position,detectionRange);
+		//print (search.Length);
 		//if(search.Length <= 0){
 		//	transform.position = new Vector3(GameObject.Find ("Heart (E/F)").transform.position.x,0.1f,GameObject.Find ("Heart (E/F)").transform.position.z);
 		//}
 		lastDist = detectionRange;
-		for(int i = 0; i < search.Length;i++){
-			if(search[i].CompareTag("waypoints")){
-				if(Vector3.Distance(this.transform.position, search[i].transform.position)<= lastDist){
-					lastDist = Vector3.Distance (this.transform.position, search [i].transform.position);
-					waypoint = search [i].gameObject;
+		for(int i = 0; i < gm.Length;i++){
+			if(gm[i].CompareTag("waypoints")){
+				if(Vector3.Distance(this.gameObject.transform.position, gm[i].transform.position)<= lastDist){
+					//print (search[i].name);
+					lastDist = Vector3.Distance (this.transform.position, gm[i].transform.position);
+					waypoint = gm[i].gameObject;
 				}
 			}
 		}

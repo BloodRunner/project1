@@ -10,7 +10,7 @@ public class HoverHighlight : MonoBehaviour {
 
 	}
 
-	void OnMouseOver() {
+	/*void OnMouseOver() {
 		if (this.GetComponent<CameraChange> ().followCamera == false) {
 			highlightPLayer.range = 3f;
 			highlightPLayer.enabled = true;
@@ -25,5 +25,5 @@ public class HoverHighlight : MonoBehaviour {
 		} else {
 			highlightPLayer.range = 0.3f;
 		}
-	}
+	}*/
 }
