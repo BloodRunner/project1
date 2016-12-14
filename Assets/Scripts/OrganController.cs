@@ -4,7 +4,8 @@ using System.Collections;
 // Tag = Host
 // Name = organ name
 public abstract class OrganController : BodyController {
-	public int[] missions;
+	public string mission;
+	public int[] order;
 	public BloodFlowController bfctrl;
 	public Rigidbody rb;
 	public int mask;
@@ -173,25 +174,20 @@ public abstract class OrganController : BodyController {
 	/* Call the closest white cell to come help */
 	public void callForSupport() {
 		if (followerCamera.enabled == false) {
-			bfctrl.makeMission (missions);
+			bfctrl.makeMission (order, mission);
 		} else {
 			WhiteController[] cells = GameObject.FindObjectsOfType (typeof(WhiteController)) as WhiteController[];
 			//GameObject[] cells = GameObject.FindGameObjectsWithTag ("Host");
 			for (int i = 0; i < cells.Length; i++) {
 				if(cells[i].name == "White"){
 					if(cells[i].GetComponent<CameraChange>().getIsOn()){
-						cells [i].GetComponent<BloodFlow> ().stopPlayer ();
-						cells[i].GetComponent<BloodFlow>().setMyMission(GameObject.Find ("GameController").GetComponent<BloodFlowController>().names[missions[0]-1][0]);
-						print ("sending " + cells[i].getNickname()+ " to help "+ this.myname+ " at "+ transform.position);
+						print (this.myname);
 						break;
 					}
 				} else if(cells[i].name == "KillerT"){
 					if(cells[i].GetComponent<CameraChange>().getIsOn()){
-						cells [i].GetComponent<BloodFlow> ().stopPlayer ();
-						cells[i].GetComponent<BloodFlow>().setMyMission(GameObject.Find ("GameController").GetComponent<BloodFlowController>().names[missions[0]-1][0]);
-						cells [i].GetComponent<BloodFlow> ().bindTo (this.myname);
-						print ("sending killerT " + cells[i].getNickname() + " to help "+ this.myname);
-						//print (this.myname);
+
+						print (this.myname);
 						break;
 					}
 				}

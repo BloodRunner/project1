@@ -4,6 +4,7 @@ using System.Collections;
 public class NextWaypoint : MonoBehaviour {
 
 	public string[] missions;
+	public string[] dir;
 
 
 

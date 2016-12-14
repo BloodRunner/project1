@@ -45,27 +45,43 @@ public class BloodFlowController : MonoBehaviour {
 		return names [0] [1];
 	}
 
-	public void makeMission(int[] order){
+	public void makeMission(int[] order,string mission){
+		BloodFlow thisCell = findNearest ("White", order,true).GetComponent<BloodFlow>();
+		if (thisCell == null) {
+			return;
+		}
+		thisCell.startMission (mission);
+	}
+
+	public GameObject findNearest(string obj, int[] order, bool single){
 		GameObject[] cells = GameObject.FindGameObjectsWithTag ("Host");
-		for (int i = 1; i < order.Length; i++) {
+		for(int i = 1; i < order.Length; i++){
 			for (int x = names[order[i]-1].Length-1; x > 0; x--) {
 				for (int z = 0; z < cells.Length; z++) {
-					if(cells[z].name == "White"){
-						if (cells [z].GetComponent<BloodFlow> ().getMyMission () == names [order[i]-1][0]) {
-							if(cells[z].GetComponent<BloodFlow> ().getMyDest() == names [order[i]-1][x]){
-								cells [z].GetComponent<BloodFlow> ().setMyMission (names [order[0]-1][0]);
-								cells [z].GetComponent<PingCell> ().PingIt ();
-								print ("Pinged!!!!");
-								return;
+					if(cells[z].name == obj){
+						if (single == true) {
+							if (cells [z].GetComponent<BloodFlow>().onAMission () == false) {
+								return cells [z];
 							}
+						} else {
+							return cells [z];
 						}
 					}
 				}
 			}
 		}
+		return null;
 	}
 
-	public string boundToNext(string dest, string mission, string bind){
+	public void defendMission(string organWaypoint, string mission, int[] order){
+		BloodFlow thisCell = findNearest ("KillerT", order,true).GetComponent<BloodFlow>();
+		if (thisCell == null) {
+			return;
+		}
+		thisCell.startDefend (mission, organWaypoint);
+	}
+
+	/*public string boundToNext(string dest, string mission, string bind){
 		for(int i = 0; i < names.Length; i++){
 			if (mission == names [i] [0]) {
 				for(int x = 1; x < names[i].Length; x++){
@@ -85,6 +101,26 @@ public class BloodFlowController : MonoBehaviour {
 		}
 		return names [0] [1];
 	}
+
+	public void makeMission(int[] order){
+		GameObject[] cells = GameObject.FindGameObjectsWithTag ("Host");
+		for (int i = 1; i < order.Length; i++) {
+			for (int x = names[order[i]-1].Length-1; x > 0; x--) {
+				for (int z = 0; z < cells.Length; z++) {
+					if(cells[z].name == "White"){
+						if (cells [z].GetComponent<BloodFlow> ().getMyMission () == names [order[i]-1][0]) {
+							if(cells[z].GetComponent<BloodFlow> ().getMyDest() == names [order[i]-1][x]){
+								cells [z].GetComponent<BloodFlow> ().startMission (names [order[0]-1][0]);
+								cells [z].GetComponent<PingCell> ().PingIt ();
+								print ("Pinged!!!!");
+								return;
+							}
+						}
+					}
+				}
+			}
+		}
+	}*/
 
 	/*private void initializeWaypoints(){
 		targetWaypoints = new Vector3[names.Length][];
