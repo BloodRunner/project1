@@ -3640,7 +3640,8 @@ MonoBehaviour:
   healthSlider: {fileID: 1041671643}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
-  missions: 03000000040000000200000001000000
+  mission: 
+  order: 
   bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 2
@@ -4386,7 +4387,8 @@ MonoBehaviour:
   healthSlider: {fileID: 913656388}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
-  missions: 03000000040000000200000001000000
+  mission: 
+  order: 
   bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 2
@@ -5150,7 +5152,8 @@ MonoBehaviour:
   healthSlider: {fileID: 440213448}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
-  missions: 03000000040000000200000001000000
+  mission: 
+  order: 
   bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 32
@@ -6159,7 +6162,8 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
-  missions: 04000000030000000200000001000000
+  mission: 
+  order: 
   bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 64
@@ -6479,7 +6483,8 @@ MonoBehaviour:
   healthSlider: {fileID: 849975314}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
-  missions: 03000000040000000200000001000000
+  mission: 
+  order: 
   bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 16
@@ -6781,7 +6786,8 @@ MonoBehaviour:
   healthSlider: {fileID: 2010161401}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
-  missions: 03000000040000000200000001000000
+  mission: 
+  order: 
   bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 8
@@ -8043,7 +8049,8 @@ MonoBehaviour:
   healthSlider: {fileID: 1673508914}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
-  missions: 01000000030000000400000002000000
+  mission: 
+  order: 
   bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 1
@@ -11295,7 +11302,8 @@ MonoBehaviour:
   healthSlider: {fileID: 95148687}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
-  missions: 02000000030000000400000001000000
+  mission: 
+  order: 
   bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 4
@@ -11833,7 +11841,8 @@ MonoBehaviour:
   healthSlider: {fileID: 1134425801}
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
-  missions: 04000000030000000200000001000000
+  mission: 
+  order: 
   bfctrl: {fileID: 0}
   rb: {fileID: 0}
   mask: 64
