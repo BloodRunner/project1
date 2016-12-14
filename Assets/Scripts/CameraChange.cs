@@ -7,6 +7,7 @@ public class CameraChange : MonoBehaviour {
 	private IEnumerator coroutine;
 	public Camera topCamera; 
 	public Camera followCamera;
+	public BloodFlow bf;
 	public Light highlightPLayer;
 	private float zoom;
 	private bool isOn;
@@ -31,8 +32,8 @@ public class CameraChange : MonoBehaviour {
 
 	public IEnumerator followThis(){
 		while(true){
-			if(zoom >=10){
-				zoom = 10;
+			if(zoom >=14){
+				zoom = 14;
 			}
 			if(zoom <=1){
 				zoom = 1;
@@ -44,6 +45,7 @@ public class CameraChange : MonoBehaviour {
 	}
 
 	void Start(){
+		bf = this.gameObject.GetComponent<BloodFlow> ();
 		this.gameObject.GetComponent<PlayerMovement> ().enabled = false;
 		isOn = false;
 		zoom = 8f;
@@ -77,6 +79,7 @@ public class CameraChange : MonoBehaviour {
 			this.GetComponentInChildren<Shooter>().enabled = false;
 			this.SendMessage ("removeStats");
 		}
+		bf.startPatrol ();
 		/*if (wasIBound) {
 			this.GetComponent<BloodFlow> ().destOveride (dest);
 			this.GetComponent<BloodFlow> ().setMyBound (true);
@@ -100,6 +103,8 @@ public class CameraChange : MonoBehaviour {
 		topCamera.enabled = false;
 		followCamera.enabled = true;
 		highlightPLayer.enabled = true;
+		highlightPLayer.range = 0.3f;
+		bf.startPlayer ();
 		isOn = true;
 		Camera.SetupCurrent (followCamera);
 		//this.GetComponent<BloodFlow> ().startPlayer ();
