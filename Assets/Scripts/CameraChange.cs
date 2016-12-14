@@ -100,6 +100,7 @@ public class CameraChange : MonoBehaviour {
 		topCamera.enabled = false;
 		followCamera.enabled = true;
 		highlightPLayer.enabled = true;
+		highlightPLayer.range = 0.3f;
 		isOn = true;
 		Camera.SetupCurrent (followCamera);
 		//this.GetComponent<BloodFlow> ().startPlayer ();
