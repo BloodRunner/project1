@@ -7,10 +7,10 @@ public class BloodFlowController : MonoBehaviour {
 	public Hashtable flowPoints;
 	//private GameObject[] waypoints;
 	public string[][] names = new string[][]{
-		new string[]{"mission1", "heart1","lung1","lung2", "heart2", "inter1","inter2","inter3","brain","inter5","hometrip"},
-		new string[]{"mission2", "heart1","lung1","lung2", "heart2", "inter1","inter2","beforethymus","thymus","afterthymus","inter4","hometrip"},
-		new string[]{"mission3", "heart1","lung1","lung2", "heart2", "inter1","stomach","liver","hometrip"},
-		new string[]{"mission4", "heart1","lung1","lung2", "heart2", "inter1","stomach","kidney1","kidney2","liver","hometrip"}
+		new string[]{"mission1", "1","2","3", "4","5","6","7","8","9","10","11","12","13","l1","l2","l3","ll1","ll2","ll3","ll4","ll5","ll6","ll7","ll8","ll9","ll10","ll11","ll12","ll13","ll14","ll15","ll16","ll17","ll18","bret1","bret2","bret3","ret1","ret2","ret3"},
+		new string[]{"mission2", "1","2","3", "4","5","6","7","8","9","10","11","12","13","l1","l2","l3","lr1","lr2","lr3","lr4","lr5","bret1","bret2","bret3","ret1","ret2","ret3"},
+		new string[]{"mission3", "1","2","3", "4","5","6","7","8","9","10","11","12","13","r1","r2","r3","r4","r5","r6","rl1","rl2","rl3","rl4","rl5","rl6","rl7","tret1","tret2","tret3","tret4","tret5","tret6","ret1","ret2","ret3"},
+		new string[]{"mission4", "1","2","3", "4","5","6","7","8","9","10","11","12","13","r1","r2","r3","r4","r5","r6","rr1","rr2","rr3","rr4","rr5","rr6","rr7","rr8","rr9","rr10","rr11","rr12","rr13","rr14","rr15","rr16","rr17","tret1","tret2","tret3","tret4","tret5","tret6","ret1","ret2","ret3"}
 	};
 	private Vector3[][] targetWaypoints;
 	private string wayp;
