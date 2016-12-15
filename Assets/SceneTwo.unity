@@ -7497,7 +7497,7 @@ Light:
   m_Type: 1
   m_Color: {r: 0.99264705, g: 0.13867864, b: 0.15634681, a: 1}
   m_Intensity: 2.38
-  m_Range: 10
+  m_Range: 200
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -7517,7 +7517,7 @@ Light:
     m_Bits: 4294967295
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 8
+  m_BounceIntensity: 5.13
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1538543691

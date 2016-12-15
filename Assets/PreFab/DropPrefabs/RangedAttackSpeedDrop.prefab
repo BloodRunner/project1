@@ -16,13 +16,13 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000011490140060}
-  - 65: {fileID: 65000011008410416}
-  - 108: {fileID: 108000012497956556}
-  - 54: {fileID: 54000012210500298}
-  - 114: {fileID: 114000012286931966}
+  - component: {fileID: 4000011490140060}
+  - component: {fileID: 65000011008410416}
+  - component: {fileID: 108000012497956556}
+  - component: {fileID: 54000012210500298}
+  - component: {fileID: 114000012286931966}
   m_Layer: 11
   m_Name: RangedAttackSpeedDrop
   m_TagString: Untagged
@@ -39,10 +39,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &54000012210500298
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -81,7 +81,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.41911763, g: 0.37287015, b: 0, a: 1}
   m_Intensity: 8
-  m_Range: 1
+  m_Range: 0.5
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
