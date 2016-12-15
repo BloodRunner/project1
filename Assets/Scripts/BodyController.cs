@@ -44,6 +44,7 @@ public class BodyController : MonoBehaviour
 	protected float healthColorTime;
 	protected Renderer myRenderer;
 	protected Material myMaterial;
+	int organ_layer;
 
 	public void awake() {
 		healthColorTime = Time.time;
@@ -54,6 +55,7 @@ public class BodyController : MonoBehaviour
 			gameController = GameObject.FindObjectOfType (typeof(GameController)) as GameController;
 		if (bodystate == null)
 			bodystate = GameObject.FindObjectOfType (typeof(BodyState)) as BodyState;
+		organ_layer = LayerMask.NameToLayer ("Organ");
 	}
 
 	public void setBodyState(BodyState bs) {
@@ -121,15 +123,6 @@ public class BodyController : MonoBehaviour
 			instantMuteColors(stats_health / 100f);
 		
 		movehealthSlider ();
-		/*
-		float freq = 2f;
-		if (10 < stats_health && stats_health < 95 && healthColorTime < Time.time) {
-			//Debug.Log ("mute health = "+ stats_health);
-			muteColors (stats_health / 100f, freq);
-			healthColorTime = Time.time + freq; // Do this once every freq seconds
-		}
-*/
-
 	}
 	public virtual void updatePowerStats(float point) {
 		stats_power += point;
@@ -193,7 +186,7 @@ public class BodyController : MonoBehaviour
 			return;
 		if (!myRenderer) {
 			myRenderer = this.GetComponentInChildren< MeshRenderer > ();
-			Debug.LogError (name + " has no renderer ");
+			Debug.Log (name + " has no renderer ");
 		}
 		if (!myMaterial) {
 			myMaterial = myRenderer.material;
@@ -203,7 +196,8 @@ public class BodyController : MonoBehaviour
 		shininess= intensity * 0.3f;
 	
 		Color faded = myMaterial.color * intensity;
-		Debug.Log (name + " changes from "+ myMaterial.color + " to "+ faded);
+		if (gameObject.layer == organ_layer)
+			Debug.Log (name + " changes from "+ myMaterial.color + " to "+ faded);
 		myMaterial.SetFloat("_Shininess", shininess);
 		myMaterial.SetFloat("_Glossiness", shininess);
 		myMaterial.SetFloat("_Smoothness", shininess);
