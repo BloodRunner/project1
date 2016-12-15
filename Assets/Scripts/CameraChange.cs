@@ -11,6 +11,7 @@ public class CameraChange : MonoBehaviour {
 	public Light highlightPLayer;
 	private float zoom;
 	private bool isOn;
+	private GameObject[] boxes;
 
 	void OnMouseDown(){
 		if (followCamera.enabled == false) {
@@ -45,6 +46,7 @@ public class CameraChange : MonoBehaviour {
 	}
 
 	void Start(){
+		boxes = GameObject.FindGameObjectsWithTag ("directional");
 		bf = this.gameObject.GetComponent<BloodFlow> ();
 		this.gameObject.GetComponent<PlayerMovement> ().enabled = false;
 		isOn = false;
@@ -64,6 +66,9 @@ public class CameraChange : MonoBehaviour {
 	}*/
 
 	public void stopCamera (){
+		for(int i = 0; i < boxes.Length; i++){
+			boxes [i].gameObject.SetActive (false);
+		}
 		//bool wasIBound = this.GetComponent<BloodFlow> ().amIBound ();
 		//Vector3 dest = this.GetComponent<BloodFlow> ().getMyDestV ();
 		StopCoroutine (coroutine);
@@ -88,7 +93,9 @@ public class CameraChange : MonoBehaviour {
 	}
 
 	public void startFollow(){
-		
+		for(int i = 0; i < boxes.Length; i++){
+			boxes [i].gameObject.SetActive (true);
+		}
 		this.GetComponent<PlayerMovement> ().enabled = true;
 		if (this.GetComponent<Shooter> () != null) {
 			Debug.Log ("Activate shooter to " + name + "." + tag);
