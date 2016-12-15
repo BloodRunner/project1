@@ -199,6 +199,7 @@ public abstract class OrganController : BodyController {
 				if (cells [i].GetComponent<CameraChange> ().getIsOn ()) {
 					
 					if(cells[i].name == "White"){
+						bfctrl.myMission (mission, cells[i].gameObject);
 						break;
 					} else if(cells[i].name == "KillerT"){
 						print ("hmmm1");

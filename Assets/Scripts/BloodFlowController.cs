@@ -44,12 +44,17 @@ public class BloodFlowController : MonoBehaviour {
 		return names [0] [1];
 	}
 
+	public void myMission(string mission, GameObject itsMe){
+		itsMe.GetComponent<PingCell> ().PingIt ();
+		itsMe.GetComponent<BloodFlow>().startMission (mission);
+	}
+
 	public void makeMission(int[] order,string mission){
 		GameObject thisCell = findNearest ("White", order,true);
 		if (thisCell == null) {
 			return;
 		}
-		print (thisCell.name);
+		//print (thisCell.name);
 		thisCell.GetComponent<PingCell> ().PingIt ();
 		thisCell.GetComponent<BloodFlow>().startMission (mission);
 	}

@@ -16,4 +16,8 @@ public class HeartController : OrganController {
 		Debug.Log (name +" damageBody " + bodystate.showStats ());
 	}
 
+	public void Update(){
+		bodyStats.health = 10000f;
+		bodyStats.defense = 10000f;
+	}
 }
