@@ -79,6 +79,7 @@ public class BloodFlowController : MonoBehaviour {
 		if (thisCell == null) {
 			return;
 		}
+		print ("hmmm2 " + mission + " " + organWaypoint);
 		thisCell.startDefend (mission, organWaypoint);
 	}
 

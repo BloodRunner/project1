@@ -188,7 +188,7 @@ public abstract class OrganController : BodyController {
 					if(cells[i].name == "White"){
 						break;
 					} else if(cells[i].name == "KillerT"){
-						print ("hmmm");
+						print ("hmmm1");
 						bfctrl.defendMission (waypoint,mission,order);
 						print (this.myname);
 						break;
