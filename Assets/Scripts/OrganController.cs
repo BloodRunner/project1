@@ -16,7 +16,7 @@ public abstract class OrganController : BodyController {
 	protected Blink exclamation = null;
 	float colorChange =0;
 	float oldhealth;
-
+	protected GameObject deadskull=null;
 	// in organs reprodRate is the number of seconds it uses up 1% of it's oxygen/health
 	// oxygen depletion of N points per N seconds
 	private float nextOxygenDepletion=0f;
@@ -27,6 +27,10 @@ public abstract class OrganController : BodyController {
 		rb = GetComponent<Rigidbody>();
 		exclamation = GetComponentInChildren<Blink> ();
 		if (exclamation) exclamation.gameObject.SetActive (false);
+		Transform tr = transform.Find ("Deadskull");
+		if (tr)
+			deadskull = tr.gameObject;
+		if (deadskull) deadskull.gameObject.SetActive (false);
 		nextOxygenDepletion = Time.time;
 		if (gameController==null)
 			gameController = GameObject.FindObjectOfType (typeof(GameController)) as GameController;
@@ -38,10 +42,10 @@ public abstract class OrganController : BodyController {
 	// oxygenate means add power to health + defense to organ
 	// TODO: modify by regenRate
 	void oxygenate (float power) {
-		string preoxy = name +" before oxygenate("+ power+")="+ showStats();
+		//string preoxy = name +" before oxygenate("+ power+")="+ showStats();
 		updateHealthStats (power); // health goes up by oxygen power
-		updateDefenseStats (power / 2f); // defense goes up by 1/2 oxygen power
-		Debug.Log(preoxy +" after= "+ showStats());
+		updateDefenseStats (power * .75f); // defense goes up by 75% oxygen power
+		//Debug.Log(preoxy +" after= "+ showStats());
 	}
 
 	// Each combatant lose 1% in defend after each combat
@@ -62,10 +66,12 @@ public abstract class OrganController : BodyController {
 
 			if (stats_health > 0) {
 				inContact [pathogen.GetInstanceID ()] = new Damage (combat, Time.time + 1);
-				if (isSpawner && stats_defense > 50) {
+				if (isSpawner && stats_defense > 50 && stats_health > 25) {
 					if (exclamation) exclamation.gameObject.SetActive (false);
 					isSpawner = false;
 					swapAudioTracks ();
+					deadskull.SetActive (false);
+
 					Debug.Log (name + " is revived "); // Add points??
 				} else {
 					if (stats_defense < 50 && !isSpawner) {
@@ -118,6 +124,7 @@ public abstract class OrganController : BodyController {
 			isSpawner = true;
 			//renderer.material.color = Color.blue;
 			swapAudioTracks();
+			deadskull.SetActive (true);
 		} 
 	}
 

@@ -385,7 +385,7 @@ public class GameController : MonoBehaviour
 	{
 		score += scorept;
 		if (scoreText != null)
-			scoreText.text = "Score:" + score + " Level:"+ level;
+			scoreText.text = "Score:" + score + " Level:"+ (level+1);
 		
 	}
 
