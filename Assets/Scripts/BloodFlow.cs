@@ -104,10 +104,6 @@ public class BloodFlow : MonoBehaviour {
 						if (missionList.missions [i] == myTempMission) {
 							//print ("found " + myTempMission);
 							myMission = myTempMission;
-							dest = bfctrl.GetNext (dest, myMission);
-							agent.destination = GameObject.Find (dest).transform.position;
-							StartCoroutine (coroutine1);
-							StopCoroutine (coroutine3);
 							break;
 						}
 					}
@@ -238,6 +234,7 @@ public class BloodFlow : MonoBehaviour {
 		if (onDefendMission) {
 			isPlayer = false;
 		} else {
+			isPlayer = false;
 			StartCoroutine (coroutine1);
 		}
 	}

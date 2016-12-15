@@ -203,12 +203,12 @@ public abstract class OrganController : BodyController {
 			WhiteController[] cells = GameObject.FindObjectsOfType (typeof(WhiteController)) as WhiteController[];
 			//GameObject[] cells = GameObject.FindGameObjectsWithTag ("Host");
 			for (int i = 0; i < cells.Length; i++) {
-				if (cells [i].GetComponent<CameraChange> ().getIsOn ()) {
+				if (cells [i].gameObject.GetComponent<CameraChange> ().getIsOn ()) {
 					
-					if(cells[i].name == "White"){
+					if(cells[i].gameObject.name == "White"){
 						bfctrl.myMission (mission, cells[i].gameObject);
 						break;
-					} else if(cells[i].name == "KillerT"){
+					} else if(cells[i].gameObject.name == "KillerT"){
 						//print ("hmmm1");
 						bfctrl.defendMission (waypoint,mission,cells[i].gameObject);
 						//print (this.myname);

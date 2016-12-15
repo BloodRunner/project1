@@ -29,13 +29,14 @@ public class PingCell : MonoBehaviour {
 
 	private IEnumerator defendPing(){
 		while(true){
-			myLight.range = 1.5f;
 			myLight.enabled = true;
+			myLight.range = 1.5f;
 			myLight.color = Color.green;
 			if(me.onADefend() == false){
 				myLight.enabled = false;
 				myLight.color = Color.white;
 				myLight.range = 0.3f;
+				break;
 			}
 			yield return new WaitForSeconds (1.5f);
 		}
@@ -43,5 +44,9 @@ public class PingCell : MonoBehaviour {
 	
 	public void PingIt(){
 		StartCoroutine (coroutine);
+	}
+
+	public void PingDef(){
+		StartCoroutine (coroutine2);
 	}
 }

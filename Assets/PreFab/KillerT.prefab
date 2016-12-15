@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114000010960499180}
   - component: {fileID: 108000013145005740}
   - component: {fileID: 135000011117658440}
+  - component: {fileID: 114582672861259622}
   m_Layer: 11
   m_Name: KillerT
   m_TagString: Host
@@ -444,6 +445,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePerZap: 20
+--- !u!114 &114582672861259622
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010516641762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8b06ce0d3b8ce545bb80e3da9947002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!120 &120414969775434210
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -612,7 +624,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000014055417770}
   serializedVersion: 5
   lengthInSec: 1
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 0
@@ -3249,7 +3261,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000013929145322}
   serializedVersion: 5
   lengthInSec: 0.5
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -5886,7 +5898,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000012258872224}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
