@@ -164,11 +164,13 @@ public class BloodFlow : MonoBehaviour {
 				NextWaypoint missionList = GameObject.Find (dest).GetComponent<NextWaypoint> ();
 				for(int i = 0; i < missionList.missions.Length; i++){
 					if(missionList.missions[i] == myTempMission){
+						print ("found " + myTempMission);
 						myMission = myTempMission;
 						dest = bfctrl.GetNext (dest, myMission);
 						agent.destination = GameObject.Find (dest).transform.position;
 						StartCoroutine (coroutine1);
 						StopCoroutine (coroutine3);
+						break;
 					}
 				}
 				dest = bfctrl.GetNext (dest, myMission);
