@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 114000011245465528}
   - component: {fileID: 195000011937628206}
   - component: {fileID: 114000011841248726}
-  - component: {fileID: 135000013503541914}
   - component: {fileID: 114000014264169892}
   - component: {fileID: 114000012277957312}
   - component: {fileID: 108000011670128752}
@@ -441,18 +440,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2.5
   moveSpeed: 0
---- !u!135 &135000013503541914
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014212439522}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136000010723887182
 CapsuleCollider:
   m_ObjectHideFlags: 1
