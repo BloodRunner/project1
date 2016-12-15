@@ -191,6 +191,8 @@ public class BloodFlow : MonoBehaviour {
 							break;
 						}
 					}
+					dest = bfctrl.GetNext (dest, myMission);
+					agent.destination = GameObject.Find (dest).transform.position;
 				} else {
 					dest = bfctrl.GetNext (dest, myMission);
 					agent.destination = GameObject.Find (dest).transform.position;
