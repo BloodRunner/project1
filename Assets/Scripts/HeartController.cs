@@ -9,6 +9,8 @@ public class HeartController : OrganController {
 		if (!bodystate) {
 			Debug.LogError (name + " BodyState is missing");
 		} else {
+			updateHealthStats (100);
+			updateDefenseStats (100);
 			bodystate.updateRedSpeedStats (stats_health);
 			bodystate.updateWhiteSpeedStats (stats_health);
 			// TODO: pathogen speed
@@ -16,8 +18,5 @@ public class HeartController : OrganController {
 		Debug.Log (name +" damageBody " + bodystate.showStats ());
 	}
 
-	public void Update(){
-		bodyStats.health = 10000f;
-		bodyStats.defense = 10000f;
-	}
+
 }
