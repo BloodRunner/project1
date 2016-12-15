@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+	
 	public RedController Red;
 	public WhiteController White;
 	public WhiteController killerT;
@@ -49,11 +50,16 @@ public class GameController : MonoBehaviour
 	GameObject playerpanel;
 	CanvasGroup playerpanel_cg;
 	AudioSource readyToGoSound, gameOverSound, victorySound;
+	private GameObject[] boxes;
 
 
 	// Use this for initialization
 	void Start ()
 	{
+		boxes = GameObject.FindGameObjectsWithTag ("directional");
+		for(int i = 0; i < boxes.Length; i++){
+			boxes [i].gameObject.SetActive (false);
+		}
 		//msgbd = new MessageBoard ();
 		showRestartButton (0);
 		deadpenguin (false);

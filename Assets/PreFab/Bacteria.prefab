@@ -220,6 +220,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bfctrl: {fileID: 0}
+  timeCheck: 0
+  speed: 2
+  moveSpeed: 0
 --- !u!136 &136000012273477888
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -484,7 +487,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       minMaxState: 1
     startSize:
-      scalar: 0.5
+      scalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
