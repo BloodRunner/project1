@@ -316,7 +316,7 @@ Light:
   m_Enabled: 0
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0, g: 0.0068967342, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.651, b: 0, a: 1}
   m_Intensity: 1
   m_Range: 0.3
   m_SpotAngle: 30
@@ -481,7 +481,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000012792072614}
   serializedVersion: 5
   lengthInSec: 1
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -3118,7 +3118,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000010629883980}
   serializedVersion: 5
   lengthInSec: 1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -5755,7 +5755,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000011555021846}
   serializedVersion: 5
   lengthInSec: 0.5
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1

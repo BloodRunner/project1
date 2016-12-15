@@ -79,8 +79,8 @@ public class BloodFlowController : MonoBehaviour {
 		return null;
 	}
 
-	public void defendMission(string organWaypoint, string mission, int[] order){
-		BloodFlow thisCell = findNearest ("KillerT", order,true).GetComponent<BloodFlow>();
+	public void defendMission(string organWaypoint, string mission, GameObject itsMe){
+		BloodFlow thisCell = itsMe.GetComponent<BloodFlow>();
 		if (thisCell == null) {
 			return;
 		}
