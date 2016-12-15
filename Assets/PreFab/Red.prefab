@@ -148,7 +148,7 @@ MonoBehaviour:
     health: 30
     speed: 3
     defense: 20
-    reprodRate: 7
+    reprodRate: 5
     power: 10
     delay: 0
     level: 0
@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bfctrl: {fileID: 0}
+  timeCheck: 0
   speed: 2
   moveSpeed: 0
 --- !u!135 &135000012413984346

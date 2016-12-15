@@ -31,7 +31,8 @@ public class AttackCell : MonoBehaviour {
 			for (int i = 0; i < collisions.Length; i++) {
 				//print (collisions [i].tag);
 				if (Vector3.Distance (collisions [i].GetComponent<Transform> ().position, this.GetComponent<Transform> ().position) < dist) {
-					if (collisions [i].CompareTag ("Host")) {
+					if (collisions [i].name == "White" || collisions [i].name == "KillerT" || collisions [i].name == "Red") {
+						print ("BWOOOOOO");
 						dist = Vector3.Distance (collisions [i].GetComponent<Transform> ().position, this.GetComponent<Transform> ().position);
 						target = collisions [i].gameObject;
 					}
@@ -55,6 +56,9 @@ public class AttackCell : MonoBehaviour {
 			}
 			dest = new Vector3 (thex,0,thez);
 			this.transform.position += dest * speed * Time.deltaTime;
+			if (Vector3.Distance (target.GetComponent<Transform> ().position, this.GetComponent<Transform> ().position) > 3) {
+				target = null;
+			}
 		}
 	}
 
