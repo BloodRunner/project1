@@ -387,9 +387,9 @@ MonoBehaviour:
   bodystate: {fileID: 0}
   bodyStats:
     health: 80
-    speed: 7
+    speed: 5
     defense: 80
-    reprodRate: 12
+    reprodRate: 25
     power: 60
     delay: 0
     level: 0

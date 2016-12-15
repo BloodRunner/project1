@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44951355, g: 0.49651045, b: 0.5591556, a: 1}
+  m_IndirectSpecularColor: {r: 0.44949424, g: 0.4964906, b: 0.5591459, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2655,7 +2655,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &602568341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4730,7 +4730,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012723336726, guid: cabc734944c71424584588040678cddb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.65
+      value: 0.827
       objectReference: {fileID: 0}
     - target: {fileID: 4000012723336726, guid: cabc734944c71424584588040678cddb, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4755,15 +4755,6 @@ Prefab:
     - target: {fileID: 4000012723336726, guid: cabc734944c71424584588040678cddb, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000011592422990, guid: cabc734944c71424584588040678cddb, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014247930418, guid: cabc734944c71424584588040678cddb,
-        type: 2}
-      propertyPath: bodyStats.reprodRate
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cabc734944c71424584588040678cddb, type: 2}

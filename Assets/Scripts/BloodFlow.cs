@@ -17,6 +17,7 @@ public class BloodFlow : MonoBehaviour {
 	private IEnumerator coroutine2;
 	private IEnumerator coroutine3;
 	private IEnumerator coroutine4;
+	public int timeCheck;
 
 	private WhiteController me;
 	private bool turn;
@@ -106,8 +107,8 @@ public class BloodFlow : MonoBehaviour {
 
 	public IEnumerator playerPatrol(){
 		while (true) {
-			yield return new WaitForSeconds (0.2f);
-			if (agent.remainingDistance < 1f) {
+			yield return new WaitForSeconds (0.1f);
+			if (agent.remainingDistance < 2f) {
 				for(int i = 0; i < dirWayp.Length; i++){
 					if(dirMission[i].nameOfWayp == dest){
 						if (turn) {
