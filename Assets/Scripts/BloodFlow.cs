@@ -162,8 +162,8 @@ public class BloodFlow : MonoBehaviour {
 			yield return new WaitForSeconds (0.2f);
 			if (agent.remainingDistance < 1f) {
 				NextWaypoint missionList = GameObject.Find (dest).GetComponent<NextWaypoint> ();
-				for(int i = 0; i < GameObject.Find(dest).GetComponent<NextWaypoint>().missions.Length; i++){
-					if(GameObject.Find(dest).GetComponent<NextWaypoint>().missions[i] == myTempMission){
+				for(int i = 0; i < missionList.missions.Length; i++){
+					if(missionList.missions[i] == myTempMission){
 						myMission = myTempMission;
 						dest = bfctrl.GetNext (dest, myMission);
 						agent.destination = GameObject.Find (dest).transform.position;

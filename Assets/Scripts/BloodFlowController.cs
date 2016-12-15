@@ -45,18 +45,19 @@ public class BloodFlowController : MonoBehaviour {
 	}
 
 	public void makeMission(int[] order,string mission){
-		BloodFlow thisCell = findNearest ("White", order,true).GetComponent<BloodFlow>();
+		GameObject thisCell = findNearest ("White", order,true);
 		if (thisCell == null) {
 			return;
 		}
+		print (thisCell.name);
 		thisCell.GetComponent<PingCell> ().PingIt ();
-		thisCell.startMission (mission);
+		thisCell.GetComponent<BloodFlow>().startMission (mission);
 	}
 
 	public GameObject findNearest(string obj, int[] order, bool single){
 		GameObject[] cells = GameObject.FindGameObjectsWithTag ("Host");
 		for(int i = 1; i < order.Length; i++){
-			for (int x = names[order[i]-1].Length-1; x > 0; x--) {
+			for (int x = 1; x < names[order[i]-1].Length-1; x++) {
 				for (int z = 0; z < cells.Length; z++) {
 					if(cells[z].name == obj){
 						if (single == true) {

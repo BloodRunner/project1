@@ -86,7 +86,7 @@ public class HighlightController : MonoBehaviour {
 						Vector3 end = new Vector3 (adjusted.x, 0.1f, adjusted.z);
 						//GameObject.Find ("TheGrandFollower").transform.position = end;
 						if (Vector3.Distance (end, objCurrent.transform.position) < 3) {
-							print (objCurrent.name);
+							//print (objCurrent.name);
 							objCurrent.GetComponent<CameraChange> ().startFollow ();
 							objCurrent.GetComponent<Light> ().range = 0.3f;
 						}

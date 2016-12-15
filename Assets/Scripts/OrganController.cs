@@ -173,7 +173,9 @@ public abstract class OrganController : BodyController {
 
 	/* Call the closest white cell to come help */
 	public void callForSupport() {
+		
 		if (followerCamera.enabled == false) {
+			//print ("BWAAAAAA");
 			bfctrl.makeMission (order, mission);
 		} else {
 			WhiteController[] cells = GameObject.FindObjectsOfType (typeof(WhiteController)) as WhiteController[];

@@ -15,7 +15,7 @@ public class PingCell : MonoBehaviour {
 	private IEnumerator PingPing(){
 		myLight.range = 3f;
 		myLight.enabled = true;
-		for(int i = 0; i < 5; i ++){
+		for(int i = 0; i < 10; i ++){
 			myLight.color -= Color.red / 2.0F * Time.deltaTime;
 			yield return new WaitForSeconds (0.1f);
 		}
