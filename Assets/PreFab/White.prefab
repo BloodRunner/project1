@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f7433047ea22d47a06bb749f314e28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePerShot: 10
+  damagePerShot: 15
   timeBetweenBullets: 0.15
   range: 100
 --- !u!114 &114000011841248726
@@ -481,7 +481,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000012792072614}
   serializedVersion: 5
   lengthInSec: 1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -3118,7 +3118,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000010629883980}
   serializedVersion: 5
   lengthInSec: 1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -5755,7 +5755,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000011555021846}
   serializedVersion: 5
   lengthInSec: 0.5
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -8510,7 +8510,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89

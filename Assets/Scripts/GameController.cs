@@ -273,6 +273,7 @@ public class GameController : MonoBehaviour
 		PathogenController cc = infections [0];
 		while (!gameOver && level < numlevels) {
 			//showNextLevelButton (1);
+
 			StartCoroutine (spawnLevel (level));
 			cc = infections [level % infections.Length];
 			// Organ is now a spawner
@@ -300,8 +301,16 @@ public class GameController : MonoBehaviour
 				level++;
 				if (!gameOver) {
 					if (level < numlevels) {
-						showMessage ("You have lived through level " + level + ". More pathogens are coming", 1);			
+						string bonus_mesg = "";
+						if (level > 1) {
+							bonus_mesg = "You earned " + (level * 20) + " points and extra killerT cells";
+
+						}
+						showMessage ("You survived level " + level +"!!"
+							+ bonus_mesg 
+							+ ". More pathogens are coming", 4);			
 						showNextLevelButton (1);
+						UpdateScore(level*20); // Update level, no score change or should we give a bonus
 
 						yield return new WaitWhile (() => WaitForNextLevel);								
 					} else {
