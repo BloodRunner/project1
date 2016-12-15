@@ -94,6 +94,8 @@ public class BloodFlow : MonoBehaviour {
 	public IEnumerator boundPatrol(){
 		while (true) {
 			yield return new WaitForSeconds (0.2f);
+			this.gameObject.GetComponent<Light> ().color = Color.green;
+			this.gameObject.GetComponent<Light> ().range = 2f;
 			if (agent.remainingDistance < 1f) {
 				if(dest == bind){
 					agent.destination = GameObject.Find (dest).transform.position;

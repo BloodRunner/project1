@@ -84,7 +84,7 @@ public class BloodFlowController : MonoBehaviour {
 		if (thisCell == null) {
 			return;
 		}
-		itsMe.GetComponent<PingCell> ().PingDef ();
+		//itsMe.GetComponent<PingCell> ().PingDef ();
 		print ("hmmm2 " + mission + " " + organWaypoint);
 		thisCell.startDefend (mission, organWaypoint);
 	}

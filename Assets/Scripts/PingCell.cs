@@ -10,9 +10,9 @@ public class PingCell : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		myLight = GetComponent<Light> ();
+		myLight = this.gameObject.GetComponent<Light> ();
 		coroutine = PingPing ();
-		coroutine2 = defendPing ();
+		//coroutine2 = defendPing ();
 		me = this.gameObject.GetComponent<BloodFlow> ();
 	}
 
@@ -27,11 +27,12 @@ public class PingCell : MonoBehaviour {
 		StopCoroutine (coroutine);
 	}
 
-	private IEnumerator defendPing(){
+	/*private IEnumerator defendPing(){
 		while(true){
+			print ("Ping");
 			myLight.enabled = true;
-			myLight.range = 1.5f;
-			myLight.color = Color.green;
+			myLight.range = 10f;
+			myLight.color = Color.black;
 			if(me.onADefend() == false){
 				myLight.enabled = false;
 				myLight.color = Color.white;
@@ -40,13 +41,14 @@ public class PingCell : MonoBehaviour {
 			}
 			yield return new WaitForSeconds (1.5f);
 		}
-	}
+	}*/
+
 	
 	public void PingIt(){
 		StartCoroutine (coroutine);
 	}
 
 	public void PingDef(){
-		StartCoroutine (coroutine2);
+		//StartCoroutine (coroutine2);
 	}
 }
