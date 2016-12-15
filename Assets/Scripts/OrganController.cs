@@ -14,6 +14,8 @@ public abstract class OrganController : BodyController {
 	//public GameObject shot;
 	protected bool isSpawner=false;
 	protected Blink exclamation = null;
+	float colorChange =0;
+	float oldhealth;
 
 	// in organs reprodRate is the number of seconds it uses up 1% of it's oxygen/health
 	// oxygen depletion of N points per N seconds
@@ -30,16 +32,16 @@ public abstract class OrganController : BodyController {
 			gameController = GameObject.FindObjectOfType (typeof(GameController)) as GameController;
 		if (bodystate == null)
 			bodystate = GameObject.FindObjectOfType (typeof(BodyState)) as BodyState;
-		Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Hostcell"),LayerMask.NameToLayer("Organ"));
+		oldhealth = stats_health;
 	}
 
 	// oxygenate means add power to health + defense to organ
 	// TODO: modify by regenRate
 	void oxygenate (float power) {
-		//string preoxy = name +" before oxygenate("+ power+")="+ showStats();
+		string preoxy = name +" before oxygenate("+ power+")="+ showStats();
 		updateHealthStats (power); // health goes up by oxygen power
 		updateDefenseStats (power / 2f); // defense goes up by 1/2 oxygen power
-		// Debug.Log(preoxy +" after= "+ showStats());
+		Debug.Log(preoxy +" after= "+ showStats());
 	}
 
 	// Each combatant lose 1% in defend after each combat
@@ -89,7 +91,18 @@ public abstract class OrganController : BodyController {
 			updateHealthStats(-1f);
 			Debug.Log (name + " Oxygen depletion ("+reprodRate ()+")" + showStats());
 			nextOxygenDepletion = Time.time + reprodRate (); //reprod is used for oxygen use rate -
-			instantMuteColors(stats_health/100f);
+
+		}
+		if (Time.time > colorChange) {
+			/// !!! TESTING
+
+			colorChange = Time.time + 5f;
+			if (oldhealth != stats_health) {
+				Debug.Log ( name + " Change organ color " + stats_health );
+				instantMuteColors (stats_health / 100f);
+				oldhealth = stats_health;
+			}
+			instantMuteColors(0.2f);
 		}
 	}
 

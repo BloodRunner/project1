@@ -27,7 +27,8 @@ public class CellController :  BodyController{
 	float birthtime;
 	AudioSource deathSound=null;
 	bool dead=false;
-
+	int hostcellLayer;
+	int infectionLayer;
 
 	void Awake() { 
 		rb = GetComponent<Rigidbody>();
@@ -55,7 +56,9 @@ public class CellController :  BodyController{
 		hitParticles = GetComponentInChildren <ParticleSystem> ();
 		Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Hostcell"),LayerMask.NameToLayer("Walls"));
 		Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Hostcell"),LayerMask.NameToLayer("Ground"));
-		Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Hostcell"),LayerMask.NameToLayer("Organ"));
+	
+		hostcellLayer = LayerMask.NameToLayer("Hostcell");
+		infectionLayer = LayerMask.NameToLayer("Infection");
 	}
 
 	public float time_left_to_live() {
@@ -212,7 +215,9 @@ public class CellController :  BodyController{
 			}*/
 			bool battle = true;
 			if (!tag.Equals (other.tag) &&
-			    (other.tag.Equals ("Host") || other.tag.Equals ("Infection"))) {
+			   // (other.tag.Equals ("Host") || other.tag.Equals ("Infection"))) {
+				(other.gameObject.layer == hostcellLayer || other.gameObject.layer == infectionLayer)) {
+					
 				//Debug.Log (name + "-" + tag + " collided with " + other.name + "=" + other.tag);
 				if (gameObject.name.Equals ("Red") && other.tag.Equals ("Infection")){
 					CellController othercell = other.GetComponent (typeof(PathogenController)) as PathogenController;
