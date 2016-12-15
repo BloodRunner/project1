@@ -84,7 +84,7 @@ public class CameraChange : MonoBehaviour {
 			this.GetComponentInChildren<Shooter>().enabled = false;
 			this.SendMessage ("removeStats");
 		}
-		bf.startPatrol ();
+		bf.stopPlayer ();
 		/*if (wasIBound) {
 			this.GetComponent<BloodFlow> ().destOveride (dest);
 			this.GetComponent<BloodFlow> ().setMyBound (true);

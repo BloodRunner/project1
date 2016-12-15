@@ -13,6 +13,7 @@ public class BloodFlow : MonoBehaviour {
 	private string bind;
 	private bool onMission;
 	private bool isPlayer;
+	private bool onDefendMission;
 	private IEnumerator coroutine1;
 	private IEnumerator coroutine2;
 	private IEnumerator coroutine3;
@@ -96,18 +97,21 @@ public class BloodFlow : MonoBehaviour {
 			if (agent.remainingDistance < 1f) {
 				if(dest == bind){
 					agent.destination = GameObject.Find (dest).transform.position;
-					yield return new WaitForSeconds (0.3f);
-				} else{
+					yield return new WaitForSeconds (0.8f);
+				} else if (myTempMission != myMission) {
 					NextWaypoint missionList = GameObject.Find (dest).GetComponent<NextWaypoint> ();
-					for(int i = 0; i < missionList.missions.Length; i++){
-						if(missionList.missions[i] == myTempMission){
-							print ("found " + myTempMission);
+					for (int i = 0; i < missionList.missions.Length; i++) {
+						if (missionList.missions [i] == myTempMission) {
+							//print ("found " + myTempMission);
 							myMission = myTempMission;
 							dest = bfctrl.GetNext (dest, myMission);
 							agent.destination = GameObject.Find (dest).transform.position;
+							StartCoroutine (coroutine1);
+							StopCoroutine (coroutine3);
 							break;
 						}
 					}
+				} else {
 					dest = bfctrl.GetNext (dest, myMission);
 					agent.destination = GameObject.Find (dest).transform.position;
 				}
@@ -173,25 +177,31 @@ public class BloodFlow : MonoBehaviour {
 			yield return new WaitForSeconds (0.2f);
 			if (agent.remainingDistance < 1f) {
 				NextWaypoint missionList = GameObject.Find (dest).GetComponent<NextWaypoint> ();
-				for(int i = 0; i < missionList.missions.Length; i++){
-					if(missionList.missions[i] == myTempMission){
-						print ("found " + myTempMission);
-						myMission = myTempMission;
-						dest = bfctrl.GetNext (dest, myMission);
-						agent.destination = GameObject.Find (dest).transform.position;
-						StartCoroutine (coroutine1);
-						StopCoroutine (coroutine3);
-						break;
+				if (myTempMission != myMission) {
+					for (int i = 0; i < missionList.missions.Length; i++) {
+						if (missionList.missions [i] == myTempMission) {
+							//print ("found " + myTempMission);
+							myMission = myTempMission;
+							dest = bfctrl.GetNext (dest, myMission);
+							agent.destination = GameObject.Find (dest).transform.position;
+							StartCoroutine (coroutine1);
+							StopCoroutine (coroutine3);
+							break;
+						}
 					}
+				} else {
+					dest = bfctrl.GetNext (dest, myMission);
+					agent.destination = GameObject.Find (dest).transform.position;
 				}
-				dest = bfctrl.GetNext (dest, myMission);
-				agent.destination = GameObject.Find (dest).transform.position;
 			}
 		}
 	}
 
 
 	public void startMission(string mission){
+		isPlayer = false;
+		onMission = true;
+		onDefendMission = false;		
 		myTempMission = mission;
 		StopAllCoroutines();
 		StartCoroutine (coroutine3);
@@ -199,6 +209,8 @@ public class BloodFlow : MonoBehaviour {
 
 	public void startDefend(string mission, string binding){
 		isPlayer = false;
+		onDefendMission = true;
+		onMission = false;
 		myTempMission = mission;
 		bind = binding;
 		StopAllCoroutines();
@@ -216,6 +228,14 @@ public class BloodFlow : MonoBehaviour {
 		isPlayer = false;
 		StopAllCoroutines();
 		StartCoroutine (coroutine1);
+	}
+
+	public void stopPlayer(){
+		if (onDefendMission) {
+			isPlayer = false;
+		} else {
+			StartCoroutine (coroutine1);
+		}
 	}
 
 	public string getMyMission(){
