@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour
 	float difficultyLevel = 1;
 	updatePlayerStats playerStats;
 	bool WaitForNextLevel;
-	//int level=0;
+	int level=0;
 	GameObject playerpanel;
 	CanvasGroup playerpanel_cg;
 	AudioSource readyToGoSound, gameOverSound, victorySound;
@@ -267,7 +267,7 @@ public class GameController : MonoBehaviour
 	{
 		yield return new WaitForSeconds (startWait);
 		CellController cell;
-		int level = 0;
+		//int level = 0;
 		/*const*/
 		int numlevels = levelEditor.Length;
 		PathogenController cc = infections [0];
@@ -385,7 +385,8 @@ public class GameController : MonoBehaviour
 	{
 		score += scorept;
 		if (scoreText != null)
-			scoreText.text = "Score:" + score;
+			scoreText.text = "Score:" + score + " Level:"+ level;
+		
 	}
 
 	public void GameOver ()
