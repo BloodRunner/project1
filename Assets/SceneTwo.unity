@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44949424, g: 0.4964906, b: 0.5591459, a: 1}
+  m_IndirectSpecularColor: {r: 0.44951355, g: 0.49651045, b: 0.5591556, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1260,15 +1260,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000013472112744, guid: 67eb474e276cd4b299b2e9071254c22a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.069
+      value: -0.067
       objectReference: {fileID: 0}
     - target: {fileID: 4000013472112744, guid: 67eb474e276cd4b299b2e9071254c22a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: -0.028
       objectReference: {fileID: 0}
     - target: {fileID: 4000013472112744, guid: 67eb474e276cd4b299b2e9071254c22a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.062
+      value: 0.061
       objectReference: {fileID: 0}
     - target: {fileID: 4000013472112744, guid: 67eb474e276cd4b299b2e9071254c22a, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3358,7 +3358,7 @@ Prefab:
     - target: {fileID: 114000012043091672, guid: 248b3e6092851b24481ab1d74484a739,
         type: 2}
       propertyPath: m_Color.r
-      value: 0.039792385
+      value: 0.032115053
       objectReference: {fileID: 0}
     - target: {fileID: 114000013786528506, guid: 248b3e6092851b24481ab1d74484a739,
         type: 2}
@@ -3383,12 +3383,12 @@ Prefab:
     - target: {fileID: 114000012043091672, guid: 248b3e6092851b24481ab1d74484a739,
         type: 2}
       propertyPath: m_Color.b
-      value: 0.04184057
+      value: 0.03357292
       objectReference: {fileID: 0}
     - target: {fileID: 114000012043091672, guid: 248b3e6092851b24481ab1d74484a739,
         type: 2}
       propertyPath: m_Color.g
-      value: 0.6764706
+      value: 0.4852941
       objectReference: {fileID: 0}
     - target: {fileID: 114000013786528506, guid: 248b3e6092851b24481ab1d74484a739,
         type: 2}
@@ -3553,7 +3553,7 @@ Prefab:
     - target: {fileID: 224000013732063054, guid: 248b3e6092851b24481ab1d74484a739,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 93.8
+      value: 139
       objectReference: {fileID: 0}
     - target: {fileID: 114000011459076718, guid: 248b3e6092851b24481ab1d74484a739,
         type: 2}
@@ -3829,6 +3829,11 @@ Prefab:
         type: 2}
       propertyPath: m_Color.b
       value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011746658622, guid: 248b3e6092851b24481ab1d74484a739,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 95
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 248b3e6092851b24481ab1d74484a739, type: 2}
@@ -4271,7 +4276,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 728413360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.1, y: 0, z: -18.2}
+  m_LocalPosition: {x: 3.27, y: 0, z: -4.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6793,7 +6798,7 @@ MonoBehaviour:
     health: 1000
     speed: 0
     defense: 10000
-    reprodRate: 30
+    reprodRate: 1000
     power: 0
     delay: 0
     level: 0
