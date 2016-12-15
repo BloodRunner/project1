@@ -5,6 +5,7 @@ using System.Collections;
 // Name = organ name
 public abstract class OrganController : BodyController {
 	public string mission;
+	public string waypoint;
 	public int[] order;
 	public BloodFlowController bfctrl;
 	public Rigidbody rb;
@@ -182,16 +183,16 @@ public abstract class OrganController : BodyController {
 			WhiteController[] cells = GameObject.FindObjectsOfType (typeof(WhiteController)) as WhiteController[];
 			//GameObject[] cells = GameObject.FindGameObjectsWithTag ("Host");
 			for (int i = 0; i < cells.Length; i++) {
-				if(cells[i].name == "White"){
-					if(cells[i].GetComponent<CameraChange>().getIsOn()){
+				if (cells [i].GetComponent<CameraChange> ().getIsOn ()) {
+					
+					if(cells[i].name == "White"){
+						break;
+					} else if(cells[i].name == "KillerT"){
+						print ("hmmm");
+						bfctrl.defendMission (waypoint,mission,order);
 						print (this.myname);
 						break;
-					}
-				} else if(cells[i].name == "KillerT"){
-					if(cells[i].GetComponent<CameraChange>().getIsOn()){
 
-						print (this.myname);
-						break;
 					}
 				}
 			}

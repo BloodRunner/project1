@@ -1465,6 +1465,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 71
       objectReference: {fileID: 0}
+    - target: {fileID: 4188978250960186, guid: 419e4514d0bd82948ae85e5e0c36778e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 13.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4188978250960186, guid: 419e4514d0bd82948ae85e5e0c36778e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 13.53
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 419e4514d0bd82948ae85e5e0c36778e, type: 2}
   m_IsPrefabParent: 0
@@ -6512,8 +6520,8 @@ CapsuleCollider:
   m_Height: 0.06384567
   m_Direction: 2
   m_Center: {x: -0.000000018626451, y: 0.000025017187, z: 0.000000059604645}
---- !u!135 &1394781906
-SphereCollider:
+--- !u!65 &1394781906
+BoxCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -6522,8 +6530,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.10296226
-  m_Center: {x: -0.00035538906, y: -0.008416075, z: 0.0035643475}
+  m_Size: {x: 0.21432988, y: 0.017473418, z: 0.20675619}
+  m_Center: {x: -0.0003561812, y: -0.0003206747, z: 0.0035663268}
 --- !u!65 &1394781907
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6534,8 +6542,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.015941495, y: 0.0028545375, z: 0.012404601}
-  m_Center: {x: 0.00022471305, y: 0.0014272687, z: -0.000474165}
+  m_Size: {x: 0.015941495, y: 0.0010780932, z: 0.012404601}
+  m_Center: {x: 0.00022471305, y: 0.0005390452, z: -0.00047458184}
 --- !u!114 &1394781908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6562,6 +6570,7 @@ MonoBehaviour:
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
   mission: mission2
+  waypoint: l3
   order: 02000000040000000300000001000000
   bfctrl: {fileID: 1209761012}
   rb: {fileID: 0}
@@ -6592,6 +6601,7 @@ MonoBehaviour:
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
   mission: mission3
+  waypoint: rl4
   order: 03000000020000000400000001000000
   bfctrl: {fileID: 1209761012}
   rb: {fileID: 0}
@@ -6626,6 +6636,7 @@ MonoBehaviour:
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
   mission: mission2
+  waypoint: 6
   order: 02000000030000000100000004000000
   bfctrl: {fileID: 1209761012}
   rb: {fileID: 0}
@@ -6657,6 +6668,7 @@ MonoBehaviour:
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
   mission: mission2
+  waypoint: 3
   order: 02000000030000000100000004000000
   bfctrl: {fileID: 1209761012}
   rb: {fileID: 0}
@@ -6692,6 +6704,7 @@ MonoBehaviour:
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
   mission: mission2
+  waypoint: bret1
   order: 02000000030000000100000004000000
   bfctrl: {fileID: 1209761012}
   rb: {fileID: 0}
@@ -6722,6 +6735,7 @@ MonoBehaviour:
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
   mission: mission1
+  waypoint: ll7
   order: 01000000020000000300000004000000
   bfctrl: {fileID: 1209761012}
   rb: {fileID: 0}
@@ -6757,6 +6771,7 @@ MonoBehaviour:
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
   mission: mission1
+  waypoint: ll13
   order: 01000000020000000300000004000000
   bfctrl: {fileID: 0}
   rb: {fileID: 0}
@@ -6777,9 +6792,9 @@ MonoBehaviour:
   gameController: {fileID: 1209761009}
   bodystate: {fileID: 654842372}
   bodyStats:
-    health: 200
+    health: 1000
     speed: 0
-    defense: 1000
+    defense: 10000
     reprodRate: 30
     power: 0
     delay: 0
@@ -6788,6 +6803,7 @@ MonoBehaviour:
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
   mission: mission2
+  waypoint: 1
   order: 02000000030000000100000004000000
   bfctrl: {fileID: 1209761012}
   rb: {fileID: 0}
@@ -6822,6 +6838,7 @@ MonoBehaviour:
   powerSlider: {fileID: 0}
   defenseSlider: {fileID: 0}
   mission: mission4
+  waypoint: rr9
   order: 04000000030000000200000001000000
   bfctrl: {fileID: 1209761012}
   rb: {fileID: 0}

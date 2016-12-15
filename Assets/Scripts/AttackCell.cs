@@ -32,7 +32,6 @@ public class AttackCell : MonoBehaviour {
 				//print (collisions [i].tag);
 				if (Vector3.Distance (collisions [i].GetComponent<Transform> ().position, this.GetComponent<Transform> ().position) < dist) {
 					if (collisions [i].name == "White" || collisions [i].name == "KillerT" || collisions [i].name == "Red") {
-						print ("BWOOOOOO");
 						dist = Vector3.Distance (collisions [i].GetComponent<Transform> ().position, this.GetComponent<Transform> ().position);
 						target = collisions [i].gameObject;
 					}

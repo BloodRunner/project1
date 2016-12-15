@@ -188,6 +188,7 @@ public class BloodFlow : MonoBehaviour {
 	}
 
 	public void startDefend(string mission, string binding){
+		isPlayer = false;
 		myTempMission = mission;
 		bind = binding;
 		StopAllCoroutines();
