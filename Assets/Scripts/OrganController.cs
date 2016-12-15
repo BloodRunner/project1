@@ -59,13 +59,13 @@ public abstract class OrganController : BodyController {
 
 			if (stats_health > 0) {
 				inContact [pathogen.GetInstanceID ()] = new Damage (combat, Time.time + 1);
-				if (isSpawner && stats_health > 25) {
+				if (isSpawner && stats_defense > 50) {
 					if (exclamation) exclamation.gameObject.SetActive (false);
 					isSpawner = false;
 					swapAudioTracks ();
 					Debug.Log (name + " is revived "); // Add points??
 				} else {
-					if (stats_health < 25 && !isSpawner) {
+					if (stats_defense < 50 && !isSpawner) {
 						Debug.Log (name + " health=" + stats_health + " " + health ());
 						if (exclamation) exclamation.gameObject.SetActive (true);
 					}
@@ -86,8 +86,9 @@ public abstract class OrganController : BodyController {
 	public void Update() {		
 		if (Time.time > nextOxygenDepletion) {
 			updateHealthStats(-1f);
-			//Debug.Log (name + " Oxygen depletion ("+reprodRate ()+")" + showStats());
+			Debug.Log (name + " Oxygen depletion ("+reprodRate ()+")" + showStats());
 			nextOxygenDepletion = Time.time + reprodRate (); //reprod is used for oxygen use rate -
+			instantMuteColors(stats_health/100f);
 		}
 	}
 

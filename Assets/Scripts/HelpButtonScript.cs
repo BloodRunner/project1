@@ -10,7 +10,7 @@ public class HelpButtonScript : MonoBehaviour
 	int organLayer;
 	//Color white = new Color(255,255,255);
 	//Color black = new Color(0,0,0);
-
+	float timer = 0f;
 	void Awake ()
 	{
 		buttonMask = LayerMask.GetMask ("SwordShield") ;
@@ -34,6 +34,7 @@ public class HelpButtonScript : MonoBehaviour
 
 	void Update ()
 	{
+		timer += Time.deltaTime;
 		if (Input.GetButton ("Fire1")) {
 			Camera cx = Camera.current;
 			Camera[] cxs = Camera.allCameras;
@@ -53,13 +54,15 @@ public class HelpButtonScript : MonoBehaviour
 					else
 						Debug.Log ("button " + button.name + " fired for support ");
 					GameObject parent = button.transform.parent.gameObject;
-					//Debug.Log ("Hit organ " + parent.name +" layer "+ parent.layer);
-					if (parent.layer == organLayer) {				
-						parent.SendMessage (callMesg);
-						Debug.Log ("Hit organ " + parent.name+ " "+ callMesg);
+					if (parent.layer == organLayer) {	
+						if (timer > 2f) {
+							parent.SendMessage (callMesg);
+							Debug.Log ("Hit organ " + parent.name + " " + callMesg);
+						}
 					}
 					flash (button);
 				}
+				timer = 0;
 			}
 		}
 	}

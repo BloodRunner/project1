@@ -206,4 +206,3 @@ public class BodyController : MonoBehaviour
 		DynamicGI.UpdateEnvironment();
 	}
 }
-
