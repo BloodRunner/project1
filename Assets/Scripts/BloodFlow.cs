@@ -142,12 +142,12 @@ public class BloodFlow : MonoBehaviour {
 	}
 
 	void Update(){
-		if(isPlayer){
+		if (isPlayer) {
 			agent.speed = me.bodyStats.speed + Input.GetAxis ("Vertical");
 			if (Input.GetAxis ("Horizontal") != 0) {
 				playerDirectionals (Input.GetAxis ("Horizontal"));
 			}
-		}
+		} 
 	}
 
 	public void playerDirectionals(float dir){
@@ -252,6 +252,10 @@ public class BloodFlow : MonoBehaviour {
 
 	public bool onAMission(){
 		return onMission;
+	}
+
+	public bool onADefend(){
+		return onDefendMission;
 	}
 
 	/*void Start(){

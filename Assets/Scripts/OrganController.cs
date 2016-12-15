@@ -202,9 +202,9 @@ public abstract class OrganController : BodyController {
 						bfctrl.myMission (mission, cells[i].gameObject);
 						break;
 					} else if(cells[i].name == "KillerT"){
-						print ("hmmm1");
-						bfctrl.defendMission (waypoint,mission,order);
-						print (this.myname);
+						//print ("hmmm1");
+						bfctrl.defendMission (waypoint,mission,cells[i].gameObject);
+						//print (this.myname);
 						break;
 
 					}
