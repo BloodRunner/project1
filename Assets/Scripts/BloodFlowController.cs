@@ -49,6 +49,7 @@ public class BloodFlowController : MonoBehaviour {
 		if (thisCell == null) {
 			return;
 		}
+		thisCell.GetComponent<PingCell> ().PingIt ();
 		thisCell.startMission (mission);
 	}
 
