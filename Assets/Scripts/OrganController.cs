@@ -120,7 +120,7 @@ public abstract class OrganController : BodyController {
 	// New Game behaviour - organ turns into undead enemy spawner
 	public override void deathHandler (){
 		if (!isSpawner) {
-			gameController.showMessage (myname + " is now an infection factory! Save it by sending red cells!!", 6);
+			gameController.showMessage (myname + " is now an infection factory! Save it by blocking pathogens!!", 6);
 			isSpawner = true;
 			//renderer.material.color = Color.blue;
 			swapAudioTracks();

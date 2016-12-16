@@ -145,7 +145,7 @@ MonoBehaviour:
   gameController: {fileID: 0}
   bodystate: {fileID: 0}
   bodyStats:
-    health: 30
+    health: 50
     speed: 3
     defense: 20
     reprodRate: 5
@@ -160,7 +160,7 @@ MonoBehaviour:
   dna: {fileID: 0}
   shotSpawn: {fileID: 0}
   points: 0
-  lifespan_in_seconds: 400
+  lifespan_in_seconds: 500
 --- !u!114 &114000013369950986
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -27,7 +27,7 @@ public class RedController :  CellController{
 			//Debug.Log ("BodyState is Missing");
 			return ((stats_speed / 100.0f) * bodyStats.speed);
 		}
-		return ((stats_speed/100.0f) * bodyStats.speed * bodystate.redSpeed());
+		return ( .5f + (stats_speed/100.0f) * bodyStats.speed * bodystate.redSpeed());
     }
 	// Lower number is faster
 	public override float reprodRate () {
