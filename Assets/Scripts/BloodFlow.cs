@@ -23,7 +23,7 @@ public class BloodFlow : MonoBehaviour {
 	private WhiteController me;
 	private bool turn;
 	public float speed = 2.0f;
-	private GameObject[] directionals;
+	//private GameObject[] directionals;
 	private Directional[] dirMission;
 	private string[] dirWayp;
 
@@ -36,12 +36,11 @@ public class BloodFlow : MonoBehaviour {
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		detectionRange = 10f;
 		isPlayer = false;
-		directionals = GameObject.FindGameObjectsWithTag("directional");
-		dirWayp = new string[directionals.Length];
-		dirMission = new Directional[directionals.Length];
-		for (int i = 0; i < directionals.Length; i++) {
-			dirMission [i] = directionals [i].GetComponent<Directional> ();
-			dirWayp [i] = directionals [i].name;
+		dirWayp = new string[bfctrl.boxes.Length];
+		dirMission = new Directional[bfctrl.boxes.Length];
+		for (int i = 0; i < bfctrl.boxes.Length; i++) {
+			dirMission [i] = bfctrl.boxes [i].GetComponent<Directional> ();
+			dirWayp [i] = bfctrl.boxes [i].name;
 		}
 		me = this.GetComponent<WhiteController> ();
 		whereAmI ();
@@ -152,20 +151,20 @@ public class BloodFlow : MonoBehaviour {
 
 		if (dir > 0) {
 			turn = true;
-			for(int i = 0; i < directionals.Length; i ++){
-				if (directionals [i].name == "right") {
-					directionals [i].SetActive (true);
+			for(int i = 0; i < bfctrl.boxes.Length; i ++){
+				if (bfctrl.boxes [i].name == "right") {
+					bfctrl.boxes [i].SetActive (true);
 				} else {
-					directionals [i].SetActive (false);
+					bfctrl.boxes [i].SetActive (false);
 				}
 			}
 		}else {
 			turn = false;
-			for(int i = 0; i < directionals.Length; i ++){
-				if (directionals [i].name == "left") {
-					directionals [i].SetActive (true);
+			for(int i = 0; i < bfctrl.boxes.Length; i ++){
+				if (bfctrl.boxes [i].name == "left") {
+					bfctrl.boxes [i].SetActive (true);
 				} else {
-					directionals [i].SetActive (false);
+					bfctrl.boxes [i].SetActive (false);
 				}
 			}
 		}

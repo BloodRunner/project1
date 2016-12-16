@@ -17,8 +17,10 @@ public class BloodFlowController : MonoBehaviour {
 	private string storage;
 	private string[] targets;
 	private float random;
+	public GameObject[] boxes;
 	// Use this for initialization
 	void Awake () {
+		boxes = GameObject.FindGameObjectsWithTag("directional");
 		//waypoints = GameObject.FindGameObjectsWithTag ("waypoints");
 		flowPoints = new Hashtable();
 		//initializeWaypoints ();
