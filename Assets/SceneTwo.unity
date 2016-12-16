@@ -4686,6 +4686,36 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: 95
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013786528506, guid: 248b3e6092851b24481ab1d74484a739,
+        type: 2}
+      propertyPath: m_Text
+      value: "Your mission is to protect your penguin\u2019s organs from being taken
+        over by pathogens.\n\nYour army is made of Killer T and white blood cells
+        that await your command.\n\nOrgans regenerate when red blood cells pass through
+        them - protect red blood cells!\n\nSurvive all 5 levels to win!\n\nBasic Controls\n\n1.
+        \ Use your mouse to click on white blood cells to zoom in to follow a white
+        blood cell.\n2.  Use W,A,S,D keys to direct white blood cells toward pathogens.\n3.
+        \ Use mouse scroll button to zoom in and out.\n4.  Press spacebar or right
+        click to zoom out and see the whole map.\n5.  Use left click mouse to shoot
+        pathogens.\n\nTactics\n\nCheck your organ health meters at the top right.
+        An organ in danger will show an exclamation point.\n\nWhen zoomed out - click
+        on the white triangular Call Signs next to an organ to call the nearest white
+        blood cells there (they\u2019ll ping blue).\n\nIf following a white blood
+        cell - click on a white triangular Call Sign to automatically direct your
+        white blood cell there.\n\nKiller T Cells emit antibodies that damage any
+        nearby pathogens. They glow white when you mouse over them.\n\nClick on the
+        Killer T Cell to follow it and then click on an organ Call Sign to station
+        it there to protect the organ.\n\nKiller T Cells glow green when selected
+        and are headed toward an organ. \n\nKeep the Brain, Thymus, Heart, Stomach,
+        Liver and at least one of the Kidneys and Lungs above 0 health to stay alive.\n\nDon\u2019t
+        let an organ drop below 0 health or it will become an infection spawner and
+        die!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013786528506, guid: 248b3e6092851b24481ab1d74484a739,
+        type: 2}
+      propertyPath: m_FontData.m_RichText
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 248b3e6092851b24481ab1d74484a739, type: 2}
   m_IsPrefabParent: 0
